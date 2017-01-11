@@ -36,10 +36,10 @@ The two exams will pull questions directly from quizzes. They are meant to ensur
 ### Grading
 The accumulated points at the end of the semester are divided by the total possible points for the final grade.
 
-A-, A, A+	90-92, 92-98, 98-100
-B-, B, B+	80-82, 82-88, 88-90
-C-, C, C+	70-72, 72-78, 78-80
-D-, D, D+	60-62, 62-68, 68-70
+A-, A, A+	90-92, 92-98, 98-100  
+B-, B, B+	80-82, 82-88, 88-90  
+C-, C, C+	70-72, 72-78, 78-80  
+D-, D, D+	60-62, 62-68, 68-70  
 F		< 60
 
 ## Topic outline
