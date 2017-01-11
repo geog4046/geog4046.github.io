@@ -12,15 +12,10 @@ Fu, Pinde. Getting to Know Web GIS: Second Edition. Redlands: ESRI Press, 2016
 ## Evaluation
 
 Quizzes		        10%
-
 Assignments		    30%
-
 Mid-term project	15%
-
 Mid-term exam	    15%
-
 Final project		  15%
-
 Final exam		    15%
 
 ### Quizzes
@@ -42,13 +37,9 @@ The two exams will pull questions directly from quizzes. They are meant to ensur
 The accumulated points at the end of the semester are divided by the total possible points for the final grade.
 
 A-, A, A+	90-92, 92-98, 98-100
-
 B-, B, B+	80-82, 82-88, 88-90
-
 C-, C, C+	70-72, 72-78, 78-80
-
 D-, D, D+	60-62, 62-68, 68-70
-
 F		< 60
 
 ## Topic outline
