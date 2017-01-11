@@ -43,10 +43,10 @@ The accumulated points at the end of the semester are divided by the total possi
 letter | minus | no sign | plus
 --- | --- | --- | --- 
 A | 90-92 | 92-98 | 98-100  
-B-, B, B+	80-82, 82-88, 88-90  
-C-, C, C+	70-72, 72-78, 78-80  
-D-, D, D+	60-62, 62-68, 68-70  
-F		< 60
+B | 80-82 | 82-88 | 88-90  
+C | 70-72 | 72-78 | 78-80  
+D | 60-62 | 62-68 | 68-70  
+F | < 60
 
 ## Topic outline
 **The technology of Web GIS**, such as web servers, web sites, and web services
