@@ -11,12 +11,12 @@ Fu, Pinde. Getting to Know Web GIS: Second Edition. Redlands: ESRI Press, 2016
 
 ## Evaluation
 
-Quizzes		        10%
-Assignments		    30%
-Mid-term project	15%
-Mid-term exam	    15%
-Final project		  15%
-Final exam		    15%
+Quizzes		        10%  
+Assignments		    30%  
+Mid-term project	15%  
+Mid-term exam	    15%  
+Final project		  15%  
+Final exam		    15%  
 
 ### Quizzes
 Brief quizzes will be given regularly to test comprehension of recent material. They will consist of a few questions or diagrams pulled straight from lecture materials. The questions will be on general concepts rather than specifics about the software used in assignments. Example: What is web GIS?
