@@ -40,11 +40,11 @@ The two exams will pull material from quizzes. They are meant to ensure that you
 ### Grading
 The accumulated points at the end of the semester are divided by the total possible points for the final grade.
 
-`A-, A, A+	90-92, 92-98, 98-100  
+A-, A, A+	90-92, 92-98, 98-100  
 B-, B, B+	80-82, 82-88, 88-90  
 C-, C, C+	70-72, 72-78, 78-80  
 D-, D, D+	60-62, 62-68, 68-70  
-F		< 60`
+F		< 60
 
 ## Topic outline
 **The technology of Web GIS**, such as web servers, web sites, and web services
@@ -57,7 +57,7 @@ F		< 60`
 Assignments that cannot be completed during class will require you to finish the work in a campus computer lab, such as the Geography and Anthropology GIS lab in Howe-Russell E220, or acquire the requisite software for use on their personal computer. Time spent on an assignment outside of class might be expected to mirror time spent on the related topics in class, including the lectures and exercises.
 
 ## Tentative schedule
-`JAN 12, Syllabus and software  
+JAN 12, Syllabus and software  
 JAN 17, The technology of Web GIS  
 JAN 19, The technology of Web GIS  
 JAN 24, Chapter 01, quiz on web tech  
@@ -89,7 +89,7 @@ APR 20, Leaflet
 APR 25, Work on final project, quiz on Leaflet; assignment 9 (Leaflet) due 3:30pm  
 APR 27, Work on final project, can take final exam  
 MAY 02, Work on final project, final project due 3:30pm; can take final exam  
-MAY 04, Final exam, last day to take final exam  `
+MAY 04, Final exam, last day to take final exam  
 
 ## Links
 ### Accounts
