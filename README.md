@@ -92,7 +92,7 @@ MAY 02, Work on final project, final project due 3:30pm; can take final exam
 MAY 04, Final exam, last day to take final exam  
 
 ## Links  
-### Accounts
+### Accounts  
 ArcGIS Online – Don’t create until starting chapter 1  
 http://www.arcgis.com/features/free-trial.html?origin=arcgis
   
