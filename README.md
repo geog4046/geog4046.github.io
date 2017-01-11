@@ -38,7 +38,8 @@ The final project will employ all major concepts taught in the course in a web a
 The two exams will pull material from quizzes. They are meant to ensure that you leave the course not only proficient with web GIS software but conversant with web GIS concepts.
 
 ### Grading
-The accumulated points at the end of the semester are divided by the total possible points for the final grade.
+The accumulated points at the end of the semester are divided by the total possible points for the final grade.  
+
 letter | minus | no sign | plus
 --- | --- | --- | --- 
 A | 90-92 | 92-98 | 98-100  
