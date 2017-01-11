@@ -1,3 +1,5 @@
+# GEOG 4046 Web GIS
+
 ## General Statement
 The purpose of this course is to give you hands-on experience creating websites with interactive maps combining geospatial data from various sources. The course introduces the technology behind the maps—web servers, geographic information system software, and data sources. The course will raise an awareness of these technologies’ capabilities and limitations, to build your capacity for decision making in fields that produce or consume web-based geospatial content.
 
@@ -30,10 +32,10 @@ The course is taught in a lab where each student will have a computer workstatio
 The mid-term project will pull together the technologies, methods, and skills learned up to that point to form a working website. There will be a set of core features that the site must have, defined in the project guidelines, but you have freedom to use different data and designs.
 
 ### Final project
-The final project will employ all major concepts taught in the course in a web application serving, consuming, analyzing, and visualizing spatial data. The application must satisfy the core requirements defined in the project guidelines, but students use their new-found decision making skills to choose the best technologies and methods to deliver a satisfactory product
+The final project will employ all major concepts taught in the course in a web application serving, consuming, analyzing, and visualizing spatial data. The application must satisfy the core requirements defined in the project guidelines, but students use their new-found decision making skills to choose the best technologies and methods to deliver a satisfactory product.
 
 ### Mid-term and final exams
-The two exams will pull questions directly from quizzes. They are meant to ensure that you leave the course not only proficient with web GIS software but conversant with web GIS concepts.
+The two exams will pull material from quizzes. They are meant to ensure that you leave the course not only proficient with web GIS software but conversant with web GIS concepts.
 
 ### Grading
 The accumulated points at the end of the semester are divided by the total possible points for the final grade.
@@ -52,7 +54,7 @@ F		< 60
 **Building your own Web GIS** with HTML, CSS, and JavaScript
 
 ## Expectations outside of class
-Assignments that cannot be completed during class will require students to finish the work in a campus computer lab, such as the Geography and Anthropology GIS lab in Howe-Russell E220, or acquire the requisite software for use on their personal computer. Time spent on an assignment outside of class might be expected to mirror time spent on the related topics in class, including the lectures and exercises.
+Assignments that cannot be completed during class will require you to finish the work in a campus computer lab, such as the Geography and Anthropology GIS lab in Howe-Russell E220, or acquire the requisite software for use on their personal computer. Time spent on an assignment outside of class might be expected to mirror time spent on the related topics in class, including the lectures and exercises.
 
 ## Tentative schedule
 JAN 12, Syllabus and software  
@@ -89,40 +91,78 @@ APR 27, Work on final project, can take final exam
 MAY 02, Work on final project, final project due 3:30pm; can take final exam  
 MAY 04, Final exam, last day to take final exam  
 
-## Welcome to GitHub Pages
+## Links
+### Accounts
+ArcGIS Online – Don’t create until starting chapter 1  
+http://www.arcgis.com/features/free-trial.html?origin=arcgis
+  
+GitHub – Code repository  
+https://github.com 
+ 
+Google – for Maps JavaScript API  
+https://developers.google.com/maps/documentation/javascript/   
 
-You can use the [editor on GitHub](https://github.com/geog4046/geog4046/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### Software
+Chrome – Browser  
+https://www.google.com/chrome/browser/desktop/index.html  
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Atom – Text editor  
+https://atom.io  
 
-### Markdown
+GitHub Desktop – Upload files to a GitHub Pages website  
+https://desktop.github.com  
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+ArcGIS Desktop – Publish maps to ArcGIS Server  
+http://www.esri.com/landing-pages/software/arcgis/arcgis-desktop-student-trial  
 
-```markdown
-Syntax highlighted code block
+Google Drive sync client – Back up your class files  
+https://www.google.com/drive/download/  
 
-# Header 1
-## Header 2
-### Header 3
+QGIS – Free open-source desktop GIS  
+http://www.qgis.org/en/site/forusers/download.html  
 
-- Bulleted
-- List
+### Other websites we'll use
+Leaflet –  JavaScript library for web mapping  
+http://leafletjs.com  
 
-1. Numbered
-2. List
+Esri Leaflet – Leaflet JavaScript plugin for compatibility with ArcGIS web services  
+http://esri.github.io/esri-leaflet 
+ 
+Twitter Bootstrap – CSS and JavaScript files with commonly used web components built in  
+http://getbootstrap.com  
 
-**Bold** and _Italic_ and `Code` text
+GitHub Gist – For pasting, saving, and sharing snippets of code  
+https://gist.github.com  
 
-[Link](url) and ![Image](src)
-```
+ArcGIS JavaScript Sandbox – for testing HTML, CSS, and the ArcGIS JavaScript API  
+https://developers.arcgis.com/javascript/3/sandbox/sandbox.html  
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+geojson.io – Validates GeoJSON data and tests it on a map  
+http://geojson.io  
 
-### Jekyll Themes
+### Help
+GeoNet – Esri (ArcGIS) Q&A forum  
+https://geonet.esri.com  
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/geog4046/geog4046/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+GIS Stack Exchange – GIS Q&A forum  
+http://gis.stackexchange.com  
 
-### Support or Contact
+Stack Overflow – General programming Q&A forum  
+http://stackoverflow.com  
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Superuser – General computer user Q&A forum  
+http://superuser.com  
+
+### Post-semester learning
+Mapbox – Online GIS platform  
+https://www.mapbox.com  
+
+CARTO – Online GIS platform  
+https://carto.com  
+
+GeoServer – Free open-source GIS server  
+http://geoserver.org  
+
+Codecademy – Learn to code with interactive lessons  
+https://www.codecademy.com  
+
