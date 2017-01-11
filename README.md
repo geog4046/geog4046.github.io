@@ -40,13 +40,13 @@ The two exams will pull material from quizzes. They are meant to ensure that you
 ### Grading
 The accumulated points at the end of the semester are divided by the total possible points for the final grade.  
 
-letter | minus | no sign | plus
---- | --- | --- | --- 
-A | 90-92 | 92-98 | 98-100  
-B | 80-82 | 82-88 | 88-90  
-C | 70-72 | 72-78 | 78-80  
-D | 60-62 | 62-68 | 68-70  
-F | < 60
+| grade | minus | no sign | plus   |
+|:-----:| -----:| -------:| ------:|
+|   A   | 90-92 |   92-98 | 98-100 |
+|   B   | 80-82 |   82-88 |  88-90 |
+|   C   | 70-72 |   72-78 |  78-80 | 
+|   D   | 60-62 |   62-68 |  68-70 | 
+|   F   | < 60
 
 ## Topic outline
 **The technology of Web GIS**, such as web servers, web sites, and web services
