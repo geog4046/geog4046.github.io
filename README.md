@@ -59,6 +59,7 @@ The accumulated points at the end of the semester are divided by the total possi
 Assignments that cannot be completed during class will require you to finish the work in a campus computer lab, such as the Geography and Anthropology GIS lab in Howe-Russell E220, or acquire the requisite software for use on their personal computer. Time spent on an assignment outside of class might be expected to mirror time spent on the related topics in class, including the lectures and exercises.
 
 ## Tentative schedule
+
 Date | Topic | Assignment
 --- | --- | ---
 JAN 12 | Syllabus and software  
