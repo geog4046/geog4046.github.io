@@ -53,39 +53,39 @@ F		< 60
 Assignments that cannot be completed during class will require students to finish the work in a campus computer lab, such as the Geography and Anthropology GIS lab in Howe-Russell E220, or acquire the requisite software for use on their personal computer. Time spent on an assignment outside of class might be expected to mirror time spent on the related topics in class, including the lectures and exercises.
 
 ## Tentative schedule
-`JAN 12,Syllabus and software  
-JAN 17,The technology of Web GIS  
-JAN 19,The technology of Web GIS  
-JAN 24,Chapter 01,quiz on web tech  
-JAN 26,Chapter 01  
-JAN 31,Chapter 02,quiz on ch 1; assignment 1 due 3:30pm  
-FEB 02,Chapter 02  
-FEB 07,Chapter 03,quiz on ch 2; assignment 2 due 3:30pm  
-FEB 09,Chapter 03  
-FEB 14,Chapter 04,quiz on ch 3; assignment 3 due 3:30pm  
-FEB 16,Chapter 04  
-FEB 21,Chapter 07,assignment 4 due 3:30pm  
-FEB 23,Chapter 07,quiz on ch 4-7  
-FEB 28,HOLIDAY  
-MAR 02,Chapter 07  
-MAR 07,Midterm project,due 3:30pm  
-MAR 09,Midterm exam  
-MAR 14,Chapter 08  
-MAR 16,Chapter 08  
-MAR 21,Chapter 10,assignment 5 (ch 8) due 3:30pm  
-MAR 23,Chapter 10  
-MAR 28,HTML-CSS-JavaScript,quiz on ch 8-10; assignment 6 (ch 10) due 3:30pm  
-MAR 30,Bootstrap  
-APR 04,Website with ArcGIS API,quiz on HTML; assignment 7 (Bootstrap website) due 3:30pm  
-APR 06,Website with ArcGIS API,assignment 8 (ArcGIS website) due 3:30pm  
-APR 11,HOLIDAY  
-APR 13,HOLIDAY  
-APR 18,Leaflet  
-APR 20,Leaflet  
-APR 25,Work on final project,quiz on Leaflet; assignment 9 (Leaflet) due 3:30pm  
-APR 27,Work on final project,can take final exam  
-MAY 02,Work on final project,final project due 3:30pm; can take final exam  
-MAY 04,Final exam,last day to take final exam`
+JAN 12, Syllabus and software  
+JAN 17, The technology of Web GIS  
+JAN 19, The technology of Web GIS  
+JAN 24, Chapter 01, quiz on web tech  
+JAN 26, Chapter 01  
+JAN 31, Chapter 02, quiz on ch 1; assignment 1 due 3:30pm  
+FEB 02, Chapter 02  
+FEB 07, Chapter 03, quiz on ch 2; assignment 2 due 3:30pm  
+FEB 09, Chapter 03  
+FEB 14, Chapter 04, quiz on ch 3; assignment 3 due 3:30pm  
+FEB 16, Chapter 04  
+FEB 21, Chapter 07, assignment 4 due 3:30pm  
+FEB 23, Chapter 07, quiz on ch 4-7  
+FEB 28, HOLIDAY  
+MAR 02, Chapter 07  
+MAR 07, Midterm project, due 3:30pm  
+MAR 09, Midterm exam  
+MAR 14, Chapter 08  
+MAR 16, Chapter 08  
+MAR 21, Chapter 10, assignment 5 (ch 8) due 3:30pm  
+MAR 23, Chapter 10  
+MAR 28, HTML-CSS-JavaScript, quiz on ch 8-10; assignment 6 (ch 10) due 3:30pm  
+MAR 30, Bootstrap  
+APR 04, Website with ArcGIS API, quiz on HTML; assignment 7 (Bootstrap website) due 3:30pm  
+APR 06, Website with ArcGIS API, assignment 8 (ArcGIS website) due 3:30pm  
+APR 11, HOLIDAY  
+APR 13, HOLIDAY  
+APR 18, Leaflet  
+APR 20, Leaflet  
+APR 25, Work on final project, quiz on Leaflet; assignment 9 (Leaflet) due 3:30pm  
+APR 27, Work on final project, can take final exam  
+MAY 02, Work on final project, final project due 3:30pm; can take final exam  
+MAY 04, Final exam, last day to take final exam  
 
 ## Welcome to GitHub Pages
 
