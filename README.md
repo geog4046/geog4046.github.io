@@ -6,8 +6,10 @@ By the end of this course, you should be able to create a website displaying int
 ## Prerequisites
 Intermediate computer literacy
 
-## Text (optional)
-Fu, Pinde. Getting to Know Web GIS: Second Edition. Redlands: ESRI Press, 2016
+## Text 
+The textbook is used for the ArcGIS Online portion of the course, and some assignments and test material come directly from the book. 
+
+Fu, Pinde. _Getting to Know Web GIS: Second Edition_. Redlands: ESRI Press, 2016
 
 ## Evaluation
 
