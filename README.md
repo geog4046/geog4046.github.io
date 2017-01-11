@@ -95,10 +95,10 @@ MAY 04, Final exam, last day to take final exam
 
 ### Accounts  
 ArcGIS Online – Don't create until starting chapter 1  
-<http://www.arcgis.com/features/free-trial.html?origin=arcgis>
+<http://www.arcgis.com/features/free-trial.html?origin=arcgis>  
   
 GitHub – Code repository  
-https://github.com 
+<https://github.com>  
  
 Google Maps JavaScript API  
 https://developers.google.com/maps/documentation/javascript/   
