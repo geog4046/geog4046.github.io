@@ -60,7 +60,7 @@ Assignments that cannot be completed during class will require you to finish the
 
 ## Tentative schedule
 
-|  Date  | Topic | Assignment |
+|  TTH Dates  | Topic | Assignment |
 |:------:|:------|:-----------|
 JAN 12 | Syllabus and software  
 JAN 17 | The technology of Web GIS  
@@ -97,6 +97,10 @@ MAY 02 | Work on final project | final project due 3:30pm; can take final exam
 MAY 04 | Final exam | last day to take final exam
 
 ## Links
+
+### Course links
+[Moodle](https://moodle3.lsu.edu) - Turn in assignments  
+[Wiki](https://github.com/geog4046/geog4046.github.io/wiki) - Course documentation  
 
 ### Accounts  
 [ArcGIS Online](http://www.arcgis.com/features/free-trial.html?origin=arcgis) – Don't create until starting chapter 1  
