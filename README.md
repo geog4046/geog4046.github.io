@@ -95,71 +95,35 @@ MAY 04, Final exam, last day to take final exam
 
 ### Accounts  
 [ArcGIS Online](http://www.arcgis.com/features/free-trial.html?origin=arcgis) – Don't create until starting chapter 1
-
 [GitHub](https://github.com) – Code repository  
- 
 [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/)
 
 ### Software
-Chrome – Browser  
-https://www.google.com/chrome/browser/desktop/index.html  
-
-Atom – Text editor  
-https://atom.io  
-
-GitHub Desktop – Upload files to a GitHub Pages website  
-https://desktop.github.com  
-
-ArcGIS Desktop – Publish maps to ArcGIS Server  
-http://www.esri.com/landing-pages/software/arcgis/arcgis-desktop-student-trial  
-
-Google Drive sync client – Back up your class files  
-https://www.google.com/drive/download/  
-
-QGIS – Free open-source desktop GIS  
-http://www.qgis.org/en/site/forusers/download.html  
+[Chrome](https://www.google.com/chrome/browser/desktop/index.html) – Browser  
+[Atom](https://atom.io) – Text editor  
+[GitHub Desktop](https://desktop.github.com) – Upload files to a GitHub Pages website  
+[ArcGIS Desktop](http://www.esri.com/landing-pages/software/arcgis/arcgis-desktop-student-trial) – Publish maps to ArcGIS Server  
+[Google Drive sync client](https://www.google.com/drive/download/) – Back up your class files  
+[QGIS](http://www.qgis.org/en/site/forusers/download.html) – Free open-source desktop GIS  
+  
 
 ### Other websites we'll use
-Leaflet –  JavaScript library for web mapping  
-http://leafletjs.com  
-
-Esri Leaflet – Leaflet JavaScript plugin for compatibility with ArcGIS web services  
-http://esri.github.io/esri-leaflet 
- 
-Twitter Bootstrap – CSS and JavaScript files with commonly used web components built in  
-http://getbootstrap.com  
-
-GitHub Gist – For pasting, saving, and sharing snippets of code  
-https://gist.github.com  
-
-ArcGIS JavaScript Sandbox – for testing HTML, CSS, and the ArcGIS JavaScript API  
-https://developers.arcgis.com/javascript/3/sandbox/sandbox.html  
-
-geojson.io – Validates GeoJSON data and tests it on a map  
-http://geojson.io  
+[Leaflet](http://leafletjs.com) –  JavaScript library for web mapping  
+[Esri Leaflet](http://esri.github.io/esri-leaflet) – Leaflet JavaScript plugin for compatibility with ArcGIS web services  
+[Twitter Bootstrap](http://getbootstrap.com) – CSS and JavaScript files with commonly used web components built in  
+[GitHub Gist](https://gist.github.com) – For pasting, saving, and sharing snippets of code  
+[ArcGIS JavaScript Sandbox](https://developers.arcgis.com/javascript/3/sandbox/sandbox.html) – for testing HTML, CSS, and the ArcGIS JavaScript API  
+[geojson.io](http://geojson.io) – Validates GeoJSON data and tests it on a map  
+  
 
 ### Help
-GeoNet – Esri (ArcGIS) Q&A forum  
-https://geonet.esri.com  
-
-GIS Stack Exchange – GIS Q&A forum  
-http://gis.stackexchange.com  
-
-Stack Overflow – General programming Q&A forum  
-http://stackoverflow.com  
-
-Superuser – General computer user Q&A forum  
-http://superuser.com  
+[GeoNet](https://geonet.esri.com) – Esri (ArcGIS) Q&A forum  
+[GIS Stack Exchange](http://gis.stackexchange.com) – GIS Q&A forum  
+[Stack Overflow](http://stackoverflow.com) – General programming Q&A forum  
+[Superuser](http://superuser.com) – General computer user Q&A forum  
 
 ### Post-semester learning
-Mapbox – Online GIS platform  
-https://www.mapbox.com  
-
-CARTO – Online GIS platform  
-https://carto.com  
-
-GeoServer – Free open-source GIS server  
-http://geoserver.org  
-
-Codecademy – Learn to code with interactive lessons  
-https://www.codecademy.com  
+[Mapbox](https://www.mapbox.com) – Online GIS platform  
+[CARTO](https://carto.com) – Online GIS platform  
+[GeoServer](http://geoserver.org) – Free open-source GIS server  
+[Codecademy](https://www.codecademy.com) – Learn to code with interactive lessons  
