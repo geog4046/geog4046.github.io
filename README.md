@@ -60,8 +60,8 @@ Assignments that cannot be completed during class will require you to finish the
 
 ## Tentative schedule
 
-Date | Topic | Assignment
-|:------:|:------|:------|
+|  Date  | Topic | Assignment |
+|:------:|:------|:-----------|
 JAN 12 | Syllabus and software  
 JAN 17 | The technology of Web GIS  
 JAN 19 | The technology of Web GIS  
