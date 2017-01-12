@@ -6,7 +6,7 @@ The purpose of this course is to give you hands-on experience creating websites 
 By the end of this course, you should be able to create a website displaying interactive maps driven by geospatial data, and apply your knowledge to decision making in academic and professional fields.
 
 ## Prerequisites
-Intermediate computer literacy
+Computer literacy
 
 ## Text 
 The textbook is used for the ArcGIS Online portion of the course, and some assignments and test material come directly from the book. 
