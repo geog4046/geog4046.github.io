@@ -316,3 +316,16 @@ a:hover { text-decoration: underline; }
 .site-footer-owner { display: block; font-weight: bold; }
 
 .site-footer-credits { color: #819198; }
+
+section.page-header {
+  background-image: url('images/header-lidar.jpg');
+}
+h1.project-name {
+  color: #EEE;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+h2.project-tagline {
+  color: #EEE;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 1
+}
