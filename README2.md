@@ -11,7 +11,9 @@ Computer literacy
 ## Text 
 The textbook is used for the ArcGIS Online portion of the course, and some assignments and test material come directly from the book. 
 
-Fu, Pinde. _Getting to Know Web GIS: Second Edition_. Redlands: ESRI Press, 2016
+Fu, Pinde. _Getting to Know Web GIS: Second Edition_. Redlands: ESRI Press, 2016  
+
+[Book corrections](http://esripress.esri.com/bookResources/index.cfm?event=catalog.book&id=27)
 
 ## Evaluation
 
