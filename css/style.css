@@ -329,3 +329,7 @@ h2.project-tagline {
   background-color: rgba(0, 0, 0, 0.4);
   opacity: 1
 }
+
+.text-center {
+ text-align: center; 
+}
