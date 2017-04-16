@@ -1,0 +1,14 @@
+/* a CSS rule for an element selector. Requires no additional HTML */
+body {
+  background-color: lightgray;
+}
+
+/* a CSS rule for a class selector. Requires the HTML element to have the class attribute */
+.my-class {
+  color: red;
+}
+
+/* a CSS rule for an ID selector. Requires the  */
+#my-id {
+  background-color: green;
+}
