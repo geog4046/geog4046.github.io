@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lab 9 - GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+      section.page-header {
+        background-image: url(images/header.jpg);
+        background-position: center;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">geog 4046</h1>
+      <h2 class="project-tagline">Web GIS at Louisiana State University</h2>
+    </section>
+    <section class="main-content">
+      <h1 id="page-title">Assignment 09: Create a Leaflet map</h1>
+        <p>
+          Create an interactive map using the Leaflet JavaScript library. Refer to the Leaflet documentation and examples provided in class. Use Leaflet functions to draw a shape on the map, and use jQuery and Leaflet to display a GeoJSON data layer.
+        </p>
+        <h2 id="process">Process</h2>
+        <p>
+          Start with a basic HTML skeleton and supporting CSS and JavaScript files. Copy and modify JavaScript code from the Leaflet documentation and class examples. Make sure your HTML includes a box (<code>div</code>) in which to draw the map, and make sure the box has a <code>height</code> defined in your CSS file.
+          <ol>
+            <li>Create files and folders</li>
+            <li>Start with a basic HTML template [<a href="https://geog4046.github.io/examples/libraries/getting-started-leaflet.html">Leaflet getting started</a>, <a href="https://geog4046.github.io/examples/libraries/getting-started-geog4046.html">GEOG4046 HTML skeleton</a>]</li>
+            <li>Follow the <a href="http://leafletjs.com/examples/quick-start/">Leaflet quick start guide</a>, referring to the steps below for guidance. You will modify the feature coordinates later.</li>
+            <li>Under "Setting up the map" you can use the Openstreetmap basemap instead of Mapbox Streets so you don't need an account and API key from Mapbox. [<a href="https://gist.github.com/geog4046instructor/10aa157be70366f50793303ace913436">example</a>]</li>
+            <li>You can look through this <a href="https://leaflet-extras.github.io/leaflet-providers/preview/">list of basemap providers</a> and copy the example code into your script. ArcGIS map services can also be used if their WMS capability has been enabled.</li>
+            <li>Find data in GeoJSON format to use in the next steps. [<a href="https://opendata.arcgis.com/datasets/ebrgis::national-landmark">Baton Rouge National Landmarks</a>, <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php">USGS earthquake data</a>, other sources on <a href="https://opendata.arcgis.com/">ArcGIS Opendata</a>]</li>
+            <li>Add a GeoJSON layer to the map. Use jQuery's <code>getJSON</code> function to fetch the data [<a href="https://gist.github.com/geog4046instructor/66727bf4b79e1a2c8bc9">example</a>]. Then use Leaflet's <code>geoJSON</code> function to turn the data into a layer. See the <a href="http://leafletjs.com/examples/geojson/">Leaflet documentation on GeoJSON</a>&mdash;specifically, look at the first line of code in the section "The GeoJSON layer".</li>
+            <li>Add a popup to the GeoJSON features. You have to create a function that adds a popup. Then use the onEachFeature option of the <code>geoJSON</code> method to call the function. [<a href="https://gist.github.com/geog4046instructor/e6fb196efa8d9a40f5863288f7269d40">example</a>]</li>
+            <li>Modify the shapes created earlier to be around the same location as your GeoJSON layer. Keep at least one shape, and change it to make sense with your GeoJSON layer, such as drawing a circle around a group of related GeoJSON features. <code></code>.</li>
+          </ol>
+        </p>
+        <h2 id="requirements">Graded Requirements</h2>
+        <p>
+          <ul>
+            <li>Include jQuery JavaScript</li>
+            <li>Include Leaflet CSS</li>
+            <li>Include Leaflet JavaScript</li>
+            <li>Your own CSS</li>
+            <li>Your own JavaScript</li>
+            <li>Scripts and styles in separate files</li>
+            <li>Your own page title</li>
+            <li>A Leaflet map</li>
+            <li>A basemap</li>
+            <li>A GeoJSON layer</li>
+            <li>Shape(s) drawn with Leaflet. Could be a marker, line, or polygon. It should complement or makes sense with your GeoJSON data</li>
+            <li>Popups on the GeoJSON layer</li>
+            <li>Proper indentation</li>
+            <li>Commented JavaScript code</li>
+            <li>No errors in developer console</li>
+          </ul>
+        </p>
+        <h2 id="resources">Resources</h2>
+        <p>
+          <ul>
+            <li>Refer to other assignments for general examples of code.</li>
+            <li>Use the [example] links given in the Process section above.</li>
+            <li>The <a href="http://leafletjs.com/examples/quick-start/">Leaflet quick start guide</a></li>
+            <li>Leaflet <a href="http://leafletjs.com/examples/geojson/">GeoJSON example</a></li>
+            <li>Look through the class <a href="https://gist.github.com/geog4046instructor">code snippets</a> for relevant examples.</li>
+          </ul>
+        </p>
+        <h2 id="due">Due at 3:30pm on April 25, 2017</h2>
+
+      <footer class="site-footer">
+        <span class="site-footer-credits">GEOG 4046 <a href="https://geog4046.github.io/">Home</a>.</span>
+      </footer>
+    </section>
+  </body>
+</html>
