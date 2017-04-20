@@ -1,4 +1,4 @@
-var mymap = L.map( 'map' ).setView( [51.505, -0.09], 13 )
+var mymap = L.map( 'map' ).setView( [30, -90], 4 )
 var streetsBasemap = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
 	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 	subdomains: 'abcd',
@@ -9,43 +9,40 @@ var streetsBasemap = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/wate
 streetsBasemap.addTo( mymap )
 
 var marker = L.marker([51.5, -0.09]).addTo(mymap);
-
-var circle = L.circle([51.508, -0.11], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 500
+var circle = L.circle([17, -171], {
+  color: 'red',
+  fillColor: '#f03',
+  fillOpacity: 0.5,
+  radius: 6000000
 }).addTo(mymap);
-
 var polygon = L.polygon([
-    [51.509, -0.08],
-    [51.503, -0.06],
-    [51.51, -0.047]
+  [51.509, -0.08],
+  [51.503, -0.06],
+  [51.51, -0.047]
 ]).addTo(mymap);
 
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-circle.bindPopup("I am a circle.");
-polygon.bindPopup("I am a polygon.");
+var style = {
+    "color": "#ff7800",
+    "weight": 5,
+    "opacity": 0.65
+};
 
-var popup = L.popup()
+jQuery.getJSON( "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson", function( earthquakes ) {
+  L.geoJSON( earthquakes, {
+		onEachFeature: function( feature, layer ){
+			layer.bindPopup( feature.properties.place )
+		},
+		style: style
+	}).addTo( mymap );
+})
 
+var popup = L.popup();
 
 function onMapClick(e) {
-  console.log(e.latlng)
-  popup
-    .setLatLng(e.latlng)
-    .setContent("You clicked the map at " + e.latlng.lat.toFixed(2))
-    .openOn(mymap);
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(mymap);
 }
 
 mymap.on('click', onMapClick);
-
-function createPopup(feature, layer) {
-  layer.bindPopup(feature.properties.NAME)
-}
-
-jQuery.getJSON( "https://opendata.arcgis.com/datasets/ef927acb261c48c3bbef735602b9f5dc_3.geojson", function( geojsonFeature ) {
-  L.geoJSON( geojsonFeature, {
-    onEachFeature: createPopup
-  }).addTo( mymap )
-})
