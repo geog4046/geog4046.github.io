@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Lab 8 - GEOG 4046 Web GIS</title>
+    <title>Final Project - GEOG 4046 Web GIS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -20,20 +20,33 @@
       <h2 class="project-tagline">Web GIS at Louisiana State University</h2>
     </section>
     <section class="main-content">
-      <h1 id="page-title">Assignment 08: Insert a map into a web page</h1>
+      <h1 id="page-title">Final Project: JavaScript Web App</h1>
         <p>
-          Create a web page or use a page from a previous assignment, and embed a map onto the page. You can use a data layer from a previous assignment, textbook example, or just display a basemap. Provide a way for users to toggle (show and hide) the map.
+          Use Leaflet and the ArcGIS JavaScript API to create an application displaying interactive maps. Each map should have layers that make sense, and the application should have some controls that change the map(s) or map view(s).
         </p>
         <h2 id="process">Process</h2>
         <p>
-          Starting with a working web page, add the necessary HTML, CSS, and JavaScript to include a box displaying a map.
+          You will need to create an HTML page to hold the maps and interface elements; CSS to style the HTML, especially the map containers; and JavaScript to display the maps and layers, and handle user input.
           <ol>
-            <li>Use a previous assignment or other examples to start with a basic web page with some content in the body. The page should reference separate JavaScript and CSS files&mdash;do not write JavaScript and CSS directly into the web page.</li>
-            <li>Plan how the map will visually fit into the page and what CSS rules might be needed to achieve your design.</li>
-            <li>Create a <code>div</code> to be the box that holds the map. It will need an <code>id</code> attribute.</li>
-            <li>Add rules into your CSS files to style the map. Consider the height, in pixels [<a href="https://gist.github.com/geog4046instructor/8d7bda51c82cf8c19e84e285c9831553">example</a>], and whether the map should be hidden at first [<a href="https://gist.github.com/geog4046instructor/ac8ff377e48c035e0c63c35f652f1cb0">example</a>], requiring user input to show it, or if it will be visible initially and have an option to hide it.</li>
-            <li>Refer to a previous assignment or textbook examples for the JavaScript code to create the map. The JavaScript code from the GTKWebGIS examples needs to be copied from between the <code>script</code> tags and placed into a separate script file (e.g., map.js). Do not copy unecessary code, such as the code to display two maps, code linking the navigation between two maps, and references to unused modules.</li>
-            <li>Add a link or button the user can click to show or hide the map <code>div</code>. In a JavaScript file, include and modify a sample of code to listen for a click on the button or link and then toggle the map <code>div</code> element. [<a href="https://gist.github.com/geog4046instructor/2b15c97e58b6d62a1771f3e2dee1868f">example</a>]</li>
+            <li>Create files and folders</li>
+            <li>Start with a basic HTML template [<a href="https://geog4046.github.io/examples/libraries/getting-started-leaflet.html">basic Leaflet</a>, <a href="https://geog4046.github.io/examples/libraries/getting-started-geog4046.html">GEOG4046 HTML skeleton</a>] that links all necessary libraries: CSS and JavaScript for Leaflet, ArcGIS, jQuery, and Bootstrap.</li>
+            <li>Add HTML and CSS to create interface elements, such as a navigation bar, images, a header, a footer, boxes of text, or buttons.</li>
+            <li>Give the app a "brand"&mdash;consistent styling, organization name, and a generally professional appearance that makes the page look like a functional product and not a technical demo.</li>
+            <li>Compose some JavaScript to create your Leaflet map. See <a href="lab9/">assignment 9</a> or the <a href="http://leafletjs.com/examples/quick-start/">Leaflet quick start</a> example. Test it.
+              <ul>
+                <li>Add layers [<a href="http://leafletjs.com/examples/geojson/">Leaflet GeoJSON layers</a>]</li>
+                <li>Add controls to show/hide layers [<a href="http://leafletjs.com/examples/layers-control/">Leaflet controls</a>]</li>
+                <li></li>
+                <li></li>
+              </ul>
+            </li>
+            <li>Add some JavaScript to create a map with the ArcGIS API. ArcGIS and Leaflet JavaScript can coexist in the same file or be separated. You could use either the 2D or 3D code from the <a href="2d3d_Views_key.html">2d3d_Views_key.html</a> textbook example. You can use existing data sources or publish new ones to an ArcGIS Online account or the class GIS server. See GTKWebGIS chapters 6 (publishing), 9 (creating 3D scenes), and 10 (JavaScript API).</li>
+            <li></li>
+            <li><code></code></li>
+            <li><code></code></li>
+            <li></li>
+            <li>[<a href="">example</a>]</li>
+            <li>[<a href="">example</a>]</li>
           </ol>
         </p>
         <h2 id="requirements">Graded Requirements</h2>
@@ -56,13 +69,10 @@
         <p>
           <ul>
             <li>Previous assignments, especially the resources section of <a href="https://geog4046.github.io/lab7/">assignment 7</a>.</li>
-            <li><a href="https://webgis.ga.lsu.edu/2017-spring/luke/intro-level-3/">HTML example level 3</a> - arranged content in Bootstrap grid and added Bootstrap styles</li>
-            <li><a href="https://webgis.ga.lsu.edu/2017-spring/luke/lab8/">Lab 8 complete demo</a> - HTML example level 3 with a map added to it</li>
-            <li><a href="https://gist.github.com/geog4046instructor">GEOG 4046 code snippets</a></li>
-            <li><a href="http://api.jquery.com/toggle/">jQuery documentation for the toggle() function</a></li>
+            <li><a href="https://geog4046.github.io/examples/libraries/getting-started-arcgis.html">Barebones ArcGIS JavaScript</a> - A basic web page displaying a basemap with no layers. See A</li>
           </ul>
         </p>
-        <h2 id="due">Due at 11:55pm on April 7, 2017</h2>
+        <h2 id="due">Due at 3:30pm on May 2, 2017</h2>
 
       <footer class="site-footer">
         <span class="site-footer-credits">GEOG 4046 <a href="https://geog4046.github.io/">Home</a>.</span>
