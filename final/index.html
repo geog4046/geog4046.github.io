@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lab 8 - GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+      section.page-header {
+        background-image: url(images/header.jpg);
+        background-position: center;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">geog 4046</h1>
+      <h2 class="project-tagline">Web GIS at Louisiana State University</h2>
+    </section>
+    <section class="main-content">
+      <h1 id="page-title">Assignment 08: Insert a map into a web page</h1>
+        <p>
+          Create a web page or use a page from a previous assignment, and embed a map onto the page. You can use a data layer from a previous assignment, textbook example, or just display a basemap. Provide a way for users to toggle (show and hide) the map.
+        </p>
+        <h2 id="process">Process</h2>
+        <p>
+          Starting with a working web page, add the necessary HTML, CSS, and JavaScript to include a box displaying a map.
+          <ol>
+            <li>Use a previous assignment or other examples to start with a basic web page with some content in the body. The page should reference separate JavaScript and CSS files&mdash;do not write JavaScript and CSS directly into the web page.</li>
+            <li>Plan how the map will visually fit into the page and what CSS rules might be needed to achieve your design.</li>
+            <li>Create a <code>div</code> to be the box that holds the map. It will need an <code>id</code> attribute.</li>
+            <li>Add rules into your CSS files to style the map. Consider the height, in pixels [<a href="https://gist.github.com/geog4046instructor/8d7bda51c82cf8c19e84e285c9831553">example</a>], and whether the map should be hidden at first [<a href="https://gist.github.com/geog4046instructor/ac8ff377e48c035e0c63c35f652f1cb0">example</a>], requiring user input to show it, or if it will be visible initially and have an option to hide it.</li>
+            <li>Refer to a previous assignment or textbook examples for the JavaScript code to create the map. The JavaScript code from the GTKWebGIS examples needs to be copied from between the <code>script</code> tags and placed into a separate script file (e.g., map.js). Do not copy unecessary code, such as the code to display two maps, code linking the navigation between two maps, and references to unused modules.</li>
+            <li>Add a link or button the user can click to show or hide the map <code>div</code>. In a JavaScript file, include and modify a sample of code to listen for a click on the button or link and then toggle the map <code>div</code> element. [<a href="https://gist.github.com/geog4046instructor/2b15c97e58b6d62a1771f3e2dee1868f">example</a>]</li>
+          </ol>
+        </p>
+        <h2 id="requirements">Graded Requirements</h2>
+        <p>
+          <ul>
+            <li>Include jQuery JavaScript</li>
+            <li>Your own CSS</li>
+            <li>Your own JavaScript</li>
+            <li>Scripts and styles in separate files</li>
+            <li>Your own page title</li>
+            <li>Your own content</li>
+            <li>An interactive map with any layers or just a basemap</li>
+            <li>A control for the user to show and hide the map</li>
+            <li>Proper indentation</li>
+            <li>Commented JavaScript code</li>
+            <li>No errors in developer console</li>
+          </ul>
+        </p>
+        <h2 id="resources">Resources</h2>
+        <p>
+          <ul>
+            <li>Previous assignments, especially the resources section of <a href="https://geog4046.github.io/lab7/">assignment 7</a>.</li>
+            <li><a href="https://webgis.ga.lsu.edu/2017-spring/luke/intro-level-3/">HTML example level 3</a> - arranged content in Bootstrap grid and added Bootstrap styles</li>
+            <li><a href="https://webgis.ga.lsu.edu/2017-spring/luke/lab8/">Lab 8 complete demo</a> - HTML example level 3 with a map added to it</li>
+            <li><a href="https://gist.github.com/geog4046instructor">GEOG 4046 code snippets</a></li>
+            <li><a href="http://api.jquery.com/toggle/">jQuery documentation for the toggle() function</a></li>
+          </ul>
+        </p>
+        <h2 id="due">Due at 11:55pm on April 7, 2017</h2>
+
+      <footer class="site-footer">
+        <span class="site-footer-credits">GEOG 4046 <a href="https://geog4046.github.io/">Home</a>.</span>
+      </footer>
+    </section>
+  </body>
+</html>
