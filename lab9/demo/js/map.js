@@ -27,14 +27,7 @@ var style = {
     "opacity": 0.65
 };
 
-jQuery.getJSON( "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson", function( earthquakes ) {
-  L.geoJSON( earthquakes, {
-		onEachFeature: function( feature, layer ){
-			layer.bindPopup( feature.properties.place )
-		},
-		style: style
-	}).addTo( mymap );
-})
+
 
 var popup = L.popup();
 
