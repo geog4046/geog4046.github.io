@@ -32,33 +32,35 @@
             <li>Start with a basic HTML template [<a href="https://geog4046.github.io/examples/libraries/getting-started-leaflet.html">basic Leaflet</a>, <a href="https://geog4046.github.io/examples/libraries/getting-started-geog4046.html">GEOG4046 HTML skeleton</a>] that links all necessary libraries: CSS and JavaScript for Leaflet, ArcGIS, jQuery, and Bootstrap.</li>
             <li>Add HTML and CSS to create interface elements, such as a navigation bar, images, a header, a footer, boxes of text, or buttons.</li>
             <li>Give the app a "brand"&mdash;consistent styling, organization name, and a generally professional appearance that makes the page look like a functional product and not a technical demo.</li>
-            <li>Compose some JavaScript to create your Leaflet map. See <a href="lab9/">assignment 9</a> or the <a href="http://leafletjs.com/examples/quick-start/">Leaflet quick start</a> example. Test it.
+            <li>Add a Leaflet map to your page, or create a separate page linked from your home page. See <a href="lab9/">assignment 9</a> or the <a href="http://leafletjs.com/examples/quick-start/">Leaflet quick start</a> example to create a basic map.
               <ul>
-                <li>Add layers [<a href="http://leafletjs.com/examples/geojson/">Leaflet GeoJSON layers</a>]</li>
-                <li>Add controls to show/hide layers [<a href="http://leafletjs.com/examples/layers-control/">Leaflet controls</a>]</li>
-                <li></li>
+                <li>Add a basemap (tile layer), covered in the <a href="http://leafletjs.com/examples/quick-start/">quick start guide</a>. See this <a href="https://leaflet-extras.github.io/leaflet-providers/preview/">list of providers</a> for additional basemaps.</li>
+                <li>Add <a href="http://leafletjs.com/examples/geojson/">GeoJSON layers</a>. Create a popup, modal, labels, or some other display of information for each feature. Apply custom styles or markers where needed to create a readable, informative map.</li>
+                <li>Add controls to show/hide layers. You can use <a href="http://leafletjs.com/examples/layers-control/">Leaflet controls</a> or make your own buttons in HTML with similar functionality. For example, create a button in HTML, listen for clicks on it with jQuery, and run a Leaflet function to toggle a layer when clicked.</li>
+                <li>Use a plugin to add extra functionality to Leaflet. See the <a href="http://leafletjs.com/plugins.html">list of plugins</a>.</li>
                 <li></li>
               </ul>
             </li>
-            <li>Add some JavaScript to create a map with the ArcGIS API. ArcGIS and Leaflet JavaScript can coexist in the same file or be separated. You could use either the 2D or 3D code from the <a href="2d3d_Views_key.html">2d3d_Views_key.html</a> textbook example. You can use existing data sources or publish new ones to an ArcGIS Online account or the class GIS server. See GTKWebGIS chapters 6 (publishing), 9 (creating 3D scenes), and 10 (JavaScript API).</li>
-            <li></li>
+            <li>Add some JavaScript to create a map with the ArcGIS API. ArcGIS and Leaflet JavaScript can coexist in the same file or be separated. You could use either the 2D or 3D code from the <a href="2d3d_Views_key.html">2d3d_Views_key.html</a> textbook example. You can use existing data sources or publish new ones to a free ArcGIS Online account or the class GIS server. See GTKWebGIS chapters 6 (publishing), 9 (creating 3D scenes), and 10 (JavaScript API).</li>
+            <li>Collect user input, for example using a text box, checkbox, or select dropdown. Use JavaScript to respond to the user's input, such as manipulating the page or map.</li>
             <li><code></code></li>
-            <li><code></code></li>
             <li></li>
-            <li>[<a href="">example</a>]</li>
             <li>[<a href="">example</a>]</li>
           </ol>
         </p>
         <h2 id="requirements">Graded Requirements</h2>
         <p>
           <ul>
-            <li>Include jQuery JavaScript</li>
-            <li>Your own CSS</li>
-            <li>Your own JavaScript</li>
             <li>Scripts and styles in separate files</li>
+            <li>Include jQuery JavaScript</li>
+            <li>Include Bootstrap CSS and JavaScript</li>
+            <li>Include mapping library CSS and JavaScript</li>
+            <li>Your own CSS rules</li>
+            <li>Your own JavaScript code</li>
             <li>Your own page title</li>
-            <li>Your own content</li>
-            <li>An interactive map with any layers or just a basemap</li>
+            <li>Your own content and brand - text, images, or other media to make it look like a real web page</li>
+            <li>A geojson layer</li>
+            <li></li>
             <li>A control for the user to show and hide the map</li>
             <li>Proper indentation</li>
             <li>Commented JavaScript code</li>
