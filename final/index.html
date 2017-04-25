@@ -45,28 +45,52 @@
               <ul>
                 <li>Add a basemap (tile layer), covered in the <a href="http://leafletjs.com/examples/quick-start/">quick start guide</a> at "Next we'll add a tile layer...".
                   See this <a href="https://leaflet-extras.github.io/leaflet-providers/preview/">list of providers</a> for additional basemaps.</li>
-                <li>Add <a href="http://leafletjs.com/examples/geojson/">GeoJSON layers</a>.</li>
+                <li><a href="http://leafletjs.com/examples/geojson/">Add GeoJSON layers</a> to the map. You can find data already in GeoJSON format on <a href="">ArcGIS Open Data</a> (in the APIs menu on the dataset page)
+                  and you can <a href="https://gist.github.com/YKCzoli/b7f5ff0e0f641faba0f47fa5d16c4d8d">convert shapefiles to GeoJSON</a> using the free <a href="http://qgis.org/downloads/QGIS-OSGeo4W-2.18.7-1-Setup-x86_64.exe">QGIS</a>.
+                  Pick from these BR datasets or find your own:
+                    <a href="http://data-ebrgis.opendata.arcgis.com/datasets/brec-park">BREC Parks</a>,
+                    <a href="http://data-ebrgis.opendata.arcgis.com/datasets/sports-venue">BR Sports Venues</a>,
+                    <a href="http://data-ebrgis.opendata.arcgis.com/datasets/recreation">BR Recreation</a>,
+                    <a href="http://data-ebrgis.opendata.arcgis.com/datasets/library">BR Libraries</a>
+                    <br>
+                    <strong><u>You may not use earthquake data.</u></strong>
+                </li>
                 <li>Create a popup or some other display of information for each feature. See the onEachFeature section of Leaflet's
-                  <a href="http://leafletjs.com/examples/geojson/">GeoJSON documentation</a> and this
-                  [<a href="https://gist.github.com/geog4046instructor/e6fb196efa8d9a40f5863288f7269d40">example</a>].</li>
+                  <a href="http://leafletjs.com/examples/geojson/">GeoJSON documentation</a>.[<a href="https://gist.github.com/geog4046instructor/e6fb196efa8d9a40f5863288f7269d40">example</a>].</li>
                 <li>Apply custom styles or markers where needed to create a readable, informative map. See the pointToLayer section of Leaflet's
                   <a href="http://leafletjs.com/examples/geojson/">GeoJSON documentation</a> and this
                   [<a href="https://gist.github.com/geog4046instructor/ac36ea8f317912f51f0bb1d50b5c3481">example</a>]. If you want to design your own icon,
                   see the Leaflet <a href="http://leafletjs.com/examples/custom-icons/">custom icons</a> example (stick to the "Creating an icon" section) and refer to this
                   [<a href="https://gist.github.com/geog4046instructor/80ee78db60862ede74eacba220809b64">example</a>]</li>
-                <li>Add controls to show/hide layers. You can use <a href="http://leafletjs.com/examples/layers-control/">Leaflet controls</a>
-                  [<a href="https://gist.github.com/geog4046instructor/65f38124e3f56f11c9461b23335c0c92">example</a>].
-                  You could also make your own buttons in HTML with similar functionality. For example, create a button in HTML, listen for clicks on it with
-                  jQuery, and run a Leaflet function to toggle a layer when clicked.</li>
-                <li>Use a plugin to add extra functionality to Leaflet. See a <a href="http://leafletjs.com/plugins.html">list of plugins</a>.</li>
+                <li>Add controls to show/hide layers.
+                  <ul>
+                    <li>You can use Leaflet's built-in <a href="http://leafletjs.com/examples/layers-control/">layer controls</a> and see the easy
+                  basemap switcher [<a href="https://gist.github.com/geog4046instructor/416b9edf6cab7eb85ad53fb1b7b6cbb4">example</a>] or the more difficult GeoJSON layer toggler
+                  [<a href="https://gist.github.com/geog4046instructor/65f38124e3f56f11c9461b23335c0c92">example</a>].</li>
+                  <li>You could also make your own buttons in HTML with similar functionality. For example, create a button in HTML, listen for clicks on it with
+                  jQuery, and run a Leaflet function to toggle a layer when clicked. [<a href="https://gist.github.com/geog4046instructor/ba81b4f5bfbb2f2bef5b2ef1c60add31">example</a>]</li>
+                  </ul>
+                </li>
+                <li>Use a plugin to add extra functionality to Leaflet. See this <a href="http://leafletjs.com/plugins.html">list of plugins</a>.
+                  <ul>
+                    <li>Read your chosen plugin's documentation and look for a working demo.</li>
+                    <li>Plugins will typically require you to download a .js file to put into your js folder. You then link to the file from your HTML, the same way you link to other JavaScript files.</li>
+                    <li>Some plugins might also require you to download and link to a CSS file.</li>
+                    <li>Plugin CSS and JS files should go after (below) the Leaflet CSS/JS but before (above) your own CSS and JS files in the <code>head</code> and <code>body</code>, respectively.</li>
+                    <li>Finally, you'll probably need to add some JavaScript to call the plugin's functions.</li>
+                  </ul>
+                </li>
               </ul>
             </li>
             <li>Add some JavaScript to create a map with the ArcGIS JavaScript API.
               <ul>
-                <li>ArcGIS and Leaflet code can coexist in the same file or be separated.</li>
+                <li>ArcGIS and Leaflet code can coexist in the same file or separate files, just remember to link to both in your HTML.</li>
                 <li>The map can either be on the same page as your Leaflet map, or on a separate page.</li>
-                <li>You could use either the 2D or 3D code from the <a href="2d3d_Views_key.html">2d3d_Views_key.html</a> textbook example, or something else.</li>
-                <li>You can use existing data sources or publish new ones to a free ArcGIS Online account or the class GIS server.</li>
+                <li>You can use the 2D or 3D code from the <a href="2d3d_Views_key.html">2d3d_Views_key.html</a> textbook example, or something else.</li>
+                <li>You can create 3D scenes with a free ArcGIS Online account and add them to your site (optional). [<a href="https://gist.github.com/geog4046instructor/763c027dcb2003bc7117ca4561c7959a">example</a>]</li>
+                <li>You can publish a map as a web service on the class GIS server (optional).</li>
+                <li>If you created HTML map controls for Leaflet, you could make them work for the ArcGIS map, too, using equivalent functions, e.g., Leafet maps have flyTo() and ArcGIS web scenes have goTo() (optional)
+                  [<a href="https://gist.github.com/geog4046instructor/43e898a56e4a26da2a6d6c001c1859da">example</a>]</li>
                 <li>See GTKWebGIS chapters 6 (publishing), 9 (creating 3D scenes), and 10 (JavaScript API).</li>
                 <li>The controls you create for Leaflet don't have to work with your ArcGIS map.</li>
               </ul>
@@ -89,7 +113,7 @@
             <li>A Leaflet map
               <ul>
                 <li>Basemap</li>
-                <li>GeoJSON layers (at least 2)</li>
+                <li>Operational layers from GeoJSON (at least 2)</li>
                 <li>Popups or similar display of layer attributes for GeoJSON layers</li>
                 <li>Custom icons or styles for GeoJSON</li>
                 <li>Controls to show/hide layers</li>
@@ -99,7 +123,7 @@
             <li>An ArcGIS map
               <ul>
                 <li>Basemap</li>
-                <li>Operational layer (at least 1)</li>
+                <li>Operational layer from any source (at least 1)</li>
               </ul>
             </li>
             <li>Proper indentation</li>
@@ -116,6 +140,13 @@
           </ul>
         </p>
         <h2 id="due">Due at 3:30pm on May 2, 2017</h2>
+        <br>
+        <hr>
+        <br>
+        <h2 id="bonus">Bonus +1</h2>
+        <p>
+          Create a map with the Google Maps API and incorporate it into your website. It must have one geojson layer and one kml layer.
+        </p>
 
       <footer class="site-footer">
         <span class="site-footer-credits">GEOG 4046 <a href="https://geog4046.github.io/">Home</a>.</span>
