@@ -266,7 +266,7 @@ a:hover { text-decoration: underline; }
   .btn + .btn { margin-top: 1rem; margin-left: 0; } }
 
 .page-header { color: #fff; text-align: center; background-color: #159957; background-image: linear-gradient(120deg, #155799, #159957); }
-@media screen and (min-width: 64em) { .page-header { padding: 5rem 6rem; } }
+@media screen and (min-width: 64em) { .page-header { padding: 2rem 6rem; } }
 @media screen and (min-width: 42em) and (max-width: 64em) { .page-header { padding: 3rem 4rem; } }
 @media screen and (max-width: 42em) { .page-header { padding: 2rem 1rem; } }
 
@@ -322,14 +322,19 @@ section.page-header {
 }
 h1.project-name {
   color: #EEE;
-  background-color: rgba(0, 0, 0, 0.4);
 }
 h2.project-tagline {
   color: #EEE;
-  background-color: rgba(0, 0, 0, 0.4);
   opacity: 1
 }
-
+.shadebox {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  color: #FFF;
+}
+.shadebox a {
+  color: #FFF;
+}
 .text-center {
- text-align: center; 
+ text-align: center;
 }
