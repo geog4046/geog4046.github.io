@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Book Assignment 07b | GEOG 4046 Web GIS at LSU</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">Web GIS at Louisiana State University</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Book Assignment 07b</h1>
+      <h4 class="text-center">Publishing a geoprocessing service to ArcGIS Server</h4>
+      <p>Complete Assignment 7B in Chapter 7 of GTKWebGIS, using the chapter tutorial and Q&amp;A as guidance, to create a web app capable of processing spatial data using a geoprocessing service you published from ArcMap. You may use the book’s data and model, or you may create your own model to process your own data.</p>
+
+<h2 id="process">Process</h2>
+<p>Review the tutorial and assignment in the book for a detailed explanation of the process. Below is an overview of the steps involved.</p>
+<ol>
+  <li>Gather the book files for Chapter 7, or find your own data.</li>
+  <li>Edit the model from the book data, or create your own model in ArcMap’s ModelBuilder.</li>
+  <li>Run the model and publish the results as a geoprocessing service.</li>
+  <li>Create a web app using Web AppBuilder. You can re-use the map from Chapter 6 (earthquakes and hurricanes) or create a new one with your own data.</li>
+  <li>Use the geoprocessing widget to connect to your published GP service.</li>
+  <li>Customize, brand, share, and test the app.</li>
+  <li>Take screenshots of your geoprocessing widget options before running the tool, and screenshot the results.</li>
+  <li>Add a link, screenshot, and description of the app in your portfolio</li>
+</ol>
+
+<h2 id="graded-requirements">Graded Requirements</h2>
+<ol>
+  <li>An ArcGIS Online web app using the geoprocessing widget</li>
+  <li>Two or more data layers that can be analyzed with the GP widget using your custom model, <strong>OR</strong> in the case of the book’s model and data, a layer that can be selected and downloaded as a zip.</li>
+  <li>Customizations to give your app a professional look and feel</li>
+  <li>Screenshots, description, and link to your web app on your portfolio website. Include screenshots of your GP widget’s options, and a screenshot of the results, such as a selection drawn on the map.</li>
+</ol>
+
+<h2 id="submit-on-moodle">Submit on Moodle</h2>
+<ol>
+  <li>The URL of your web app</li>
+  <li>The URL of your GP service</li>
+</ol>
+
+<h2 id="due-at-2355-on-monday-january-00-2018">Due at 23:55 on Monday, January 00, 2018</h2>
+<hr />
+
+<h2 id="tutorial-notes">Tutorial Notes</h2>
+<ul>
+  <li>
+    <p>How to connect to the class ArcGIS Server: Download and unzip <code class="highlighter-rouge">copy-ags.zip</code> from Moodle. Double-click <code class="highlighter-rouge">copy-ags.cmd</code>. This should copy <code class="highlighter-rouge">publisher4046@webgis.ga.lsu.ags</code> to your profile. Restart ArcMap. The server connection should now appear under GIS Servers in the Catalog Pane. If needed, the file can be manually copied to %APPDATA%\ESRI\Desktop10.5\ArcCatalog.</p>
+  </li>
+  <li>
+    <p><strong>7.2 Step 2:</strong> <br />
+<code class="highlighter-rouge">826 W Valley Blvd, Alhambra, California, 91803</code></p>
+  </li>
+  <li>
+    <p><strong>7.2 Step 4:</strong> <br />
+<code class="highlighter-rouge">9773 Base Line Rd, Rancho Cucamonga, California, 91730</code></p>
+  </li>
+  <li>
+    <p><strong>7.3 Step 4:</strong> If nothing happens after clicking edit, the ModelBuilder window might have opened offscreen. Try to grab its edge at the right of the screen and drag it into view.</p>
+  </li>
+  <li>
+    <p><strong>7.5 Step 8:</strong> <br />
+<code class="highlighter-rouge">Enter the distance to railroads</code>
+<code class="highlighter-rouge">Enter the distance to rivers</code>
+<code class="highlighter-rouge">Resulting sites meeting the criteria</code>
+<code class="highlighter-rouge">Enter the location of interest</code>
+<code class="highlighter-rouge">Enter the distance of rivers and railroads to the location of interest</code></p>
+  </li>
+  <li>
+    <p><strong>7.5 Step 9:</strong> <br />
+<code class="highlighter-rouge">Planning for the new factory</code>
+<code class="highlighter-rouge">site selection, chapter07, geog4046</code>
+<code class="highlighter-rouge">This service provides a tool to select those sites that are close to the area users are interested in, close to rivers and railroads.</code></p>
+  </li>
+  <li>
+    <p><strong>7.6 Step 5:</strong> <a href="https://webgis.ga.lsu.edu/gis">https://webgis.ga.lsu.edu/gis</a></p>
+  </li>
+  <li>
+    <p><strong>7.6 Step 12:</strong> <br />
+<code class="highlighter-rouge">{"geometry":{"x":-85.972975,"y":33.873120,"spatialReference":{"wkid":"4326"}}}</code></p>
+  </li>
+  <li>
+    <p><strong>7.7 Step 6:</strong> <br />
+<code class="highlighter-rouge">rivers owner:pinde.webgis</code></p>
+  </li>
+</ul>
+
+    </section>
+<footer class="site-footer">
+  <small>&copy; 2016 Louisiana State University</small>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
