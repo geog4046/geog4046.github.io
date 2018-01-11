@@ -1,0 +1,16 @@
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+h2 {
+  color: #555;
+}
+
+#masthead {
+  text-align: center;
+}
+
+.thumbnail {
+  width: 150px;
+  height: 100px;
+}

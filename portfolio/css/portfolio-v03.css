@@ -1,0 +1,32 @@
+article {
+  display: grid;
+  grid: "img meta" auto / 200px auto;
+  margin-bottom: 20px;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+h2 {
+  color: #555;
+}
+
+#masthead {
+  text-align: center;
+}
+
+.article-img {
+  grid-area: img;
+  justify-self: center;
+}
+
+.article-meta {
+  grid-area: meta;
+  align-self: start;
+}
+
+.thumbnail {
+  width: 150px;
+  height: 100px;
+}

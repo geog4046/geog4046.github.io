@@ -1,0 +1,17 @@
+html, body, #leaflet-map, #arcgis-map {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding-top: 50px;
+}
+
+.leaflet-popup-content {
+  text-align: center;
+}
+
+#arcgis-map, #map-btn-text {
+  display:none;
+}
