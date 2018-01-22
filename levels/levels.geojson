@@ -1,0 +1,155 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": 1, "assignments": ["book01", "code01", "software01"] },
+      "geometry": { "type": "Point", "coordinates": [300, 3000] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 2, "assignments": ["book02", "code02a"] },
+      "geometry": { "type": "Point", "coordinates": [900, 3000] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 3, "assignments": ["book03a", "code03"] },
+      "geometry": { "type": "Point", "coordinates": [1500, 3000] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 4, "assignments": ["book05", "code04"] },
+      "geometry": { "type": "Point", "coordinates": [2100, 3000] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 5, "assignments": ["book06a", "code05"] },
+      "geometry": { "type": "Point", "coordinates": [2700, 3000] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 6, "assignments": ["book07a", "code06a"] },
+      "geometry": { "type": "Point", "coordinates": [3300, 3000] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 7, "assignments": ["book09", "code07a"] },
+      "geometry": { "type": "Point", "coordinates": [3900, 3000] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 8, "assignments": ["book10", "webmap01"] },
+      "geometry": { "type": "Point", "coordinates": [4500, 3000] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 9, "assignments": ["webmap03", "webmap04"] },
+      "geometry": { "type": "Point", "coordinates": [5100, 3000] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 10, "assignments": ["webmap05"] },
+      "geometry": { "type": "Point", "coordinates": [5700, 3000] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 11, "assignments": ["book04"], "con": "Design"},
+      "geometry": { "type": "Point", "coordinates": [850, 4800] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 12, "assignments": ["code02b"], "con": "Design"},
+      "geometry": { "type": "Point", "coordinates": [2100, 5400] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 13, "assignments": ["code02c"], "con": "Design"},
+      "geometry": { "type": "Point", "coordinates": [3000, 5100] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 14, "assignments": ["code06d"], "con": "Design"},
+      "geometry": { "type": "Point", "coordinates": [3450, 5250] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 15, "assignments": ["code09"], "con": "Design"},
+      "geometry": { "type": "Point", "coordinates": [4200, 5400] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 16, "assignments": ["book06b"], "con": "GIS"},
+      "geometry": { "type": "Point", "coordinates": [3000, 4200] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 17, "assignments": ["book07b"], "con": "GIS"},
+      "geometry": { "type": "Point", "coordinates": [3600, 3900] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 18, "assignments": ["webmap06"], "con": "GIS"},
+      "geometry": { "type": "Point", "coordinates": [4500, 4000] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 19, "assignments": ["webmap07"], "con": "GIS"},
+      "geometry": { "type": "Point", "coordinates": [4950, 4350] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 20, "assignments": ["webmap09"], "con": "GIS"},
+      "geometry": { "type": "Point", "coordinates": [5550, 4050] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 21, "assignments": ["software02a"] },
+      "geometry": { "type": "Point", "coordinates": [3500, 650] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 22, "assignments": ["software02b"] },
+      "geometry": { "type": "Point", "coordinates": [3500, 950] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 23, "assignments": ["software02c"] },
+      "geometry": { "type": "Point", "coordinates": [3500, 1300] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 24, "assignments": ["book03b"] },
+      "geometry": { "type": "Point", "coordinates": [3500, 1650] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 25, "assignments": ["software03"] },
+      "geometry": { "type": "Point", "coordinates": [3500, 2000] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 26, "assignments": ["code06b"] },
+      "geometry": { "type": "Point", "coordinates": [4000, 2350] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 27, "assignments": ["code06c"] },
+      "geometry": { "type": "Point", "coordinates": [4000, 2700] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 28, "assignments": ["code07b"] },
+      "geometry": { "type": "Point", "coordinates": [4000, 3050] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 29, "assignments": ["code07c"] },
+      "geometry": { "type": "Point", "coordinates": [4000, 3400] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 30, "assignments": ["code08"] },
+      "geometry": { "type": "Point", "coordinates": [4000, 3700] }
+    }
+  ]
+}
