@@ -1,0 +1,155 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": 1, "assignments": ["book01", "code01", "software01"], "branch": "Core", "level": 1 },
+      "geometry": { "type": "Point", "coordinates": [6000, 9150] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 2, "assignments": ["book02", "code02a"], "branch": "Core", "level": 2 },
+      "geometry": { "type": "Point", "coordinates": [6600, 9200] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 3, "assignments": ["book03a", "code03"], "branch": "Core", "level": 3 },
+      "geometry": { "type": "Point", "coordinates": [7100, 8950] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 4, "assignments": ["book05", "code04"], "branch": "Core", "level": 4 },
+      "geometry": { "type": "Point", "coordinates": [7600, 9050] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 5, "assignments": ["book06a", "code05"], "branch": "Core", "level": 5 },
+      "geometry": { "type": "Point", "coordinates": [8400, 8800] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 6, "assignments": ["book07a", "code06a"], "branch": "Core", "level": 6 },
+      "geometry": { "type": "Point", "coordinates": [9000, 9300] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 7, "assignments": ["book09", "code07a"], "branch": "Core", "level": 7 },
+      "geometry": { "type": "Point", "coordinates": [9700, 9100] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 8, "assignments": ["book10", "webmap01"], "branch": "Core", "level": 8 },
+      "geometry": { "type": "Point", "coordinates": [10100, 9150] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 9, "assignments": ["webmap03", "webmap04"], "branch": "Core", "level": 9 },
+      "geometry": { "type": "Point", "coordinates": [10800, 8950] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 10, "assignments": ["webmap05"], "branch": "Core", "level": 10 },
+      "geometry": { "type": "Point", "coordinates": [11400, 9100] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 11, "assignments": ["book04"], "branch": "Design", "level": 1 },
+      "geometry": { "type": "Point", "coordinates": [6550, 10800] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 12, "assignments": ["code02b"], "branch": "Design", "level": 2 },
+      "geometry": { "type": "Point", "coordinates": [7800, 11400] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 13, "assignments": ["code02c"], "branch": "Design", "level": 3 },
+      "geometry": { "type": "Point", "coordinates": [8700, 11100] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 14, "assignments": ["code06d"], "branch": "Design", "level": 4 },
+      "geometry": { "type": "Point", "coordinates": [9150, 11250] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 15, "assignments": ["code09"], "branch": "Design", "level": 5 },
+      "geometry": { "type": "Point", "coordinates": [9900, 11400] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 16, "assignments": ["book06b"], "branch": "GIS", "level": 1 },
+      "geometry": { "type": "Point", "coordinates": [8700, 10200] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 17, "assignments": ["book07b"], "branch": "GIS", "level": 2 },
+      "geometry": { "type": "Point", "coordinates": [9500, 9900] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 18, "assignments": ["webmap06"], "branch": "GIS", "level": 3 },
+      "geometry": { "type": "Point", "coordinates": [10200, 10000] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 19, "assignments": ["webmap07"], "branch": "GIS", "level": 4 },
+      "geometry": { "type": "Point", "coordinates": [10650, 10350] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 20, "assignments": ["webmap09"], "branch": "GIS", "level": 5 },
+      "geometry": { "type": "Point", "coordinates": [11250, 10050] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 21, "assignments": ["book03b"], "branch": "Admin", "level": 1 },
+      "geometry": { "type": "Point", "coordinates": [6300, 7800] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 22, "assignments": ["software02a"], "branch": "Admin", "level": 2 },
+      "geometry": { "type": "Point", "coordinates": [6900, 8100] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 23, "assignments": ["software02b"], "branch": "Admin", "level": 3 },
+      "geometry": { "type": "Point", "coordinates": [7350, 7650] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 24, "assignments": ["software02c"], "branch": "Admin", "level": 4 },
+      "geometry": { "type": "Point", "coordinates": [7800, 7100] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 25, "assignments": ["software03"], "branch": "Admin", "level": 5 },
+      "geometry": { "type": "Point", "coordinates": [8400, 7950] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 26, "assignments": ["code06b"], "branch": "Dev", "level": 1 },
+      "geometry": { "type": "Point", "coordinates": [9150, 7200] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 27, "assignments": ["code06c"], "branch": "Dev", "level": 2 },
+      "geometry": { "type": "Point", "coordinates": [9450, 6750] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 28, "assignments": ["code07b"], "branch": "Dev", "level": 3 },
+      "geometry": { "type": "Point", "coordinates": [10050, 7350] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 29, "assignments": ["code07c"], "branch": "Dev", "level": 4 },
+      "geometry": { "type": "Point", "coordinates": [10500, 6600] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": 30, "assignments": ["code08"], "branch": "Dev", "level": 5 },
+      "geometry": { "type": "Point", "coordinates": [11100, 7200] }
+    }
+  ]
+}
