@@ -126,7 +126,7 @@ function loadJson (id) {
 
 function onEachAssignment (feature, layer) {
   let html, levelAssignments, levelPrereq, slug
-  let levelName = feature.properties.branch + ' ' + feature.properties.level
+  let levelName = feature.properties.branch + ' Level ' + feature.properties.level
   html = '<h1>' + levelName + '</h1>'
   for (let i = 0; i < feature.properties.assignments.length; i++) {
     slug = feature.properties.assignments[i]
