@@ -1,32 +1,35 @@
-article {
-  display: grid;
-  grid: "img meta" auto / 200px auto;
-  margin-bottom: 20px;
-}
-
 body {
   font-family: Helvetica, sans-serif;
-}
-
-h2 {
-  color: #555;
 }
 
 #masthead {
   text-align: center;
 }
 
-.article-img {
-  grid-area: img;
-  justify-self: center;
-}
-
-.article-meta {
-  grid-area: meta;
-  align-self: start;
+.subtitle {
+  color: #555;
 }
 
 .thumbnail {
   width: 150px;
   height: 100px;
+}
+
+/* Display article thumbnails and descriptions side by side in a grid */
+article {
+  display: grid;
+  grid: "img meta" auto / 200px auto;
+  margin-bottom: 20px;
+}
+
+/* Use this class on a div that contains the img element */
+.article-img {
+  grid-area: img;
+  justify-self: center;
+}
+
+/* Use this class on a div that contains the description, link, etc. */
+.article-meta {
+  grid-area: meta;
+  align-self: start;
 }
