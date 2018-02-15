@@ -1,3 +1,34 @@
+class Project {
+  /*
+    When a new Project object is created, fill the Project.data property (array)
+    with metadata.
+   */
+  constructor (projectData) {
+    // initialize an array to hold objects that contain project metadata
+    this.data = projectData
+  }
+
+  /*
+    Build a string to use as the value for the alt attribute of an img tag.
+   */
+  createThumbnailAlt (project) {
+    let thumbnailAlt = 'Project ' + project.id + ' - ' + project.title
+    return thumbnailAlt
+  }
+
+  /*
+    Build a file path for a project thumbnail image based on the project ID to be
+    used as the value for the src attribute of an img tag.
+   */
+  createThumbnailSrc (project) {
+    if (project.thumb === true) {
+      let thumbnailSrc = 'images/ss-project-' + project.id + '.png'
+      return thumbnailSrc
+    }
+    return 'images/no-preview.png'
+  }
+} // Project class
+
 /*
   Code to run when the page is finished loading.
  */

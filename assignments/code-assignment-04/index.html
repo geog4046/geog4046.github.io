@@ -34,15 +34,74 @@
 <h2 id="process">Process</h2>
 <p>These steps assume you will copy code from the previous assignment and build upon it in a new <code class="highlighter-rouge">.js</code> file to add features to your portfolio.</p>
 <ol>
-  <li>Create a new JavaScript file <code class="highlighter-rouge">code-assignment-04.js</code> and include it with <code class="highlighter-rouge">script</code> tags in your portfolio page.</li>
-  <li>In the JavaScript file, save some values of each type (number, string, boolean) to an array, and save the same values to an object.</li>
-  <li>Create an array within the array and another within the object</li>
-  <li>Choose one of the values to use as output to the console. Use <code class="highlighter-rouge">console.log</code> three times:
+  <li>
+    <p>Create a new JavaScript file <code class="highlighter-rouge">code-assignment-04.js</code> and include it with <code class="highlighter-rouge">script</code> tags in your portfolio page (<code class="highlighter-rouge">index.html</code>).</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"code-assignment-04.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>In the JavaScript file, save some values of each type (number, string, boolean) to an array, and save the same values to an object.</p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// This is an array</span>
+<span class="kd">let</span> <span class="nx">projectArray</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="mi">1</span><span class="p">,</span>
+  <span class="s1">'https://example.com'</span><span class="p">,</span>
+  <span class="s1">'Project Title'</span><span class="p">,</span>
+  <span class="s1">'Project description.'</span><span class="p">,</span>
+  <span class="kc">true</span>
+<span class="p">]</span>
+   
+<span class="c1">// This is an object. Each value is paired with a property. </span>
+<span class="kd">let</span> <span class="nx">projectObject</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://example.com'</span><span class="p">,</span>
+  <span class="na">title</span><span class="p">:</span> <span class="s1">'Project Title'</span><span class="p">,</span>
+  <span class="na">desc</span><span class="p">:</span> <span class="s1">'Project description.'</span><span class="p">,</span>
+  <span class="na">thumb</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Create an array within the array and another array within the object</p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// This is an array</span>
+<span class="kd">let</span> <span class="nx">projectArray</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="mi">1</span><span class="p">,</span>
+  <span class="s1">'https://example.com'</span><span class="p">,</span>
+  <span class="s1">'Project Title'</span><span class="p">,</span>
+  <span class="s1">'Project description.'</span><span class="p">,</span>
+  <span class="kc">true</span><span class="p">,</span>
+  <span class="p">[</span><span class="s1">'keyword here'</span><span class="p">,</span> <span class="s1">'buzzword'</span><span class="p">,</span> <span class="s1">'another keyword'</span><span class="p">]</span>
+<span class="p">]</span>
+ 
+<span class="c1">// This is an object. Each value is paired with a property. </span>
+<span class="kd">let</span> <span class="nx">projectObject</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://example.com'</span><span class="p">,</span>
+  <span class="na">title</span><span class="p">:</span> <span class="s1">'Project Title'</span><span class="p">,</span>
+  <span class="na">desc</span><span class="p">:</span> <span class="s1">'Project description.'</span><span class="p">,</span>
+  <span class="na">thumb</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">keywords</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s1">'keyword here'</span><span class="p">,</span> 
+    <span class="s1">'buzzword'</span><span class="p">,</span> 
+    <span class="s1">'another keyword'</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Choose one of the values to use as output to the console. Use <code class="highlighter-rouge">console.log</code> three times:</p>
     <ul>
       <li>once to output your chosen value from the array,</li>
       <li>once to output the same value from the object, and</li>
       <li>once to output the same value using an alternative syntax.</li>
     </ul>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">projectArray</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">projectObject</span><span class="p">.</span><span class="nx">title</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">projectObject</span><span class="p">[</span><span class="s2">"title"</span><span class="p">])</span>
+</code></pre></div>    </div>
   </li>
 </ol>
 
@@ -56,7 +115,7 @@
   e. Proper indentation<br />
   f. <strong>No errors in the console</strong></li>
   <li>An array and an object containing values of at least three types: number, string, and boolean.</li>
-  <li>An array within an array and an array within an object</li>
+  <li>Add an additional type, an array, within both the array and object</li>
   <li>One of the values logged to the console three times:
     <ul>
       <li>from the array</li>
@@ -70,7 +129,6 @@
 <ol>
   <li>The URL for your portfolio</li>
 </ol>
-
 
     </section>
 <footer class="site-footer">

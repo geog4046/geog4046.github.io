@@ -34,9 +34,30 @@
 <h2 id="process">Process</h2>
 <ol>
   <li>Create a new JavaScript file <code class="highlighter-rouge">code-assignment-03.js</code> in the same folder as your portfolio HTML file.</li>
-  <li>Use a <code class="highlighter-rouge">script</code> tag in your portfolio page’s HTML to load the JavaScript file.</li>
-  <li>In the JavaScript file, create variables of different types: number, string (text), boolean (true/false), and array.</li>
-  <li>Use <code class="highlighter-rouge">console.log</code> to print a message to the browser’s developer console, using your variables as input. Add a descriptive label to the output, e.g., <code class="highlighter-rouge">Title: Map of Recent Earthquakes</code> instead of just <code class="highlighter-rouge">Map of Recent Earthquakes</code>.</li>
+  <li>
+    <p>Use a <code class="highlighter-rouge">script</code> tag in your portfolio page’s HTML to load the JavaScript file.</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"code-assignment-03.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>In the JavaScript file, use the <code class="highlighter-rouge">let</code> keyword to declare variables of different types: number, string (text), boolean (true/false), and array.</p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myNumber</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="kd">let</span> <span class="nx">myString</span> <span class="o">=</span> <span class="s1">'Some text'</span>
+<span class="kd">let</span> <span class="nx">myBoolean</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="kd">let</span> <span class="nx">myArray</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'apple'</span><span class="p">,</span> <span class="s1">'orange'</span><span class="p">,</span> <span class="s1">'pear'</span><span class="p">]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Use <code class="highlighter-rouge">console.log</code> to print a message to the browser’s developer console, using your variables as input. Add a descriptive label to the output, e.g., <code class="highlighter-rouge">Title: Map of Recent Earthquakes</code> instead of just <code class="highlighter-rouge">Map of Recent Earthquakes</code>.</p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myNumber</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myString</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myBoolean</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myArray</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
 </ol>
 
 <h2 id="graded-requirements">Graded Requirements</h2>
