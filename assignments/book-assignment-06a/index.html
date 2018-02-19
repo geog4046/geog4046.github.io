@@ -34,13 +34,23 @@
 <h2 id="process">Process</h2>
 <p>Review the tutorial and assignment in the book for a detailed explanation of the process. Below is an overview of the steps involved.</p>
 <ol>
-  <li>Connect to the class GIS server using the connection file provided on Moodle (skip GTKWebGIS section 6.1).</li>
-  <li>Use ArcMap to create a map using the book data for Chapter 6, setting appropriate symbology.</li>
-  <li>Enable time on your data layer(s).</li>
-  <li>Publish your map as a service in your own folder on the class GIS server.</li>
-  <li>Add your map service to a new map in ArcGIS Online.</li>
-  <li>Enable popups showing relevant attribute data.</li>
-  <li>Configure the time settings so the map can be animated at a reasonable speed.</li>
+  <li>Connect to the class GIS server using the connection file provided on Moodle (skip GTKWebGIS section 6.1 and use the connection file instead). Download and unzip <code class="highlighter-rouge">copy-ags.zip</code> from Moodle. Double-click <code class="highlighter-rouge">copy-ags.cmd</code>. This should copy <code class="highlighter-rouge">publisher4046@webgis.ga.lsu.ags</code> to your profile. Restart ArcMap. The server connection should now appear under GIS Servers in the Catalog Pane. If needed, the file can be manually copied to %APPDATA%\ESRI\Desktop10.5\ArcCatalog.</li>
+  <li>Use ArcMap to create a map using the book data for Chapter 6, setting appropriate symbology. Section 6.2 demonstrates this step in detail and there are tips on textbook page 243.</li>
+  <li>Enable time on your data layer(s), explained in section 6.3.</li>
+  <li>Publish your map as a service in your own folder on the class GIS server (see 6.4).<br />
+a. Create your own folder at step 4 with your user name, which could be the same as your Github or ArcGIS Online/Portal:<br />
+<img src="/images/ags_new_folder.png" alt="Create a folder on ArcGIS Server" /><br />
+b. Leave the default service options but enter info into the item description fields:<br />
+<img src="/images/ags_service_details.png" alt="Item details" /><br />
+c. Click Analyze. If you get an error about time not being enabled, open the time slider and click disable time and then click enable time:<br />
+<img src="/images/enable-time.png" alt="Enable time" /><br />
+d. View your published server in the ArcGIS REST Services Directory on the class GIS server (6.5): <a href="https://webgis.ga.lsu.edu/arcgis">https://webgis.ga.lsu.edu/arcgis</a><br />
+e. Copy the service URL, which should look like:<br />
+   <code class="highlighter-rouge">https://webgis.ga.lsu.edu/arcgis/rest/services/username/example_service_name/MapServer/0</code></li>
+  <li>On a new map in ArcGIS Online, choose “Add Layer from Web” and paste your service URL (6.6).</li>
+  <li>Enable popups showing relevant attribute data (see <a href="/assignments/book-assignment-02/">Book 2</a>).</li>
+  <li>Share the map and create an app using either Web AppBuilder or a configurable app.</li>
+  <li>In the app configuration, use time settings that will animate the features at a reasonable speed.</li>
   <li>Customize, brand, share, and test the app.</li>
 </ol>
 
@@ -61,7 +71,7 @@
 
 <h2 id="tutorial-notes">Tutorial Notes</h2>
 <ul>
-  <li>How to connect to the class ArcGIS Server: Download and unzip <code class="highlighter-rouge">copy-ags.zip</code> from Moodle. Double-click <code class="highlighter-rouge">copy-ags.cmd</code>. This should copy <code class="highlighter-rouge">publisher4046@webgis.ga.lsu.ags</code> to your profile. Restart ArcMap. The server connection should now appear under GIS Servers in the Catalog Pane. If needed, the file can be manually copied to %APPDATA%\ESRI\Desktop10.5\ArcCatalog.</li>
+  <li>Skip 6.1</li>
 </ul>
 
     </section>

@@ -35,11 +35,43 @@
 <p>These steps assume you will copy code from the previous assignment and build upon it in a new <code class="highlighter-rouge">.js</code> file to add features to your portfolio.</p>
 <ol>
   <li>Create a new JavaScript file <code class="highlighter-rouge">code-assignment-05.js</code> and include it with <code class="highlighter-rouge">script</code> tags in your portfolio page.</li>
-  <li>In the JavaScript file, create at least two objects with at least three properties and values each.</li>
-  <li>Create an array and assign the objects you created above to elements of the array.</li>
-  <li>Create a loop to step through each of the elements in the array (each element should be one of the objects you created).</li>
-  <li>Within each loop, choose at least one object property to log to the console.</li>
-  <li>Create a conditional statement that will only log the property to the console if its value meets a certain condition, e.g., is equal to true.</li>
+  <li>In the JavaScript file, create at least two objects with at least three properties and values each, like this but with your own variable names:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">project1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">title</span><span class="p">:</span> <span class="s1">'Web Map 1'</span><span class="p">,</span>
+  <span class="na">hasThumbnail</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">project2</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="na">title</span><span class="p">:</span> <span class="s1">'Web App and Web Map 2'</span><span class="p">,</span>
+  <span class="na">hasThumbnail</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Create an array and assign the objects you created above to elements of the array.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">projects</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="nx">project1</span><span class="p">,</span>
+  <span class="nx">project2</span>
+<span class="p">]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Create a loop to step through each of the elements in the array (each element should be one of the objects you created).
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">projects</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// more code goes here</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Within each loop, choose at least one object property to log to the console.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Element '</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s1">' title: '</span> <span class="o">+</span> <span class="nx">projects</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">title</span><span class="p">)</span> <span class="c1">// log the current project's title</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'images/ss-project-'</span> <span class="o">+</span> <span class="nx">projects</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">id</span> <span class="o">+</span> <span class="s1">'.png'</span><span class="p">)</span> <span class="c1">// build and log an image file name based on the project ID</span>
+</code></pre></div>    </div>
+  </li>
+  <li>We really only want to output the thumbnail name if the <code class="highlighter-rouge">hasThumbnail</code> property is <code class="highlighter-rouge">true</code>. Create a conditional statement that will only log the property to the console if its value meets a certain condition, e.g., is equal to <code class="highlighter-rouge">true</code>.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">projects</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">hasThumbnail</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'images/ss-project-'</span> <span class="o">+</span> <span class="nx">projects</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">id</span> <span class="o">+</span> <span class="s1">'.png'</span><span class="p">)</span> <span class="c1">// build and log an image file name based on the project ID</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
 </ol>
 
 <h2 id="graded-requirements">Graded Requirements</h2>
@@ -61,7 +93,6 @@
 <ol>
   <li>The URL for your portfolio</li>
 </ol>
-
 
     </section>
 <footer class="site-footer">

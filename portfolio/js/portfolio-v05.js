@@ -24,5 +24,7 @@ projectData[1] = {
 // step through each element in an array using a "for" loop
 for (let i = 0; i < projectData.length; i++) {
   console.log('Element ' + i + ' title: ' + projectData[i].title) // log the current project's title
-  console.log('images/ss-project-' + projectData[i].id + '.png') // build and log an image file name based on the project ID
+  if (projectData[i].thumb === true) {
+    console.log('images/ss-project-' + projectData[i].id + '.png') // build and log an image file name based on the project ID
+  }
 }
