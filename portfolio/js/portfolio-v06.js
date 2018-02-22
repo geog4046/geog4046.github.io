@@ -39,7 +39,7 @@ function createThumbnailSrc (project) {
   return 'images/no-preview.png'
 }
 
-// step through each element in an array using a "forEach" loop
+// step through each element in an array using a "for" loop
 for (let i = 0; i < projectData.length; i++) {
   let imgAlt = createThumbnailAlt(projectData[i])
   let imgSrc = createThumbnailSrc(projectData[i])
