@@ -50,12 +50,21 @@
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Use <code class="highlighter-rouge">console.log</code> to print a message to the browser’s developer console, using your variables as input. Add a descriptive label to the output, e.g., <code class="highlighter-rouge">Title: Map of Recent Earthquakes</code> instead of just <code class="highlighter-rouge">Map of Recent Earthquakes</code>.</p>
+    <p>Use the <code class="highlighter-rouge">console.log()</code> method to print the variable values in the browser’s developer console. Include <code class="highlighter-rouge">console.log()</code> after your variable declarations:</p>
 
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myNumber</span><span class="p">)</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myString</span><span class="p">)</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myBoolean</span><span class="p">)</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myArray</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>JavaScript allows you to combine strings with the plus sign <code class="highlighter-rouge">+</code>. You can combine the variable values with a message like this, assuming your variables are related to portfolio entries:</p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Project ID: '</span> <span class="o">+</span> <span class="nx">projectId</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Title: '</span> <span class="o">+</span> <span class="nx">projectTitle</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Does it have a thumbnail image? '</span> <span class="o">+</span> <span class="nx">hasThumbnail</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Keywords: '</span> <span class="o">+</span> <span class="nx">projectKeywords</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
 </ol>
