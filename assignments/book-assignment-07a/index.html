@@ -34,9 +34,23 @@
 <h2 id="process">Process</h2>
 <p>Review the tutorial and assignment in the book for a detailed explanation of the process. Below is an overview of the steps involved.</p>
 <ol>
-  <li>Add hosted feature layers to a map/app, using data that will work with the Analyze widget in Web AppBuilder. Add related data from Living Atlas, Open Data portals, or other sources.</li>
-  <li>Choose tools from the Analysis widget in Web AppBuilder to perform some kind of useful analysis of your layers. Portal users: see the <a href="#tutorial-notes">Tutorial Notes</a> for a list of analyses that work in the class Portal.</li>
-  <li>Take screenshots of your analysis widget options before running the tools, and screenshot the output.<br />
+  <li>
+    <p>Find data to display and analyze on a map.</p>
+
+    <p>When searching for a dataset, keep in mind that you will need to employ the analysis widget, and specifically use data-driven analysis tools, meaning you need to find data compatible with the widget. For example, the “<a href="http://doc.arcgis.com/en/arcgis-online/analyze/summarize-within.htm">summarize within</a>” tool can count the points that fall inside each polygon in a polygon layer, so a compatible dataset would be a point layer of traffic accidents and polygon layer of zip codes. The tool could count how many accidents per zip code. See the <a href="#tutorial-notes">Tutorial Notes</a> section to familiarize yourself with some data-driven tools available in the analysis widget.</p>
+
+    <p>You can look for ArcGIS Hub (formerly ArcGIS Open Data) sites for zipped shapefiles or just REST service URLs. Also see the <a href="https://portal.ga.lsu.edu/arcgis/home/group.html?id=ccf70c1c36a14eaa9472b189bd9326d3&amp;start=1&amp;view=list&amp;sortOrder=asc&amp;sortField=title#content">class Portal group</a>.</p>
+  </li>
+  <li>Add your data to “My Content” as a hosted feature layer if you want all analysis tools to be work. Certain tools will also work with a layer added from the web (e.g., an ArcGIS Server REST URL). With ArcGIS Online (but not Portal), you can also add related data from Living Atlas.</li>
+  <li>Create a new map. Add your data from various sources and change their symbology. Note: it is not necessary to click Save Layer on a hosted feature layer after changing its symbology. Doing so will save the symbols with the layer itself, not the map. This means it will keep the same symbology if you add it to a new map.</li>
+  <li>Create a new app with Web AppBuilder and add the analysis widget.</li>
+  <li>
+    <p>Choose tools from the analysis widget in Web AppBuilder to perform some kind of useful analysis of your layers. All tools are available with an ArcGIS Online trial account, but Portal users should read the <a href="#tutorial-notes">Tutorial Notes</a> for a list of analyses that work in the class Portal.</p>
+
+    <p>Always <em>uncheck</em> the box <code class="highlighter-rouge">Save the result in user's account</code> for class assignments.<br />
+<img src="/images/analysis-tool-options.png" alt="Uncheck this box, Save the result in user's account" /></p>
+  </li>
+  <li>Take screenshots of your analysis widget options before running the tools, and screenshot the output. Screenshots are necessary because the analysis widget is not publicly accessible; when someone opens the widget they will be prompted to sign into your ArcGIS Online organization.<br />
 <img src="/images/analysis-options.png" alt="Analysis options" />   <img src="/images/analysis-output.png" alt="Analysis output" /></li>
   <li>Customize, brand, share, and test the app.</li>
 </ol>
@@ -44,8 +58,9 @@
 <h2 id="graded-requirements">Graded Requirements</h2>
 <ol>
   <li>An ArcGIS Online web app using the analysis widget</li>
-  <li>At least one data layer that can be analyzed with the analysis widget’s tools</li>
-  <li>Customizations to give your app a professional look and feel</li>
+  <li>At least two data-driven tools in the analysis widget</li>
+  <li>At least one data layer that can be analyzed with the tools above</li>
+  <li>Customizations to give your app a professional look and feel such as a logo, a descriptive app title, a subtitle, links to other apps or sites, different layouts, or a color scheme.</li>
   <li>Take screenshot(s) of your analysis widget’s options before running the tools, and a screenshot of the output, such as a table or a new layer drawn on the map.</li>
 </ol>
 
@@ -59,7 +74,7 @@
 
 <h2 id="tutorial-notes">Tutorial Notes</h2>
 <ul>
-  <li><strong>Portal Users</strong> can use the following tools in the Analysis Widget:
+  <li><strong>Portal Users</strong> can use the following data-driven tools in the Analysis Widget:
     <ul>
       <li><a href="http://doc.arcgis.com/nl/arcgis-online/analyze/aggregate-points.htm">aggregate points</a></li>
       <li><a href="http://doc.arcgis.com/en/arcgis-online/analyze/calculate-density.htm">calculate density</a></li>
