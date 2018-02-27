@@ -1,15 +1,25 @@
-// assign values to a set of variables representing a project's metadata
-let projectId = 1
-let projectUrl = 'http://www.arcgis.com/apps/View/index.html?appid=765b50d197f9486c910f13671d8eda5d'
-let projectTitle = 'Map of Recent Earthquakes'
-let projectDesc = 'An ArcGIS Online Web App showing worldwide earthquakes of magnitude 2.5 or greater that have occurred in the last 7 days. The dataset is streamed from the USGS.'
-let projectThumb = true
-let projectKeywords = ['USGS', 'earthquakes', 'arcgis online']
+let projects = []
 
-// display messages in the browser's developer console, combining the values with text
-console.log('ID: ' + projectId)
-console.log('URL: ' + projectUrl)
-console.log('Title: ' + projectTitle)
-console.log('Description: ' + projectDesc)
-console.log('Has thumbnail? ' + projectThumb)
-console.log('Map extent: ' + projectKeywords)
+projects[0] = {
+  id: 1,
+  url: 'http://bit.ly/2EF070t',
+  title: 'Redlands Tour',
+  desc: 'An ArcGIS Online Story Map Tour showing points of interest in Redlands, CA, creating following the tutorial in Chapter 1 of Getting to Know Web GIS.',
+  thumb: true,
+  keywords: ['Redlands', 'California', 'story map', 'arcgis online']
+}
+
+projects[1] = {
+  id: 2,
+  url: 'http://arcg.is/08WvnO',
+  title: 'Map of Recent Earthquakes',
+  desc: 'An ArcGIS Online Web App showing worldwide earthquakes of magnitude 4.5 or greater that have occurred in the last 7 days. The dataset is streamed from the USGS.',
+  thumb: true,
+  keywords: ['USGS', 'earthquakes', 'arcgis online']
+}
+
+for (let i = 0; i < projects.length; i++) {
+  if (projects[i].thumb) {
+    console.log('ss-project-' + projects[i].id + '.png')
+  }
+}
