@@ -23,10 +23,10 @@ projects[1] = {
 
 // step through each element in an array using a "for" loop
 for (let i = 0; i < projects.length; i++) {
-  console.log('Index position ' + i + ' title: ' + projects[i].title) // log the current project's title
-  if (projects[i].thumb === true) {
-    console.log('images/ss-project-' + projects[i].id + '.png') // build and log an image file name based on the project ID
-  } else {
-    console.log('images/no-preview.png')
-  }
+  let title = createTitle(i)
+  console.log(title)
+  let imageSrc = createImageSrc(i)
+  console.log(imageSrc)
 }
+
+$(document).ready(console.log('The page is ready!'))
