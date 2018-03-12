@@ -29,16 +29,20 @@
     <section class="main-content">
       <h1 class="text-center">Code Assignment 07a</h1>
       <h4 class="text-center">Introduction to JavaScript - Libraries</h4>
-      <p>Move a class into a separate <code class="highlighter-rouge">.js</code> file and include it in the HTML document with a <code class="highlighter-rouge">script</code> tag. Also include a third-party library, such as jQuery.</p>
+      <p>Move a class or function into a separate <code class="highlighter-rouge">.js</code> file and include it in the HTML document with a <code class="highlighter-rouge">script</code> tag. Also include a third-party library, such as jQuery.</p>
 
 <h2 id="process">Process</h2>
-<p>These steps assume you will copy a <code class="highlighter-rouge">class</code> from the previous assignment, but the process can be applied to functions instead of a <code class="highlighter-rouge">class</code>.</p>
+<p>These steps assume you will copy a <code class="highlighter-rouge">function</code> from the previous assignment, but the process can be applied to a <code class="highlighter-rouge">class</code> instead of <code class="highlighter-rouge">function</code>.</p>
 <ol>
   <li>Create a new JavaScript file <code class="highlighter-rouge">code-assignment-07a.js</code> and include it with <code class="highlighter-rouge">script</code> tags in your portfolio page.</li>
   <li>Create another JavaScript file using the class name as the file name, such as <code class="highlighter-rouge">Project.js</code>.</li>
-  <li>Cut and paste your <code class="highlighter-rouge">class</code> code into the new class file.</li>
-  <li>Include the class file in your portfolio page by using the <code class="highlighter-rouge">script</code> tag.</li>
-  <li>Include a third-party JavaScript library as well. jQuery, for example, would have a <code class="highlighter-rouge">src</code> attribute value of <code class="highlighter-rouge">https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js</code>.</li>
+  <li>Cut and paste your <code class="highlighter-rouge">function</code> code from the last assignment into the new library file.</li>
+  <li>Include the library file in your portfolio page by using the <code class="highlighter-rouge">script</code> tag.</li>
+  <li>Include a third-party JavaScript library as well, jQuery. Use a <code class="highlighter-rouge">src</code> attribute value of <code class="highlighter-rouge">https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js</code>.</li>
+  <li>Use jQuery’s <code class="highlighter-rouge">.ready</code> method to run a function when the document finishes loading in the browser.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The page is ready!'</span><span class="p">))</span>
+</code></pre></div>    </div>
+  </li>
 </ol>
 
 <h2 id="graded-requirements">Graded Requirements</h2>
@@ -46,20 +50,19 @@
   <li>Requirements from previous coding assignments:<br />
   a. A web page with valid HTML, hosted online<br />
   b. Scripts and styles in separate files<br />
-  c. A portfolio entry for each mapping assignment to date<br />
-  d. Your own page title<br />
-  e. Proper indentation<br />
-  f. No errors in the console<br />
-  g. All code inside a function/method called by an event listener when the page loads.</li>
-  <li>A separate file containing a class, included through the HTML document</li>
-  <li>A third-party library included in the HTML document</li>
+  c. Your own page title<br />
+  d. Proper indentation<br />
+  e. No errors in the console<br />
+  f. All code inside a function/method</li>
+  <li>A separate file containing a function or class, included through the HTML document</li>
+  <li>jQuery included in the HTML document</li>
+  <li>The jQuery method <code class="highlighter-rouge">.ready</code> running a function from your code (not console.log as in the example above)</li>
 </ol>
 
 <h2 id="submit-on-moodle">Submit on Moodle</h2>
 <ol>
   <li>The URL for your portfolio</li>
 </ol>
-
 
     </section>
 <footer class="site-footer">
