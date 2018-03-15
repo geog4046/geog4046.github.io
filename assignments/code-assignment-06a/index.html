@@ -47,14 +47,19 @@
   </li>
   <li>Use <code class="highlighter-rouge">return</code> to let the function output a value, e.g., <code class="highlighter-rouge">return description</code>.</li>
   <li>Call the function from somewhere else in the script, with some value or variable as a parameter, e.g., <code class="highlighter-rouge">describeFruit('apple')</code>. Assign the function’s returned value to a variable and log it to the console, e.g.,
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myfavfruit</span> <span class="o">=</span> <span class="s1">'apple'</span>
+<span class="kd">let</span> <span class="nx">description</span> <span class="o">=</span> <span class="nx">describeFruit</span><span class="p">(</span><span class="nx">myfavfruit</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">description</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Which is the same as writing:</p>
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">description</span> <span class="o">=</span> <span class="nx">describeFruit</span><span class="p">(</span><span class="s1">'apple'</span><span class="p">)</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">description</span><span class="p">)</span>
 </code></pre></div>    </div>
+    <p>Which is also the same as writing:</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">describeFruit</span><span class="p">(</span><span class="s1">'apple'</span><span class="p">))</span>
+</code></pre></div>    </div>
+    <h2 id="graded-requirements">Graded Requirements</h2>
   </li>
-</ol>
-
-<h2 id="graded-requirements">Graded Requirements</h2>
-<ol>
   <li>Requirements from previous coding assignments:<br />
   a. A web page with valid HTML, hosted online<br />
   b. Scripts and styles in separate files<br />

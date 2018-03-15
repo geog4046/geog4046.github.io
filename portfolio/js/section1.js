@@ -1,34 +1,32 @@
-// assign values to a set of variables representing a project's metadata
-let projectId = 1
-let projectUrl = 'http://bit.ly/2EF070t'
-let projectTitle = 'Redlands Tour'
-let projectDesc = 'An ArcGIS Online Story Map Tour showing points of interest in Redlands, CA, creating following the tutorial in Chapter 1 of Getting to Know Web GIS.'
-let projectThumb = true
-let projectKeywords = ['Redlands', 'California', 'story map', 'arcgis online']
+// initialize an array to hold objects that contain project metadata
+let projectData = []
 
-// create an array and assign six variables to positions 0 through 5
-let projectArray = [
-  projectId,
-  projectUrl,
-  projectTitle,
-  projectDesc,
-  projectThumb,
-  projectKeywords
-]
-
-// create an object and assign six variables to property names (i.e., keys)
-let projectObject = {
-  id: projectId,
-  url: projectUrl,
-  title: projectTitle,
-  desc: projectDesc,
-  thumb: projectThumb,
-  keywords: projectKeywords
+// create an object to hold a project's metadata and assign the object to the first position in the projectData array
+projectData[0] = {
+  id: 1,
+  url: 'http://bit.ly/2EF070t',
+  title: 'Redlands Tour',
+  desc: 'An ArcGIS Online Story Map Tour showing points of interest in Redlands, CA, creating following the tutorial in Chapter 1 of Getting to Know Web GIS.',
+  thumb: true,
+  keywords: ['Redlands', 'California', 'story map', 'arcgis online']
 }
 
-// logs the title from the project data array, because the title is in position 2
-console.log(projectArray[2])
+// create an object to hold a project's metadata and assign the object to the second position in the projectData array
+projectData[1] = {
+  id: 2,
+  url: 'http://arcg.is/08WvnO',
+  title: 'Map of Recent Earthquakes',
+  desc: 'An ArcGIS Online Web App showing worldwide earthquakes of magnitude 4.5 or greater that have occurred in the last 7 days. The dataset is streamed from the USGS.',
+  thumb: false,
+  keywords: ['USGS', 'earthquakes', 'arcgis online']
+}
 
-// two ways to log the title from the project data object
-console.log(projectObject.title)
-console.log(projectObject['title'])
+// step through each element in an array using a "for" loop
+for (let i = 0; i < projectData.length; i++) {
+  console.log('Index position ' + i + ' title: ' + projectData[i].title) // log the current project's title
+  if (projectData[i].thumb === true) {
+    console.log('images/ss-project-' + projectData[i].id + '.png') // build and log an image file name based on the project ID
+  } else {
+    console.log('images/no-preview.png')
+  }
+}
