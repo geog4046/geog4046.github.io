@@ -29,7 +29,97 @@
     <section class="main-content">
       <h1 class="text-center">Webmap Assignment 01</h1>
       <h4 class="text-center">Leaflet - Quick start</h4>
-      <p>This assignment has not been posted yet.</p>
+      <p>Create a web map with Leaflet and display a basemap, point, and polygon with a popup. The assignment involves creating all of the necessary HTML, CSS, and JavaScript files and code to display a map on a webpage.</p>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+
+<div id="mapid" style="height:250px"></div>
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+
+<script src="/portfolio/map/webmap-assignment-01.js"></script>
+
+<h2 id="process">Process</h2>
+<p>This assignment is based on the <a href="http://leafletjs.com/examples/quick-start/">Leaflet quickstart guide</a>.</p>
+<ol>
+  <li>In your portfolio repository, create a new file, <code class="highlighter-rouge">map/index.html</code>, with a <a href="https://github.com/geog4046/geog4046.github.io/blob/master/examples/skeleton.html">basic HTML skeleton</a>.</li>
+  <li>In your <code class="highlighter-rouge">map</code> folder, create a new JavaScript file <code class="highlighter-rouge">webmap-assignment-01.js</code> and a CSS file <code class="highlighter-rouge">map.css</code> 
+<img src="/images/leaflet-html-css-js-files.png" alt="HTML, CSS, and JavaScript files" /></li>
+  <li>In your <code class="highlighter-rouge">index.html</code> page’s <code class="highlighter-rouge">head</code> and <code class="highlighter-rouge">body</code>, respectively add <code class="highlighter-rouge">link</code> and <code class="highlighter-rouge">script</code> tags to include your JS and CSS files.</li>
+  <li>Also add <code class="highlighter-rouge">link</code> and <code class="highlighter-rouge">script</code> tags for Leaflet <strong>on the lines above your own CSS and JS</strong>:
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"</span><span class="nt">&gt;</span>
+</code></pre></div>    </div>
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"</span><span class="nt">&gt;&lt;/script&gt;</span>  
+</code></pre></div>    </div>
+    <p>Your HTML, CSS, and JavaScript files are now ready to have code added to them.</p>
+  </li>
+  <li>Create a <code class="highlighter-rouge">div</code> element where the map will be drawn, using your own value for <code class="highlighter-rouge">id</code>.
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"mapid"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Create a CSS rule to give the map <code class="highlighter-rouge">div</code> a different height.
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">#mapid</span> <span class="p">{</span> <span class="nl">height</span><span class="p">:</span> <span class="m">180px</span> <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Create the first line of JavaScript to create an empty map. Set your own variable name, map <code class="highlighter-rouge">div</code> <code class="highlighter-rouge">id</code>, coordinates, and zoom level:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//let someName = L.map('your-map-div-id').setView([yourLat, yourLon], yourZoom)</span>
+<span class="kd">let</span> <span class="nx">mymap</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">'mapid'</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">51.505</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.09</span><span class="p">],</span> <span class="mi">13</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Note that the <code class="highlighter-rouge">L</code> object and the methods chained after it, <code class="highlighter-rouge">map</code> and <code class="highlighter-rouge">setView</code>, are specific to Leaflet.</p>
+  </li>
+  <li>Add a basemap layer to the map using your preferred basemap’s URL and your own map object’s name’. See this list of <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">basemap providers</a>.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png'</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mymap</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Mark a point of interest on the map using Leaflet’s <code class="highlighter-rouge">marker</code> method. Use your own variable names and coordinates.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">marker</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">marker</span><span class="p">([</span><span class="mf">51.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.09</span><span class="p">]).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mymap</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Draw a polygon around an area of interest.</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">polygon</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">polygon</span><span class="p">([</span>
+  <span class="p">[</span><span class="mf">51.509</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.08</span><span class="p">],</span>
+  <span class="p">[</span><span class="mf">51.503</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.06</span><span class="p">],</span>
+  <span class="p">[</span><span class="mf">51.51</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.047</span><span class="p">]</span>
+<span class="p">]).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mymap</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Create popups for your marker and polygon. Note the backslash allowing the use of an apostrophe.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">polygon</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s1">'St. Katharine</span><span class="se">\'</span><span class="s1">s and Wapping'</span><span class="p">)</span>
+<span class="nx">marker</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s1">'London Bridge Station'</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Create an “event listener” that listens for a click on the map and then runs a function to log the clicked location to the console.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">logCurrentCoordinates</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'You clicked the map at '</span> <span class="o">+</span> <span class="nx">event</span><span class="p">.</span><span class="nx">latlng</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">mymap</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="nx">logCurrentCoordinates</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Or written a shorter way:</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mymap</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'You clicked the map at '</span> <span class="o">+</span> <span class="nx">event</span><span class="p">.</span><span class="nx">latlng</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Consult the Leaflet documentation (or Google) to add a “polyline” to the map. No popup needed.</li>
+</ol>
+
+<h2 id="graded-requirements">Graded Requirements</h2>
+<ol>
+  <li>Requirements from previous coding assignments:<br />
+  a. A web page with valid HTML and CSS, hosted online<br />
+  b. Scripts and styles in separate files<br />
+  c. Your own page title<br />
+  d. Proper indentation<br />
+  e. No errors in the console</li>
+  <li>Load the Leaflet CSS and JavaScript files</li>
+  <li>A map <code class="highlighter-rouge">div</code> with a height</li>
+  <li>A map with a basemap and features (marker, polygon, <strong>and line</strong>)</li>
+  <li>Popups on the marker and polygon features</li>
+  <li>An event listener that logs clicked locations</li>
+</ol>
+
+<h2 id="submit-on-moodle">Submit on Moodle</h2>
+<ol>
+  <li>The URL to your map page: <code class="highlighter-rouge">https://yourname.github.io/map</code></li>
+</ol>
 
     </section>
 <footer class="site-footer">
