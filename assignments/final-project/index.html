@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Final Project | GEOG 4046 Web GIS at LSU</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">Web GIS at Louisiana State University</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Final Project</h1>
+      <h4 class="text-center">A Leaflet Map</h4>
+      <p>Create a web map using Leaflet, an open-source JavaScript library. Map the dataset of your choice and customize the symbology and popups to convey meaningful information to your users.</p>
+
+<h2 id="data">Data</h2>
+<p>Find a dataset or create one yourself. It should be related to a topic you are interested in. Choose something that would be fun/useful to map and could potentially be used outside of this class.</p>
+
+<h2 id="process">Process</h2>
+<ol>
+  <li>Create a new folder in your repository, giving it a name appropriate for the theme of the map rather than something generic like “final”. Keep in mind, the web address will reflect this name, e.g., <code class="highlighter-rouge">https://yourname.github.io/foldername</code>. Also create <code class="highlighter-rouge">index.html</code>, a <code class="highlighter-rouge">.css</code> file, and a <code class="highlighter-rouge">.js</code> file inside the folder.</li>
+  <li>In <code class="highlighter-rouge">index.html</code>, create a basic HTML skeleton and add elements and CSS rules to give it a layout and style, or use a <a href="https://getbootstrap.com/docs/4.0/examples/">Bootstrap template</a>.</li>
+  <li>Create a map <code class="highlighter-rouge">div</code> and in the <code class="highlighter-rouge">.js</code> file add code for a basic Leaflet map.</li>
+  <li>Use additional <code class="highlighter-rouge">L.tileLayer</code> methods to add basemaps.</li>
+  <li>Use the <code class="highlighter-rouge">L.control.layers</code> method to create a control where the users can switch basemaps.</li>
+  <li>Prepare your data. If using an existing dataset that is not already in GeoJSON format, it can be converted using <a href="https://www.qgis.org/en/site/forusers/download.html">QGIS</a>. If creating your own dataset, you can either create a GeoJSON file or use Leaflet’s vector drawing methods.</li>
+  <li>Add your data to the map:<br />
+a. For GeoJSON, create a variable for the GeoJSON object and pass it to the <code class="highlighter-rouge">L.geoJSON</code> method.<br />
+b. For other data, use methods like <code class="highlighter-rouge">L.polygon</code> or <code class="highlighter-rouge">L.polyline</code> to draw features on the map.</li>
+  <li>Apply custom styles or icons to the features.</li>
+  <li>Use the <code class="highlighter-rouge">bindPopup</code> method to create a popup. The <code class="highlighter-rouge">L.geoJSON</code> method has the <code class="highlighter-rouge">onEachFeature</code> option that can be used to create a popup on each feature and use the feature’s attribute values in the popup.</li>
+  <li>Depending on the complexity of the symbology, a map legend might be appropriate. Otherwise, a description could simply be included in the webpage.</li>
+  <li>Update your portfolio to include all of the webmaps in this class that are still functioning (maps made with an expired ArcGIS Online trial can be removed)</li>
+</ol>
+
+<h2 id="graded-requirements">Graded Requirements</h2>
+<ol>
+  <li>A web page with <a href="https://validator.w3.org">valid HTML</a> hosted online</li>
+  <li>Page title; no errors in console; scripts and styles in separate files; indentation</li>
+  <li>A visible Leaflet map</li>
+  <li>At least <strong>three</strong> basemaps the user can switch between, or just one custom basemap</li>
+  <li>At least <strong>one</strong> vector layer (e.g., point, line, or polygon) created either with Leaflet’s vector drawing methods or GeoJSON.<br />
+a. Must be unique and cannot be used by anyone else in the class (see the reservation sheet on Moodle).<br />
+b. Must have at least <strong>five</strong> features</li>
+  <li>Non-default icon or symbology applied to the vector layer(s)</li>
+  <li>A popup on a vector layer<br />
+a. Use of at least <strong>one</strong> attribute of the clicked feature<br />
+b. Use of HTML in the popup</li>
+  <li>Some kind of logic that changes some aspect of the map based on an attribute of the data, e.g., symbol color, custom icon, or popup content.</li>
+  <li>A legend or explanation of the map contents</li>
+  <li>Professionalism: the web page containing the map should have customizations like style and layout appropriate for your project, and the map itself should function well.</li>
+  <li>An updated portfolio</li>
+</ol>
+
+<h2 id="submit-on-moodle">Submit on Moodle</h2>
+<ol>
+  <li>The URL to your final web map</li>
+</ol>
+
+    </section>
+<footer class="site-footer">
+  <small>&copy; 2016 Louisiana State University</small>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

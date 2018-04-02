@@ -29,7 +29,53 @@
     <section class="main-content">
       <h1 class="text-center">Webmap Assignment 02</h1>
       <h4 class="text-center">Leaflet - Quick start with Web Map Service</h4>
-      <p>This assignment has not been posted yet.</p>
+      <p>Create a web map using Leaflet and overlay a Web Map Service (WMS) layer over a basemap.</p>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+
+<div id="map2" style="height:250px"></div>
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+
+<script src="/portfolio/map/webmap-assignment-02.js"></script>
+
+<h2 id="process">Process</h2>
+<p>This assignment is based on Webmap Assignment 1 (which is based on the <a href="http://leafletjs.com/examples/quick-start/">Leaflet quickstart guide</a>) but instead of adding features to the map we will add an image from a web service, a Web Map Service (WMS).</p>
+<ol>
+  <li>Still using the <code class="highlighter-rouge">map</code> folder created in Webmap Assignment 1, create a new JavaScript file <code class="highlighter-rouge">webmap-assignment-02.js</code> and update the <code class="highlighter-rouge">script</code> tag in <code class="highlighter-rouge">index.html</code> to use the new <code class="highlighter-rouge">webmap-assignment-02.js</code>.</li>
+  <li>Use code from Webmap Assignment 1 in the new <code class="highlighter-rouge">webmap-assignment-02.js</code>, only copying and pasting the parts necessary to create the map object and display the basemap. Do not copy the parts that created the points, lines, polygons, popups, and event listeners.</li>
+  <li>Get the URL for a WMS layer. Many ArcGIS web services support WMS format, for example those on the NOAA nowcoast website (see the <a href="https://nowcoast.noaa.gov/help/#!section=map-service-list">layer list</a>). A WMS URL from an ArcGIS Server will have <code class="highlighter-rouge">/MapServer/WMSServer</code> on the end and it will not contain <code class="highlighter-rouge">/rest</code>. For example compare the ArcGIS REST Service URL and the WMS URL for a national weather radar layer:<br />
+REST:<br />
+<code class="highlighter-rouge">https://nowcoast.noaa.gov/arcgis/rest/services/nowcoast/radar_meteo_imagery_nexrad_time/MapServer</code><br />
+WMS:<br />
+<code class="highlighter-rouge">https://nowcoast.noaa.gov/arcgis/services/nowcoast/radar_meteo_imagery_nexrad_time/MapServer/WMSServer</code></li>
+  <li>In addition to the WMS URL, Leaflet will need to know the layer number. This number is different from the number given on the ArcGIS service details page, and the process for finding it is not as easy. See this <a href="https://nowcoast.noaa.gov/help/#!section=wms-layer-ids">article from NOAA</a> for an explanation. For the radar layer given above, the layer number is <code class="highlighter-rouge">1</code>.</li>
+  <li>With those steps out of the way, the coding part is relatively easy. We use the <code class="highlighter-rouge">L.tileLayer.wms</code> method, giving it two arguments: a URL and options.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">.</span><span class="nx">wms</span><span class="p">(</span><span class="s1">'https://nowcoast.noaa.gov/arcgis/services/nowcoast/radar_meteo_imagery_nexrad_time/MapServer/WMSServer'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">layers</span><span class="p">:</span> <span class="s1">'1'</span><span class="p">,</span>
+  <span class="na">format</span><span class="p">:</span> <span class="s1">'image/png'</span><span class="p">,</span>
+  <span class="na">transparent</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mymap</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>The <code class="highlighter-rouge">format</code> and <code class="highlighter-rouge">transparent</code> properties might not be necessary for every WMS layer, but with the radar example, they make the layer’s white background invisible, showing only the parts of the image with precipitation as we would expect on any weather map.</p>
+  </li>
+</ol>
+
+<h2 id="graded-requirements">Graded Requirements</h2>
+<ol>
+  <li>Requirements from previous coding assignments:<br />
+  a. A web page with valid HTML and CSS, hosted online<br />
+  b. Scripts and styles in separate files<br />
+  c. Your own page title<br />
+  d. Proper indentation<br />
+  e. No errors in the console<br />
+  f. A visible, functioning Leaflet map</li>
+  <li>A WMS layer displayed on the map over a visible basemap</li>
+</ol>
+
+<h2 id="submit-on-moodle">Submit on Moodle</h2>
+<ol>
+  <li>The URL to your map page: <code class="highlighter-rouge">https://yourname.github.io/map</code></li>
+</ol>
 
     </section>
 <footer class="site-footer">

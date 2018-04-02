@@ -11,7 +11,7 @@ h2.project-tagline {
 .breadcrumb-item {
   font-size: 0.75em;
 }
-.main-content li > img {
+.main-content li img {
   margin: 20px 0;
   box-shadow: 0px 0px 10px #999
 }
@@ -32,4 +32,11 @@ h2.project-tagline {
 .wide {
   max-width: 1175px;
   width: 100%;
+}
+.main-content :first-child .leaflet-popup-tip {
+  margin-top: -10px;
+  padding-top: 10px
+}
+.main-content :first-child .leaflet-popup-content {
+  margin: 13px 19px
 }

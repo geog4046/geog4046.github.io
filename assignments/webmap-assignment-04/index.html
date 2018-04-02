@@ -29,7 +29,125 @@
     <section class="main-content">
       <h1 class="text-center">Webmap Assignment 04</h1>
       <h4 class="text-center">Leaflet - GeoJSON</h4>
-      <p>This assignment has not been posted yet.</p>
+      <p>Use Leaflet to display GeoJSON data on a map. Change the symbology based on attribute values and show attribute values in a popup.</p>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+
+<div><div id="map4" style="height:400px"></div></div>
+<p><small><span style="color: Green; font-weight: bold">Younger</span> and <span style="color: Olive; font-weight: bold">older</span> populations: median age by state,
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<script src="/portfolio/map/stateDemographics.js"></script>
+<script src="/portfolio/map/webmap-assignment-04.js"></script></small></p>
+
+<h2 id="process">Process</h2>
+<p>This assignment is based on the <a href="http://leafletjs.com/examples/geojson/">Using GeoJSON with Leaflet</a> tutorial. Assemble the example code here in your JavaScript file, but change the variables, functions, and values.</p>
+<ol>
+  <li>Create a new JavaScript file <code class="highlighter-rouge">webmap-assignment-04.js</code> and include it with <code class="highlighter-rouge">script</code> tags in your map page. Remove <code class="highlighter-rouge">script</code> tags for previous assignments.</li>
+  <li>In the JavaScript file, copy lines from a previous assignment to create a map object and add a basemap. Change the map center and zoom depending on the dataset you choose in the next step.</li>
+  <li>
+    <p>For the GeoJSON data, you can download an example <a href="/portfolio/data/us_state_demographics_ESRI_2010A.geojson">US state demographics GeoJSON file</a> and the <a href="/portfolio/data/us_state_demographics_ESRI_2010A.xlsx">metadata spreadsheet</a>. Or find/create your own GeoJSON dataset. For example, ArcGIS Hub sites, such as <a href="https://portal-nolagis.opendata.arcgis.com/datasets">NOLA Open Data</a> and <a href="https://data-ebrgis.opendata.arcgis.com/datasets">EBR Open Data</a>, offer a GeoJSON option:<br />
+<img src="/images/opendata-api-geojson.png" alt="ArcGIS Hub GeoJSON format" /></p>
+  </li>
+  <li>Copy the contents of the GeoJSON file to your JavaScript file as a variable (object) value, e.g.:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myGeojson</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"FeatureCollection"</span><span class="p">...}</span> <span class="c1">// use your own geojson</span>
+</code></pre></div>    </div>
+    <p><strong>Note:</strong> The large amount of GeoJSON text might make your JavaScript file feel cluttered and slow. You can move the GeoJSON object to a separate <code class="highlighter-rouge">.js</code> file and include the file with <code class="highlighter-rouge">script</code> tags in the HTML document (the same way a library is included).</p>
+  </li>
+  <li>Use Leaflet’s <code class="highlighter-rouge">L.geoJSON</code> method to create a layer from the GeoJSON object (even with the object in a separate <code class="highlighter-rouge">.js</code> file):
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">L</span><span class="p">.</span><span class="nx">geoJSON</span><span class="p">(</span><span class="nx">myGeojson</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">myMap</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>The <code class="highlighter-rouge">L.geoJSON</code> method takes the GeoJSON object as its first argument, and can optionally take another object as its second argument. This second object can have a few properties, but for now we will just use the style property to change the color of our GeoJSON layer.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">L</span><span class="p">.</span><span class="nx">geoJSON</span><span class="p">(</span><span class="nx">myGeojson</span><span class="p">,</span> <span class="p">{</span> <span class="na">style</span><span class="p">:</span> <span class="p">{</span> <span class="na">color</span><span class="p">:</span> <span class="s1">'red'</span> <span class="p">}}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">myMap</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>In the example above, the second argument is an object containing another object. Object 1 is Leaflet’s GeoJSON options object. Object 2 is Leaflet’s style object:</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//                     |---------object 1-------|  </span>
+<span class="c1">//                              |---object 2---|</span>
+  <span class="nx">L</span><span class="p">.</span><span class="nx">geoJSON</span><span class="p">(</span><span class="nx">myGeojson</span><span class="p">,</span> <span class="p">{</span> <span class="na">style</span><span class="p">:</span> <span class="p">{</span> <span class="na">color</span><span class="p">:</span> <span class="s1">'red'</span> <span class="p">}}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">myMap</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>To illustrate this point, the example could also be written in a longer form using variables:</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myStyle</span> <span class="o">=</span> <span class="p">{</span> <span class="na">color</span><span class="p">:</span> <span class="s1">'red'</span> <span class="p">}</span>
+<span class="kd">let</span> <span class="nx">myOptions</span> <span class="o">=</span> <span class="p">{</span> <span class="na">style</span><span class="p">:</span> <span class="nx">myStyle</span> <span class="p">}</span>
+<span class="nx">L</span><span class="p">.</span><span class="nx">geoJSON</span><span class="p">(</span><span class="nx">myGeojson</span><span class="p">,</span> <span class="nx">myOptions</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">myMap</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Add some additional options (properties) to the style object to customize more than the color. See the Leaflet documentation for the <a href="http://leafletjs.com/reference-1.3.0.html#path-option">list of style options</a>. For example, <code class="highlighter-rouge">color</code>, <code class="highlighter-rouge">weight</code>, and <code class="highlighter-rouge">fillOpacity</code> change a polygon’s border color, border thickness, and transparency.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myStyle</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">color</span><span class="p">:</span> <span class="s1">'Green'</span><span class="p">,</span>
+  <span class="na">weight</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">fillOpacity</span><span class="p">:</span> <span class="mf">0.2</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <p><strong>Note:</strong> Leaflet’s style options resemble CSS, but they are not the same.</p>
+  </li>
+  <li>Instead of making <code class="highlighter-rouge">myStyle</code> an object, it’s possible to make it a function that returns an object:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">myStyle</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">myStyle</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">color</span><span class="p">:</span> <span class="s1">'Green'</span><span class="p">,</span>
+    <span class="na">weight</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">fillOpacity</span><span class="p">:</span> <span class="mf">0.2</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">myStyle</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <p>This could be useful for applying some logic, like changing the color based on the value of the data. This is possible because Leaflet allows us to pass a <code class="highlighter-rouge">feature</code> object to the function as an argument, which lets us get the feature’s attribute data:</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">myStyle</span> <span class="p">(</span><span class="nx">feature</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">age</span> <span class="o">=</span> <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">MED_AGE</span> <span class="c1">// get the current state's Median Age attribute</span>
+  <span class="kd">let</span> <span class="nx">stateColor</span> <span class="o">=</span> <span class="s1">'Olive'</span> <span class="c1">// let the initial color be a darker green</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">38</span> <span class="p">)</span> <span class="p">{</span> <span class="nx">stateColor</span> <span class="o">=</span> <span class="s1">'Green'</span> <span class="p">}</span> <span class="c1">// if the state's median age is less than the average, color it a lighter green</span>
+  <span class="kd">let</span> <span class="nx">myStyle</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">color</span><span class="p">:</span> <span class="nx">stateColor</span><span class="p">,</span> <span class="c1">//use the color variable above for the value</span>
+    <span class="na">weight</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">fillOpacity</span><span class="p">:</span> <span class="mf">0.2</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">myStyle</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>In addition to the <code class="highlighter-rouge">style</code> option in the GeoJSON options object (<code class="highlighter-rouge">myOptions</code>), there are other properties that do useful things to our layer’s features. The <code class="highlighter-rouge">onEachFeature</code> option allows us to create a function to perform some task on every feature in the layer. It works in the same way that the <code class="highlighter-rouge">style</code> option runs our <code class="highlighter-rouge">myStyle</code> function. To demonstrate, we will create a function to add a popup to each feature (i.e., each state).</p>
+
+    <p>First, add the <code class="highlighter-rouge">onEachFeature</code> property to our <code class="highlighter-rouge">myOptions</code> object under the <code class="highlighter-rouge">style</code> property. Set the value to the name of the function we will create.</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myOptions</span> <span class="o">=</span> <span class="p">{</span> 
+  <span class="na">style</span><span class="p">:</span> <span class="nx">myStyle</span><span class="p">,</span>
+  <span class="na">onEachFeature</span><span class="p">:</span> <span class="nx">myPopup</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <p>Now create the function, empty at first but with the <code class="highlighter-rouge">feature</code> and <code class="highlighter-rouge">layer</code> objects as arguments. Like with the <code class="highlighter-rouge">style</code> option, Leaflet lets us pass the feature as an argument so we can access its attribute data.</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">myPopup</span> <span class="p">(</span><span class="nx">feature</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
+     
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <p>We can use the <code class="highlighter-rouge">bindPopup</code> method to have a popup appear when the user clicks a state. We can use <code class="highlighter-rouge">feature.properties.STATE_NAME</code> and <code class="highlighter-rouge">feature.properties.MED_AGE</code> to display the state’s name and median age in the popup. We can use HTML as well. Note that the <code class="highlighter-rouge">bindPopup</code> method is used on the <code class="highlighter-rouge">layer</code> argument.</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">myPopup</span> <span class="p">(</span><span class="nx">feature</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATE_NAME</span>
+  <span class="kd">let</span> <span class="nx">age</span> <span class="o">=</span> <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">MED_AGE</span>
+  <span class="nx">layer</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s1">'Median age of '</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">': '</span> <span class="o">+</span> <span class="nx">age</span> <span class="o">+</span> <span class="s1">'&lt;br&gt;National average: 38'</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="graded-requirements">Graded Requirements</h2>
+<ol>
+  <li>Requirements from previous coding assignments:<br />
+  a. A web page with valid HTML and CSS, hosted online<br />
+  b. Scripts and styles in separate files<br />
+  c. Your own page title<br />
+  d. Proper indentation<br />
+  e. No errors in the console<br />
+  f. A visible, functioning Leaflet map<br />
+  g. Variable names and values different from those in the example above</li>
+  <li>Features displayed on the map from GeoJSON.</li>
+  <li>At least 4 non-default style options.</li>
+  <li>A popup on each GeoJSON feature.</li>
+  <li>An attribute value from the GeoJSON data diplayed in the popup.</li>
+</ol>
+
+<h2 id="submit-on-moodle">Submit on Moodle</h2>
+<ol>
+  <li>The URL to your map page: <code class="highlighter-rouge">https://yourname.github.io/map</code></li>
+</ol>
 
     </section>
 <footer class="site-footer">

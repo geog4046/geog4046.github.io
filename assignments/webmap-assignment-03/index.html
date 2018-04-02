@@ -33,7 +33,7 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
 
-<div id="mapid" style="height:250px"></div>
+<div id="map3" style="height:250px"></div>
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
 
 <script src="/portfolio/map/webmap-assignment-03.js"></script>
@@ -41,10 +41,11 @@
 <h2 id="process">Process</h2>
 <p>This assignment is based on the <a href="http://leafletjs.com/examples/custom-icons/">Markers With Custom Icons</a> tutorial, with the addition of polygon styling.</p>
 <ol>
-  <li>Create a new JavaScript file <code class="highlighter-rouge">webmap-assignment-03.js</code> and include it with <code class="highlighter-rouge">script</code> tags in your map page. Re-use code from a previous assignment with a marker and polygon.</li>
+  <li>Create a new JavaScript file <code class="highlighter-rouge">webmap-assignment-03.js</code> and include it with <code class="highlighter-rouge">script</code> tags in your map page.</li>
+  <li>In the JavaScript file, re-use code from a previous assignment to create a map object, basemap, marker, and polygon.</li>
   <li>Search online for an image to use as an icon. Any small PNG image with a transparent background should work. Optionally, create a shadow image. A shadow effect can be acheived in a graphics editor by skewing the icon image, changing the color or brightness/contrast to make the image solid gray, then applying a blur effect.</li>
   <li>Create an icon object in your JavaScript file.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">greenIcon</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">icon</span><span class="p">({</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">myGreenIcon</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">icon</span><span class="p">({</span>
   <span class="na">iconUrl</span><span class="p">:</span> <span class="s1">'leaf-green.png'</span><span class="p">,</span>
   <span class="na">shadowUrl</span><span class="p">:</span> <span class="s1">'leaf-shadow.png'</span><span class="p">,</span>
   <span class="na">iconSize</span><span class="p">:</span>     <span class="p">[</span><span class="mi">38</span><span class="p">,</span> <span class="mi">95</span><span class="p">],</span> <span class="c1">// size of the icon</span>
@@ -55,23 +56,25 @@
 <span class="p">});</span>
 </code></pre></div>    </div>
   </li>
-  <li>Create a marker using the icon. For reference, compare the code of a marker without and with a custom icon.<br />
-No custom icon:
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">marker</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">marker</span><span class="p">([</span><span class="mf">51.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.09</span><span class="p">]).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mymap</span><span class="p">)</span>
+  <li>
+    <p>Create a marker using the icon. For reference, compare the code of a marker without and with a custom icon.</p>
+
+    <p>No custom icon:</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myMarker</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">marker</span><span class="p">([</span><span class="mf">51.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.09</span><span class="p">]).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mymap</span><span class="p">)</span>
 </code></pre></div>    </div>
     <p>Custom icon:</p>
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">marker</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">marker</span><span class="p">([</span><span class="mf">51.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.09</span><span class="p">],</span> <span class="p">{</span><span class="na">icon</span><span class="p">:</span> <span class="nx">greenIcon</span><span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myMarker</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">marker</span><span class="p">([</span><span class="mf">51.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.09</span><span class="p">],</span> <span class="p">{</span><span class="na">icon</span><span class="p">:</span> <span class="nx">myGreenIcon</span><span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
 </code></pre></div>    </div>
   </li>
-  <li>Create an object containing some style options for the polygon. Refer to the <a href="http://leafletjs.com/reference-1.3.0.html#path-stroke">Leaflet documentation</a> for possible options to set, such as:
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">polygonStyle</span> <span class="o">=</span> <span class="p">{</span>
+  <li>Create an object containing some style options for the polygon. Refer to the <a href="http://leafletjs.com/reference-1.3.0.html#path-option">Leaflet documentation</a> for possible options to set, such as:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myStyle</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">color</span><span class="p">:</span> <span class="s1">'orange'</span><span class="p">,</span>
   <span class="na">fillColor</span><span class="p">:</span> <span class="s1">'yellow'</span>
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
-  <li>Pass the <code class="highlighter-rouge">polygonStyle</code> object to the <code class="highlighter-rouge">L.polygon</code> method as the second argument. The first argument is an array of coordinates that form the polygon.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">polygon</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">polygon</span><span class="p">(</span><span class="nx">polygonCoords</span><span class="p">,</span> <span class="nx">polygonStyle</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mymap</span><span class="p">)</span>
+  <li>Pass the <code class="highlighter-rouge">myStyle</code> object to the <code class="highlighter-rouge">L.polygon</code> method as the second argument. The first argument is an array of coordinates that form the polygon.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myPolygon</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">polygon</span><span class="p">(</span><span class="nx">myCoords</span><span class="p">,</span> <span class="nx">myStyle</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mymap</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
 </ol>
