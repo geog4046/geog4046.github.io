@@ -1,5 +1,5 @@
 // create a map object
-let mymap = L.map('mapid').setView([51.505, -0.09], 13)
+let mymap = L.map('map3').setView([51.505, -0.09], 13)
 
 // create basemap layer
 L.tileLayer('https://{s}.tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png?apikey=9e58ec91b076457dbf9835a1932e032c').addTo(mymap)

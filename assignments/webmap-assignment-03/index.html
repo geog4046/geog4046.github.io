@@ -45,15 +45,15 @@
   <li>In the JavaScript file, re-use code from a previous assignment to create a map object, basemap, marker, and polygon.</li>
   <li>Search online for an image to use as an icon. Any small PNG image with a transparent background should work. Optionally, create a shadow image. A shadow effect can be acheived in a graphics editor by skewing the icon image, changing the color or brightness/contrast to make the image solid gray, then applying a blur effect.</li>
   <li>Create an icon object in your JavaScript file.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">myGreenIcon</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">icon</span><span class="p">({</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myGreenIcon</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">icon</span><span class="p">({</span>
   <span class="na">iconUrl</span><span class="p">:</span> <span class="s1">'leaf-green.png'</span><span class="p">,</span>
   <span class="na">shadowUrl</span><span class="p">:</span> <span class="s1">'leaf-shadow.png'</span><span class="p">,</span>
-  <span class="na">iconSize</span><span class="p">:</span>     <span class="p">[</span><span class="mi">38</span><span class="p">,</span> <span class="mi">95</span><span class="p">],</span> <span class="c1">// size of the icon</span>
-  <span class="na">shadowSize</span><span class="p">:</span>   <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span> <span class="c1">// size of the shadow</span>
-  <span class="na">iconAnchor</span><span class="p">:</span>   <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">94</span><span class="p">],</span> <span class="c1">// point of the icon which will correspond to marker's location</span>
+  <span class="na">iconSize</span><span class="p">:</span> <span class="p">[</span><span class="mi">38</span><span class="p">,</span> <span class="mi">95</span><span class="p">],</span> <span class="c1">// size of the icon</span>
+  <span class="na">shadowSize</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span> <span class="c1">// size of the shadow</span>
+  <span class="na">iconAnchor</span><span class="p">:</span> <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">94</span><span class="p">],</span> <span class="c1">// point of the icon which will correspond to marker's location</span>
   <span class="na">shadowAnchor</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">62</span><span class="p">],</span>  <span class="c1">// the same for the shadow</span>
-  <span class="na">popupAnchor</span><span class="p">:</span>  <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">76</span><span class="p">]</span> <span class="c1">// point from which the popup should open relative to the iconAnchor</span>
-<span class="p">});</span>
+  <span class="na">popupAnchor</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">76</span><span class="p">]</span> <span class="c1">// point from which the popup should open relative to the iconAnchor</span>
+<span class="p">})</span>
 </code></pre></div>    </div>
   </li>
   <li>
