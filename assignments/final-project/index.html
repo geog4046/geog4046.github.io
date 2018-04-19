@@ -38,14 +38,16 @@
 <ol>
   <li>Create a new folder in your repository, giving it a name appropriate for the theme of the map rather than something generic like “final”. Keep in mind, the web address will reflect this name, e.g., <code class="highlighter-rouge">https://yourname.github.io/foldername</code>. Also create <code class="highlighter-rouge">index.html</code>, a <code class="highlighter-rouge">.css</code> file, and a <code class="highlighter-rouge">.js</code> file inside the folder.</li>
   <li>In <code class="highlighter-rouge">index.html</code>, create a basic HTML skeleton and add elements and CSS rules to give it a layout and style, or use a <a href="https://getbootstrap.com/docs/4.0/examples/">Bootstrap template</a>.</li>
-  <li>Create a map <code class="highlighter-rouge">div</code> and in the <code class="highlighter-rouge">.js</code> file add code for a basic Leaflet map.</li>
+  <li>Create a map <code class="highlighter-rouge">div</code> in the <code class="highlighter-rouge">.html</code> file and in the <code class="highlighter-rouge">.js</code> file add code for a basic Leaflet map.</li>
   <li>Use additional <code class="highlighter-rouge">L.tileLayer</code> methods to add basemaps.</li>
-  <li>Use the <code class="highlighter-rouge">L.control.layers</code> method to create a control where the users can switch basemaps.</li>
-  <li>Prepare your data. If using an existing dataset that is not already in GeoJSON format, it can be converted using <a href="https://www.qgis.org/en/site/forusers/download.html">QGIS</a>. If creating your own dataset, you can either create a GeoJSON file or use Leaflet’s vector drawing methods.</li>
+  <li>Use the <code class="highlighter-rouge">L.control.layers</code> method to create a control where the users can switch basemaps. See this example code to include a <a href="https://gist.github.com/geog4046instructor/bb7df792661d12b4c236d84b96e260c5">GeoJSON layer in the control</a>.</li>
+  <li>Prepare your data. If using an existing dataset that is not already in GeoJSON format, it can be converted using an <a href="https://ogre.adc4gis.com">online converter</a>, or the desktop GIS application <a href="https://www.qgis.org/en/site/forusers/download.html">QGIS</a>. If creating your own dataset, you can either create a GeoJSON file (try using <a href="http://geojson.io">geojson.io</a>) or use Leaflet’s vector drawing methods.</li>
   <li>Add your data to the map:<br />
 a. For GeoJSON, create a variable for the GeoJSON object and pass it to the <code class="highlighter-rouge">L.geoJSON</code> method.<br />
 b. For other data, use methods like <code class="highlighter-rouge">L.polygon</code> or <code class="highlighter-rouge">L.polyline</code> to draw features on the map.</li>
-  <li>Apply custom styles or icons to the features.</li>
+  <li>Apply custom styles or icons to the features. If you have a point layer in GeoJSON look at these code samples to customize the marker:<br />
+a. Custom icon for GeoJSON <a href="https://gist.github.com/geog4046instructor/80ee78db60862ede74eacba220809b64">code</a><br />
+b. Circle marker for GeoJSON <a href="https://gist.github.com/geog4046instructor/1b9c42e18d215a811ad5f05cacc75006">code</a></li>
   <li>Use the <code class="highlighter-rouge">bindPopup</code> method to create a popup. The <code class="highlighter-rouge">L.geoJSON</code> method has the <code class="highlighter-rouge">onEachFeature</code> option that can be used to create a popup on each feature and use the feature’s attribute values in the popup.</li>
   <li>Depending on the complexity of the symbology, a map legend might be appropriate. Otherwise, a description could simply be included in the webpage.</li>
   <li>Update your portfolio to include all of the webmaps in this class that are still functioning (maps made with an expired ArcGIS Online trial can be removed)</li>

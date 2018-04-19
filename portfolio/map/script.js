@@ -1,22 +1,18 @@
-// https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}
-function map4 () {
+function map5 () {
   // create a map object
-  let mymap = L.map('map5').setView([39, -98], 4)
-  mymap.on('click', function (event) {
+  let myMap = L.map('map').setView([39, -98], 4)
+  myMap.on('click', function (event) {
     console.log('You clicked the map at ' + event.latlng)
   })
-  let lightBasemapUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'
-  let satelliteBasemapUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
   // create basemap layer
-  let lightBasemap = L.tileLayer(lightBasemapUrl).addTo(mymap)
-  let satelliteBasemap = L.tileLayer(satelliteBasemapUrl)
+  let lightBasemap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}').addTo(myMap)
+  let darkBasemap = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png')
 
-  let myBasemaps = {
-    "Light basemap": lightBasemap,
-    "Satellite": satelliteBasemap
+  let basemaps = {
+    'Light basemap': lightBasemap,
+    'Dark basemap': darkBasemap
   }
-
-  L.control.layers(myBasemaps).addTo(mymap)
+  L.control.layers(basemaps).addTo(myMap)
 
   function myStyle (feature) {
     let age = feature.properties.MED_AGE
@@ -40,17 +36,6 @@ function map4 () {
     style: myStyle,
     onEachFeature: myPopup
   }
-  let demographics = L.esri.dynamicMapLayer({
-    url: 'https://services.arcgisonline.com/arcgis/rest/services/Demographics/USA_Median_Household_Income/MapServer',
-    opacity: 0.7
-  }).addTo(mymap)
-  demographics.bindPopup(function (error, featureCollection) {
-    if(error || featureCollection.features.length === 0) {
-      return false
-    } else {
-      //return 'Risk Level: ' + featureCollection.features[0].properties.MEDHINC_CY
-      console.log(featureCollection);
-    }
-  })
+  L.geoJSON(stateDemographics, myOptions).addTo(myMap)
 }
-map4()
+map5()
