@@ -13,21 +13,21 @@ function init () {
   })
 
   let createSymbology = function (feature) {
-    let age = feature.properties.MED_AGE
-    let color = 'Olive'
-    if (age < 38) {
-      color = 'Green'
+    let stateAge = feature.properties.MED_AGE
+    let stateColor = 'Olive'
+    if (stateAge < 38) {
+      stateColor = 'Green'
     }
     return {
-      color: color,
+      color: stateColor,
       weight: 1,
       fillOpacity: 0.2
     }
   }
   let createPopup = function (feature, layer) {
-    let name = feature.properties.STATE_NAME
-    let age = feature.properties.MED_AGE
-    layer.bindPopup('The median age of ' + name + ' is ' + age + '<br>National median: 38')
+    let stateName = feature.properties.STATE_NAME
+    let stateAge = feature.properties.MED_AGE
+    layer.bindPopup('The median age of ' + stateName + ' is ' + stateAge + '<br>National median: 38')
   }
 }
 window.addEventListener('load', init)

@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Leaflet Assignment 4 | GEOG 4046 Web GIS at LSU</title>
+    <title>Javascript Assignment 4 | GEOG 4046 Web GIS at LSU</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
@@ -27,7 +27,7 @@
     </section>
 
     <section class="main-content">
-      <h1 class="text-center">Leaflet Assignment 4</h1>
+      <h1 class="text-center">Javascript Assignment 4</h1>
       <h4 class="text-center">wrld.js, a 3D map library based on Leaflet</h4>
       <p>Create a web map using wrld.js, a library based on Leaflet that creates a map with 3D buildings and terrain. Start with a basic map and add more features as you explore the <a href="https://www.wrld3d.com/wrld.js/latest/docs/examples/">wrld.js documentation</a>.</p>
 
@@ -47,15 +47,15 @@
 <h2 id="process">Process</h2>
 <ol>
   <li>
-    <p>Create a copy of the previous assignment’s folder and rename it to <code class="highlighter-rouge">map4</code>. Rename the previous <code class="highlighter-rouge">.js</code> file to <code class="highlighter-rouge">webmap4.js</code> and update the <code class="highlighter-rouge">script</code> tag in <code class="highlighter-rouge">index.html</code> to use the new <code class="highlighter-rouge">webmap4.js</code>.</p>
+    <p>Create a copy of the previous assignment’s folder and rename it to <code class="highlighter-rouge">map4</code>. Rename the previous <code class="highlighter-rouge">.js</code> file to <code class="highlighter-rouge">webmap4.js</code> and update the <code class="highlighter-rouge">script</code> tags in <code class="highlighter-rouge">index.html</code> to use the new <code class="highlighter-rouge">webmap4.js</code> and the wrld.js library at <code class="highlighter-rouge">https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js</code>.</p>
   </li>
-  <li>In <code class="highlighter-rouge">webmap4.js</code>, delete the contents and start with a new line to create a map with wrld.js. It uses similar syntax to Leaflet, but here the <code class="highlighter-rouge">L.Wrld.map</code> method takes an API key as its second parameter:
+  <li>In <code class="highlighter-rouge">webmap4.js</code>, delete the contents and start with a new line to create a map with wrld.js. It uses syntax similar to Leaflet’s, but here the <code class="highlighter-rouge">L.Wrld.map</code> method takes an API key as its second parameter:
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">demoMap</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">Wrld</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">'map4'</span><span class="p">,</span> <span class="s1">'Your_API_key_goes_here'</span><span class="p">)</span>
 </code></pre></div>    </div>
     <p>Test the page in a browser; it should display a 3D map.</p>
   </li>
   <li>In addition to taking an API key as the second argument the <code class="highlighter-rouge">L.Wrld.map</code> method can take an optional third argument to change map settings, such as the starting position and zoom:
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">demoMap</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">Wrld</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">'map'</span><span class="p">,</span> <span class="s1">'e65117ae7fb552545c72547b0314b47d'</span><span class="p">,</span> <span class="p">{</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">demoMap</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">Wrld</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">'map'</span><span class="p">,</span> <span class="s1">'Your_API_key_goes_here'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">center</span><span class="p">:</span> <span class="p">[</span><span class="mf">29.95</span><span class="p">,</span> <span class="o">-</span><span class="mf">90.07</span><span class="p">],</span>
   <span class="na">zoom</span><span class="p">:</span> <span class="mi">15</span>
 <span class="p">})</span>
@@ -123,7 +123,7 @@
 
 <h2 id="submit">Submit</h2>
 <ol>
-  <li>The URL to your map page: <code class="highlighter-rouge">https://yourname.github.io/wrld</code></li>
+  <li>The URL to your map page: <code class="highlighter-rouge">https://yourname.github.io/map4</code></li>
 </ol>
 
     </section>
