@@ -7,7 +7,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='
   id: 'mapbox.light'
 }).addTo(map)
 
-$.getJSON('http://localhost:4000/examples/geojson/us_states_pop_density_2011.geojson', function (geojsonData) {
+$.getJSON('https://geog4046.github.io/examples/geojson/us_states_pop_density_2011.geojson', function (geojsonData) {
   createMapContent(geojsonData)
 })
 
