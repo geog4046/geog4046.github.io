@@ -1,10 +1,9 @@
-var mapboxAccessToken = 'pk.eyJ1IjoiZ2lzbHN1IiwiYSI6ImNqMHIwZHlrdzAyMncycW81cTV6cDBldjgifQ.e0o7UhbPkntZ8NdS5VtqSw'
 var map = L.map('us-map').setView([37.8, -96], 4)
 var geojson
 var info
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken, {
-  id: 'mapbox.light'
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map)
 
 $.getJSON('https://geog4046.github.io/examples/geojson/us_states_pop_density_2011.geojson', function (geojsonData) {
@@ -85,7 +84,7 @@ function createMapContent (geojsonData) {
       : 'Hover over a state')
   }
   info.addTo(map)
-  var legend = L.control({position: 'bottomright'})
+  var legend = L.control({ position: 'bottomright' })
   legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend')
     var grades = [0, 10, 20, 50, 100, 200, 500, 1000]

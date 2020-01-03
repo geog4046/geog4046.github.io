@@ -1,7 +1,7 @@
 var map = L.map('map').setView([30,-90], 4)
 
 var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-attribution: '&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  attribution: '&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map) // Add this layer to the map to make it the default basemap
 
 var satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
