@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lab Assignment 2 | GEOG 4046 Web GIS at LSU</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Lab Assignment 2</h1>
+      <h2 class="text-center">Create your own spatial data and map it</h2>
+      <p>Geographic information is the foundation of Web GIS. In this exercise, create your own simple dataset and display it in a web map.</p>
+
+<p>For example, choose four restaurants you like in a city you’ve visited and record each restaurant’s location. In this case, your spatial dataset would be a combination of:</p>
+<ul>
+  <li>non-spatial data (restaurant name, description of the food and atmosphere) and</li>
+  <li>spatial data (latitude and longitude).</li>
+</ul>
+
+<p>You may use the restaurants example or choose your own topic. This tutorial uses four landmarks in Baton Rouge as an example, with placeholder text and images from Wikipedia.</p>
+
+<p>Add your data to a map in ArcGIS Online and display it in a Story Map.</p>
+
+<iframe width="100%" height="600" src="https://www.arcgis.com/apps/MapTour/index.html?appid=ec25b4f4edbc4fdea35320d0a92a7549" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="data">Data</h2>
+<p>Create two “layers” of data: a point layer and a polygon layer.<br />
+  <img src="../../assignment-resources/images/points-and-polygon.png" alt="Points and polygon example" /><br />
+  <small><em>Example of point and polygon features on a map.</em></small></p>
+
+<h3 id="point-layer">Point layer</h3>
+<p>Your first dataset will be in the simple “comma separated values” (CSV) file format and will contain the names and descriptions of several places of interest along with their latitude and longitude coordinates (points). This exercise will create a CSV from a spreadsheet using Microsoft Excel, but any text editor will also work.</p>
+
+<p>Our dataset will have attributes such as “name” and “description”. This exercise will use the Story Map Tour template in ArcGIS Online, so the attributes must match the template. Use the following attribute names:</p>
+<ul>
+  <li><code class="highlighter-rouge">name</code> - a short, descriptive title for the location</li>
+  <li><code class="highlighter-rouge">description</code> - a sentence or a few describing the location</li>
+  <li><code class="highlighter-rouge">icon_color</code> - <code class="highlighter-rouge">R</code>, <code class="highlighter-rouge">G</code>, <code class="highlighter-rouge">B</code>, or <code class="highlighter-rouge">P</code></li>
+  <li><code class="highlighter-rouge">lat</code> - the location’s latitude in decimal degrees (e.g., 30.12345)</li>
+  <li><code class="highlighter-rouge">long</code> - longitude in decimal degrees (e.g., -90.12345)</li>
+  <li><code class="highlighter-rouge">pic_url</code> - The web address of an image you want to represent the location</li>
+  <li><code class="highlighter-rouge">thumb_url</code> - The web address of a smaller preview image</li>
+</ul>
+
+<p>To see a completed CSV for reference you can download this <a href="../../assignment-resources/data/my-locations.csv">example CSV</a>.</p>
+
+<h3 id="polygon-layer">Polygon layer</h3>
+<p>In <a href="#part-3-create-another-dataset-in-geojson-format">Part 3</a> we will create a polygon layer. It’s up to you what features you draw to complement your point layer. In the restaurant example, you could draw outlines around the buildings.</p>
+
+<p>We will use <a href="http://geojson.io/">geojson.io</a> to draw the features on a map and then save them in GeoJSON format to import into ArcGIS Online.</p>
+
+<h2 id="process">Process</h2>
+
+<h3 id="part-1-data-prep">Part 1: Data prep</h3>
+<ol>
+  <li>Start Excel with a blank spreadsheet.</li>
+  <li>
+    <p>Type an attribute name in each column on the first row, using the attribute names specified above.<br />
+<img src="../../assignment-resources/images/excel-csv-headers.png" alt="Excel column names" /><br />
+<small><em>Example of a spreadsheet with attribute names in each column.</em></small></p>
+  </li>
+  <li>Choose at least 4 places (4 restaurants, 4 national parks, 4 countries, etc.) to use for this exercise and research enough about them to fill in the attributes in the CSV. To find the latitude and longitude of your places, use the Measure tool in ArcGIS Online.<br />
+<img src="../../assignment-resources/images/agol-measure.png" alt="Measure tool in ArcGIS Online" /></li>
+  <li>
+    <p>After completing the spreadsheet, click <code class="highlighter-rouge">File</code> &gt; <code class="highlighter-rouge">Save as</code> and for the file type select <code class="highlighter-rouge">CSV (Comma delimited)</code>. You now have geographic information ready to be added to a map.</p>
+
+    <p>The completed spreadsheet might look something like this in Excel:<br />
+<img src="../../assignment-resources/images/excel-csv-data.png" alt="CSV data in Excel" /></p>
+
+    <p>And in a text editor it would look like this:<br />
+<img src="../../assignment-resources/images/notepad-csv-data.png" alt="CSV data in Notepad++" /></p>
+  </li>
+</ol>
+
+<h3 id="part-2-create-the-story-map">Part 2: Create the Story Map</h3>
+<ol>
+  <li>Sign into ArcGIS Online and open the <a href="https://www.arcgis.com/home/webmap/viewer.html">Map Viewer</a> with a new map.</li>
+  <li>Click <code class="highlighter-rouge">Add</code> &gt; <code class="highlighter-rouge">Add Layer from File</code>, browse for the CSV file on your computer, and click <code class="highlighter-rouge">Import Layer</code>. This will upload a copy of your file to ArcGIS Online.</li>
+  <li>Click <code class="highlighter-rouge">Cancel</code> in the <code class="highlighter-rouge">Change Style</code> pane on the left side of the Map Viewer.<br />
+<img src="../../assignment-resources/images/agol-change-style-pane.png" alt="Change Style pane in ArcGIS Online" /><br />
+The points should now be displayed on the map.</li>
+  <li>Click the <code class="highlighter-rouge">Save</code> button and give your map a title, tags, and summary. This will save a new <code class="highlighter-rouge">Web Map</code> item in your <a href="https://www.arcgis.com/home/content.html">Content</a>.</li>
+  <li>Click the <code class="highlighter-rouge">Share</code> button.</li>
+  <li>Check the box for <code class="highlighter-rouge">Everyone (public)</code>. This changes the map’s viewing permission from private to public.</li>
+  <li>Click the <code class="highlighter-rouge">Create a Web App</code> button.</li>
+  <li>From the selection of configurable apps, choose the Story Map Tour template and click <code class="highlighter-rouge">Create Web App</code>. You can use the same title, tags, and summary as the map, then click <code class="highlighter-rouge">Done</code>.</li>
+  <li>You should now see your web app instead of the Map Viewer. This is the Configure Web App page, where you can change settings for things like colors and the layout.</li>
+  <li>Go to your <a href="https://www.arcgis.com/home/content.html">Content</a> to see that you have new <code class="highlighter-rouge">Web Map</code> and <code class="highlighter-rouge">Web Mapping Application</code> items.</li>
+</ol>
+
+<h3 id="part-3-create-another-dataset-in-geojson-format">Part 3: Create another dataset in GeoJSON format</h3>
+<p>In this part you will draw your own features on a map and save the layer as a GeoJSON file.</p>
+<ol>
+  <li>Go to <a href="http://geojson.io/">geojson.io</a> and pan and center the map on the place you chose for your dataset in <a href="#part-1-data-prep">Part 1</a>.</li>
+  <li>In the drawing tools, click the <code class="highlighter-rouge">Draw a polygon</code> or <code class="highlighter-rouge">Draw a rectangle</code> tool. Draw shapes on the map that are appropriate for your point layer, e.g., building footprints.<br />
+<img src="../../assignment-resources/images/geojsonio-draw-tools.png" alt="Drawing tools in geojson.io" /></li>
+  <li>After drawing your polygon(s), you can edit the attributes by either clicking the features on the map or clicking the <code class="highlighter-rouge">Table</code> tab on the top menu.<br />
+<img src="../../assignment-resources/images/geojsonio-table.png" alt="Table view in geojson.io" /></li>
+  <li>Create a new column called “name” and on each row in the table, type/paste an appropriate name, depending on what features you chose to draw. For example, it could be the restaurant’s name.</li>
+  <li>Go to <code class="highlighter-rouge">Save</code> &gt; <code class="highlighter-rouge">GeoJSON</code> and the file will download to your computer.</li>
+</ol>
+
+<h3 id="part-4-add-geojson-to-your-map">Part 4: Add GeoJSON to your map.</h3>
+<ol>
+  <li>In ArcGIS Online, go to your <a href="https://www.arcgis.com/home/content.html">Content</a> and open your <strong>map</strong> (not app) from <a href="#part-2-create-the-story-map">Part 2</a>.</li>
+  <li>In the Map Viewer, click <code class="highlighter-rouge">Add</code> &gt; <code class="highlighter-rouge">Add Layer from File</code>, browse for the <code class="highlighter-rouge">.geojson</code> file on your computer, and click <code class="highlighter-rouge">Import Layer</code>.</li>
+  <li>
+    <p>You should see the polygons on the map. When prompted to change the style, you can choose your own, such as removing the fill color so that only your polygon borders are visible. Click <code class="highlighter-rouge">OK</code> and <code class="highlighter-rouge">Done</code> to accept your style changes. You can see your symbols in the contents pane.<br />
+<img src="../../assignment-resources/images/agol-contents.png" alt="ArcGIS Online contents pane" /><br />
+<small><em>Contents pane in ArcGIS Online, showing the symbology of a layer.</em></small></p>
+  </li>
+  <li>
+    <p>Click on the <code class="highlighter-rouge">More Options</code> button under the polygon layer and choose <code class="highlighter-rouge">Create Labels</code>.<br />
+<img src="../../assignment-resources/images/agol-labels.png" alt="ArcGIS Online create labels" /><br />
+<small><em>The More Options icon (three blue dots) gives you access to more settings, including the option to turn on labels.</em></small></p>
+
+    <p>This will display text on the map for each feature. The text comes from one of the layer’s attributes. In this example, choose the <code class="highlighter-rouge">name</code> attribute.</p>
+  </li>
+  <li>Save the map. The changes will be automatically reflected in your Story Map from <a href="#part-2-create-the-story-map">Part 2</a>.</li>
+  <li>
+    <p>Go to your <a href="https://www.arcgis.com/home/content.html">Content</a> and click on the item for your Story Map app to see its “Item Details” page:<br />
+<img src="../../assignment-resources/images/agol-item-details-page.png" alt="ArcGIS Online Item Details Page" /><br />
+<small><em>Example of an Item Details page in ArcGIS Online.</em></small></p>
+
+    <p>The green progress bar on the right side of the page indicates how many of the metadata fields you have completed, e.g., Summary, Description, and Tags.</p>
+
+    <p>From this page you can click <code class="highlighter-rouge">View Application</code> to launch the app, or click <code class="highlighter-rouge">Configure App</code> to make further changes. The app configuration only makes changes to the app, not the underlying map. The map would have to be edited in the Map Viewer again.</p>
+  </li>
+</ol>
+
+<h2 id="try-it">Try it</h2>
+<ol>
+  <li>Complete the metadata on your Story Map’s Item Details page.</li>
+  <li>Configure the Story Map and at least change the settings for:
+    <ul>
+      <li>The app colors (default is gray)</li>
+      <li>The logo (default is the Esri logo)</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="submit">Submit</h2>
+<ol>
+  <li>The URL to the Item Details page of your Story Map. Example: <code class="highlighter-rouge">https://www.arcgis.com/home/item.html?id=ABC123</code></li>
+</ol>
+
+    </section>
+<footer class="site-footer">
+  
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
