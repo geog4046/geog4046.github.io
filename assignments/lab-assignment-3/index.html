@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lab Assignment 3 | GEOG 4046 Web GIS at LSU</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Lab Assignment 3</h1>
+      <h2 class="text-center">Change map symbols based on layer attribute values</h2>
+      <p>Create a map in ArcGIS Online that uses layer styles to effectively communicate geographic information. Use different symbols, shapes, colors, or sizes to represent a dataset of your choice, and publish the map in a web app that gives the audience tools to explore the data.</p>
+
+<p>For example, create a map of global disease cases using circle markers to represent a province/state/city, where larger circles indicate more cases at that location. Let the audience click each circle to get more information about that location.</p>
+
+<p>The data layer used in this tutorial is hosted on ArcGIS Online, but you may find or create your own layer instead, as long as it has enough features with attributes to symbolize. The tutorial layer contains points representing provinces/states with confirmed cases of the 2019 novel coronavirus.</p>
+
+<iframe width="100%" height="600" src="https://www.arcgis.com/apps/SummaryViewer/index.html?appid=00e6627cf532473a99760df84fdbd23a" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="data">Data</h2>
+<p>The type of data layer you choose–point, line, or polygon–will determine what types of symbols and styles you can use to represent the data. Here are some typical styles used for the different layer types.</p>
+<ul>
+  <li>Polygon: a shape with a solid fill color, a shape with a border but no fill color or semi-transparent fill</li>
+  <li>Lines: a length represented with a dashed/dotted/solid style of various colors and widths</li>
+  <li>Points: graphics or dots/circles of varying colors and sizes</li>
+</ul>
+
+<p>The coronavirus cases layer has points for each province, state, or city where a case of the virus has been confirmed. These points can be represented in a few ways.</p>
+<ul>
+  <li>Example 1: larger circles represent more disease cases</li>
+  <li>Example 2: darker circles represent more disease cases</li>
+  <li>Example 3, bivariate symbology: size represents total cases while color represents mortality<br />
+<img src="../../assignment-resources/images/bivariate-symbology.png" alt="Bivariate symbology" /></li>
+</ul>
+
+<p>Web service URL for the layer used in this tutorial:<br />
+<code class="highlighter-rouge">https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer</code></p>
+
+<h2 id="process">Process</h2>
+<ol>
+  <li>Sign into ArcGIS Online and open the <a href="https://www.arcgis.com/home/webmap/viewer.html">Map Viewer</a> with a new map.</li>
+  <li>Click <code class="highlighter-rouge">Add</code> &gt; <code class="highlighter-rouge">Add Layer from Web</code> and paste in the web service URL. Click <code class="highlighter-rouge">Add Layer</code>. The service consists of three layers and all should now appear in the Contents pane.</li>
+  <li>Mouseover the layer “ncov cases - Cases” and note the icons that appear under the layer name. Click <code class="highlighter-rouge">More Options</code> and <code class="highlighter-rouge">Rename</code> the layer to “Confirmed Cases”.<br />
+<img src="../../assignment-resources/images/layer-icons.png" alt="Layer icons" /><br />
+<small><em>Layer icons from left to right: <code class="highlighter-rouge">Show Legend</code>, <code class="highlighter-rouge">Show Table</code>, <code class="highlighter-rouge">Change Style</code>, <code class="highlighter-rouge">Filter</code>, <code class="highlighter-rouge">Cluster</code>, <code class="highlighter-rouge">More Options</code>. These are available with an ArcGIS Online public account.</em></small></li>
+  <li>For the other two layers, click <code class="highlighter-rouge">More Options</code>, and <code class="highlighter-rouge">Remove</code> each layer.</li>
+  <li>Your map should now have a single layer with a default style.</li>
+  <li>Click <code class="highlighter-rouge">Show Table</code> and get familiar with the data. Click a column heading to sort the table. Note the min/max values for “Confirmed”, for example.</li>
+  <li>Click <code class="highlighter-rouge">Change Style</code> and a new pane appears with numbered steps (1 &amp; 2).
+    <ul>
+      <li><strong>Step 1. Choose an attribute to show</strong> - select “Confirmed” to style each feature’s symbol according to the feature’s number of confirmed cases of coronavirus, e.g., the point for Hubei Province will be larger because of its high number of cases.</li>
+      <li><strong>Step 2. Select a drawing style</strong> - select <code class="highlighter-rouge">Counts and Amounts (Size)</code> and click <code class="highlighter-rouge">Options</code>.</li>
+    </ul>
+  </li>
+  <li>The first option, <code class="highlighter-rouge">Divided By</code> can remain <code class="highlighter-rouge">None</code> in this example but note that this could be used to create ratios, e.g., deaths to confirmed cases.</li>
+  <li>
+    <p>Scroll down and unckeck the <code class="highlighter-rouge">Classify Data</code> box if it is checked. Then, under the <code class="highlighter-rouge">Divided By</code> option, you should see a vertical bar with sliders to control the size of the circle symbols for different numbers of confirmed cases.<br />
+ <img src="../../assignment-resources/images/symbol-options.png" alt="Symbol options" /><br />
+ <small><em>In this example, 11,177 is the maximum value in the “Confirmed” column and 1 is the minimum <strong>(a)</strong>. All points with more than 1,000 cases will have the same circle size (only Hubei, currently), while all points with fewer than 10 cases will have the same circle size <strong>(b)</strong>. Everything in between 10 and 1,000 will have a unique size based on the number of cases. The numbers 1,000 and 10 (break values) will therefore be the max and min labels on the map legend. The size values between 8 and 100 <strong>(c)</strong> mean that the smallest points (those with &lt;10 cases) will appear 8 pixels across on screen, while the largest points (&gt;1,000) will be 100 pixels across.</em></small></p>
+  </li>
+  <li><strong>Click <code class="highlighter-rouge">OK</code> then <code class="highlighter-rouge">DONE</code> when finished with the style</strong>.</li>
+  <li>Click the <code class="highlighter-rouge">Save</code> button and give your map a title, tags, and summary.</li>
+</ol>
+
+<h2 id="try-it">Try it</h2>
+<ol>
+  <li>In the <code class="highlighter-rouge">Change Style</code> pane:
+    <ul>
+      <li>Change the break values from Step 9 to see the effects on the map symbols.</li>
+      <li>Click <code class="highlighter-rouge">Symbols</code> or <code class="highlighter-rouge">Legend</code> to change the color scheme.</li>
+      <li>Adjust the transparency, though you can go back to the default.</li>
+    </ul>
+  </li>
+  <li>Choose one option below:
+    <ul>
+      <li>Check the box to <code class="highlighter-rouge">Classify Data</code> to set up discrete classes with different symbols for each class, <strong>OR</strong></li>
+      <li>Go back to Step 8 and choose a <code class="highlighter-rouge">Divide By</code> attribute to map a ratio, <strong>OR</strong></li>
+      <li>Go back to Step 7 and under <code class="highlighter-rouge">Choose an attribute to show</code> click <code class="highlighter-rouge">Add attribute</code> to set up bivariate symbols, for example symbolizing confirmed cases with size and recovered cases with color, <strong>OR</strong></li>
+      <li>Choose a new attribute instead of “Confirmed” to map and set the break values, symbols, etc.</li>
+    </ul>
+  </li>
+  <li>Change the basemap to something other than the default (Topographic). Pick one that you think fits well with your symbols.</li>
+  <li>Enable popups on the layer to give basic information about each point location.</li>
+  <li>Save and share the map as a web app using a template you think makes sense for the data and map.</li>
+  <li>Go to your <a href="https://www.arcgis.com/home/content.html">Content</a> to see the new web app item and go to its Item Details page.</li>
+  <li>Fill out basic details on the app’s Item Details page.</li>
+</ol>
+
+<h2 id="think-critically">Think critically</h2>
+<p>What was the effect of changing the break values on the map symbols? How can that affect how the audience perceives the data? When you chose your symbols, colors, breaks, basemap, and any other aspects of the map and web app, were you trying to convey a particular message or highlight a particular aspect of the data? If another cartographer disagreed with your message, how might they change the map to communicate the same data differently?</p>
+
+<ol>
+  <li>On the Item Details page of your web app, explain the cartographic decisions you made in the <a href="#try-it">Try it</a> section. The response doesn’t need to directly answer each of the questions posed aboved; it should generally reflect that some thought went into your map making and should describe your reasoning. Max: 100 words.</li>
+</ol>
+
+<h2 id="submit">Submit</h2>
+<ol>
+  <li>The URL to the Item Details page of your <strong>web app</strong>. Example: <code class="highlighter-rouge">https://www.arcgis.com/home/item.html?id=ABC123</code></li>
+</ol>
+
+    </section>
+<footer class="site-footer">
+  
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
