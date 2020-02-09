@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Current location with W3C Geolocation API</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      navigator.geolocation.getCurrentPosition(function(pos){
+        document.write(pos.coords.latitude + ',' + pos.coords.longitude)
+      })
+    </script>
+  </body>
+</html>
