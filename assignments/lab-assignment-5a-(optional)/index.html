@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lab Assignment 5a (optional) | GEOG 4046 Web GIS at LSU</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Lab Assignment 5a (optional)</h1>
+      <h2 class="text-center">Displaying big images as tiles</h2>
+      <p>Choose a satellite or aerial image and generate a tile cache in ArcGIS Pro. This exercise will use a satellite image of New Orleans but you will need to find your own image. You do not need to create a map or app, only publish the tile layer in ArcGIS Online using your organizational account (not the free public account).</p>
+
+<p>Tiling is a way to display big images in web maps without making the audience download large source images. Tiling breaks images into smaller squares (tiles) that can be displayed quickly on a web map as a layer or basemap. Basemaps are often tile layers.</p>
+
+<h2 id="data">Data</h2>
+<p>Download a satellite image from <a href="https://earthexplorer.usgs.gov/">USGS EarthExplorer</a>. This will be the image you open in ArcGIS Pro to create tiles. Earth Explorer lets you search for images from a variety of satellites by specifying a location on the map and, optionally, a date range.</p>
+
+<p>You will have to create an account on EarthExplorer in order to download images.</p>
+
+<ol>
+  <li>Go to the EarthExplorer website at <a href="https://earthexplorer.usgs.gov">https://earthexplorer.usgs.gov</a>.</li>
+  <li>
+    <p>Pan/zoom the map to an area of interest and click the map to place a marker. The search will only return images that cover the marker. It also lets you mark multiple points to draw a search area.  <br />
+<img src="../../assignment-resources/images/earth-explorer-marker.png" alt="Mark a location in Earth Explorer" /><br />
+<small><em>The point or polygon that you mark on the map will limit your search results to only include images that intersect with your point or polygon.</em></small></p>
+  </li>
+  <li>If helpful, enter a date range, such as <code class="highlighter-rouge">08/29/2005</code> to <code class="highlighter-rouge">09/30/2005</code>.</li>
+  <li>After specifying a location/date, click <code class="highlighter-rouge">Data Sets</code>. Here you can choose specific satellites. Some possibilities:
+    <ul>
+      <li>Commercial Satellites - IKONOS, OrbView, SPOT</li>
+      <li>EO-1 - EO-1 ALI</li>
+      <li>Landsat - Landsat Collection 1 Level-1 - All</li>
+      <li>Sentinel - Sentinel-2</li>
+    </ul>
+  </li>
+  <li>
+    <p>Click <code class="highlighter-rouge">Results</code> to see a dropdown menu of satellites. Look through them to see which, if any, returned results for your location/dates.<br />
+<img src="../../assignment-resources/images/earth-explorer-results.png" alt="Search results in Earth Explorer" /><br />
+<small><em>This search for post-Katrina imagery yielded 1 result for the OrbView-3 satellite.</em></small></p>
+  </li>
+  <li>In the <code class="highlighter-rouge">Results</code>, note the icons under each result. These let you view the image footprint, preview, and metadata. There is also an icon to download the image. You will have to log in before downloading images.</li>
+  <li>After the download completes, you should have a zip file on your computer. You must unzip the file to a folder, then you can <a href="https://pro.arcgis.com/en/pro-app/get-started/add-data-to-your-project.htm">add the image to a map in ArcGIS Pro</a>.</li>
+</ol>
+
+<h2 id="process">Process</h2>
+<ol>
+  <li>Open ArcGIS Pro and create a new project. If needed, <a href="https://pro.arcgis.com/en/pro-app/help/projects/connect-to-a-folder.htm">Connect to a folder</a>, such as your Downloads folder in Windows. This will let you browse for your downloaded satellite image.</li>
+  <li>
+    <p>Expand the folder you connected in the <code class="highlighter-rouge">Catalog</code> pane to find your satellite image. You can right click the image and choose <code class="highlighter-rouge">Add To New</code> &gt; <code class="highlighter-rouge">Map</code>, or drag and drop the layer into the current map viewer.  <br />
+<img src="../../assignment-resources/images/arcgis-pro-add-to-new-map.png" alt="Add layer to map" /><br />
+<small><em>Layers can be added to the current map by dragging and dropping or right-click Add To New &gt; Map.</em></small></p>
+  </li>
+  <li>When you add the image to the map, the view should zoom to the image extent. Make sure it is located in the correct place on Earth. The image layer now also appears in the <code class="highlighter-rouge">Contents</code> pane above the basemaps.</li>
+  <li>
+    <p>Uncheck the boxes to hide the basemap.<br />
+<img src="../../assignment-resources/images/arcgis-pro-contents.png" alt="Contents pane with image layer" /><br />
+<small><em>Image layer listed in the Contents pane. Hiding the basemap will prevent it from being tiled with our image.</em></small></p>
+  </li>
+  <li>
+    <p>If your image has a black or white background, make its background transparent. Right-click the layer in the <code class="highlighter-rouge">Contents</code> pane, click <code class="highlighter-rouge">Symbology</code>, click <code class="highlighter-rouge">Mask</code>, then check <code class="highlighter-rouge">Display background value</code>.</p>
+
+    <p><a href="../../assignment-resources/images/arcgis-pro-mask.png"><img src="../../assignment-resources/images/arcgis-pro-mask.png" alt="Mask" /></a>
+<small><em>Hide the collar/background of your image, if it has one.</em></small></p>
+  </li>
+  <li>
+    <p>Within ArcGIS Pro, sign into your ArcGIS Online <strong>organizational</strong> account.<br />
+<img src="../../assignment-resources/images/arcgis-pro-signin.png" alt="Sign in" /><br />
+<small><em>In ArcGIS Pro, sign in using your ArcGIS Online organizational account.</em></small></p>
+  </li>
+  <li>
+    <p>On the top ribbon, click <code class="highlighter-rouge">Share</code> &gt; <code class="highlighter-rouge">Web Layer</code> &gt; <code class="highlighter-rouge">Publish Web Layer</code>.<br />
+<img src="../../assignment-resources/images/arcgis-pro-share-publish.png" alt="Publish layer" /><br />
+<small><em>Publishing a layer will give you the option to save a tile cache to ArcGIS Online.</em></small></p>
+  </li>
+  <li>
+    <p>In the <code class="highlighter-rouge">Share As Web Layer</code> pane, set the following options. It is especially important to choose <code class="highlighter-rouge">Cache locally</code> under the <code class="highlighter-rouge">Configuration</code> tab (right image below).<br />
+<img src="../../assignment-resources/images/arcgis-pro-tile-options.png" alt="Tile options" /><br />
+<small><em>Publishing a layer will give you the option to save a tile cache to ArcGIS Online.</em></small></p>
+  </li>
+  <li>Still in the <code class="highlighter-rouge">Share As Web Layer</code> pane, click <code class="highlighter-rouge">Analyze</code> to detect errors. If there are none, click <code class="highlighter-rouge">Publish</code>. <strong>This process can take several minutes. Do not close ArcGIS Pro until the task is complete!</strong></li>
+  <li>Once finished, you will be given a link to see your tile layer’s Item Details page in ArcGIS Online. You can also find it in your content in ArcGIS Online.</li>
+</ol>
+
+<h2 id="submit">Submit</h2>
+<ol>
+  <li>The URL to the <strong>Item Details</strong> page of your <strong>hosted tile layer</strong>. Example: <code class="highlighter-rouge">https://www.arcgis.com/home/item.html?id=ABC123</code></li>
+</ol>
+
+    </section>
+<footer class="site-footer">
+  
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
