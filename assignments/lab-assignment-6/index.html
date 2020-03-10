@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lab Assignment 6 | GEOG 4046 Web GIS at LSU</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Lab Assignment 6</h1>
+      <h2 class="text-center">Geoprocessing</h2>
+      <p>In this assignment we will use ArcGIS Online to perform spatial analysis. The example layers are a point layer of hospital locations and a point layer representing the population of census block groups in the Baton Rouge metropolitan statistical area. We will use geoprocessing tools to calculate 10-minute drive time polygons around each hospital, then summarize the population points within those polygons. This effectively gives us the population living within 10 minutes of each hospital.</p>
+
+<p><img src="../../assignment-resources/images/agol-drive-time-areas.png" alt="Drive-time Areas" /></p>
+
+<p>To use the analysis tools in ArcGIS Online, you must sign into the organizational account provided by your instructor, not your free public account.</p>
+
+<h2 id="data">Data</h2>
+<p>This example uses hosted feature layers that have already been published to ArcGIS Online, but you may optionally find or create your own layers. If you use other layers, keep in mind that they must work with the ArcGIS Online analysis tools for the purposes of this exercise:</p>
+<ul>
+  <li>Only use/create layers of the type “Feature Layer (hosted)”; no tile layers, image layers, etc.</li>
+  <li>Avoid layers with too many features, which could consume too many credits to analyze.</li>
+  <li>Some analysis tools only work with points, others only with polygons, etc.</li>
+</ul>
+
+<h3 id="example-layer-1-hospitals">Example layer 1: Hospitals</h3>
+<p><strong>Title</strong>: Baton Rouge MSA Emergency Rooms 2020<br />
+<strong>Summary</strong>: Hospitals offering emergency services in the Baton Rouge Metropolitan Statistical Area as of March 2020.<br />
+<strong>Geometry type</strong>: Points<br />
+<strong>Service URL</strong>:<br />
+<code class="highlighter-rouge">https://services9.arcgis.com/SDQDNhpG8jikA0D1/arcgis/rest/services/Baton_Rouge_MSA_Emergency_Rooms/FeatureServer</code></p>
+
+<h3 id="example-layer-2-population">Example layer 2: Population</h3>
+<p><strong>Title</strong>: Baton Rouge MSA Block Group Points<br />
+<strong>Summary</strong>: Centroids of census block groups within the Baton Rouge Metropolitan Statistical Area, including 2010 U.S. Census demographic information and 2018 population estimates.<br />
+<strong>Geometry type</strong>: Points<br />
+<strong>Service URL</strong>:<br />
+<code class="highlighter-rouge">https://services9.arcgis.com/SDQDNhpG8jikA0D1/arcgis/rest/services/Baton_Rouge_MSA_Block_Group_Points/FeatureServer</code></p>
+
+<h2 id="process">Process</h2>
+<ol>
+  <li>Go to the map viewer to create and save a new map with an appropriate title.</li>
+  <li>In the map viewer, click <code class="highlighter-rouge">Add</code> and click either:
+    <ul>
+      <li><code class="highlighter-rouge">Add Layer from Web</code> if you will paste a service URL</li>
+      <li><code class="highlighter-rouge">Search for Layers</code> if you will browse for an existing layer in ArcGIS Online.<br />
+For the hospital and population examples, add the population layer first then repeat for hospitals.</li>
+    </ul>
+  </li>
+  <li>Change the layer symbols appropriately.</li>
+  <li>Save the map and share it to begin creating a new web app. Share with the <code class="highlighter-rouge">GEOG 4046</code> group. The analysis tools we will use in this exercise cannot be used by public users, so there is no need to share the map/app with <code class="highlighter-rouge">Everyone</code>.</li>
+  <li>In the <code class="highlighter-rouge">Create a New Web App</code> box, choose the <code class="highlighter-rouge">Web AppBuilder</code> tab and click <code class="highlighter-rouge">Get Started</code>.</li>
+  <li>
+    <p>You should now see Web AppBuilder.<br />
+<img src="../../assignment-resources/images/agol-wab.png" alt="Web AppBuilder" /><br />
+<small><em>The initial view of Web AppBuilder.</em></small></p>
+  </li>
+  <li>Note the four main tabs on the left side of the page:
+    <ul>
+      <li><strong>Theme</strong>: Changes the layout and colors of your app. This can affect how many widgets you can add.</li>
+      <li><strong>Map</strong>: Changes the map displayed in your app</li>
+      <li><strong>Widget</strong>: Adds tools to the app</li>
+      <li><strong>Attribute</strong>: Changes additional options</li>
+    </ul>
+  </li>
+  <li>
+    <p>Click the <code class="highlighter-rouge">Widget</code> tab. Widgets are tools that let the user interact with the app and map, e.g., zoom, view attribute table, view the map legend, and perform analyses. In the default <code class="highlighter-rouge">Foldable Theme</code>, there are two areas where additional widgets can be added.<br />
+<img src="../../assignment-resources/images/agol-wab-widget-areas.png" alt="Web AppBuilder widgets" /><br />
+<small><em>Widget tab of Web AppBuilder showing possible widget areas, with red boxes showing where widgets will appear in the app when added to different widget areas.</em></small></p>
+  </li>
+  <li>On the <code class="highlighter-rouge">Widget</code> tab, click the gray box at the bottom for Widget 1. This will show all of the available widgets. Click <code class="highlighter-rouge">Analysis</code> and then <code class="highlighter-rouge">OK</code>.</li>
+  <li>You should now see the <code class="highlighter-rouge">Configure Analysis</code> options, where you can choose specific analysis tools to allow in the widget (see <a href="https://doc.arcgis.com/en/arcgis-online/analyze/perform-analysis.htm">Perform Analysis</a> for details on each tool).</li>
+  <li>Check the boxes for:
+    <ul>
+      <li>Create Drive-Time Areas</li>
+      <li>Summarize Within</li>
+    </ul>
+  </li>
+  <li>Click the settings icon for each of the tools above and check <code class="highlighter-rouge">Allow to export results</code></li>
+  <li>Click <code class="highlighter-rouge">OK</code> to add the widgets to the app, then click <code class="highlighter-rouge">Save</code>. Widget settings will not be saved until you click <code class="highlighter-rouge">Save</code>.</li>
+  <li>Still in Web AppBuilder, test the <code class="highlighter-rouge">Analysis</code> widget by clicking its icon in the app preview. Click the <code class="highlighter-rouge">Create Drive-Time Areas</code> tool. In the configuration, set:
+    <ul>
+      <li><strong>Choose point layer to calculate drive-time areas around</strong>: hospitals (emergency rooms) layer</li>
+      <li><strong>Measure</strong>: <code class="highlighter-rouge">Driving Time</code>, <code class="highlighter-rouge">10</code>, <code class="highlighter-rouge">minutes</code></li>
+      <li><strong>Areas from different points</strong>: <code class="highlighter-rouge">Overlap</code></li>
+      <li><strong>Use current map extent</strong>: checked</li>
+    </ul>
+  </li>
+  <li>Click <code class="highlighter-rouge">Show credits</code> to make sure the credit usage is reasonable (6.5 credits for 13 hospitals in this example).</li>
+  <li>Click <code class="highlighter-rouge">Run Analysis</code>.</li>
+  <li>When the task completes, close the analysis tool and view the results on the map.</li>
+  <li>Click the <code class="highlighter-rouge">Analysis</code> widget again and this time choose the <code class="highlighter-rouge">Summarize Within</code> tool with the following settings:
+    <ul>
+      <li><strong>Choose the polygon layer</strong>: your drive-time polygons layer</li>
+      <li><strong>Choose a layer to summarize</strong>: population points layer</li>
+      <li><strong>Add statistics from the layer to summarize</strong>: <code class="highlighter-rouge">POP2018</code>, <code class="highlighter-rouge">Sum</code></li>
+      <li><strong>Count of points</strong>: unchecked</li>
+      <li><strong>Use current map extent</strong>: checked</li>
+    </ul>
+  </li>
+  <li>Note the credit usage, run the analysis, and once the task completes, close the <code class="highlighter-rouge">Analysis</code> widget.</li>
+  <li>On the map, click one of the new polygons. In the popup, there should be a new field added to the bottom of the attribute list: <code class="highlighter-rouge">Sum POP2018</code>. This is the number of people who live within a 10-minute drive of that hospital.</li>
+</ol>
+
+<p>The layers created with the <code class="highlighter-rouge">Analysis</code> widget will be saved to your Content as hosted feature layers.</p>
+
+<h2 id="try-it">Try it</h2>
+<ol>
+  <li>Modify your app’s underlying <strong>map</strong> by removing the hospital layer, but keep the population layer. This change will be reflected in the app you just created–you don’t need to create a new app. Go back to editing your app in Web AppBuilder (click <code class="highlighter-rouge">Edit</code> from your app’s Item Details page if you closed Web AppBuilder).</li>
+  <li>Add the <code class="highlighter-rouge">Add Data</code> widget so users can upload their own Web service layers, CSV, GeoJSON, shapefiles, KML, and GPX.</li>
+  <li>Add the <code class="highlighter-rouge">Draw</code> widget so users can place their own marker on the map.</li>
+  <li>Choose one of the following.
+    <ul>
+      <li>Use the <code class="highlighter-rouge">Draw</code> widget to drop a marker on the map at a location of interest and create a drive-time area around it.</li>
+      <li>Use the <code class="highlighter-rouge">Add Data</code> widget to add a point layer you choose to the map and create drive-time areas around the points. Keep in mind the potential credit usage.</li>
+    </ul>
+  </li>
+  <li>Summarize the 2018 population, or sum/average/etc. another attribute, within the drive-time area(s) you just created.</li>
+  <li>In your ArcGIS Online Content, find the new layer created in the previous step. It will be a polygon layer of the drive-time area(s) with the summarized population or other attribute. Fill out the item details to explain what the layer is and how it was created (less than 200 words):
+    <ul>
+      <li>Title</li>
+      <li>Thumbnail</li>
+      <li>Summary</li>
+      <li>Description
+        <ul>
+          <li>Include a link to your web app that you used to create the layer.</li>
+        </ul>
+      </li>
+      <li>Terms, such as “CC BY-SA”.</li>
+      <li>Credit the source of any data used to generate your layer</li>
+    </ul>
+  </li>
+  <li>Copy the link to your layer’s Item Details page using the social icons on the right side of the page:<br />
+<img src="../../assignment-resources/images/agol-share.png" alt="Share icons on the Item Details page" /><br />
+<small><em>Get the link to your Item Details page by clicking the Link icon.</em></small></li>
+</ol>
+
+<h2 id="submit">Submit</h2>
+<ol>
+  <li>The URL to the <strong>Item Details</strong> page of your <strong>feature layer</strong>. Example: <code class="highlighter-rouge">https://arcg.is/ABC123</code></li>
+</ol>
+
+    </section>
+<footer class="site-footer">
+  
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
