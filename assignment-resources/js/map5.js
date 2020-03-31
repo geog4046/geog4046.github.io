@@ -5,7 +5,7 @@ function googleMap () {
     mapTypeId: 'terrain',
     gestureHandling: 'greedy'
   })
-  map.data.loadGeoJson('https://geog4046.github.io/portfolio/data/us_state_demographics_ESRI_2010A.geojson')
+  map.data.loadGeoJson('https://geog4046.github.io/assignment-resources/data/us_state_demographics_ESRI_2010A.geojson')
   var createSymbology = function (feature) {
     var stateAge = feature.getProperty('MED_AGE')
     var stateColor = 'olive'

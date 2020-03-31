@@ -21,6 +21,10 @@ h2.project-tagline {
   margin: 20px 0;
   box-shadow: 0px 0px 10px #999
 }
+.leaflet-container img {
+  margin: 0px;
+  box-shadow: none;
+}
 .shadebox {
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 8px;

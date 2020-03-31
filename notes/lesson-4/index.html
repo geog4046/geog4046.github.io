@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lesson 4 | GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/notes">Notes</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+<section class="main-content">
+  <h1 class="text-center">Lesson 4 - JavaScript Basics</h1>
+  <p>Terms: JavaScript, variable, object, array, functions and methods, event listener, parameter, conditional statement</p>
+
+<p>JavaScript is a programming language that allows us to give instructions for how the browser should react to certain events, such as when the user clicks something or when the web page finishes loading. If a user clicks a “Submit” button on a payment form, for example, JavaScript can make sure they have filled out all of the required fields and entered a valid credit card number.</p>
+
+<p>JavaScript (not to be confused with Java, another programming language) lets us program logic into our web pages, making them smarter and turning them from simple documents into complex applications.</p>
+
+<p>As far as its relevance to Web GIS, JavaScript can retrieve data from web services, draw web map layers, and allow interaction with maps (zooming, popups, toggling layers, etc.). Major providers like OpenLayers, Google Maps, ArcGIS Online, Bing Maps, and Mapbox offer JavaScript libraries to use their services.</p>
+
+<p>Here are some programming basics that apply to JavaScript and web maps. You can type JavaScript code into your web browser to try it out—in Google Chrome, press F12 to show the developer tools and then click the <code class="highlighter-rouge">Console</code> tab. We will use the console to explore the concepts of:</p>
+<ul>
+  <li>Variables</li>
+  <li>Functions</li>
+  <li>Objects and arrays</li>
+  <li>Conditional statements</li>
+</ul>
+
+<p> <br />
+<img src="../../notes/images/js-console.png" alt="JavaScript console in Google Chrome" /><br />
+<small><em>Figure 1. Most browsers have developer tools with features like the JavaScript console, which is useful for debugging your code or just messing around with JavaScript.</em></small></p>
+
+<h2 id="variables">Variables</h2>
+<p>An essential aspect of JavaScript and other programming languages is variables. Much like elementary algebra, variables are used to represent values. You can type this into the browser console:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">6</span>
+<span class="c1">// The value of y is 11. </span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s2">"Good"</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="s2">"Morning"</span>
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="nx">b</span>
+<span class="c1">// The value of c is Good Morning </span>
+<span class="c1">// (Good plus space plus Morning)</span>
+</code></pre></div></div>
+
+<p>In JavaScript, variables can hold a variety of types of values:</p>
+<ul>
+  <li>string - Text.<br />
+<code class="highlighter-rouge">a = 'This is a string.'</code></li>
+  <li>number - An integer or decimal.<br />
+<code class="highlighter-rouge">b = 5; bb = 3.14</code></li>
+  <li>array - A collection of values.<br />
+<code class="highlighter-rouge">c = [ 'apples', 'oranges', 'grapes' ]</code></li>
+  <li>object - A collection of property names and values.<br />
+<code class="highlighter-rouge">d = { myFavColor: 'green', myFavNumber: 8 }</code></li>
+  <li>Boolean - Can either be <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code><br />
+<code class="highlighter-rouge">e = true; ee = false</code></li>
+  <li>null - No value.<br />
+<code class="highlighter-rouge">f = null</code></li>
+  <li>function - Code that performs a specific action, useful for organizing code and avoiding duplicated code.<br />
+<code class="highlighter-rouge">g = function (){ alert('Hello!') }</code></li>
+</ul>
+
+<p><strong>Important syntax</strong>: JavaScript is <em>case sensitive</em>, so <code class="highlighter-rouge">apples</code> does not equal <code class="highlighter-rouge">Apples</code>.</p>
+
+<h2 id="functions">Functions</h2>
+<p>Functions are also an essential part of programming. Functions let you take action–if variables are the nouns of this language, then functions are the verbs. JavaScript has available functions (called “methods” in certain cases) or you can define your own.</p>
+
+<p>This example shows two functions, <code class="highlighter-rouge">prompt()</code> and <code class="highlighter-rouge">alert()</code>.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">userResponse</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">"What is your name?"</span><span class="p">)</span>
+<span class="nx">alert</span><span class="p">(</span><span class="s2">"Hello, "</span> <span class="o">+</span> <span class="nx">userResponse</span> <span class="o">+</span> <span class="s2">"."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This example defines a new function called <code class="highlighter-rouge">greetUser</code> that contains two lines of code—the same functions as above—but now these two lines of code can be executed elsewhere in the program by only calling the function name and parentheses, <code class="highlighter-rouge">greetUser()</code>. Functions help keep code organized and prevent you from having to repeat code.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">greetUser</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="kd">var</span> <span class="nx">userResponse</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">"What is your name?"</span><span class="p">)</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">"Hello, "</span> <span class="o">+</span> <span class="nx">userResponse</span> <span class="o">+</span> <span class="s2">"."</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">greetUser</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>You can see that the prompt() and alert() functions allow values to be added between the parentheses, and then the function uses those values within the function. They both take the values and display them in a popup window in the browser. The values that we pass to functions are called parameters or arguments.</p>
+<ul>
+  <li>For <code class="highlighter-rouge">prompt()</code>, the parameter is the string “What is your name?”</li>
+  <li>For <code class="highlighter-rouge">alert()</code>, the parameter is the string “Hello, “ combined with the value of the variable <code class="highlighter-rouge">userResponse</code>.</li>
+</ul>
+
+<p>We can add parameters to our function as well, such as variables for the two messages. That way, the messages “What is your name?” and “Hello, “ are not coded directly into our function.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">greetUser</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">question</span><span class="p">,</span> <span class="nx">greeting</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">userResponse</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="nx">question</span><span class="p">)</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="nx">greeting</span> <span class="o">+</span> <span class="nx">userResponse</span> <span class="o">+</span> <span class="s2">"."</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now to call our function, we put values in the parentheses separate by a comma, in the same order of the parameter variables in the code above, <code class="highlighter-rouge">question</code> then <code class="highlighter-rouge">greeting</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">greetUser</span><span class="p">(</span><span class="s2">"What is your name?"</span><span class="p">,</span> <span class="s2">"Hello, "</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Or we could pass variables as the parameters:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">jobMessage</span> <span class="o">=</span> <span class="s2">"What is your occupation?"</span>
+<span class="kd">var</span> <span class="nx">greetingMessage</span> <span class="o">=</span> <span class="s2">"Wow, I've always wanted to be a "</span>
+<span class="nx">greetUser</span><span class="p">(</span><span class="nx">jobMessage</span><span class="p">,</span> <span class="nx">greetingMessage</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Here is a different example of functions, parameters, and variables showing different approaches and values:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">multiplyTwoNumbers</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">number1</span><span class="p">,</span> <span class="nx">number2</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">product</span> <span class="o">=</span> <span class="nx">number1</span> <span class="o">*</span> <span class="nx">number2</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="nx">product</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nx">multiplyTwoNumbers</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="c1">// alerts 15</span>
+<span class="nx">multiplyTwoNumbers</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">// also alerts 15</span>
+<span class="nx">multiplyTwoNumbers</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">// 20</span>
+<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nx">multiplyTwoNumbers</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="c1">// 20</span>
+<span class="nx">multiplyTwoNumbers</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="c1">// 20</span>
+</code></pre></div></div>
+
+<p>Note: the <code class="highlighter-rouge">alert</code> and <code class="highlighter-rouge">prompt</code> functions were used here for simple examples but they are not typically used in practice. Another way for functions to output their result is to use <code class="highlighter-rouge">return</code>. This lets you save a function’s result to a variable. In the example above, change <code class="highlighter-rouge">alert(product)</code> to <code class="highlighter-rouge">return product</code>.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">multiplyTwoNumbers</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">number1</span><span class="p">,</span> <span class="nx">number2</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">product</span> <span class="o">=</span> <span class="nx">number1</span> <span class="o">*</span> <span class="nx">number2</span>
+  <span class="k">return</span> <span class="nx">product</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This can be simplified by returning <code class="highlighter-rouge">number1 * number2</code> directly instead of saving it to a variable:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">multiplyTwoNumbers</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">number1</span><span class="p">,</span> <span class="nx">number2</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">number1</span> <span class="o">*</span> <span class="nx">number2</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now you can call the <code class="highlighter-rouge">multiplyTwoNumbers()</code> function and save its result to a variable.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">myProduct</span> <span class="o">=</span> <span class="nx">multiplyTwoNumbers</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="objects-and-arrays">Objects and arrays</h2>
+<p>To talk about objects and arrays, let’s revisit the list of variables shown earlier:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">'This is a string.'</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">'apples'</span><span class="p">,</span> <span class="s1">'oranges'</span><span class="p">,</span> <span class="s1">'grapes'</span> <span class="p">]</span>
+<span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="p">{</span> <span class="na">myFavColor</span><span class="p">:</span> <span class="s1">'green'</span><span class="p">,</span> <span class="na">myFavNumber</span><span class="p">:</span> <span class="mi">8</span> <span class="p">}</span>
+<span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="kc">null</span>
+<span class="kd">var</span> <span class="nx">g</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">'Hello!'</span><span class="p">)</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Arrays and objects are handy because they can hold any of those variable types to create a collection of values, even other arrays and objects. If you type all of those variables, <code class="highlighter-rouge">a</code> through <code class="highlighter-rouge">g</code>, into the console, you can create an array that looks like this:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">myCollection</span> <span class="o">=</span> <span class="p">[</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">f</span><span class="p">,</span> <span class="nx">g</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Then each one of those variables could be accessed by entering these lines into the console, where the number refers to the position of the value when it was entered into the array, starting with 0:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">myCollection</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">// this is the value of the "a" variable</span>
+<span class="nx">myCollection</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">// b value</span>
+<span class="nx">myCollection</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1">// c value</span>
+</code></pre></div></div>
+
+<p>The same can be done with objects, but objects use a named property instead of the position number to refer to the values. Here, the property names are the same as the variable name, so each pair is written as <code class="highlighter-rouge">a: a</code>, etc.:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">myCollection</span> <span class="o">=</span> <span class="p">{</span> <span class="na">a</span><span class="p">:</span> <span class="nx">a</span><span class="p">,</span> <span class="na">b</span><span class="p">:</span> <span class="nx">b</span><span class="p">,</span> <span class="na">c</span><span class="p">:</span> <span class="nx">c</span><span class="p">,</span> <span class="na">d</span><span class="p">:</span> <span class="nx">d</span><span class="p">,</span> <span class="na">e</span><span class="p">:</span> <span class="nx">e</span><span class="p">,</span> <span class="na">f</span><span class="p">:</span> <span class="nx">f</span><span class="p">,</span> <span class="na">g</span><span class="p">:</span> <span class="nx">g</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Here is a more descriptive way of defining the object, using the values directly in case all of those letters were getting confusing. Each pair is written on a different line to make it easier to read:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">myCollection</span> <span class="o">=</span> <span class="p">{</span> 
+  <span class="na">myString</span><span class="p">:</span> <span class="s1">'This is a string.'</span><span class="p">,</span> 
+  <span class="na">myNumber</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> 
+  <span class="na">myArray</span><span class="p">:</span> <span class="p">[</span> <span class="s1">'apples'</span><span class="p">,</span> <span class="s1">'oranges'</span><span class="p">,</span> <span class="s1">'grapes'</span> <span class="p">],</span> 
+  <span class="na">myObject</span><span class="p">:</span> <span class="p">{</span> <span class="na">myFavColor</span><span class="p">:</span> <span class="s1">'green'</span><span class="p">,</span> <span class="na">myFavNumber</span><span class="p">:</span> <span class="mi">8</span> <span class="p">},</span> 
+  <span class="na">myBoolean</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> 
+  <span class="na">myNull</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> 
+  <span class="na">myFunction</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(){</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">'Hello!'</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now each one of those values can be accessed with this syntax:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">myCollection</span><span class="p">.</span><span class="nx">myString</span>
+<span class="nx">myCollection</span><span class="p">.</span><span class="nx">myNumber</span>
+<span class="nx">myCollection</span><span class="p">.</span><span class="nx">myArray</span>
+<span class="nx">myCollection</span><span class="p">.</span><span class="nx">myObject</span>
+<span class="nx">myCollection</span><span class="p">.</span><span class="nx">myBoolean</span>
+<span class="nx">myCollection</span><span class="p">.</span><span class="nx">myNull</span>
+<span class="nx">myCollection</span><span class="p">.</span><span class="nx">myFunction</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Specific values can be picked out of the array and object like this. Remember, the array position starts at 0, so position 1 is actually the second value:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">myCollection</span><span class="p">.</span><span class="nx">myArray</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">// oranges</span>
+<span class="nx">myCollection</span><span class="p">.</span><span class="nx">myObject</span><span class="p">.</span><span class="nx">myFavColor</span> <span class="c1">// green</span>
+</code></pre></div></div>
+
+<p>Those can be used as variable values or function parameters:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">alert</span><span class="p">(</span><span class="s2">"The fruit of the day is "</span> <span class="o">+</span> <span class="nx">myCollection</span><span class="p">.</span><span class="nx">myArray</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="kd">var</span> <span class="nx">colorOfTheDay</span> <span class="o">=</span> <span class="nx">myCollection</span><span class="p">.</span><span class="nx">myObject</span><span class="p">.</span><span class="nx">myFavColor</span>
+<span class="nx">alert</span><span class="p">(</span><span class="s2">"The color of the day is "</span> <span class="o">+</span> <span class="nx">colorOfTheDay</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>For a less nonsensical example of an object, here is an example from a Leaflet exercise. It is an object with properties that define how a polygon layer should be styled on a map.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">myLayerStyle</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">color</span><span class="p">:</span> <span class="s1">'green'</span><span class="p">,</span>
+  <span class="na">weight</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">fillOpacity</span><span class="p">:</span> <span class="mf">0.2</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Arrays and objects are a convenient way to group related values together into a single variable.</p>
+
+<h2 id="conditional-statements">Conditional statements</h2>
+
+<p>Sometimes it is necessary to take different actions for different conditions. On a map of election results by county, for example, you might want the county polygons to appear blue <strong>if</strong> they voted majority Democrat and red <strong>if</strong> Republican. The word <strong>if</strong> signals that there is a condition, so conditional statements are also known simply as “if statements” in programming.</p>
+
+<p>The election map color example might look like this in a JavaScript conditional statement:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">voteResult</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">"Who won this county? (type D or R)"</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">countyColor</span> <span class="o">=</span> <span class="s1">'Red'</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">voteResult</span> <span class="o">==</span> <span class="s1">'D'</span><span class="p">){</span>
+  <span class="nx">countyColor</span> <span class="o">=</span> <span class="s1">'Blue'</span>
+<span class="p">}</span>
+<span class="nx">alert</span><span class="p">(</span><span class="s2">"This county is "</span> <span class="o">+</span> <span class="nx">countyColor</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We could further adjust a color depending on a numeric value of votes (%):</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">votePercent</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">"What is the winner's vote %? (ex: 65)"</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">votePercent</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">){</span>
+  <span class="nx">countyColor</span> <span class="o">=</span> <span class="s1">'Dark'</span> <span class="o">+</span> <span class="nx">countyColor</span>
+<span class="p">}</span>
+<span class="nx">alert</span><span class="p">(</span><span class="s2">"This county is "</span> <span class="o">+</span> <span class="nx">countyColor</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="leaflet-example">Leaflet example</h3>
+<p>Here is an example of a conditional statement in one of the Leaflet assignments. There is a map of states based on median age. If the state’s median age is less than the national median, 38, then the state’s polygon will appear green on the map.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span> <span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">38</span> <span class="p">)</span> <span class="p">{</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">'green'</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="practice">Practice</h2>
+<p>To demonstrate some of JavaScript’s capabilities, let’s modify our <a href="https://codepen.io/pen/">CodePen</a> example from before. The code we used was:</p>
+
+<p>HTML</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"my-class"</span><span class="nt">&gt;</span>Heading Here<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"my-id"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"my-class"</span><span class="nt">&gt;</span>Paragraph goes here.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>CSS</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.my-class</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="n">Arial</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="n">Gray</span>
+<span class="p">}</span>
+<span class="nf">#my-id</span> <span class="p">{</span>
+  <span class="nl">border-style</span><span class="p">:</span> <span class="nb">solid</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">400px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To put JavaScript to use, add a button to the CodePen example that changes the paragraph text. First, add a <code class="highlighter-rouge">button</code> element to your HTML under the heading. Give it an <code class="highlighter-rouge">id</code> attribute. The text between the opening and closing tags will be visible on the button:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"swap-text"</span><span class="nt">&gt;</span>Hey, click this<span class="nt">&lt;/button&gt;</span>
+</code></pre></div></div>
+
+<p>Also, give an <code class="highlighter-rouge">id</code> to your paragraph element to make it easy to find with JavaScript:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">"my-paragraph"</span> <span class="na">class=</span><span class="s">"my-class"</span><span class="nt">&gt;</span>Paragraph goes here.<span class="nt">&lt;/p&gt;</span>
+</code></pre></div></div>
+
+<p>The button will appear in the result, but when you click it, nothings happens. We have to program some behavior for the browser to react to a click. In the JavaScript box, paste this code:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">myButton</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"swap-text"</span><span class="p">)</span>
+<span class="nx">myButton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="nx">swapText</span><span class="p">)</span>
+<span class="kd">function</span> <span class="nx">swapText</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"my-paragraph"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"This is the text now."</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Here is a breakdown of what each part of that code does.</p>
+
+<p>This tells the browser to search the HTML document for an element with the ID of “swap-text”, and when it finds it, it saves the HTML to our <code class="highlighter-rouge">myButton</code> variable.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">myButton</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"swap-text"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We then add an “event listener” to the button, which lets us run some code when a certain event occurs in the browser. Clicking/tapping somewhere on the page, moving the mouse pointer over text, moving the mouse pointer out of the browser window, scrolling, typing, and many other user interactions are consider events. JavaScript tells the browser to “listen” for these events to occur, and if/when they do occur, it runs the code we specified.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">myButton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="nx">swapText</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Those two lines could be combined into one. It’s good to recognize this approach of <code class="highlighter-rouge">var variable = object.function(parameter).function(parameter)</code> because you will see it later with Leaflet and other JavaScript libraries.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">myButton</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"swap-text"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="nx">swapText</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The browser will listen for the user to click on our button, and when they do, the <code class="highlighter-rouge">swapText</code> function will be run. In this case, the function will find our paragraph element by its <code class="highlighter-rouge">id</code> and replace the existing text with “This is the text now.”</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">swapText</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"my-paragraph"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">"This is the text now."</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The HTML, CSS, and JavaScript should work together now to react to the button click:</p>
+
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="js,result" data-user="geog4046" data-slug-hash="qBdgaKV" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Web Page Basics HTML+CSS+JS">
+  <span>See the Pen <a href="https://codepen.io/geog4046/pen/qBdgaKV">
+  Web Page Basics HTML+CSS+JS</a> by geog4046instructor (<a href="https://codepen.io/geog4046">@geog4046</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="summary">Summary</h2>
+<p>JavaScript lets us use some of the power of the browser to react to user input and modify web page content, and later we will see how it can pull data from web services to display on a map. Unlike HTML and CSS, JavaScript allows for logic to be programmed into web pages, turning them into powerful applications instead of static documents.</p>
+
+<h2 id="other-learning-resources">Other Learning resources</h2>
+<ul>
+  <li>Codecademy - <a href="https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-introduction">Introduction to JavaScript: Introduction</a>
+    <ul>
+      <li>This is a long lesson but doing only the first few parts could still be helpful.</li>
+    </ul>
+  </li>
+  <li>Mozilla - <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics">JavaScript Basics</a></li>
+</ul>
+
+</section>
+<footer class="site-footer">
+  
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

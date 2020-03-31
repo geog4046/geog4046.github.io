@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Software Setup | GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/notes">Notes</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+<section class="main-content">
+  <h1 class="text-center">Software Setup - Install Development Tools</h1>
+  <p>This is a guide to setting up your computer for web development. The guide is for Windows, but the software is available for macOS. The following programs and websites are used in this course. Other software is allowed but not supported.</p>
+<ul>
+  <li><a href="https://www.google.com/chrome/">Google Chrome</a> - Web browser</li>
+  <li><a href="https://atom.io/">Atom</a> - Text editor</li>
+  <li><a href="https://github.com/">Github.com</a> - code repository and website hosting</li>
+</ul>
+
+<p>Download the programs above and continue to the sections below for additional steps and information.</p>
+
+<h2 id="web-browser">Web Browser</h2>
+<p>The major web browsers like Chrome, Safari, Firefox, and Edge have developer tools included to help you make and test web pages. If the students in this course are representative of the wider browser market, then most of you already use Chrome, which is what this guide covers.</p>
+
+<p>Though we will only use one browser, it is worth noting that browsers might follow different rules for how web pages look and act, so you should become familiar with other browsers and consider testing your sites on a few of them.</p>
+
+<p> <br />
+<img src="../../notes/images/chrome.png" alt="Google Chrome" /><br />
+<small><em>Figure 1. The developer tools (F12) in Google Chrome showing the code and other details for the Google logo image.</em></small></p>
+
+<p>Shortcuts:</p>
+<ul>
+  <li>Press <code class="highlighter-rouge">F12</code> to open the developer tools (<code class="highlighter-rouge">Ctrl</code> + <code class="highlighter-rouge">Shift</code> + <code class="highlighter-rouge">J</code> if you don’t have a key for <code class="highlighter-rouge">F12</code>)</li>
+  <li>Press <code class="highlighter-rouge">Ctrl</code> + <code class="highlighter-rouge">U</code> to view a page’s source code. This is the original source code downloaded from the URL before any JavaScript has modified it, which might be different from the code you see in the <code class="highlighter-rouge">Elements</code> tab of the developer tools.</li>
+  <li>Press <code class="highlighter-rouge">Ctrl</code> + <code class="highlighter-rouge">Shift</code> + <code class="highlighter-rouge">N</code> to open an incognito window to test your website–it ignores your history, cache, and logged-in sessions, simulating a public visit to your site.</li>
+  <li>Press <code class="highlighter-rouge">Shift</code> + <code class="highlighter-rouge">Esc</code> to open the task manager, which can kill tabs and let you see how much system resources a tab is consuming.</li>
+</ul>
+
+<p>Aside from viewing your sites in a browser, you can also test and debug them. The developer tools in Chrome, for example, let you see the source code, see what CSS rules are applied to each HTML element, view errors, run JavaScript in a console, and monitor network traffic.</p>
+
+<p>When you are testing JavaScript, the console is especially useful for seeing errors in your code. The error messages may not always make sense to a beginniner, but it will at least tell you the line number on which the error was encountered, where you can begin investigating what went wrong.</p>
+
+<p> <br />
+<img src="../../notes/images/js-error.png" alt="JavaScript error in Google Chrome" /><br />
+<small><em>Figure 2. The console in the browser developer tools can help debug. In this screenshot, the page contained an error on line number 55.</em></small></p>
+
+<p>To preview your site on mobile, the developer tools can simulate different device sizes and Internet speeds.</p>
+
+<p> <br />
+<img src="../../notes/images/mobile-preview.png" alt="Mobile Preview" /><br />
+<small><em>Figure 3. The browser developer tools have a device toolbar to simulate using your website on difference phones and tablets at different Internet speeds.</em></small></p>
+
+<p>The developer tools contain many more features, documented under <a href="https://developers.google.com/web/tools/chrome-devtools">Chrome DevTools</a>.</p>
+
+<h2 id="text-editor">Text Editor</h2>
+<p>Atom is a text editor, meaning you can use it to create or modify the kinds of files used to write HTML, CSS, and JavaScript. Atom can also transfer web page files from your computer to Github.com, which is what we will use to host our websites in this class.</p>
+
+<p> <br />
+<img src="../../notes/images/atom-start1.png" alt="Atom text editor" /><br />
+<small><em>Figure 4. It is recommended to set the options in this screenshot to stop these things from showing every time you start Atom.</em></small></p>
+
+<p>After installing and starting Atom for the first time, here are some recommended settings:</p>
+<ul>
+  <li>Click <code class="highlighter-rouge">View</code> &gt; <code class="highlighter-rouge">Toggle Tree View</code></li>
+  <li>Click <code class="highlighter-rouge">File</code> &gt; <code class="highlighter-rouge">Settings</code>:
+    <ul>
+      <li><code class="highlighter-rouge">System</code> &gt; Check the boxes for both <code class="highlighter-rouge">Show in...</code> options</li>
+      <li><code class="highlighter-rouge">Install</code> &gt; Search for and install the package called “linter-js-standard”. Click yes to install dependencies.</li>
+    </ul>
+  </li>
+</ul>
+
+<p> <br />
+<img src="../../notes/images/js-standard.png" alt="Syntax checker for JavaScript" /><br />
+<small><em>Figure 5. The linter-js-standard package will help make sure your code follows best practices.</em></small></p>
+
+<p>That are many other settings and packages that you can employ to fit your preferences.</p>
+
+<h2 id="website">Website</h2>
+<p>Make an account on <a href="https://github.com/">Github</a>. Once you have created an account and logged in, you are ready to create a repository for your website.</p>
+<ul>
+  <li>Follow the guide <a href="https://guides.github.com/features/pages/">Getting Started with Github Pages</a>
+    <ul>
+      <li>For the repo name, <strong>make sure you name it with your Github username</strong>. If your username is <code class="highlighter-rouge">student4046</code>, then your repo should be named <code class="highlighter-rouge">student4046.github.io</code>. This will also be the address for your website, <code class="highlighter-rouge">https://student4046.github.io</code>.</li>
+    </ul>
+  </li>
+  <li>You can upload web page files into your repo from the repo’s Code page. For example, if you upload a file called <code class="highlighter-rouge">index.html</code>, that will be your homepage at your website URL, <code class="highlighter-rouge">https://student4046.github.io</code>.</li>
+</ul>
+
+<p> <br />
+<img src="../../notes/images/github-upload.png" alt="Upload to Github" /><br />
+<small><em>Figure 6. You can upload files to a repository directly from the Github website, on your repository’s Code page.</em></small></p>
+
+<p>Instead of uploading files through the Github website, we can set up Atom to sync with your Github Pages repository.</p>
+<ul>
+  <li>Start Atom. Press the key combination <code class="highlighter-rouge">Ctrl</code> + <code class="highlighter-rouge">Shift</code> + <code class="highlighter-rouge">P</code>, and in the search box type clone, then click the result <code class="highlighter-rouge">Github: Clone</code>.<br />
+<img src="../../notes/images/atom-github-clone.png" alt="Upload to Github" /></li>
+  <li>In the <code class="highlighter-rouge">Clone from</code> box that you see next, type the URL to your repository (not your website URL). It should be like this but with your username: <code class="highlighter-rouge">https://github.com/student4046/student4046.github.io</code>.</li>
+  <li>Now you should see the name of your repo under <code class="highlighter-rouge">Project</code> in the left pane of Atom.</li>
+  <li>Right-click your repo name and choose <code class="highlighter-rouge">New File</code>and name it <code class="highlighter-rouge">index.html</code>.</li>
+  <li>In the text editing pane (where you can type), type <code class="highlighter-rouge">html</code> and press Enter when the autocomplete box pops up. Autocomplete will insert some basic HTML into your page.</li>
+  <li>Enter some text between the <code class="highlighter-rouge">title</code> tags and some more text in the <code class="highlighter-rouge">body</code> then save the file.
+    <ul>
+      <li><strong>Note</strong>: a file with unsaved changes will have a blue dot on its tab.<br />
+<img src="../../notes/images/atom-basic-html.png" alt="Atom autocomplete" /></li>
+    </ul>
+  </li>
+  <li>At the bottom right of Atom, click <code class="highlighter-rouge">Github</code>. The Github tab will open to allow you to sign into Github.com. Click the <code class="highlighter-rouge">Login</code> button.
+    <ul>
+      <li><strong>Note</strong>: if the Github tab is blank, restart Atom.</li>
+    </ul>
+  </li>
+  <li>In your browser where you are signed into Github already, go to http://github.atom.io/login, sign in, and click <code class="highlighter-rouge">Authorize Atom</code>. This will give you a token that you need to copy and paste into Atom on the Github tab. Then you can click <code class="highlighter-rouge">Log in</code>.</li>
+</ul>
+
+<p>The following steps will need to be repeated each time you sync Atom with Github, i.e., each time you make changes to your web page files and upload them to Github.</p>
+<ul>
+  <li>At the bottom right of Atom, click <code class="highlighter-rouge">Git</code>. Under <code class="highlighter-rouge">Unstaged Changes</code> you should see your <code class="highlighter-rouge">index.html</code>, waiting to be uploaded to your Github website.</li>
+  <li>Click <code class="highlighter-rouge">Stage All</code>.</li>
+  <li>Enter a Commit Message.</li>
+  <li>Click <code class="highlighter-rouge">Commit to master</code>.</li>
+  <li>At the bottom right of Atom, click <code class="highlighter-rouge">Push</code>.</li>
+  <li>Now when you go to your website URL, e.g., <code class="highlighter-rouge">https://student4046.github.io</code>, you will see the web page you just uploaded (although it could take a few minutes for the update to appear).</li>
+</ul>
+
+</section>
+<footer class="site-footer">
+  
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
