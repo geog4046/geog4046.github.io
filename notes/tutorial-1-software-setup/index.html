@@ -36,7 +36,7 @@
   <li><a href="https://github.com/">Github.com</a> - code repository and website hosting</li>
 </ul>
 
-<p>Download the programs above and continue to the sections below for additional steps and information.</p>
+<p>Download Chrome and Atom, sign up for a Github account, then continue to the sections below for additional steps and information.</p>
 
 <h2 id="web-browser">Web Browser</h2>
 <p>The major web browsers like Chrome, Safari, Firefox, and Edge have developer tools included to help you make and test web pages. If the students in this course are representative of the wider browser market, then most of you already use Chrome, which is what this guide covers.</p>
@@ -47,7 +47,7 @@
 <img src="../../notes/images/chrome.png" alt="Google Chrome" /><br />
 <small><em>Figure 1. The developer tools (F12) in Google Chrome showing the code and other details for the Google logo image.</em></small></p>
 
-<p>Shortcuts:</p>
+<p>Chrome shortcuts:</p>
 <ul>
   <li>Press <code class="highlighter-rouge">F12</code> to open the developer tools (<code class="highlighter-rouge">Ctrl</code> + <code class="highlighter-rouge">Shift</code> + <code class="highlighter-rouge">J</code> if you don’t have a key for <code class="highlighter-rouge">F12</code>)</li>
   <li>Press <code class="highlighter-rouge">Ctrl</code> + <code class="highlighter-rouge">U</code> to view a page’s source code. This is the original source code downloaded from the URL before any JavaScript has modified it, which might be different from the code you see in the <code class="highlighter-rouge">Elements</code> tab of the developer tools.</li>
@@ -57,11 +57,11 @@
 
 <p>Aside from viewing your sites in a browser, you can also test and debug them. The developer tools in Chrome, for example, let you see the source code, see what CSS rules are applied to each HTML element, view errors, run JavaScript in a console, and monitor network traffic.</p>
 
-<p>When you are testing JavaScript, the console is especially useful for seeing errors in your code. The error messages may not always make sense to a beginniner, but it will at least tell you the line number on which the error was encountered, where you can begin investigating what went wrong.</p>
+<p>When you are testing JavaScript, the console is especially useful for seeing errors in your code. The error messages may not always make sense to a beginner, but it will at least tell you the line number in your code on which the error was encountered, where you can begin investigating what went wrong.</p>
 
 <p> <br />
 <img src="../../notes/images/js-error.png" alt="JavaScript error in Google Chrome" /><br />
-<small><em>Figure 2. The console in the browser developer tools can help debug. In this screenshot, the page contained an error on line number 55.</em></small></p>
+<small><em>Figure 2. The console in the browser developer tools can help debug. In this screenshot, the page contained an error on line number 55, meaning the developer needs to go back to their code in a text editor, look up line number 55, and look for mistakes.</em></small></p>
 
 <p>To preview your site on mobile, the developer tools can simulate different device sizes and Internet speeds.</p>
 
@@ -80,7 +80,7 @@
 
 <p>After installing and starting Atom for the first time, here are some recommended settings:</p>
 <ul>
-  <li>Click <code class="highlighter-rouge">View</code> &gt; <code class="highlighter-rouge">Toggle Tree View</code></li>
+  <li>Click <code class="highlighter-rouge">View</code> &gt; <code class="highlighter-rouge">Toggle Tree View</code> to show files and folders.</li>
   <li>Click <code class="highlighter-rouge">File</code> &gt; <code class="highlighter-rouge">Settings</code>:
     <ul>
       <li><code class="highlighter-rouge">System</code> &gt; Check the boxes for both <code class="highlighter-rouge">Show in...</code> options</li>
@@ -129,7 +129,7 @@
       <li><strong>Note</strong>: if the Github tab is blank, restart Atom.</li>
     </ul>
   </li>
-  <li>In your browser where you are signed into Github already, go to http://github.atom.io/login, sign in, and click <code class="highlighter-rouge">Authorize Atom</code>. This will give you a token that you need to copy and paste into Atom on the Github tab. Then you can click <code class="highlighter-rouge">Log in</code>.</li>
+  <li>In your browser where you are signed into Github already, go to <a href="http://github.atom.io/login">http://github.atom.io/login</a>, sign in, and click <code class="highlighter-rouge">Authorize Atom</code>. This will give you a token that you need to copy and paste into Atom on the Github tab. Then you can click <code class="highlighter-rouge">Log in</code>.</li>
 </ul>
 
 <p>The following steps will need to be repeated each time you sync Atom with Github, i.e., each time you make changes to your web page files and upload them to Github.</p>
@@ -140,6 +140,30 @@
   <li>Click <code class="highlighter-rouge">Commit to master</code>.</li>
   <li>At the bottom right of Atom, click <code class="highlighter-rouge">Push</code>.</li>
   <li>Now when you go to your website URL, e.g., <code class="highlighter-rouge">https://student4046.github.io</code>, you will see the web page you just uploaded (although it could take a few minutes for the update to appear).</li>
+</ul>
+
+<h2 id="previewing-a-web-page">Previewing a web page</h2>
+<p>There are different ways to preview a website before publishing it on the web. The simplest way is to use your browser to open an HTML file on your computer, but this can run into limitations in different scenarios. A more realistic method is to run a web server on your computer. This section describes the use of nginx, a free web server.</p>
+
+<ul>
+  <li>On Windows, download nginx: <a href="http://nginx.org/download/nginx-1.17.9.zip">nginx-1.17.9.zip</a>, or go to the <a href="http://nginx.org/en/download.html">downloads page</a></li>
+  <li>Unzip the downloaded file into a folder called <code class="highlighter-rouge">nginx-1.17.9</code> (or any name you choose).</li>
+  <li>In that folder, double-click nginx.exe to start the web server application.</li>
+  <li>Copy your web page files into the <code class="highlighter-rouge">html</code> folder.</li>
+  <li>In a browser, you should be able to go to <a href="http://localhost">http://localhost</a> to preview your site.</li>
+  <li>
+    <p>You can change the folder that nginx uses for web page files to match your repository folder, for example.<br />
+ <br />
+In your <code class="highlighter-rouge">nginx-1.17.9</code> folder, open <code class="highlighter-rouge">conf/nginx.conf</code> in a text editor. Look for the line below and change the <code class="highlighter-rouge">root</code> folder to your own. Note the forward slashes.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>location / {
+  root   c:/users/student/github/student4046.github.io;
+  index  index.html index.htm;
+}
+</code></pre></div>    </div>
+
+    <p>Stop nginx.exe in the Windows Task Manager and run nginx.exe again, then test your web page in a browser, again at <a href="http://localhost">http://localhost</a>. Or see the <a href="http://nginx.org/en/docs/windows.html">nginx docs</a> for commands to stop, restart, etc.</p>
+  </li>
 </ul>
 
 </section>

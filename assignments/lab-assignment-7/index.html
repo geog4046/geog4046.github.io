@@ -42,15 +42,36 @@
 <p><small>A basemap, a point feature (marker), and a polygon feature.</small></p>
 
 <h2 id="process">Process</h2>
+<p>This process assumes you have already <a href="https://geog4046.github.io/notes/tutorial-1-software-setup/">set up Atom and Github, and cloned your Github repository to your computer with Atom</a>.</p>
+
 <ol>
-  <li>In your portfolio repository, create a new folder/file called <code class="highlighter-rouge">map1/index.html</code>, and for the contents of <code class="highlighter-rouge">index.html</code>, paste in the code from the <a href="https://github.com/geog4046/geog4046.github.io/blob/master/examples/skeleton/index.html">basic HTML skeleton</a> example.</li>
+  <li>Open Atom, and if it does not automatically open to your Github repository folder, click <code class="highlighter-rouge">File</code> &gt; <code class="highlighter-rouge">Add Project Folder...</code> and select the folder you cloned your repository to on your computer, e.g., <code class="highlighter-rouge">C:\Users\student\github\student4046.github.io</code>.<br />
+<img src="../../assignment-resources/images/atom-repo.png" alt="Repo folder in Atom" />
+<small><em>Figure 1. If you have created a repository on Github.com, you can clone it to your computer using Atom, and then also use Atom to edit the web page files.</em></small></li>
+  <li>Create a new folder/file called <code class="highlighter-rouge">map1/index.html</code>, and for the contents of <code class="highlighter-rouge">index.html</code>, paste in the code from the <a href="https://github.com/geog4046/geog4046.github.io/blob/master/examples/skeleton/index.html">basic HTML skeleton</a> example.</li>
   <li>In your <code class="highlighter-rouge">map1</code> folder, create a new JavaScript file <code class="highlighter-rouge">map1.js</code> and a CSS file <code class="highlighter-rouge">map1.css</code> 
-<img src="../../assignment-resources/images/leaflet-html-css-js-files.png" alt="HTML, CSS, and JavaScript files" /></li>
+<img src="../../assignment-resources/images/leaflet-html-css-js-files.png" alt="HTML, CSS, and JavaScript files" />
+<small><em>Figure 2. The tree view in Atom should show the files you just created: <code class="highlighter-rouge">index.html</code>, <code class="highlighter-rouge">map1.css</code>, and <code class="highlighter-rouge">map1.js</code>.</em></small></li>
   <li>
     <p>Within your <code class="highlighter-rouge">index.html</code> page’s <code class="highlighter-rouge">head</code> tags, add a <code class="highlighter-rouge">link</code> element to include the CSS file you just created:</p>
 
     <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"renameThisFile.css"</span><span class="nt">&gt;</span>
 </code></pre></div>    </div>
+
+    <p>The contents of <code class="highlighter-rouge">index.html</code> should now look like this, with the <code class="highlighter-rouge">link</code> element added between the <code class="highlighter-rouge">head</code> tags:</p>
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="cp">&lt;!DOCTYPE html&gt;</span>
+ <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span> <span class="na">dir=</span><span class="s">"ltr"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;head&gt;</span>
+     <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;title&gt;&lt;/title&gt;</span>
+     <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"renameThisFile.css"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;/head&gt;</span>
+   <span class="nt">&lt;body&gt;</span>
+        
+   <span class="nt">&lt;/body&gt;</span>
+ <span class="nt">&lt;/html&gt;</span>
+</code></pre></div>    </div>
+
     <p>On the line directly above the <code class="highlighter-rouge">&lt;/body&gt;</code> tag, create a <code class="highlighter-rouge">script</code> element to include the JavaScript file you just created:</p>
     <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"renameThisFile.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre></div>    </div>
@@ -64,6 +85,7 @@
     <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"</span><span class="nt">&gt;&lt;/script&gt;</span>  
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"renameThisFile.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre></div>    </div>
+
     <p>Your HTML, CSS, and JavaScript files are now ready to have code added to them.</p>
   </li>
   <li>
@@ -71,6 +93,7 @@
 
     <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"renameThisId"</span><span class="nt">&gt;&lt;/div&gt;</span>
 </code></pre></div>    </div>
+    <p><strong>Note: The value you choose for <code class="highlighter-rouge">renameThisId</code> will be re-used for the <code class="highlighter-rouge">id</code> in steps 6 and 7.</strong></p>
   </li>
   <li>
     <p>In the CSS file, create a rule to give the <code class="highlighter-rouge">div</code> a height. Use a different height value for your own map:</p>
@@ -83,7 +106,7 @@
 
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">renameThisMap</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">'renameThis'</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">32.18</span><span class="p">,</span> <span class="o">-</span><span class="mf">99.14</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span>
 </code></pre></div>    </div>
-    <p>Note: keywords <code class="highlighter-rouge">L</code>, <code class="highlighter-rouge">map</code>, and <code class="highlighter-rouge">setView</code> are specific to Leaflet, while <code class="highlighter-rouge">var</code> is a JavaScript keyword used to declare a variable; in this case, a variable to hold your map object. The name you choose here will be used later to add layers to the map.</p>
+    <p>Note: keywords <code class="highlighter-rouge">L</code>, <code class="highlighter-rouge">map</code>, and <code class="highlighter-rouge">setView</code> are specific to Leaflet, while <code class="highlighter-rouge">var</code> is a JavaScript keyword used to declare a variable; in this case, a variable to hold your map object. The variable name you choose here for the <strong>map object</strong> in place of <code class="highlighter-rouge">renameThisMap</code> will be used later to add layers to the map.</p>
   </li>
   <li>
     <p>Add a basemap layer to the map (see <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">basemap providers</a>) using your preferred basemap’s URL and your own map object’s name:</p>
@@ -101,7 +124,7 @@
   <span class="p">[</span><span class="mi">31</span><span class="p">,</span> <span class="o">-</span><span class="mi">88</span><span class="p">],</span>
   <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="o">-</span><span class="mi">88</span><span class="p">],</span>
   <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="o">-</span><span class="mi">82</span><span class="p">]</span>
-<span class="p">]).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">);</span>
+<span class="p">]).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
   <li>
@@ -117,12 +140,10 @@
 <h2 id="requirements">Requirements</h2>
 <ol>
   <li>General best practices:<br />
-  a. Valid, accessible HTML and CSS. Validator links: <a href="https://validator.w3.org/">HTML</a> | <a href="https://jigsaw.w3.org/css-validator/">CSS</a> | <a href="https://achecker.ca/checker/index.php">Accessibility</a><br />
-  b. Scripts and styles in separate files<br />
-  c. Your own page title<br />
-  d. Proper indentation<br />
-  e. No errors in the console<br />
-  f. Professional look and feel</li>
+  a. Scripts and styles in separate files<br />
+  b. Your own page title<br />
+  c. Proper indentation<br />
+  d. No errors in the console</li>
   <li>Load the Leaflet CSS and JavaScript files</li>
   <li>A map <code class="highlighter-rouge">div</code> with a height</li>
   <li>A basemap and features (marker, polygon, <strong>and line</strong>)</li>
