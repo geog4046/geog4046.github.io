@@ -45,13 +45,21 @@
 <p>This process assumes you have already <a href="https://geog4046.github.io/notes/tutorial-1-software-setup/">set up Atom and Github, and cloned your Github repository to your computer with Atom</a>.</p>
 
 <ol>
-  <li>Open Atom, and if it does not automatically open to your Github repository folder, click <code class="highlighter-rouge">File</code> &gt; <code class="highlighter-rouge">Add Project Folder...</code> and select the folder you cloned your repository to on your computer, e.g., <code class="highlighter-rouge">C:\Users\student\github\student4046.github.io</code>.<br />
-<img src="../../assignment-resources/images/atom-repo.png" alt="Repo folder in Atom" />
-<small><em>Figure 1. If you have created a repository on Github.com, you can clone it to your computer using Atom, and then also use Atom to edit the web page files.</em></small></li>
-  <li>Create a new folder/file called <code class="highlighter-rouge">map1/index.html</code>, and for the contents of <code class="highlighter-rouge">index.html</code>, paste in the code from the <a href="https://github.com/geog4046/geog4046.github.io/blob/master/examples/skeleton/index.html">basic HTML skeleton</a> example.</li>
-  <li>In your <code class="highlighter-rouge">map1</code> folder, create a new JavaScript file <code class="highlighter-rouge">map1.js</code> and a CSS file <code class="highlighter-rouge">map1.css</code> 
-<img src="../../assignment-resources/images/leaflet-html-css-js-files.png" alt="HTML, CSS, and JavaScript files" />
-<small><em>Figure 2. The tree view in Atom should show the files you just created: <code class="highlighter-rouge">index.html</code>, <code class="highlighter-rouge">map1.css</code>, and <code class="highlighter-rouge">map1.js</code>.</em></small></li>
+  <li>
+    <p>Open Atom, and if it does not automatically open to your Github repository folder, click <code class="highlighter-rouge">File</code> &gt; <code class="highlighter-rouge">Add Project Folder...</code> and select the folder you cloned your repository to on your computer, e.g., <code class="highlighter-rouge">C:\Users\student\github\student4046.github.io</code>.<br />
+<img src="../../assignment-resources/images/atom-repo.png" alt="Repo folder in Atom" /><br />
+<small><em>Figure 1. If you have created a repository on Github.com, you can clone it to your computer using Atom, and then also use Atom to edit the web page files.</em></small></p>
+  </li>
+  <li>
+    <p>Create a new folder/file called <code class="highlighter-rouge">map1/index.html</code>, and for the contents of <code class="highlighter-rouge">index.html</code>, paste in the code from the <a href="https://github.com/geog4046/geog4046.github.io/blob/master/examples/skeleton/index.html">basic HTML skeleton</a> example.<br />
+<img src="../../assignment-resources/images/atom-new-file.png" alt="New file in Atom" /><br />
+<small><em>Figure 2. Creating a file named <code class="highlighter-rouge">map1/index.html</code> will create a folder named <code class="highlighter-rouge">map1</code> and a file inside named <code class="highlighter-rouge">index.html</code>.</em></small></p>
+  </li>
+  <li>
+    <p>In your <code class="highlighter-rouge">map1</code> folder, create a new JavaScript file <code class="highlighter-rouge">map1.js</code> and a CSS file <code class="highlighter-rouge">map1.css</code>: <br />
+<img src="../../assignment-resources/images/leaflet-html-css-js-files.png" alt="HTML, CSS, and JavaScript files" /><br />
+<small><em>Figure 3. The tree view in Atom should show the files you just created: <code class="highlighter-rouge">index.html</code>, <code class="highlighter-rouge">map1.css</code>, and <code class="highlighter-rouge">map1.js</code>.</em></small></p>
+  </li>
   <li>
     <p>Within your <code class="highlighter-rouge">index.html</code> page’s <code class="highlighter-rouge">head</code> tags, add a <code class="highlighter-rouge">link</code> element to include the CSS file you just created:</p>
 
@@ -93,7 +101,24 @@
 
     <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"renameThisId"</span><span class="nt">&gt;&lt;/div&gt;</span>
 </code></pre></div>    </div>
-    <p><strong>Note: The value you choose for <code class="highlighter-rouge">renameThisId</code> will be re-used for the <code class="highlighter-rouge">id</code> in steps 6 and 7.</strong></p>
+    <p><strong>Note: The value you choose for <code class="highlighter-rouge">renameThisId</code> will be re-used for the <code class="highlighter-rouge">id</code> in steps 7 and 8.</strong></p>
+
+    <p>The final HTML file should look like this, but with the <code class="highlighter-rouge">renameThis</code> values changed to your own.</p>
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span> <span class="na">dir=</span><span class="s">"ltr"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"renameThisFile.css"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"renameThisId"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"</span><span class="nt">&gt;&lt;/script&gt;</span> 
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"renameThisFile.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>In the CSS file, create a rule to give the <code class="highlighter-rouge">div</code> a height. Use a different height value for your own map:</p>
@@ -109,10 +134,12 @@
     <p>Note: keywords <code class="highlighter-rouge">L</code>, <code class="highlighter-rouge">map</code>, and <code class="highlighter-rouge">setView</code> are specific to Leaflet, while <code class="highlighter-rouge">var</code> is a JavaScript keyword used to declare a variable; in this case, a variable to hold your map object. The variable name you choose here for the <strong>map object</strong> in place of <code class="highlighter-rouge">renameThisMap</code> will be used later to add layers to the map.</p>
   </li>
   <li>
-    <p>Add a basemap layer to the map (see <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">basemap providers</a>) using your preferred basemap’s URL and your own map object’s name:</p>
+    <p>Add a basemap layer to the map (see <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">basemap providers</a>) using your preferred basemap’s URL and your own <strong>map object’s</strong> name:</p>
 
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">'your-basemap-url-here'</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
 </code></pre></div>    </div>
+    <p><img src="../../assignment-resources/images/basemap-url.png" alt="Example of a basemap URL that can be used with Leaflet" /><br />
+<small><em>Figure 4. An example of a basemap URL that can be used with Leaflet. The URL is passed to the <code class="highlighter-rouge">L.map</code> method as a parameter.</em></small></p>
   </li>
   <li>
     <p>Mark a point of interest on the map using Leaflet’s <code class="highlighter-rouge">marker</code> method. Use your own variable names and coordinates:</p>
@@ -133,9 +160,29 @@
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">renameThisPolygonObject</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s1">'Your polygon popup text here.'</span><span class="p">)</span>
 <span class="nx">renameThisMarkerObject</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s1">'Your marker popup text here.'</span><span class="p">)</span>
 </code></pre></div>    </div>
+
+    <p>All combined, the code should look like this, but change the variable names, basemap URL, coordinates, and popup content to your own values. <strong>This code will not work properly without changing those values.</strong></p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">renameThisMap</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">'renameThis'</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">32.18</span><span class="p">,</span> <span class="o">-</span><span class="mf">99.14</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">'your-basemap-url-here'</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">renameThisMarkerObject</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">marker</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">]).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">renameThisPolygonObject</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">polygon</span><span class="p">([</span>
+  <span class="p">[</span><span class="mi">31</span><span class="p">,</span> <span class="o">-</span><span class="mi">88</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="o">-</span><span class="mi">88</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="o">-</span><span class="mi">82</span><span class="p">]</span>
+<span class="p">]).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
+<span class="nx">renameThisPolygonObject</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s1">'Your polygon popup text here.'</span><span class="p">)</span>
+<span class="nx">renameThisMarkerObject</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s1">'Your marker popup text here.'</span><span class="p">)</span>    
+</code></pre></div>    </div>
   </li>
-  <li><strong>Try it</strong>: consult the Leaflet documentation (or search online) to add a “polyline” to the map.</li>
+  <li>
+    <p>In Atom’s Tree View, you can right-click a file and click <code class="highlighter-rouge">Show in Explorer</code> (Windows) or <code class="highlighter-rouge">Show in Finder</code> (macOS) to see the file. Then you can double-click the HTML file in Explorer or Finder to preview it in your browser. You should save and preview your page often to catch mistakes early, before adding more code.</p>
+  </li>
+  <li>
+    <p><strong>Try it</strong>: consult the Leaflet documentation (or search online) to add a “polyline” to the map.</p>
+  </li>
 </ol>
+
+<p>Review the <a href="https://geog4046.github.io/notes/tutorial-1-software-setup/">software setup tutorial</a> for instructions on uploading your files to Github and viewing your website online.</p>
 
 <h2 id="requirements">Requirements</h2>
 <ol>
@@ -144,7 +191,6 @@
   b. Your own page title<br />
   c. Proper indentation<br />
   d. No errors in the console</li>
-  <li>Load the Leaflet CSS and JavaScript files</li>
   <li>A map <code class="highlighter-rouge">div</code> with a height</li>
   <li>A basemap and features (marker, polygon, <strong>and line</strong>)</li>
   <li>Popups on the marker and polygon features</li>
