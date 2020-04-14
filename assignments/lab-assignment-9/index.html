@@ -82,16 +82,27 @@
 <span class="c1">//                       |---object 2-----|</span>
 <span class="nx">L</span><span class="p">.</span><span class="nx">geoJSON</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span> <span class="na">style</span><span class="p">:</span> <span class="p">{</span> <span class="na">color</span><span class="p">:</span> <span class="s1">'green'</span> <span class="p">}}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
 </code></pre></div>    </div>
-    <p>To illustrate this point, change the code to a longer form using variables, where <code class="highlighter-rouge">stateStyle</code> and <code class="highlighter-rouge">stateGeojsonOptions</code> are names specific to this example:</p>
+    <p>To illustrate this point, change the code to a longer form using variables, where <code class="highlighter-rouge">renameThisStyleObject</code> is an object with a style option (only <code class="highlighter-rouge">color</code>) and <code class="highlighter-rouge">renameThisGeojsonOptionsObject</code> is an object that says this layer’s style should be set to the contents of the <code class="highlighter-rouge">renameThisStyleObject</code> object (again it contains only <code class="highlighter-rouge">color</code>):</p>
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">renameThisStyleObject</span> <span class="o">=</span> <span class="p">{</span> <span class="na">color</span><span class="p">:</span> <span class="s1">'green'</span> <span class="p">}</span>
 <span class="kd">var</span> <span class="nx">renameThisGeojsonOptionsObject</span> <span class="o">=</span> <span class="p">{</span> <span class="na">style</span><span class="p">:</span> <span class="nx">renameThisStyleObject</span> <span class="p">}</span>
 <span class="nx">L</span><span class="p">.</span><span class="nx">geoJSON</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">renameThisGeojsonOptionsObject</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Add additional settings (properties) to the style object (<code class="highlighter-rouge">stateStyle</code>) to customize more than the color. See the Leaflet documentation for the <a href="https://leafletjs.com/reference-1.6.0.html#path-option">list of style options</a>. For example, <code class="highlighter-rouge">color</code>, <code class="highlighter-rouge">weight</code>, and <code class="highlighter-rouge">fillOpacity</code> change a polygon’s border color, border thickness, and transparency. Choose a variable name that fits your chosen dataset.</p>
+    <p>Add additional settings (properties) to the style object (<code class="highlighter-rouge">renameThisStyleObject</code>) to customize more than the color. See the Leaflet documentation for the <a href="https://leafletjs.com/reference-1.6.0.html#path-option">list of style options</a>. For example, <code class="highlighter-rouge">color</code>, <code class="highlighter-rouge">weight</code>, and <code class="highlighter-rouge">fillOpacity</code> change a polygon’s border color, border thickness, and transparency. Choose a variable name that fits your chosen dataset.</p>
 
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">renameThisStyleObject</span> <span class="o">=</span> <span class="p">{</span>
+    <p>To make the code easier to read, the code between the curly braces <code class="highlighter-rouge">{ }</code> can be written on separate lines. Start with the firest line of code from the example above:</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">renameThisStyleObject</span> <span class="o">=</span> <span class="p">{</span> <span class="na">color</span><span class="p">:</span> <span class="s1">'green'</span> <span class="p">}</span>
+</code></pre></div>    </div>
+    <p>Now with the object’s <code class="highlighter-rouge">color</code> property on a new line, and the closing curly brace <code class="highlighter-rouge">}</code> on a new line. It is the same code, but easier to read the <code class="highlighter-rouge">color</code> property:</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// this should replace the original line in the example: var renameThisStyleObject = { color: 'green' }</span>
+<span class="kd">var</span> <span class="nx">renameThisStyleObject</span> <span class="o">=</span> <span class="p">{</span> 
+  <span class="na">color</span><span class="p">:</span> <span class="s1">'green'</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <p>And it’s still easy to read after you add more properties:</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// this should replace the original line in the example: var renameThisStyleObject = { color: 'green' }</span>
+<span class="kd">var</span> <span class="nx">renameThisStyleObject</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">color</span><span class="p">:</span> <span class="s1">'green'</span><span class="p">,</span>
   <span class="na">weight</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="na">fillOpacity</span><span class="p">:</span> <span class="mf">0.2</span>
@@ -102,7 +113,8 @@
   <li>
     <p>Instead of making your style variable an object, it’s possible to make it a function that returns an object:</p>
 
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">renameThisStyleFunction</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// this should replace the original line in the example: var renameThisStyleObject = { color: 'green' }</span>
+<span class="kd">var</span> <span class="nx">renameThisStyleFunction</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">{</span>
     <span class="na">color</span><span class="p">:</span> <span class="s1">'green'</span><span class="p">,</span>
     <span class="na">weight</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -112,36 +124,40 @@
 </code></pre></div>    </div>
     <p>This could be useful for applying some logic, like changing a feature’s color based on an attribute. This is possible because Leaflet allows us to pass a <code class="highlighter-rouge">feature</code> object to the function as an argument, which lets us get the feature’s attribute data:</p>
 
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">renameThisStyleFunction</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">feature</span><span class="p">)</span> <span class="p">{</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// this should replace the original line in the example: var renameThisStyleObject = { color: 'green' }</span>
+<span class="kd">var</span> <span class="nx">renameThisStyleFunction</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">feature</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">renameThisAgeInteger</span> <span class="o">=</span> <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">MED_AGE</span> <span class="c1">// get the current state's Median Age attribute</span>
   <span class="kd">var</span> <span class="nx">renameThisColorString</span> <span class="o">=</span> <span class="s1">'olive'</span> <span class="c1">// let the initial color be a darker green</span>
-  <span class="k">if</span> <span class="p">(</span> <span class="nx">renameThisAgeInteger</span> <span class="o">&lt;</span> <span class="mi">38</span> <span class="p">)</span> <span class="p">{</span> <span class="nx">renameThisColorString</span> <span class="o">=</span> <span class="s1">'green'</span> <span class="p">}</span> <span class="c1">// if the state's median age is less than the average, color it a lighter green</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">renameThisAgeInteger</span> <span class="o">&lt;</span> <span class="mi">38</span><span class="p">)</span> <span class="p">{</span> <span class="nx">renameThisColorString</span> <span class="o">=</span> <span class="s1">'green'</span> <span class="p">}</span> <span class="c1">// if the state's median age is less than the average, color it a lighter green</span>
   <span class="k">return</span> <span class="p">{</span>
-    <span class="na">color</span><span class="p">:</span> <span class="nx">renameThisColorString</span><span class="p">,</span> <span class="c1">//use the color variable above for the value</span>
+    <span class="na">color</span><span class="p">:</span> <span class="nx">renameThisColorString</span><span class="p">,</span> <span class="c1">// use the color variable above for the value</span>
     <span class="na">weight</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="na">fillOpacity</span><span class="p">:</span> <span class="mf">0.2</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>    </div>
-    <p><strong>In your assignment, choose a different attribute from the example above.</strong><br />
-Note the line containing <code class="highlighter-rouge">if (renameThisAge &lt; 38) { //code here }</code>. This is a conditional statement, meaning it checks if a condition is true or false. In this case, it is evaluating whether the value of <code class="highlighter-rouge">renameThisAge</code> is less than 38. You can use other comparison operators to test if numbers are greater than, less than, or equal, or if strings (text) are the same. For example, <code class="highlighter-rouge">if ( stateName == 'Louisiana' ) { // code here }</code> would check if a value is exactly equal to “Louisiana” (you must use two equal signs and enclose the string value in quotes). See this reference for other <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Comparison">conditional operators</a>.</p>
+    <p><strong>In your assignment, choose a different attribute besides <code class="highlighter-rouge">Median Age</code>.</strong></p>
+
+    <p>Note the line containing <code class="highlighter-rouge">if (renameThisAge &lt; 38) { //code here }</code>. This is a conditional statement, meaning it checks if a condition is true or false. In this case, it is evaluating whether the value of <code class="highlighter-rouge">renameThisAge</code> is less than 38. You can use other comparison operators to test if numbers are greater than, less than, or equal, or if strings (text) are the same. For example, <code class="highlighter-rouge">if ( stateName == 'Louisiana' ) { // code here }</code> would check if a value is exactly equal to “Louisiana” (you must use two equal signs and enclose the string value in quotes). See this reference for other <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Comparison">conditional operators</a>.</p>
   </li>
   <li>
-    <p>In addition to the <code class="highlighter-rouge">style</code> property in the GeoJSON options object (<code class="highlighter-rouge">stateGeojsonOptions</code> in Step 7), Leaflet gives us other properties that do useful things to our layer’s features. Leaflet’s <code class="highlighter-rouge">onEachFeature</code> option allows us to create a function to perform some task on every feature in the layer. To demonstrate, we will create a function to add a popup to each feature (i.e., each state). First, add the <code class="highlighter-rouge">onEachFeature</code> property to your GeoJSON options under the <code class="highlighter-rouge">style</code> property. Set the values to the names of your functions.</p>
+    <p>In addition to the <code class="highlighter-rouge">style</code> property in the GeoJSON options object (<code class="highlighter-rouge">renameThisGeojsonOptionsObject</code> in Step 7), Leaflet gives us other properties that do useful things to our layer’s features. Leaflet’s <code class="highlighter-rouge">onEachFeature</code> option allows us to create a function to perform some task on every feature in the layer. To demonstrate, we will create a function to add a popup to each feature (i.e., each state). First, add the <code class="highlighter-rouge">onEachFeature</code> property to your GeoJSON options under the <code class="highlighter-rouge">style</code> property. Set the values to the names of your functions.</p>
 
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">renameThisGeojsonOptionsObject</span> <span class="o">=</span> <span class="p">{</span>
+    <p>Notice that it is written on different lines to make it easier to read, like we did with the <code class="highlighter-rouge">color</code> property before.</p>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// this should replace the original line in the example: var renameThisGeojsonOptionsObject = { style: renameThisStyleObject }</span>
+<span class="kd">var</span> <span class="nx">renameThisGeojsonOptionsObject</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">style</span><span class="p">:</span> <span class="nx">renameThisStyleFunction</span><span class="p">,</span>
   <span class="na">onEachFeature</span><span class="p">:</span> <span class="nx">renameThisOnEachFeatureFunction</span>
 <span class="p">}</span>
 </code></pre></div>    </div>
 
-    <p>Now create the function, empty at first but with the <code class="highlighter-rouge">feature</code> and <code class="highlighter-rouge">layer</code> objects as arguments. Like with the <code class="highlighter-rouge">style</code> option, Leaflet lets us pass the feature as an argument so we can access its attribute data.</p>
+    <p>Now create the function, empty at first but with the <code class="highlighter-rouge">feature</code> and <code class="highlighter-rouge">layer</code> objects as arguments. Like with the <code class="highlighter-rouge">style</code> option, Leaflet lets us pass the feature as an argument so we can access its attribute data. Add this after all of your existing code:</p>
 
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">var</span> <span class="nx">renameThisOnEachFeatureFunction</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">feature</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// contents of the function</span>
  <span class="p">}</span>
 </code></pre></div>    </div>
-    <p>We can use Leaflet’s <code class="highlighter-rouge">bindPopup</code> method to have a popup appear when the user clicks a state. We can use <code class="highlighter-rouge">feature.properties.STATE_NAME</code> and <code class="highlighter-rouge">feature.properties.MED_AGE</code> to display the state’s name and median age in the popup. We can use HTML to style the text as well. Note that the <code class="highlighter-rouge">bindPopup</code> method is used on the <code class="highlighter-rouge">layer</code> argument.</p>
+    <p>For the contents of the function, we can use Leaflet’s <code class="highlighter-rouge">bindPopup</code> method to have a popup appear when the user clicks a state. We can use <code class="highlighter-rouge">feature.properties.STATE_NAME</code> and <code class="highlighter-rouge">feature.properties.MED_AGE</code> to display the state’s name and median age in the popup. We can use HTML to style the text as well (here only a <code class="highlighter-rouge">&lt;br&gt;</code> tag is used to break up the text onto a new line).</p>
 
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">var</span> <span class="nx">renameThisOnEachFeatureFunction</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">feature</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATE_NAME</span>
@@ -162,10 +178,10 @@ Note the line containing <code class="highlighter-rouge">if (renameThisAge &lt; 
   c. Proper indentation<br />
   d. No errors in the console</li>
   <li>A basemap</li>
-  <li>Features displayed on the map from a GeoJSON web service.</li>
+  <li>Features displayed on the map from a GeoJSON web service. Can use the states example GeoJSON.</li>
   <li>Attribute-based symbology on GeoJSON features, using at least 4 <a href="https://leafletjs.com/reference-1.4.0.html#path-option">style options</a>.</li>
   <li>A popup on each GeoJSON feature.</li>
-  <li>An attribute value from the GeoJSON data diplayed in the popup. If using the state demographics dataset, use a different attribute from the MED_AGE example above. See the <a href="/portfolio/data/us_state_demographics_ESRI_2010A.xlsx">metadata spreadsheet</a>.</li>
+  <li>An attribute value from the GeoJSON data diplayed in the popup. If using the state demographics dataset, use a different attribute from the MED_AGE example above. See the <a href="../../assignment-resources/data/us_state_demographics_ESRI_2010A.xlsx">metadata spreadsheet</a>.</li>
   <li>Appropriate zoom and center</li>
   <li>Rename variables and functions to something descriptive</li>
 </ol>
@@ -176,26 +192,27 @@ Note the line containing <code class="highlighter-rouge">if (renameThisAge &lt; 
 </ol>
 
 <h2 id="appendix">Appendix</h2>
+<p>Optional code examples to add tools to your map.</p>
 
 <h3 id="controls-to-toggle-basemaps">Controls to toggle basemaps</h3>
 <p>Leaflet has a tool that allows users to show or hide layers. To get the tool to work with GeoJSON layers and basemaps, there are several lines of code that need to be added. The examples below add onto the GeoJSON example above.</p>
 
-<p>Adding a control to toggle between multiple basemaps is relatively simple. First, we need to save our basemap object to a variable. Thus, the line of code creating the basemap:</p>
+<p>Adding a control to toggle between multiple basemaps is relatively simple. First, we need to save our basemap object to a variable. Thus, the original line of code creating the basemap:</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
 </code></pre></div></div>
-<p>Would become:</p>
+<p>Should become:</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">grayBasemapObject</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
 </code></pre></div></div>
-<p>Where <code class="highlighter-rouge">grayBasemapObject</code> is a variable name you choose to describe your specific basemap. Repeat that line to add another basemap, with its own variable name:</p>
+<p>Where <code class="highlighter-rouge">grayBasemapObject</code> is a variable name you choose to describe your specific basemap. Repeat that line but change the URL to add another basemap, with its own variable name:</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">streetsBasemapObject</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
 </code></pre></div></div>
-<p>Next, we need to create an object that acts as a list of basemaps, including the variable name and a label to display to the user. The last item in the list will be the basemap that first appears by default:</p>
+<p>Next, we need to create an object that acts as a list of basemaps, including the variable name and a label to display to the user. The last item in the list will be the basemap that first appears by default. This code can be inserted after the lines above:</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">basemapsObject</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Streets'</span><span class="p">:</span> <span class="nx">streetsBasemapObject</span><span class="p">,</span>
   <span class="s1">'Gray canvas'</span><span class="p">:</span> <span class="nx">grayBasemapObject</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<p>Next, we add the control box to the map:</p>
+<p>Next, we add the control box to the map. This can go after all existing code:</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">L</span><span class="p">.</span><span class="nx">control</span><span class="p">.</span><span class="nx">layers</span><span class="p">(</span><span class="nx">basemapsObject</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
 </code></pre></div></div>
 
@@ -203,14 +220,56 @@ Note the line containing <code class="highlighter-rouge">if (renameThisAge &lt; 
 <p>There are some additional steps to get a control for GeoJSON layers. First we need to create an empty “placeholder” object that we will add our GeoJSON layer to layer. Add this after you declare your map object variable:</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">statesLayerObject</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">layerGroup</span><span class="p">().</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
 </code></pre></div></div>
-<p>Where <code class="highlighter-rouge">statesLayerObject</code> is a variable name you choose to describe your GeoJSON data. Next, add this line into the <code class="highlighter-rouge">onEachFeature</code> function we created in the example above:</p>
+<p>Where <code class="highlighter-rouge">statesLayerObject</code> is a variable name you choose to describe your GeoJSON data. Next, add this line into the <code class="highlighter-rouge">renameThisOnEachFeatureFunction</code> function we created in the example above:</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">statesLayerObject</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">layer</span><span class="p">)</span>
 </code></pre></div></div>
 <p>Finally, create a “list” (even though it only has our one GeoJSON layer for now), as we did with the basemaps. Also modify the arguments of the <code class="highlighter-rouge">L.control.layers</code> method to include the new layer list:</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">layersObject</span> <span class="o">=</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// this should replace the original line in the example: L.control.layers(basemapsObject).addTo(renameThisMap)</span>
+<span class="kd">var</span> <span class="nx">layersObject</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Median age by state'</span><span class="p">:</span> <span class="nx">statesLayerObject</span>
 <span class="p">}</span>
 <span class="nx">L</span><span class="p">.</span><span class="nx">control</span><span class="p">.</span><span class="nx">layers</span><span class="p">(</span><span class="nx">basemapsObject</span><span class="p">,</span> <span class="nx">layersObject</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="complete-code">Complete code</h3>
+<p>This all of the code snippets put together for a nearly working web map. Variable names and values need to be changed appropriately.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">renameThisMapObject</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">'renameThisDivId'</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">32.18</span><span class="p">,</span> <span class="o">-</span><span class="mf">99.14</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">statesLayerObject</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">layerGroup</span><span class="p">().</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMapObject</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">grayBasemapObject</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMapObject</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">renameThisUrl</span> <span class="o">=</span> <span class="s1">'https://geog4046.github.io/assignment-resources/data/us_state_demographics_ESRI_2010A.geojson'</span>
+<span class="kd">var</span> <span class="nx">streetsBasemapObject</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMapObject</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">basemapsObject</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'Streets'</span><span class="p">:</span> <span class="nx">streetsBasemapObject</span><span class="p">,</span>
+  <span class="s1">'Gray canvas'</span><span class="p">:</span> <span class="nx">grayBasemapObject</span>
+<span class="p">}</span>
+<span class="nx">jQuery</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="nx">renameThisUrl</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">renameThisStyleFunction</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">feature</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">renameThisAgeInteger</span> <span class="o">=</span> <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">MED_AGE</span> <span class="c1">// get the current state's Median Age attribute</span>
+    <span class="kd">var</span> <span class="nx">renameThisColorString</span> <span class="o">=</span> <span class="s1">'olive'</span> <span class="c1">// let the initial color be a darker green</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">renameThisAgeInteger</span> <span class="o">&lt;</span> <span class="mi">38</span><span class="p">)</span> <span class="p">{</span> <span class="nx">renameThisColorString</span> <span class="o">=</span> <span class="s1">'green'</span> <span class="p">}</span> <span class="c1">// if the state's median age is less than the average, color it a lighter green</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="na">color</span><span class="p">:</span> <span class="nx">renameThisColorString</span><span class="p">,</span> <span class="c1">// use the color variable above for the value</span>
+      <span class="na">weight</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">fillOpacity</span><span class="p">:</span> <span class="mf">0.5</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="kd">var</span> <span class="nx">renameThisGeojsonOptionsObject</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">style</span><span class="p">:</span> <span class="nx">renameThisStyleFunction</span><span class="p">,</span>
+    <span class="na">onEachFeature</span><span class="p">:</span> <span class="nx">renameThisOnEachFeatureFunction</span>
+  <span class="p">}</span>
+  <span class="nx">L</span><span class="p">.</span><span class="nx">geoJSON</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">renameThisGeojsonOptionsObject</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMapObject</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="kd">var</span> <span class="nx">renameThisOnEachFeatureFunction</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">feature</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATE_NAME</span>
+  <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">MED_AGE</span>
+  <span class="nx">layer</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s1">'Median age of '</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">': '</span> <span class="o">+</span> <span class="nx">age</span> <span class="o">+</span> <span class="s1">'&lt;br&gt;National average: 38'</span><span class="p">)</span>
+  <span class="nx">statesLayerObject</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">layer</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">layersObject</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'Median age by state'</span><span class="p">:</span> <span class="nx">statesLayerObject</span>
+<span class="p">}</span>
+<span class="nx">L</span><span class="p">.</span><span class="nx">control</span><span class="p">.</span><span class="nx">layers</span><span class="p">(</span><span class="nx">basemapsObject</span><span class="p">,</span> <span class="nx">layersObject</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMapObject</span><span class="p">)</span>
 </code></pre></div></div>
 
     </section>
