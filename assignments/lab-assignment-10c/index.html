@@ -80,6 +80,7 @@
   <span class="nx">L</span><span class="p">.</span><span class="nx">geoJSON</span><span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">renameThisMap</span><span class="p">)</span>
 <span class="p">})</span>
 </code></pre></div>    </div>
+    <p>Note: If you choose your own layer, it should show features at a local level, such as zoomed into a city, to show the 3D basemap. A statewide or national layer isn’t ideal because the 3D buildings won’t be visible when zoomed out far.</p>
   </li>
   <li>
     <p>And as with a normal Leaflet map, we can pass a second argument to the <code class="highlighter-rouge">L.geoJSON</code> method. The argument is an object containing some properties to customize what happens with the GeoJSON layer, including adding popups on each feature. Change the arguments to include the onEachFeature property:</p>
@@ -127,17 +128,16 @@
   c. Proper indentation<br />
   d. No errors in the console</li>
   <li>A basemap</li>
-  <li>Features displayed on the map from a GeoJSON web service.</li>
-  <li>Attribute-based symbology on GeoJSON features, using at least 4 <a href="https://leafletjs.com/reference-1.4.0.html#path-option">style options</a>.</li>
+  <li>Features displayed on the map from a GeoJSON web service. Features should be at a local level, such as a city, to show the 3D basemap.</li>
   <li>A popup on each GeoJSON feature.</li>
-  <li>An attribute value from the GeoJSON data diplayed in the popup. If using the state demographics dataset, use a different attribute from the MED_AGE example above. See the <a href="/portfolio/data/us_state_demographics_ESRI_2010A.xlsx">metadata spreadsheet</a>.</li>
+  <li>An attribute value from the GeoJSON data diplayed in the popup.</li>
   <li>Appropriate zoom and center</li>
   <li>Rename variables and functions to something descriptive</li>
 </ol>
 
 <h2 id="submit">Submit</h2>
 <ol>
-  <li>The URL to your map page: <code class="highlighter-rouge">https://yourname.github.io/map4</code></li>
+  <li>The URL to your map page: <code class="highlighter-rouge">https://yourname.github.io/wrld</code></li>
 </ol>
 
     </section>
