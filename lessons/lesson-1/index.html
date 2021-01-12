@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lesson 1 | GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/lessons">Lessons</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Lesson 1</h1>
+      <h2 class="text-center">What is Web GIS...or GIS for that matter?</h2>
+      <p>Terms: geographic information, geographic information system, Web GIS</p>
+
+<p>In my position doing IT in a geography department, something started happening a decade or so ago. People started asking how to put their maps on webpages. Faculty, students, local businesses, and people from state government wanted guidance on how to not just put a picture of a map online, but build an interactive map where users could zoom, pan, and click features. They wanted the Google Maps experience but for exploring their own data and multimedia. Interactive web maps had been around since the 1990s, but by the end of the 2000s, the software had matured enough to become widely accessible, and the public had become familiar enough with Google Maps to demand such a thing. Therefore, I was pulled into the world of “Web GIS”, learning the software and techniques for mapping and sharing data online through websites, desktop applications, and mobile apps.</p>
+
+<p>The term “Web GIS” needs further explanation, but first I should define GIS and geographic information.</p>
+
+<p>Any type of information that can be tied to a location on Earth can be considered <strong>geographic information</strong> (or similar terms, spatial data, geospatial data, location information). The border of a country is geographic information. Election results by precinct are geographic information. Social media posts tagged at a restaurant location are geographic information.</p>
+
+<p>A <strong>geographic information system</strong> (GIS) is software to map, query, and analyze location-based information (GIS can also mean geographic information <em>science</em>, referring more broadly to a discipline focused on spatial analysis). GIS software can display geographic information on a map on your screen, and also perform spatial calculations like finding the distance between two points on the map or finding all features within a certain distance of other features (e.g., all hospitals in New Orleans within one mile of an interstate highway).</p>
+
+<p>The software can do this because of coordinate systems, like latitude and longitude, which allow datasets to be placed at numerically identifiable locations on Earth’s surface. GIS software can then do the math on these datasets to calculate statistics, distance, and more complex geometry. These analyses and their visualization on maps can reveal patterns and relationships among things and phenomena on Earth.</p>
+
+<p>GIS started out as desktop applications, but like other software it has evolved to take advantage of the Internet so that geographic information is not just a file saved on your computer, but a web resource similar to a webpage viewed in a browser or mobile app, shared with potentially millions of viewers. A type of web resource called a web service has emerged as a fundamental part of modern GIS, making it possible to integrate your data into third-party apps, and share huge amounts of data online (think satellite imagery covering the planet for the past 40 years), even to a low-capacity device like a phone.</p>
+
+<p>The transmission of geographic information over the Internet is a fundamental aspect of Web GIS, requiring certain techniques and considerations not typical of traditional GIS. To give it a definition, <strong>Web GIS</strong> is any web-based system used to analyze, visualize, share, or organize geographic information. This course will introduce the major concepts and provide experience with Web GIS applications through hands-on exercises.</p>
+
+<p>Typically, this means creating a website displaying an interactive map including data layers, a basemap, and tools for using the map.</p>
+
+<p> <br />
+<img src="../../lessons/images/anatomy-app.png" alt="Anatomy of a web GIS app" class="no-shadow" />  <br />
+<small><em>Figure 1. Anatomy of a web GIS app, or a website displaying a map. It will typically contain operational layers, basemaps, and tools for using the map. Icons derived from “Getting to Know Web GIS, 3rd Ed.”</em></small></p>
+
+<p><strong>Layers</strong> consist of  collections of graphics drawn on a map, including points, lines, polygons, and imagery. The graphics in a layer share a common theme, such as points representing airports in one layer, lines representing rivers in another layer, polygons representing national parks in another layer, and satellite imagery in another layer. Point, line, and polygon objects in a layer are known as <strong>features</strong>, and the layer is sometimes called a feature layer. The layers containing the main data you are communicating with your map are considered operational layers. These features have attributes; for example, a layer of airport locations might have a table of attributes including the airport’s name, identifier code, and number of runways.</p>
+
+<p> 
+<img src="../../lessons/images/op-layers.png" alt="Operational layers" class="no-shadow" />  <br />
+<small><em>Figure 2. Operational layers can contain vector features or raster images. Features are points, lines, or polygons representing geographic data on a map.</em></small></p>
+
+<p>A layer that acts as a background for reference or context is the <strong>basemap</strong>. Basemaps often consist of streets and boundaries or satellite/aerial imagery.</p>
+
+<p> <br />
+<img src="../../lessons/images/basemaps.png" alt="Basemaps" class="no-shadow" />  <br />
+<small><em>Figure 2. Basemaps act as a background to provide a reference or context for operational layers.</em></small></p>
+
+<p>Web GIS apps can also offer various tools to help users interact with the map and its data. For example, tools might allow you to:</p>
+<ul>
+  <li>Navigate the map – zoom, pan, search an address, switch basemap</li>
+  <li>Filter – “Show only earthquakes from the year 2000”</li>
+  <li>Summarize – “Count the number of earthquakes for each magnitude”</li>
+  <li>Run spatial analysis – “Show all railroads within 5 miles of an epicenter”</li>
+</ul>
+
+<p> <br />
+<img src="../../lessons/images/tools.png" alt="Tools" class="no-shadow" />  <br />
+<small><em>Figure 2. Web GIS app with tools that let users interact with the map and data.</em></small></p>
+
+<p>To see some examples of web GIS applications in action, look through these websites:</p>
+<ul>
+  <li><a href="https://earth.google.com/web">Google Earth</a></li>
+  <li><a href="https://geodesy.noaa.gov/storm_archive/storms/aug2016_lafloods/index.html">Louisiana 2016 flood imagery</a></li>
+  <li><a href="https://www.accuweather.com/en/us/baton-rouge-la/70806/weather-radar/329147">Local weather radar</a></li>
+  <li><a href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6">COVID-19 dashboard</a></li>
+  <li><a href="https://storymaps.arcgis.com/stories/5985c0af444c4fbbb53b92a1bf880503">Story map about global wildfires</a></li>
+  <li><a href="https://www.lootlake.info">Video game map</a></li>
+  <li><a href="https://geog4046.github.io/examples/starstuff">Large Orion Nebula image</a> - not a map but uses web GIS techniques</li>
+</ul>
+
+<p>Finally, before moving on to the Concepts of Web GIS lesson, let’s jump into making a website with a map on it (a “web app” in ArcGIS Online terms). Go to <a href="../../assignments">Assignments</a> and proceed to Assignment 1, which follows Esri’s “Get Started with ArcGIS Online” tutorial, meant for newcomers to Web GIS.</p>
+
+      <a href="#top">Top</a><br>
+      <a href="../../lessons/">Back to Lessons</a>
+    </section>
+    
+<footer class="site-footer">
+  <small>&copy; All rights reserved.</small>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

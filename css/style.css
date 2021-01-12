@@ -21,6 +21,9 @@ h2.project-tagline {
   margin: 20px 0;
   box-shadow: 0px 0px 10px #999
 }
+img.no-shadow {
+  box-shadow: none;
+}
 .leaflet-container img, .gm-style img {
   margin: 0px;
   box-shadow: none;
@@ -49,4 +52,7 @@ h2.project-tagline {
 }
 .main-content :first-child .leaflet-popup-content {
   margin: 13px 19px
+}
+.muted {
+  color: #CBCBCB;
 }
