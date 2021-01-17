@@ -73,7 +73,7 @@
 
 <p>  
 <img src="../../lessons/images/early-gis-at-lsu.jpg" alt="Early GIS" /><br />
-<small><em>Figure 1. A geographic information system used at LSU in the 1980s for land use assessment.</em></small></p>
+<small><em>Figure 2. A geographic information system used at LSU in the 1980s for land use assessment.</em></small></p>
 
 <p>As a way to transfer or communicate information, GIS turned maps into moving, living visualizations. Therefore, when it became practical to transfer geographic information over the Internet, maps could not simply be static images; users demanded more than just pictures that they could not click, zoom, or interact with at all. Web maps had to live up to the capabilities that were already present in GIS software, at least to the extent possible with web browsers of the late 1990s and early 2000s.</p>
 
@@ -81,7 +81,7 @@
 
 <p>  
 <img src="../../lessons/images/arcims-brochure-2000s.png" alt="Early Web Maps" /><br />
-<small><em>Figure 1. Web maps from the early 2000s powered by ArcIMS, a web GIS server application. Source: <a href="https://www.esri.com/library/brochures/pdfs/arcims_bro.pdf">Esri</a>.</em></small></p>
+<small><em>Figure 3. Web maps from the early 2000s powered by ArcIMS, a web GIS server application. Source: <a href="https://www.esri.com/library/brochures/pdfs/arcims_bro.pdf">Esri</a>.</em></small></p>
 
 <p>At the same time, special considerations were needed due to slow Internet connections and low capacity for storage and processing on personal computers.</p>
 
@@ -89,7 +89,7 @@
 
 <p>  
 <img src="../../lessons/images/jhu-covid-dashboard.png" alt="Modern Web GIS dashboard" /><br />
-<small><em>Figure 1. A modern web GIS application combining multiple data sources and visualizations into a dashboard. Source: <a href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6">JHU COVID-19 Dashboard</a>.</em></small></p>
+<small><em>Figure 4. A modern web GIS application combining multiple data sources and visualizations into a dashboard. Source: <a href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6">JHU COVID-19 Dashboard</a>.</em></small></p>
 
 <h2 id="servers-and-services">Servers and services</h2>
 
@@ -99,7 +99,7 @@
 
 <p>  
 <img src="../../lessons/images/server-client-early-web.png" alt="Servers and clients on the early web" class="no-shadow" /><br />
-<small><em>Figure 1. An example of servers and clients on the early web. In the most simple form of this relationship, humans use a client, such as a web browser on a PC, to download information from a server.</em></small></p>
+<small><em>Figure 5. An example of servers and clients on the early web. In the most simple form of this relationship, humans use a client, such as a web browser on a PC, to download information from a server.</em></small></p>
 
 <p>Another trend, or more like a philosophy, is called <strong>service-oriented architecture</strong>, which will be elaborated on here before bringing the discussion back to GIS, so bear with me.</p>
 
@@ -109,19 +109,19 @@
 
 <p> <br />
 <img src="../../lessons/images/windows-services.png" alt="Windows services" /><br />
-<small><em>Figure 1. A list of services running in the Windows operating system (OS). These services perform specific tasks for the OS and applications installed in the OS, for example, printing a document from Windows or Word.</em></small></p>
+<small><em>Figure 6. A list of services running in the Windows operating system (OS). These services perform specific tasks for the OS and applications installed in the OS, for example, printing a document from Windows or Word.</em></small></p>
 
 <p>With the Internet, services are not limited to communicating only with other services on the same computer. They can be accessed by software on computers (servers or clients) in a different office, a different department, a completely different company, university, or government agency, or even by the general public. These are web services. A <strong>web service</strong> is a program that runs on a web server and exposes programming interfaces to other programs on the web. In other words, web services allow applications to talk to each other over the Internet; they are how machines talk to machines online.</p>
 
 <p>  
 <img src="../../lessons/images/server-client-modern-web.png" alt="Servers and clients using web services on the modern web" class="no-shadow" /><br />
-<small><em>Figure 1. Clients downloading information from servers, and servers communicating through web services. Web services allow interoperability between computer systems, such as using a Facebook account to sign into Netflix or ArcGIS Online. Netflix and ArcGIS Online (Esri) use servers hosted by Amazon Web Services (AWS) for storage and computing.</em></small></p>
+<small><em>Figure 7. Clients downloading information from servers, and servers communicating through web services. Web services allow interoperability between computer systems, such as using a Facebook account to sign into Netflix or ArcGIS Online. Netflix and ArcGIS Online (Esri) use servers hosted by Amazon Web Services (AWS) for storage and computing.</em></small></p>
 
 <p>This service-oriented approach is very common today. Think about Facebook as an application, with user sign-ins handled by a service. Facebook can use its own sign-in service across its websites and apps, but it can also <a href="https://developers.facebook.com/docs/facebook-login/web/">open up that service to third parties</a>. Web services are why you can use a Facebook account to sign into other websites, and why Disney+ customers can pay with PayPal, and why a Weather Underground weather map can show a radar layer from the Weather Channel website, and so on. Web services allow applications, including maps, to talk to each other.</p>
 
 <p> 
 <img src="../../lessons/images/weather-radar-service.png" alt="Weather radar web service" /><br />
-<small><em>Figure 1. A weather map (wunderground.com) that displays radar imagery from a different website (weather.com) via a web service. The right panel (wunderground.com) shows the map with a mosaic of radar tiles, while the left (Chrome Developer Tools) shows the URLs of the individual tiles downloaded by my browser and pieced together on the map.</em></small></p>
+<small><em>Figure 8. A weather map (wunderground.com) that displays radar imagery from a different website (weather.com) via a web service. The right panel (wunderground.com) shows the map with a mosaic of radar tiles, while the left (Chrome Developer Tools) shows the URLs of the individual tiles downloaded by my browser and pieced together on the map.</em></small></p>
 
 <p>The data is not necessarily being duplicated for each of these websites. Instead, they essentially “stream” the data through a web service and display it on their own website.</p>
 
@@ -136,7 +136,7 @@
 
 <p> 
 <img src="../../lessons/images/server-client-request-response.png" alt="Clients send requests, servers send responses" class="no-shadow" /><br />
-<small><em>Figure 1. To download webpages, images, and other resources from a URL, clients like browsers and mobile apps send a request to a web server. Behind the scenes, the web server and other applications retrieve the resource from a database or file storage. They may perform other tasks, such as check if the client is signed in or customize the resource based on client input (e.g., print “Hello, Dave” at the top of the webpage). Then the web server responds with the resource for the client to download.</em></small></p>
+<small><em>Figure 9. To download webpages, images, and other resources from a URL, clients like browsers and mobile apps send a request to a web server. Behind the scenes, the web server and other applications retrieve the resource from a database or file storage. They may perform other tasks, such as check if the client is signed in or customize the resource based on client input (e.g., print “Hello, Dave” at the top of the webpage). Then the web server responds with the resource for the client to download.</em></small></p>
 
 <p>Webpages that seem personalized, or that let you interact and customize the experience, are applications that are responding to your input, including the URL you used to access the page. To use an online shopping example, going to <code class="highlighter-rouge">example.com/cart</code> might take you to a shopping cart page that shows you the products you have added, then <code class="highlighter-rouge">example.com/checkout</code> would show you a page where you can pay. In both cases, an application is generating pages based on the URL, based on information it pulled from the product database, from the customer database, and any other data sources needed for you to check out.</p>
 
