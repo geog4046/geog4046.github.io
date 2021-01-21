@@ -1,3 +1,7 @@
+dfn {
+  font-style: normal;
+  text-decoration: dotted underline;
+}
 section.page-header {
   background-image: url('../images/header-lidar.jpg');
 }
