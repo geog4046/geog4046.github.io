@@ -89,7 +89,7 @@
    <span class="p">)</span> <span class="o">*</span> <span class="nx">R</span><span class="p">;</span>
 
  <span class="c1">// Output the calculated distance value to the client and complete the execution of the program. </span>
- <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">d</span><span class="p">);</span>
+ <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"{distance: "</span> <span class="o">+</span> <span class="nx">d</span> <span class="o">+</span> <span class="s2">"}"</span><span class="p">);</span>
  <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
@@ -108,7 +108,7 @@
       <li><code class="highlighter-rouge">lonB</code> = -91.187</li>
     </ul>
   </li>
-  <li>The web service should now output <code class="highlighter-rouge">124.53850456983854</code>, which is the distance in kilometers.</li>
+  <li>The web service should now output <code class="highlighter-rouge">{distance: 124.53850456983854}</code>, which is the distance in kilometers.</li>
 </ol>
 
 <h2 id="try-it">Try it</h2>
