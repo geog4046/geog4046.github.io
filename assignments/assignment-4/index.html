@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Assignment 4 | GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/lessons">Lessons</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Assignment 4</h1>
+      <h2 class="text-center">Create a COVID-19 Dashboard</h2>
+      <p>Create a web app in ArcGIS Online that uses layer styles to communicate geographic information. Use different symbols, shapes, colors, or sizes to represent a dataset of your choice, and publish the map in a web app that gives the audience tools to explore the data.</p>
+
+<p>As an example, this exercise will roughly re-create the <a href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6">COVID-19 Dashboard launched by Johns Hopkins University</a> (JHU) as of January 2021. In the year since its inception, the dashboard and its mobile version have received a combined 3 billion views.</p>
+
+<p>An ArcGIS Online Dashboard is a template for a web app that uses panels to display different information as text, maps, graphs, images, or other media. It is useful for a topic like a COVID-19 where several metrics are needed to portray different aspects of the pandemic.</p>
+
+<iframe width="100%" height="600" src="https://lsu-its.maps.arcgis.com/apps/opsdashboard/index.html#/49c3ba7ab8484cb7811d213869a5af93" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="data">Data</h2>
+<p>Our COVID-19 dashboard will use multiple datasets created by the JHU team.</p>
+<ul>
+  <li>Point data - The <a href="https://lsu-its.maps.arcgis.com/home/item.html?id=1cb306b5331945548745a5ccd290188e">Coronavirus COVID-19 Cases V2</a> item in the ArcGIS Online Living Atlas contains two layers we’ll use. Here they are along with the relevant attributes.
+    <ul>
+      <li><code class="highlighter-rouge">Cases</code> (points) - records of territories (countries, regions, states, provinces, counties) with the number of confirmed COVID-19 cases, cases that recovered, deaths, and the last date the numbers were updated.</li>
+      <li><code class="highlighter-rouge">Cases_country</code> (points) - like <code class="highlighter-rouge">Cases</code> but only for countries, and it also has the incidence rate (cases per 100,000 population) and mortailty (ratio of deaths to cases)</li>
+      <li><code class="highlighter-rouge">Cases_state</code> (points) - like <code class="highlighter-rouge">Cases</code> but for US states</li>
+    </ul>
+  </li>
+  <li>Table data - We’ll use <a href="https://www.arcgis.com/home/item.html?id=0a80b84ab22a4db8a9b0f841255a9e86">another item</a> to build a chart. It is deprecated and could be discontinued at any time, but it has the daily mortality needed for the chart.
+    <ul>
+      <li><code class="highlighter-rouge">Cases_time</code> - contains columns for daily recorded deaths and new confirmed cases</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Here is the plan of attack for where the data will be displayed in dashboard panels:</p>
+
+<p><img src="../../assignment-resources/images/od-layout.png" alt="Where layers are used in different places on the dashboard" /><br />
+<small><em>Layout of the dashboard labeled with where the layers will be used.</em></small></p>
+
+<h2 id="steps">Steps</h2>
+<p>Since we are using layers already in ArcGIS Online, we can get started building the map that will be the basis of our dashboard. Here are the steps.</p>
+
+<ul>
+  <li><a href="#part-1-create-a-map">Part 1: Create a Map</a></li>
+  <li><a href="#part-2-create-a-dashboard-app">Part 2: Create a Dashboard App</a></li>
+  <li><a href="#try-it">Try it</a></li>
+  <li><a href="#submit">Submit</a></li>
+</ul>
+
+<h3 id="part-1-create-a-map">Part 1: Create a Map</h3>
+<ol>
+  <li>
+    <p>Sign into ArcGIS Online and open the <strong>Map Viewer</strong> with a new map.</p>
+  </li>
+  <li>
+    <p>Click <code class="highlighter-rouge">Add</code> &gt; <code class="highlighter-rouge">Search for Layers</code> &gt; <code class="highlighter-rouge">ArcGIS Online</code> and search for <code class="highlighter-rouge">Coronavirus COVID-19 Cases V2 owner:CSSE_GISandData</code>. Click <code class="highlighter-rouge">+</code> to add the result to the map. Repeat the search for <code class="highlighter-rouge">Nc2JKvYFoAEOFCG5JSI6 owner:PD_EsriLAWResponse</code> and again click <code class="highlighter-rouge">+</code> to add it, then click the back arrow.  <br />
+<img src="../../assignment-resources/images/layer-search.png" alt="Layer search" /></p>
+  </li>
+  <li>We only need the layers listed below. Click the <code class="highlighter-rouge">More Options</code> button on the unecessary layers and <code class="highlighter-rouge">Remove</code> them. Only show (check the box) for the <code class="highlighter-rouge">Cases</code> layer.
+    <ul>
+      <li><code class="highlighter-rouge">Coronavirus COVID-19 Cases V2 - Cases</code></li>
+      <li><code class="highlighter-rouge">Coronavirus COVID-19 Cases V2 - Cases_country</code></li>
+      <li><code class="highlighter-rouge">Coronavirus COVID-19 Cases V2 - Cases_state</code></li>
+      <li><code class="highlighter-rouge">Nc2JKvYFoAEOFCG5JSI6 - Cases_time</code><br />
+<img src="../../assignment-resources/images/remove-layers.png" alt="Layer search" class="no-shadow" /></li>
+    </ul>
+  </li>
+  <li>
+    <p>Click the <code class="highlighter-rouge">Change Style</code> icon on the <code class="highlighter-rouge">Cases</code> layer and under <code class="highlighter-rouge">Choose an attribute to show</code>, choose <code class="highlighter-rouge">Confirmed</code>. Under <code class="highlighter-rouge">Select a drawing style</code>, click <code class="highlighter-rouge">Options</code>.</p>
+  </li>
+  <li>
+    <p>You can change the symbols however you think best communicates the information, or stick to the JHU map settings:<br />
+<img src="../../assignment-resources/images/od-map-symbols.png" alt="Covid map symbols" /></p>
+  </li>
+  <li>
+    <p>Now choose a basemap that highlights the symbols you chose. <code class="highlighter-rouge">Streets (Night)</code> is used here.</p>
+  </li>
+  <li>Zoom out and pan the map to show the entire world, the click <code class="highlighter-rouge">Save</code> and fill out the details to save a new map item to your Content.</li>
+</ol>
+
+<p>The map is now complete and ready to be added to a dashboard.</p>
+
+<h3 id="part-2-create-a-dashboard-app">Part 2: Create a Dashboard App</h3>
+<p>During this part of the assignment, feel free to take creative liberties with the style and design instead of copying the JHU map exactly.</p>
+
+<ol>
+  <li>
+    <p>With your map open in the <strong>Map Viewer</strong>, click <code class="highlighter-rouge">Share</code>, select <code class="highlighter-rouge">Everyone</code>, and then <code class="highlighter-rouge">Create a Web App</code>.</p>
+  </li>
+  <li>
+    <p>Click the ArcGIS Dashboards tab and click <code class="highlighter-rouge">Done</code> with the same details as the map. The dashboard will start in <strong>Edit Mode</strong>, showing by default a full-page map.</p>
+  </li>
+  <li>
+    <p>Click the gear icon at the top of the editor and change the theme to <code class="highlighter-rouge">Dark</code>. Also note the <code class="highlighter-rouge">+</code> icon at the top of the editor, which will be used to add panels, and the save icon, which you should click every few minutes.</p>
+  </li>
+  <li>
+    <p>Add a <code class="highlighter-rouge">Header</code> panel and for <code class="highlighter-rouge">Logo Type</code> click <code class="highlighter-rouge">Icon</code> and browse for an appropriate graphic and color.</p>
+  </li>
+  <li>Add an <code class="highlighter-rouge">Indicator</code> and choose the <code class="highlighter-rouge">Cases</code> layer. Set the following.
+    <ul>
+      <li><code class="highlighter-rouge">Data Options</code> &gt; <code class="highlighter-rouge">Statistic</code> &gt; <code class="highlighter-rouge">Sum</code>, <code class="highlighter-rouge">Field</code> &gt; <code class="highlighter-rouge">Confirmed</code></li>
+      <li><code class="highlighter-rouge">Indicator Options</code> &gt; <code class="highlighter-rouge">Top Text</code> &gt; type <code class="highlighter-rouge">Global Cases</code></li>
+      <li><code class="highlighter-rouge">General Options</code> &gt; <code class="highlighter-rouge">Name</code> &gt; type <code class="highlighter-rouge">Global Cases</code>. Turn off <code class="highlighter-rouge">Last Update Text</code></li>
+      <li><code class="highlighter-rouge">Done</code></li>
+      <li><code class="highlighter-rouge">Save</code>
+The new panel will be huge, but just leave it that size for now.</li>
+    </ul>
+  </li>
+  <li>Add a <code class="highlighter-rouge">List</code> and choose the <code class="highlighter-rouge">Cases_country</code> layer. Set the following.
+    <ul>
+      <li><code class="highlighter-rouge">Data Options</code> &gt; <code class="highlighter-rouge">Sort By</code> &gt; <code class="highlighter-rouge">Confirmed</code>, <code class="highlighter-rouge">Descending</code></li>
+      <li><code class="highlighter-rouge">List Options</code> &gt; <code class="highlighter-rouge">Line Item Text</code> &gt; type <code class="highlighter-rouge">{Confirmed} {Country_Region}</code>. Set <code class="highlighter-rouge">Line Item Icon</code> &gt; <code class="highlighter-rouge">None</code></li>
+      <li><code class="highlighter-rouge">General Options</code> &gt; <code class="highlighter-rouge">Title</code> &gt; click <code class="highlighter-rouge">Edit</code> &gt; type <code class="highlighter-rouge">Cases by Country</code>. Turn off <code class="highlighter-rouge">Last Update Text</code></li>
+      <li><code class="highlighter-rouge">Done</code></li>
+      <li><code class="highlighter-rouge">Save</code><br />
+The list panel now also appears rather large, next to the indicator.<br />
+ </li>
+    </ul>
+  </li>
+  <li>
+    <p>You can access panel settings by moving your mouse pointer over the top left corner of the panel to reveal a blue bar, which includes the <code class="highlighter-rouge">Drag Item</code> button. Click it and drag the panel over the list panel. Drop it on the top white icon. The indicator panel should now be above the list, near the top of the dashboard.</p>
+  </li>
+  <li>
+    <p>Move your mouse over the vertical divider between the indicator and the map, and drag the divider left to make the left column (indicator and list) more narrow, and make the map column wider. You can do the same with the horizontal divider between the indicator and list.</p>
+  </li>
+  <li>Add another indicator and choose the <code class="highlighter-rouge">Cases</code> layer for the data.
+    <ul>
+      <li><code class="highlighter-rouge">Data Options</code> &gt; <code class="highlighter-rouge">Statistic</code> &gt; <code class="highlighter-rouge">Sum</code>, <code class="highlighter-rouge">Field</code> &gt; <code class="highlighter-rouge">Deaths</code></li>
+      <li><code class="highlighter-rouge">Indicator Options</code> &gt; <code class="highlighter-rouge">Top Text</code> &gt; type <code class="highlighter-rouge">Global Deaths</code></li>
+      <li><code class="highlighter-rouge">General Options</code> &gt; <code class="highlighter-rouge">Name</code> &gt; type <code class="highlighter-rouge">Global Deaths</code>. Turn off <code class="highlighter-rouge">Last Update Text</code></li>
+      <li><code class="highlighter-rouge">Done</code></li>
+      <li><code class="highlighter-rouge">Save</code><br />
+ </li>
+    </ul>
+  </li>
+  <li>Add another <code class="highlighter-rouge">List</code> and choose the <code class="highlighter-rouge">Cases_country</code> layer. Set the following.
+    <ul>
+      <li><code class="highlighter-rouge">Data Options</code> &gt; <code class="highlighter-rouge">Sort By</code> &gt; <code class="highlighter-rouge">Deaths</code>, <code class="highlighter-rouge">Descending</code></li>
+      <li><code class="highlighter-rouge">List Options</code> &gt; <code class="highlighter-rouge">Line Item Text</code> &gt; type <code class="highlighter-rouge">{Deaths} {Country_Region}</code>. Set <code class="highlighter-rouge">Line Item Icon</code> &gt; <code class="highlighter-rouge">None</code></li>
+      <li><code class="highlighter-rouge">General Options</code> &gt; <code class="highlighter-rouge">Name</code> &gt; type <code class="highlighter-rouge">Deaths by Country</code>. Turn off <code class="highlighter-rouge">Last Update Text</code></li>
+      <li><code class="highlighter-rouge">Done</code></li>
+      <li><code class="highlighter-rouge">Save</code><br />
+ </li>
+    </ul>
+  </li>
+  <li>
+    <p>The global death indicator and the list of country death totals now appear side by side. Move the indicator above the list, but this time hold the <code class="highlighter-rouge">Shift</code> key before dropping the indicator at the top position. The two panels are now grouped. Drag the group to the position right of the map. Adjust the vertical and horizontal dividers to fit the content.</p>
+  </li>
+  <li>Add a <code class="highlighter-rouge">Serial Chart</code> panel and choose the <code class="highlighter-rouge">Cases_time</code> table.
+    <ul>
+      <li><code class="highlighter-rouge">Data Options</code> &gt; <code class="highlighter-rouge">Filter</code> &gt; <code class="highlighter-rouge">Last Update</code> is within the last 200 days.<br />
+<strong>This prevents the app from reaching a data limit. If it seems slow, try decreasing to 150 days.</strong></li>
+      <li><code class="highlighter-rouge">Data Options</code> &gt; <code class="highlighter-rouge">Category Field</code> &gt; <code class="highlighter-rouge">Last Update</code>; <code class="highlighter-rouge">Statistic</code> &gt; <code class="highlighter-rouge">Sum</code>; <code class="highlighter-rouge">Field</code> &gt; <code class="highlighter-rouge">Delta Confirmed</code></li>
+      <li><code class="highlighter-rouge">Category Axis</code> &gt; <code class="highlighter-rouge">Title</code> &gt; <code class="highlighter-rouge">Daily Cases</code></li>
+      <li><code class="highlighter-rouge">General Options</code> &gt; <code class="highlighter-rouge">Name</code> &gt; type <code class="highlighter-rouge">Daily Cases</code>. Turn off <code class="highlighter-rouge">Last Update Text</code></li>
+      <li><code class="highlighter-rouge">Done</code></li>
+      <li><code class="highlighter-rouge">Save</code><br />
+ <br />
+Now we have enough panels in the dashboard to start making it more interactive so the audience can explore the data. Let’s make it so they can click a country in the Cases by Country list and have the map, chart, and list of death totals show only the data for that country.<br />
+ </li>
+    </ul>
+  </li>
+  <li>
+    <p>Move the mouse over the blue options menu for the Cases by Country list and click the gear icon for <code class="highlighter-rouge">Configure</code>.</p>
+  </li>
+  <li>
+    <p>Click <code class="highlighter-rouge">Actions</code> &gt; <code class="highlighter-rouge">Add Action</code> &gt; add both <code class="highlighter-rouge">Filter</code> and <code class="highlighter-rouge">Pan</code>.</p>
+  </li>
+  <li>Under <code class="highlighter-rouge">Filter</code>, click <code class="highlighter-rouge">Add Target</code> and add all of:
+    <ul>
+      <li>List - Deaths by Country</li>
+      <li>Chart - Daily Cases</li>
+      <li>Map - Cases</li>
+      <li>Set all <code class="highlighter-rouge">Source</code> and <code class="highlighter-rouge">Target</code> fields to <code class="highlighter-rouge">Country/Region</code></li>
+      <li><code class="highlighter-rouge">Save</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>Under <code class="highlighter-rouge">Pan</code>, click <code class="highlighter-rouge">Add Target</code> and add <code class="highlighter-rouge">Map (1)</code>. Click <code class="highlighter-rouge">Done</code>. Now if you click a country in the Cases by Country list, four things should happen: the map pans to the country, and the chart, map symbols, and list of death totals get filtered to only show data for that country. Clicking the country again in the list clears the filters and again shows global data.</p>
+  </li>
+  <li>Save your work and return to your <strong>Content</strong> page in ArcGIS Online. You will have a new Dashboard item. Click it to go to its <strong>Item Details</strong> page and fill in the metadata.</li>
+</ol>
+
+<h2 id="try-it">Try it</h2>
+<ol>
+  <li>Make a new map showing the the percentage of positive cases who died from COVID-19, and the number of positive cases per 100,000 people. <strong>Hint:</strong> Save your first map as a new map (<code class="highlighter-rouge">Save As</code>, then choose a new name) and show only the <code class="highlighter-rouge">Cases_country</code> layer, using both <code class="highlighter-rouge">Mortality_rate</code> and <code class="highlighter-rouge">Incident_rate</code> for the style. This would let you, for example, let you represent how widespread the virus is with the size of the circles, and how deadly it is with the color.<br />
+<img src="../../assignment-resources/images/bivariate-symbology2.png" alt="Bivariate symbology" /></li>
+  <li>Add the new map to your dashboard.</li>
+  <li>Add a new chart to the dashboard showing the deaths per day.</li>
+  <li>Update the actions of the Cases by Country list so when a country is clicked, the new chart and map react to the click (filter layers, pan map).</li>
+</ol>
+
+<h2 id="submit">Submit</h2>
+<ol>
+  <li>The URL to the <strong>Item Details</strong> page of your <strong>dashboard app</strong>. Example: <code class="highlighter-rouge">https://lsu-its.maps.arcgis.com/home/item.html?id=49c3ba7ab8484cb7811d213869a5af93</code></li>
+</ol>
+
+    </section>
+<footer class="site-footer">
+  <small>&copy; All rights reserved.</small>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
