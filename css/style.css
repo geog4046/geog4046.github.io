@@ -60,3 +60,6 @@ img.no-shadow {
 .muted {
   color: #CBCBCB;
 }
+.material-icons {
+  vertical-align: middle;  
+}
