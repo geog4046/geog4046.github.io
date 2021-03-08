@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lesson 9 | GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/lessons">Lessons</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Lesson 9</h1>
+      <h2 class="text-center">Map Tiles for Really Big Images</h2>
+      <h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#imagery">Imagery</a></li>
+  <li><a href="#map-tiling">Map tiling</a></li>
+  <li><a href="#behind-the-scenes">Behind the scenes</a></li>
+  <li><a href="#tiling-software">Tiling software</a></li>
+  <li><a href="#map-tiles-illustrated">Map tiles illustrated</a></li>
+  <li><a href="#how-much-zoom">How much zoom?</a></li>
+  <li><a href="#vector-tiles">Vector tiles</a></li>
+  <li><a href="#summary">Summary</a></li>
+  <li><a href="#appendix">Appendix</a></li>
+</ul>
+
+<p>Terms: imagery, scene, footprint, mosaic, map tiling, zoom level, map scale, vector tiles</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In our assignments so far we have added various layers to our maps from web services, some with the backdrop of a satellite basemap, but we have given little attention to the basemaps themselves. What kind of web service is the satellite basemap, and where does the data come from?</p>
+
+<p>Satellite images have become a staple of web maps, providing a bird’s-eye view of the landscape and a backdrop for streets and other features. They help the audience connect abstract representations like points, lines, and polygons to the real surface of the planet, showing familiar details such as trees and buildings.</p>
+
+<p>However, the large file sizes that are typical of this imagery make it difficult to transmit across the Internet quickly, presenting a challenge for web map makers.</p>
+
+<p>Most or all of the web maps you have seen probably used a trick called map tiling to display imagery or basemaps without requiring a huge download and slow loading times. This lesson will get into the details of map tiling to show how terabytes-worth of imagery can quickly be served to your audience’s screens.</p>
+
+<h2 id="imagery">Imagery</h2>
+<p><strong>Imagery</strong> is a general term for data collected by satellites and aircraft depicting Earth’s surface. Sensors onboard these craft capture data in individual images called <strong>scenes</strong>. The scenes cover an area of the ground known as the <strong>footprint</strong>. Low-resolution images usually have a large footprint covering a wide area, while high-resolution images have a smaller footprint.</p>
+
+<p> <br />
+<img src="../../lessons/images/landsat-track.gif" alt="Animation of Landsat satellite orbiting Earth" /><br />
+<small><em>Figure 1. Animation of the path of the Landsat 8 satellite as it orbits the planet and captures scenes. Derived from NASA Goddard Media Studios “<a href="https://svs.gsfc.nasa.gov/11166">LDCM Overview</a>“.</em></small></p>
+
+<p> <br />
+<img src="../../lessons/images/landsat-la.png" alt="Single Landsat image covering part of Louisiana" /><br />
+<small><em>Figure 2. A single Landsat scene covering part of Louisiana.</em></small></p>
+
+<p> <br />
+<img src="../../lessons/images/footprint-comparison.png" alt="Imagery footprint comparison" /><br />
+<small><em>Figure 3. Comparison of the footprints of scenes acquired by satellite and aircraft. The large blue area is an image footprint from the MODIS sensor onboard the Terra satellite (1 MODIS pixel = 500 meters), the purple square is a Landsat 8 footprint (1 Landsat pixel = 30 meters), and the small red spot is a scene from the National Agriculture Imagery Program (NAIP) 2019 dataset captured by airplane (1 NAIP pixel = 1 meter).</em></small></p>
+
+<p>Multiple images can be stitched together to create a single <strong>mosaic</strong> of an area. When you see a satellite view of a state, country, continent, or the world, you are being shown a mosaic consisting of dozens or thousands of images patched together to look like a coherent image.</p>
+
+<p> <br />
+<img src="../../lessons/images/coastal-mosaic.png" alt="Images combined into a mosaic" class="no-shadow" /><br />
+<small><em>Figure 4. Aerial images combined into a mosaic of coastal Louisiana, Mississippi, and Alabama. The mosaic consists of 2,406 images captured by airplane in 2008. The top image shows the individual image footprints bordered in green, and the bottom image shows the final mosaic produced by GIS software.</em></small></p>
+
+<p> <br />
+<img src="../../lessons/images/landsat-la-mosaic.png" alt="Landsat mosaic of Louisiana" class="no-shadow" /> <br />
+<small><em>Figure 5. Mosaic made from 14 Landsat images combined and clipped to cover the state of Louisiana in 2014. It is a false-color image made from Landsat bands outside of the visible spectrum. See the <a href="https://arcg.is/1b4brX">tile layer</a>.</em></small></p>
+
+<p>Imagery presents a problem for web mapping because of large file sizes and the difficulty browsers can have with displaying very large images. The Landsat 8 satellite captures around 740 images per day, taking 16 days to image the entire planet, and each image can be over 1 GB (and over 6,000 pixels wide). On a more local level, uncompressed aerial imagery of the state of Louisiana captured for the National Agriculture Imagery Program in 2017 is about 650 GB (1-meter resolution). Higher resolution imagery—the kind you see on Google Maps when zoomed in all the way—can be expected to reach multiple terabytes for a small state like Louisiana.</p>
+
+<p>Yet when you view an imagery basemap on Google Maps or ArcGIS Online, your browser is able to load the images quickly as you pan and zoom, even at the global scale. This is possible because of tiling.</p>
+
+<h2 id="map-tiling">Map Tiling</h2>
+<p><strong>Map tiling</strong> is the process of dividing large images into small square images, or tiles, that can be quickly sent over the Internet to a client web map application, which reassembles the tiles into a map to display on screen.</p>
+
+<p>In short, a large image or mosaic is loaded into tiling software, split into numerous very small square images (tiles), and those images are stored online to be made available through a web GIS application or web service, such as an <strong>OGC Web Map Tile Service (WMTS)</strong> or an ArcGIS tile layer. A different set of tiles is created for each zoom level, so that when zoomed out, users only download low-detail tiles covering a large area, and when zoomed in, they only download high-detail tiles covering a small area.</p>
+
+<p>A <strong>zoom level</strong> is a representation of a map at different scales, with more detail at higher zoom levels, bringing the user’s view “closer” to the map as the zoom level increases. The <strong>map scale</strong> is the ratio between a distance on a map and distance on the ground. A map scale of 1:1,000 means that one centimeter on the map is equal to 1,000 cm on the ground, which is a high zoom only useful with very high resolution imagery. A map scale of 1:100,000,000 means one centimeter on the map equals 100 million centimeters (1,000 km) on the ground, appropriate for showing a world map.</p>
+
+<p>Furthermore, the tiles are compressed, which might cause some loss of details in the image but makes maps load even faster.</p>
+
+<p>Therefore, when displaying imagery on a web map, it makes sense to use some form of tiling.</p>
+
+<h2 id="behind-the-scenes">Behind the scenes</h2>
+
+<p>If you have ever used Google Maps over a slow Internet connection, you might have noticed the map loading one square tile at a time.</p>
+
+<p> <br />
+<img src="../../lessons/images/google-maps-tiles.png" alt="Google Maps tiles loading" /><br />
+<small><em>Figure 6. A screenshot of Google Maps taken before the view has finished loading, showing individual map tiles still being downloaded and assembled by the browser.</em></small></p>
+
+<p>Your browser, the client, is loading the Google Maps webpage and requesting images (tiles) of the map, downloading them and displaying them on screen. Let’s use web developer tools to have a look behind the scenes.</p>
+
+<p> <br />
+<img src="../../lessons/images/google-maps-single-tile.png" alt="A single map tile" /><br />
+<small><em>Figure 7. The developer tools in a browser can be used to show the individual map tiles being downloaded when you view a web map. This screenshot of the Chrome developer tools shows the URL of an individual map tile (left), the tile image preview (center), and an approximate outline of the tile’s location on the assembled map.</em></small></p>
+
+<p>In Chrome you can press <code class="highlighter-rouge">F12</code> on your keyboard to see the browser’s developer tools. Click the <code class="highlighter-rouge">Network</code> tab to see details about what the browser is downloading. Go to <a href="https://www.google.com/maps">Google Maps</a> and show the satellite basemap. The developer tools will show numerous resources being downloaded, but if you sort through the list you should be able to pick out some tiles. You might have to click the <code class="highlighter-rouge">Clear</code> icon near the top of the tools and then pan and zoom out to load new tiles.</p>
+
+<p>The client web map only downloads the tiles that are needed for the current view instead of all the tiles in the basemap. When you pan the map to a new area or zoom in and out, a new set of tiles will be downloaded to show the new areas or details that were not visible before.</p>
+
+<p>To speed things up further, map tiles are typically served in a compressed image format like JPEG to decrease the file size. This results in some loss of detail and makes tile layers unsuitable for analysis in GIS, but since basemaps are simply meant to be a visual aid for the audience, this is an acceptable compromise.</p>
+
+<h2 id="tiling-software">Tiling software</h2>
+
+<p>GIS software can automate the map tiling process by taking large images as input and generating the set of compressed map tiles, known as a tile cache, for different zoom levels. Allowing greater zoom, i.e., showing more detail, will require more tiles. For example, at a zoom level where streets and large buildings become clearly visible, a tile cache for the state of Louisiana might contain 50,000 tiles. At the closest zoom level where the details of vehicles and houses are clear, a statewide tile cache for Louisiana could exceed 50,000,000 tiles.</p>
+
+<p>ArcGIS Pro will be used in this course to generate tiles for ArcGIS Online, but numerous other applications exist for general image and map tiling.</p>
+
+<p> <br />
+<img src="../../lessons/images/tiling-options.png" alt="Options for tiling a mosaic in GIS software" /><br />
+<small><em>Figure 8. Options for generating a tile layer in ArcGIS Pro. The software takes a single image or image mosaic and generates tiles at different zoom levels. The settings here show that tiles will be generated down to zoom level 13, resulting in a total of 52,757 tiles.</em></small></p>
+
+<p> <br />
+<img src="../../lessons/images/tiles-per-zoom.png" alt="Estimated tiles per zoom level" /><br />
+<small><em>Figure 9. Estimates given by ArcGIS Pro for how many tiles will be generated for each zoom level. When zoomed out far, just a few tile images are needed. For close zoom levels showing high detail, many tiles are needed.</em></small></p>
+
+<h2 id="map-tiles-illustrated">Map tiles illustrated</h2>
+
+<p>The following figures use a hypothetical web map showing the Gulf of Mexico region to demonstrate how different numbers of tiles are needed for different zoom levels:</p>
+
+<p><img src="../../lessons/images/tile-example-1.png" alt="Tile example 1" /></p>
+
+<p>Let’s say that our web browser window is 512x512 pixels, and the size of each tile will be 256x256 pixels, a typical tile size:</p>
+
+<p><img src="../../lessons/images/tile-example-2.png" alt="Tile example 2" class="no-shadow" /></p>
+
+<p>Zoomed out all the way out, the entire map can be shown on screen with four tiles (four 256x256 squares fit into a 512x512 square):</p>
+
+<p><img src="../../lessons/images/tile-example-3.png" alt="Tile example 3" class="no-shadow" /></p>
+
+<p>Let’s call this zoomed-out view <code class="highlighter-rouge">Zoom level 0</code> (no zoom). When tiling software creates tiles, it organizes them not just by zoom level but by rows and columns. Like the zoom level, the counting starts at 0. Therefore, the first row is <code class="highlighter-rouge">Row 0</code>, and the first column is <code class="highlighter-rouge">Col 0</code>.</p>
+
+<p><img src="../../lessons/images/tile-example-4.png" alt="Tile example 4" class="no-shadow" /></p>
+
+<p>Now if we think of those four tiles as image files, we could name them according to their zoom, row, and column. Tiling software automatically creates files and folders for tiles, and it is typical to have a folder for each zoom level, and within each zoom-level folder there is a folder for each row, and then within each row folder there is a file for each column.</p>
+
+<p><img src="../../lessons/images/tile-folders.png" alt="Tile cache folders" class="no-shadow" /><br />
+<small><em>Figure 10. Folders on a web server hosting a tile cache. There is a folder for each of the eight zoom levels (counting starts at 0).</em></small></p>
+
+<div class="alert alert-info" role="alert">
+  <span class="material-icons">info</span>
+  Different software can organize tiles in different ways, but the method explained here helps illustrate the concept.
+</div>
+
+<p>Since we so far have only <code class="highlighter-rouge">Zoom level 0</code> with two rows and two columns, our files and folders in this tile cache would look like this:</p>
+<ul>
+  <li><code class="highlighter-rouge">0</code> (zoom level folder)
+    <ul>
+      <li><code class="highlighter-rouge">0</code> (row folder)
+        <ul>
+          <li><code class="highlighter-rouge">0.jpg</code> (tile in first row, first column)</li>
+          <li><code class="highlighter-rouge">1.jpg</code>  (tile in first row, second column)</li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">1</code> (row folder)
+        <ul>
+          <li><code class="highlighter-rouge">0.jpg</code> (tile in second row, first column)</li>
+          <li><code class="highlighter-rouge">1.jpg</code> (tile in second row, second column)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../lessons/images/tile-example-5.png" alt="Tile example 5" class="no-shadow" /></p>
+
+<p>Now let’s say the user zooms in one level, to <code class="highlighter-rouge">Zoom level 1</code>. Their browser looks like this, showing a new set of tiles with different file names and a more zoomed-in view of the coast.</p>
+
+<p><img src="../../lessons/images/tile-example-6.png" alt="Tile example 6" class="no-shadow" /></p>
+
+<p>In the zoomed-in view, Louisiana appears larger on screen and we can no longer see the full extent of the original map, which included Florida, more of Texas, etc. Even though the user’s current view only shows 4 tiles, <code class="highlighter-rouge">Zoom level 1</code> contains 16 tiles to cover the full extent of the original map in case the user pans the map.</p>
+
+<p><img src="../../lessons/images/tile-example-7.png" alt="Tile example 7" class="no-shadow" /></p>
+
+<p>The figure below illustrates that only four tiles are downloaded and displayed on the user’s screen at this zoom level and position, but if the user panned the map directly east to Florida, for example, then the necessary additional tiles would be downloaded and displayed: <code class="highlighter-rouge">1/1/3.jpg</code> and <code class="highlighter-rouge">1/2/3.jpg</code>.</p>
+
+<p><img src="../../lessons/images/tile-example-8.png" alt="Tile example 8" class="no-shadow" /></p>
+
+<p>So <code class="highlighter-rouge">Zoom level 0</code> contains 4 tiles, and <code class="highlighter-rouge">Zoom level 1</code> contains 16, and if we told our software to generate yet another level, allowing users to zoom in even closer, then <code class="highlighter-rouge">Zoom level 2</code> would contain 64 tiles.</p>
+
+<p><img src="../../lessons/images/tile-example-9.png" alt="Tile example 9" class="no-shadow" /></p>
+
+<p>Again, the user’s 512x512-pixel screen would only display 4 of those 256x256-pixel tiles, but when they panned the map, more tiles would be downloaded and displayed.</p>
+
+<h2 id="how-much-zoom">How much zoom?</h2>
+
+<p>As shown in the figure above, at <code class="highlighter-rouge">Zoom level 2</code>, Louisiana is large enough on screen to take up most of the width (two tiles across), but no fine details like buildings and roads are visible. If we keep generating more tiles for additional zoom levels with more detail, the total tile count will grow to be enormous.</p>
+<ul>
+  <li>Zoom level 3 tile count is 64 x 4 = 256</li>
+  <li>Zoom level 4 tile count is 256 x 4 = 1,024</li>
+  <li>Zoom level 5 tile count is 1,024 x 4 = 4,096</li>
+  <li>Zoom level 6 tile count is 4,096 x 4 = 16,384</li>
+  <li>…</li>
+  <li>Zoom level 10 tile count is 1,048,576 * 4 = 4,194,304</li>
+</ul>
+
+<p>If you were creating a tile cache layer of your own, how would you know how many zoom levels to generate?</p>
+
+<p>One factor to consider is the resolution of the source image. Let’s say that with our example image, once we zoom in to level 10, the image starts to look pixelated and no further detail can be discerned. There is no point in creating further zoom levels.</p>
+
+<p>Another factor to consider is storage space and processing power. Tile images are files, and they will take up storage space on a server or cloud service. The benefits of giving your audience a closer zoom level must be weighed against the additional costs for your organization.</p>
+
+<p>Similarly, the processing power needed to generate thousands or millions of tiles can cost time and money, and the costs and benefits must be considered. Storage and processing costs are more of a concern for tile caches of high-resolution imagery covering a wide area.</p>
+
+<p>In contrast, the Landsat mosaic of Louisiana shown at the beginning of this lesson will not incur extreme costs because the resolution of Landsat imagery is not very high and it does not take much Landsat data to cover the state. Each pixel in a pansharpened Landsat scene is 15x15 meters, so objects smaller than about 50 feet, like cars, will not be visible no matter how far you zoom in, saving us from having to generate high zoom levels.</p>
+
+<p>As shown in Figure 9, tile generation for that Landsat mosaic layer can be stopped at zoom level 13 in ArcGIS; beyond that, the Landsat image would look too pixelated. The figure shows that ArcGIS estimates the tile cache for zoom levels 0-13 will be 2 GB, which is manageable. Users will not have to download all 2 GB of tiles, only tiles for the areas and zoom levels they view.</p>
+
+<p>You can determine which zoom level fits your image by viewing the image in GIS software and zooming in to the source resolution, i.e., the resolution at which one pixel in the image appears as one pixel on your screen. You might then zoom down one level further, depending on how you think it looks. Then note the map scale (GIS software should tell you this somewhere on screen).</p>
+
+<p> <br />
+<img src="../../lessons/images/source-resolution-map-scale.png" alt="Source resolution map scale" /><br />
+<small><em>Figure 11. To determine the maximum zoom level appropriate for a tile cache, view the image in GIS software at the source resolution and note the map scale.</em></small></p>
+
+<p>Using the Landsat mosaic of Louisiana as an example, we can see the scale of 1:56,693. As shown in Figure 8, the next closest zoom level available in the ArcGIS scheme is zoom level 13, with a map scale of about 1:36,000. Therefore, I chose this level as the maximum zoom level. When users view this tile layer on a map, they will be able to zoom in a little closer than the source resolution, meaning they will start to see pixels, but not too terrible.</p>
+
+<p> <br />
+<img src="../../lessons/images/pixelated.png" alt="Pixelated Landsat" /><br />
+<small><em>Figure 12. This map view shows a Landsat image zoomed in past its source resolution to give a preview of what users will see if we generate tiles down to zoom level 13 in ArcGIS (approx. 1:36,000 map scale).</em></small></p>
+
+<h2 id="vector-tiles">Vector tiles</h2>
+<p>The lesson mainly covers the use of tiles for satellite or aerial imagery, but it is worth noting that vector layers of points, lines, and polygons can also be tiled. However, there is a more efficient way of tiling vector data that is very different from the method described above. <strong>Vector tiles</strong> break up point, line, and polygon features into small packages that can be drawn and styled by the client at different scales. The size of vector tiles is not a fixed dimension of pixels but instead is determined by the complexity of the geometry at a location on the map.</p>
+
+<p>For example, a vector tile layer will yield a lot of little packages for complex urban areas and fewer packages in rural areas.</p>
+
+<p> <br />
+<img src="../../lessons/images/vector-tiles.png" alt="Vector tiles" /><br />
+<small><em>Figure 13. In contrast to the fixed grid of an image tile layer, the size of a vector tile is determined by the complexity of the geometry of the features in the area. A navigation map of Australia and New Zealand, for example, would have fewer tiles to load in less populated places. Image source: <a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/create-vector-tile-index.htm">ArcGIS documentation</a>.</em></small></p>
+
+<p>Vector tiles are not supported in some older software such as ArcMap or the older version of ArcGIS Collector. If your maps don’t need to support old software, then you should almost always use vector tiles instead of raster tiles for point, line, and polygon data. Imagery must still use raster tiles.</p>
+
+<p>You might even consider using a vector tile layer instead of a regular feature layer if your dataset is large or complex, such as a nationwide road network. Though, like regular image tile layers, vector tile layers cannot be used as input in ArcGIS Online analysis tools.</p>
+
+<p>As for computing power and storage, vector tiles have an incredible advantage. A tiling job that might take hours or days to generate image tiles could be completed in minutes with vector tiles, and the storage requirements are only a fraction of the image tile equivalent.</p>
+
+<h2 id="summary">Summary</h2>
+<p>This lesson covered the concept of map tiling, a technique widely used in Web GIS to faciliate the viewing of large map layers, especially imagery basemaps. Most of the websites and apps you use involving maps probably employ map tiles in some way.</p>
+
+<p>The file sizes of imagery datasets are too large to expect clients to download on a web map, so they have to be broken up. Map tiles serve this purpose and allow clients to only download the tiles of the area they are viewing at a specific zoom level.</p>
+
+<p>Map tiles can be made with GIS software or programs dedicated to tiling. These programs take a large image, or a mosaic of multiple images, and break them up into a set of square tiles called a tile cache. The cache can be published as a web service that web map client applications can then request and display on screen for the user.</p>
+
+<p>The concept of map tiling is not limited to imagery. Vector tiles can be created from point, line, and polygon datasets that are too large to feasibly include in a web map as a WFS or other feature-based format.</p>
+
+<h2 id="appendix">Appendix</h2>
+<p>Have a look at a tile cache and zoomable “map” of a different kind of imagery: a mosaic of the Orion Nebula taken by Hubble Space Telescope. I generated this tile layer from a 324-megapixel image (18,000 x 18,000 pixels). Original image source: <a href="https://sci.esa.int/s/8Z5MZxW">NASA, ESA</a>.</p>
+<ul>
+  <li><a href="https://maps.ga.lsu.edu/tiles/starstuff/">Tile cache folders</a></li>
+  <li><a href="https://geog4046.github.io/examples/starstuff/">Web map</a></li>
+</ul>
+
+<p>The one and only tile from the lowest zoom level (0), showing the entire mosaic:<br />
+<img src="https://maps.ga.lsu.edu/tiles/starstuff/0/0/0.png" alt="Zoom level 0 tile of Orion" /></p>
+
+<p>One of the 5,041 tiles from the highest zoom level (7), showing the greatest level of detail:<br />
+<img src="https://maps.ga.lsu.edu/tiles/starstuff/7/27/35.png" alt="Zoom level 7 tile or Orion" /></p>
+
+      <a href="#top">Top</a><br>
+      <a href="../../lessons/">Back to Lessons</a>
+    </section>
+    
+<footer class="site-footer">
+  <small>&copy; All rights reserved.</small>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

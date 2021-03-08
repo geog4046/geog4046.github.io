@@ -21,7 +21,7 @@ h2.project-tagline {
 .breadcrumb-item {
   font-size: 0.75em;
 }
-.main-content img {
+.shadow, iframe, .main-content img {
   margin: 20px 0;
   box-shadow: 0px 0px 10px #999
 }

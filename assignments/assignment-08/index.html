@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Assignment 08 | GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/lessons">Lessons</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Assignment 08</h1>
+      <h2 class="text-center">Imagery in Web GIS</h2>
+      <p>In this assignment we will use ArcGIS Online to view multispectral satellite imagery and create a web app that compares images from different dates to highlight landcover change.</p>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+  <li><a href="#finished-example">Finished Example</a></li>
+  <li><a href="#data">Data</a></li>
+  <li><a href="#steps">Steps</a>
+    <ul>
+      <li><a href="#part-1-create-a-map-with-imagery">Part 1: Create a map with imagery</a></li>
+      <li><a href="#part-2-adjust-image-color">Part 2. Adjust image color</a></li>
+      <li><a href="#part-3-filter-image-dates-and-quality">Part 3: Filter image dates and quality</a></li>
+      <li><a href="#part-4-create-a-web-app">Part 4: Create a web app</a></li>
+      <li><a href="#part-5-use-your-web-app">Part 5: Use your web app</a></li>
+    </ul>
+  </li>
+  <li><a href="#try-it">Try It</a></li>
+  <li><a href="#checklist">Checklist</a></li>
+  <li><a href="#submit">Submit</a></li>
+</ul>
+
+<h2 id="finished-example">Finished Example</h2>
+
+<iframe width="100%" height="350" src="https://www.arcgis.com/apps/ImageMask/index.html?appid=8d0c061af0bb41209cd3fe7c1411e30e" frameborder="0" allowfullscreen=""></iframe>
+<p><a href="https://www.arcgis.com/apps/ImageMask/index.html?appid=8d0c061af0bb41209cd3fe7c1411e30e">https://www.arcgis.com/apps/ImageMask/index.html?appid=8d0c061af0bb41209cd3fe7c1411e30e</a></p>
+
+<h2 id="data">Data</h2>
+<p>Images from the Landsat series of satellites are available in the ArcGIS Online Living Atlas as a web service. Landsat satellites have provided multispectral imagery of Earth’s surface for more than 40 years. See the <a href="https://www.arcgis.com/home/item.html?id=d9b466d6a9e647ce8d1dd5fe12eb434b">Multispectral Landsat Item Details page</a> for more information on the Landsat mission and the images it produces.</p>
+
+<p>This example will zoom into the crawfish and rice fields of southern Louisiana to see changes in land use at different times of the year. You may use this example or instead choose a different area to detect changes in water or vegetation over time.</p>
+
+<h2 id="steps">Steps</h2>
+<h3 id="part-1-create-a-map-with-imagery">Part 1: Create a map with imagery</h3>
+<ol>
+  <li>In ArcGIS Online, go to the Map Viewer and click <code class="highlighter-rouge">New Map</code>.</li>
+  <li>Click <code class="highlighter-rouge">Add</code> &gt; <code class="highlighter-rouge">Add Layer from Web</code> and paste the URL of the “Multispectral Landsat (Mature Support)” layer, named “MS” in the contents.<br />
+<code class="highlighter-rouge">https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer</code></li>
+  <li>Click the <code class="highlighter-rouge">More Options</code> icon (three blue dots) on the “MS” layer and click <code class="highlighter-rouge">Disable Time Animation</code>.</li>
+  <li>Click <code class="highlighter-rouge">More Options</code> again and rename the image to “Landsat 8”.</li>
+  <li>Pan and zoom the map to your area of interest <strong>or</strong> the Acadiana region of Louisiana, centered roughly between Lake Charles and Lafayette. Zoom close enough to distinguish urban areas and agricultural fields (the map scale bar should be about 2 to 10 mi).</li>
+  <li>Save the map, naming it “Image Comparison Acadiana” or something unique to your area.</li>
+</ol>
+
+<h3 id="part-2-adjust-image-color">Part 2: Adjust image color</h3>
+<p>The default view of the imagery is in false color, meaning you are not seeing the natural color. Greens look exaggerated because the color is being used to represent the infrared parts of the spectrum that Landsat captures, making the greens appear unnaturally bright. You can change the image display options to see the true color image.</p>
+<ol>
+  <li>Click the <code class="highlighter-rouge">More Options</code> icon and click <code class="highlighter-rouge">Image Display</code>.</li>
+  <li>Under <code class="highlighter-rouge">Renderer</code>, choose <code class="highlighter-rouge">Natural Color with DRA</code>. Click <code class="highlighter-rouge">Apply</code>.</li>
+  <li>You can explore the different color combinations that highlight the ground cover in your image, and also try the <code class="highlighter-rouge">Stretch type</code> options to help with image brightness and contrast. To revert back to the default, choose <code class="highlighter-rouge">Agriculture with DRA</code>.</li>
+  <li>After deciding on a color combination, <code class="highlighter-rouge">Save</code> your map.</li>
+</ol>
+
+<h3 id="part-3-filter-image-dates-and-quality">Part 3: Filter image dates and quality</h3>
+<ol>
+  <li>Click the <code class="highlighter-rouge">Filter</code> icon on the Landsat layer and edit the existing filters or <code class="highlighter-rouge">Add another expression</code> to have the following conditions:
+    <ul>
+      <li><code class="highlighter-rouge">Acquisition Date</code> - <code class="highlighter-rouge">is between</code> - <code class="highlighter-rouge">1/1/2019</code> and <code class="highlighter-rouge">12/31/2019</code></li>
+      <li><code class="highlighter-rouge">Cloud Cover</code> - <code class="highlighter-rouge">is less than</code> - <code class="highlighter-rouge">0.2</code><br />
+<img src="../../assignment-resources/images/agol-image-filter.png" alt="Filters for an image layer" /></li>
+    </ul>
+  </li>
+  <li>Click <code class="highlighter-rouge">APPLY FILTER</code>. This will show images taken by the Landsat 8 satellite during 2019, if less than 20% of the image is covered by clouds. If the images disappear, try zooming in or out so the scale bar is 2 to 10 mi. It might take a few seconds for images to load.</li>
+  <li>Center and zoom on your area of interest, anywhere in the world, and <code class="highlighter-rouge">Save</code> your map again.</li>
+</ol>
+
+<h3 id="part-4-create-a-web-app">Part 4: Create a web app</h3>
+<p>We will create an app that has a change detection tool. The tool will analyze our map’s imagery and classify the land cover—in our case, detect water. The geoprocessing takes place on ArcGIS Online servers, examining the pixel values for each band in the images to determine the unique “spectral signature” of water, which has very weak reflectance in the infrared.</p>
+
+<ol>
+  <li>Click the <code class="highlighter-rouge">Share</code> button in the ArcGIS Online Map Viewer.</li>
+  <li>Check the box by <code class="highlighter-rouge">Everyone (public)</code>.</li>
+  <li>Click <code class="highlighter-rouge">Create a Web App</code>.</li>
+  <li>Select the template category <code class="highlighter-rouge">Interpret Imagery</code> and choose the <code class="highlighter-rouge">Image Mask</code> configurable app (see the app’s <a href="https://www.arcgis.com/home/item.html?id=59486ebf228f4661aeaecb770dd73de8">Item Details page</a>).</li>
+  <li>Click <code class="highlighter-rouge">Create Web App</code> to confirm your selection.</li>
+  <li>Click <code class="highlighter-rouge">Done</code> to move on to configuring the app.</li>
+  <li>You can explore the tabs and try different settings.
+    <ul>
+      <li>On the <code class="highlighter-rouge">Options</code> tab, for example, enable the export tool to allow users to save the result of their change detection analysis.<br />
+   <img src="../../assignment-resources/images/agol-image-mask-app-options.png" alt="Image mask app settings" /></li>
+      <li>On the <code class="highlighter-rouge">Imagery</code> tab, use the image below as a guide for an app that highlights changes in crawfish/rice fields in different seasons.<br />
+   <img src="../../assignment-resources/images/agol-image-mask-app-options2.png" alt="Image mask app settings for imagery" /></li>
+    </ul>
+  </li>
+  <li>Click <code class="highlighter-rouge">Save</code> and <code class="highlighter-rouge">Launch</code> to view your app.</li>
+</ol>
+
+<h3 id="part-5-use-your-web-app">Part 5. Use your web app</h3>
+<ol>
+  <li>After launching your app, click the change detection tool.</li>
+  <li>Select the layer and images to compare. See the settings below for detecting fields that were flooded in January but not in September, a common pattern for rice and crawfish farming. Note that I checked <code class="highlighter-rouge">Draw polygon(s) to define extent</code> and drew a boundary to limit the analysis area.<br />
+<img src="../../assignment-resources/images/agol-image-mask-app.png" alt="Image mask app" /></li>
+  <li>Click <code class="highlighter-rouge">Apply</code> to run the change detection. A new layer is created showing fields with significant changes in water coverage between winter and summer.<br />
+<img src="../../assignment-resources/images/agol-image-mask-app-result.png" alt="Image mask result" /></li>
+</ol>
+
+<p>You can make the new mask layer transparent to see the images underneath, and play with the slider on the map to slide between the January and September images to visually evaluate the change detection results. Adjust the detection settings to get more accurate results that fit neatly within the boundaries of each rice/crawfish paddy.</p>
+
+<h2 id="try-it">Try it</h2>
+<ol>
+  <li>Configure your app’s <code class="highlighter-rouge">Theme</code> tab to not use default colors.</li>
+  <li>Launch your app and use the change detection tool. Take a screenshot of the result showing the pink/green mask layer.</li>
+  <li>Fill in basic info on the app’s <strong>Item Details</strong> page.<br />
+  a. Click <code class="highlighter-rouge">Edit Thumbnail</code> and browse for the screenshot image you took.<br />
+  b. Add a short description for the <code class="highlighter-rouge">Summary</code>.<br />
+  c. Specify <code class="highlighter-rouge">Terms of Use</code> (“None”).<br />
+  d. Add relevant <code class="highlighter-rouge">Tags</code> to describe the app with a word or short phrase.<br />
+  e. Give credit where credit is due in <code class="highlighter-rouge">Credits (Attribution)</code>, e.g., data providers USGS, NASA, Esri.</li>
+  <li>Add more details about the app for the <code class="highlighter-rouge">Description</code> on the <strong>Item Details</strong> page.<br />
+  a. What layer(s) does it contain?<br />
+  b. What bands are being displayed? Hint: the <code class="highlighter-rouge">Image Display</code> settings in the <strong>Map Viewer</strong> tell you this in the description of the Natural Color, Agriculture, and other display templates from Part 2.<br />
+  c. What does the app allow users to do?<br />
+  d. Give an example of what the result shows.</li>
+</ol>
+
+<h2 id="checklist">Checklist</h2>
+<ol>
+  <li>Map shows Landsat imagery.</li>
+  <li>Map is viewable through a web app.</li>
+  <li>App’s change detection tool works, can select two images and calculate changes in water or vegetation index.</li>
+  <li>Customized app’s theme.</li>
+  <li><strong>Item Details</strong> page has change detection results screenshot as thumbnail.</li>
+  <li><strong>Item Details</strong> page has basic metadata.</li>
+  <li><strong>Item Details</strong> page has a detailed Description (“Try It”, Step 4).</li>
+  <li>Link to your web app <strong>Item Details</strong> page works in incognito browser window.</li>
+</ol>
+
+<h2 id="submit">Submit</h2>
+<ol>
+  <li>Only the URL to the <strong>Item Details</strong> page of your <strong>public web app</strong>. Example: <code class="highlighter-rouge">https://www.arcgis.com/home/item.html?id=ABC123</code> or <code class="highlighter-rouge">https://arcg.is/ABC123</code></li>
+</ol>
+
+    </section>
+<footer class="site-footer">
+  <small>&copy; All rights reserved.</small>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

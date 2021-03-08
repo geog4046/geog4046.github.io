@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lesson 2 | GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/lessons">Lessons</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Lesson 2</h1>
+      <h2 class="text-center">Web GIS Concepts, Part 1</h2>
+      <h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#information-geographic-information-gis-and-web-gis">Information, geographic information, GIS, and Web GIS</a></li>
+  <li><a href="#servers-and-services">Servers and services</a></li>
+  <li><a href="#the-uniform-resource-locator">The Uniform Resource Locator</a></li>
+</ul>
+
+<p>Terms: service-oriented architecture, web service, URL</p>
+
+<h2 id="introduction">Introduction</h2>
+<p>What happens if you enter a URL such as <a href="https://www.census.gov">https://www.census.gov</a> into a web browser? You see something you have seen countless times before: a webpage.</p>
+
+<p>What about the URL <a href="https://www.census.gov/content/dam/Census/about/regions/all-regions/new_ro_map.png">https://www.census.gov/content/dam/Census/about/regions/all-regions/new_ro_map.png</a>? Again, nothing surprising: an image.</p>
+
+<p>Now how about the URL <a href="https://api.census.gov/data/2019/acs/acs5?get=B01003_001E&amp;for=state:22">https://api.census.gov/data/2019/acs/acs5?get=B01003_001E&amp;for=state:22</a>? If the Census Bureau website is working, you should get this simple response (population of Louisiana):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[["B01003_001E","state"],
+["4664362","22"]]
+</code></pre></div></div>
+
+<p>It is not a webpage, but you have used something like this countless times as well, maybe without knowing. You contacted an application on the Internet, known as a web service, and it returned data to you. Web services are a fundamental part of the web today, including Web GIS. Web services allow applications to talk to one another over the Internet, enabling the web as you know it to function today.</p>
+
+<p>This lesson will cover web services and other concepts to provide some background before we get into making web maps for the rest of the semester.</p>
+
+<h2 id="information-geographic-information-gis-and-web-gis">Information, geographic information, GIS, and Web GIS</h2>
+
+<p>This semester, you will be introduced to a variety of technical topics related to maps and the Internet, but I want you to keep in mind that at the heart of it all is <em>information</em>.</p>
+
+<p>There is information for research, business, government, and personal use, and over the decades our information has been communicated in different ways. Books, letters, clay tablets, maps, websites, photographs, video, audio, and art are just a few examples of media that have carried information for us.</p>
+
+<p>  
+<img src="../../lessons/images/babylonian-world-map.jpg" alt="Babylonian map of the world" /><br />
+<small><em>Figure 1. Babylonian map of the world on a clay tablet, 700-500 BC.</em></small></p>
+
+<p>By the mid-twentieth century, it had become practical to store information digitally on computers, though it was not as practical to share information between computers, especially globally.</p>
+
+<p>The Internet and its earlier forms helped solve that problem, connecting computers together and enabling software that could transfer documents, images, and more around the world.</p>
+
+<p>Among this long history and evolution of information transfer, this course will focus on the transfer of geographic information with geographic information systems (GIS). GIS has its roots in environmental applications such as land management and infrastructure in the 1960s and 70s, so digital geographic information has traditionally included features that you could print on a map (lines for roads and trails, points for cities and places of interest,  polygons for lakes and parks, for example) and even imagery from satellites and aircraft. More recently, geographic information commonly includes media like video and photos that can be tagged with a location.</p>
+
+<p>  
+<img src="../../lessons/images/early-gis-at-lsu.jpg" alt="Early GIS" /><br />
+<small><em>Figure 2. A geographic information system used at LSU in the 1980s for land use assessment.</em></small></p>
+
+<p>As a way to transfer or communicate information, GIS turned maps into moving, living visualizations. Therefore, when it became practical to transfer geographic information over the Internet, maps could not simply be static images; users demanded more than just pictures that they could not click, zoom, or interact with at all. Web maps had to live up to the capabilities that were already present in GIS software, at least to the extent possible with web browsers of the late 1990s and early 2000s.</p>
+
+<p>It was expected that a website communicating geographic information online should allow users to move the map, zoom in and out to different scales, and show and hide  layers of information on the map. For example, on a map of city infrastructure, users should be able to turn off the roads layer and show only the bus routes layer.</p>
+
+<p>  
+<img src="../../lessons/images/arcims-brochure-2000s.png" alt="Early Web Maps" /><br />
+<small><em>Figure 3. Web maps from the early 2000s powered by ArcIMS, a Web GIS server application. Source: <a href="https://www.esri.com/library/brochures/pdfs/arcims_bro.pdf">Esri</a>.</em></small></p>
+
+<p>At the same time, special considerations were needed due to slow Internet connections and low capacity for storage and processing on personal computers.</p>
+
+<p>Therefore, a novel set of software and techniques emerged for organizing, analyzing, displaying, or sharing spatial data online, known collectively as Web GIS (or similar terms, web cartography and web mapping).</p>
+
+<p>  
+<img src="../../lessons/images/jhu-covid-dashboard.png" alt="Modern Web GIS dashboard" /><br />
+<small><em>Figure 4. A modern Web GIS application combining multiple data sources and visualizations into a dashboard. Source: <a href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6">JHU COVID-19 Dashboard</a>.</em></small></p>
+
+<h2 id="servers-and-services">Servers and services</h2>
+
+<p>While online maps were following trends in desktop GIS software for how map interfaces should look and behave, the Web GIS software running behind the scenes to power those maps was following broader trends in computing.</p>
+
+<p>For one, Web GIS software uses a client-server model, in which client software (e.g., web browsers, mobile apps) makes requests to server software for the resources that are offered by those servers (e.g., map data, webpages, images, PDFs). You could load data, such as car crash locations, into GIS server software to make it accessible to clients via a web address, such as example.org/maps/car_crash_points_2019. The concept is the same for web servers in general for regular websites.</p>
+
+<p>  
+<img src="../../lessons/images/server-client-early-web.png" alt="Servers and clients on the early web" class="no-shadow" /><br />
+<small><em>Figure 5. An example of servers and clients on the early web. In the most simple form of this relationship, humans use a client, such as a web browser on a PC, to download information from a server.</em></small></p>
+
+<p>Another trend, or more like a philosophy, is called <strong>service-oriented architecture</strong>, which will be elaborated on here before bringing the discussion back to GIS, so bear with me.</p>
+
+<p>Instead of bundling many functions into one big program, software following the service-oriented architecture style is broken up into smaller programs, called services, that have a specific purpose. Services carry out their tasks and communicate with other services and programs, working together to perform the software’s function.</p>
+
+<p>You can see an example of this in your desktop operating system. Windows, for example, is not a single, monolithic program; it uses services dedicated to specific tasks. There are services for printing, audio, networking, and so on.</p>
+
+<p> <br />
+<img src="../../lessons/images/windows-services.png" alt="Windows services" /><br />
+<small><em>Figure 6. A list of services running in the Windows operating system (OS). These services perform specific tasks for the OS and applications installed in the OS, for example, printing a document from Windows or Word.</em></small></p>
+
+<p>With the Internet, services are not limited to communicating only with other services on the same computer. They can be accessed by software on computers (servers or clients) in a different office, a different department, a completely different company, university, or government agency, or even by the general public. These are web services. A <strong>web service</strong> is a program that runs on a web server and exposes programming interfaces to other programs on the web. In other words, web services allow applications to talk to each other over the Internet; they are how machines talk to machines online.</p>
+
+<p>  
+<img src="../../lessons/images/server-client-modern-web.png" alt="Servers and clients using web services on the modern web" class="no-shadow" /><br />
+<small><em>Figure 7. Clients downloading information from servers, and servers communicating through web services. Web services allow interoperability between computer systems, such as using a Facebook account to sign into Netflix or ArcGIS Online. Netflix and ArcGIS Online (Esri) use servers hosted by Amazon Web Services (AWS) for storage and computing.</em></small></p>
+
+<p>This service-oriented approach is very common today. Think about Facebook as an application, with user sign-ins handled by a service. Facebook can use its own sign-in service across its websites and apps, but it can also <a href="https://developers.facebook.com/docs/facebook-login/web/">open up that service to third parties</a>. Web services are why you can use a Facebook account to sign into other websites, and why Disney+ customers can pay with PayPal, and why a Weather Underground weather map can show a radar layer from the Weather Channel website, and so on. Web services allow applications, including maps, to talk to each other.</p>
+
+<p> 
+<img src="../../lessons/images/weather-radar-service.png" alt="Weather radar web service" /><br />
+<small><em>Figure 8. A weather map (wunderground.com) that displays radar imagery from a different website (weather.com) via a web service. The right panel (wunderground.com) shows the map with a mosaic of radar tiles, while the left (Chrome Developer Tools) shows the URLs of the individual tiles downloaded by my browser and pieced together on the map.</em></small></p>
+
+<p>The data is not necessarily being duplicated for each of these websites. Instead, they essentially “stream” the data through a web service and display it on their own website.</p>
+
+<p>This “stream” of data for many web services can be reached by going to a particular URL that changes depending on what specific data you want to access.</p>
+
+<h2 id="the-uniform-resource-locator">The Uniform Resource Locator</h2>
+<p>Normally, a <strong>URL</strong>, or uniform resource locator, is a web address you use to go to a website, e.g., <code class="highlighter-rouge">https://example.org</code>. But URLs can point to other resources on the Internet.</p>
+
+<p>The vague term “resources” is used because it does not refer to a specific type of file or form of media. A “resource” can be a document, image, video, etc. In the case of webpages, the URL might point to a document like <code class="highlighter-rouge">index.html</code>. Or it might be <code class="highlighter-rouge">logo.png</code> for an image.</p>
+
+<p>But URLs do not have to point to files. When you visit most websites, you are not simply downloading an existing document file, you are triggering an application to generate a webpage document. For example, when you sign into your email hosted by Microsoft and the page says your name at the top, Microsoft does not have a webpage file with your name on it already. The page you see was generated by an application when you accessed the page.</p>
+
+<p> 
+<img src="../../lessons/images/server-client-request-response.png" alt="Clients send requests, servers send responses" class="no-shadow" /><br />
+<small><em>Figure 9. To download webpages, images, and other resources from a URL, clients like browsers and mobile apps send a request to a web server. Behind the scenes, the web server and other applications retrieve the resource from a database or file storage. They may perform other tasks, such as check if the client is signed in or customize the resource based on client input (e.g., print “Hello, Dave” at the top of the webpage). Then the web server responds with the resource for the client to download.</em></small></p>
+
+<p>Webpages that seem personalized, or that let you interact and customize the experience, are applications that are responding to your input, including the URL you used to access the page. To use an online shopping example, going to <code class="highlighter-rouge">example.com/cart</code> might take you to a shopping cart page that shows you the products you have added, then <code class="highlighter-rouge">example.com/checkout</code> would show you a page where you can pay. In both cases, an application is generating pages based on the URL, based on information it pulled from the product database, from the customer database, and any other data sources needed for you to check out.</p>
+
+<p>This idea of an application responding to a URL, and based on that, getting information from a database, is an important concept for web services. In the next lesson, we will see what happens we when contact a web service directly.</p>
+
+<h2 id="summary">Summary</h2>
+<p>Information is the foundation of Web GIS. Information, and specifically geographic information, is distributed on the web by servers, if not by a webpage then by a data-centric program known as a web service. These web services are accessed via URLs, the contents of which determine what is contained in the response from the server.</p>
+
+<p>This lesson continues with examples in <a href="../../lessons/lesson-3/">Part 2 of Web GIS Concepts</a>.</p>
+
+      <a href="#top">Top</a><br>
+      <a href="../../lessons/">Back to Lessons</a>
+    </section>
+    
+<footer class="site-footer">
+  <small>&copy; All rights reserved.</small>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
