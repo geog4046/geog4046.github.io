@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Assignment 11 | GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/prism.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/lessons">Lessons</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Assignment 11</h1>
+      <h2 class="text-center">Leaflet Map from Google Sheets</h2>
+      <p>There are many repositories of free, open-source code on <a href="https://github.com/">Github</a>. For some projects, you don’t need to start from scratch, you can fork someone else’s project as a template.</p>
+
+<p>In this assignment, we will create a web map by forking an existing project and changing only a few lines to make it work with our own data. The map will draw its data directly from a Google Sheets spreadsheet and update as the spreadsheet is modified.</p>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+  <li><a href="#finished-example">Finished Example</a></li>
+  <li><a href="#data">Data</a></li>
+  <li><a href="#steps">Steps</a>
+    <ul>
+      <li><a href="#part-1-create-a-google-sheet">Part 1: Create a Google Sheet</a></li>
+      <li><a href="#part-2-clone-a-github-repo">Part 2. Clone a Github repo</a></li>
+    </ul>
+  </li>
+  <li><a href="#try-it">Try It</a></li>
+  <li><a href="#checklist">Checklist</a></li>
+  <li><a href="#submit">Submit</a></li>
+</ul>
+
+<h2 id="finished-example">Finished Example</h2>
+<iframe width="100%" height="600" src="https://geog4046.github.io/photomap" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="data">Data</h2>
+<p>This app will accept the URL to a spreadsheet in CSV format with the following attributes:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Column name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">name</td>
+      <td>A short name for the location, to appear as the popup title</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">description</td>
+      <td>A sentence or two describing the location in more detail</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">lat</td>
+      <td>Latitude in decimal degrees</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">long</td>
+      <td>Longitude in decimal degrees</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pic_url</td>
+      <td>The URL to an image that will be displayed in the popup</td>
+    </tr>
+  </tbody>
+</table>
+
+<p> <br />
+These are some of the same columns used in the ArcGIS Online <a href="https://www.arcgis.com/home/item.html?id=91d75e9b375e4e9b9b3a4004544bfadf">Story Map Tour template</a>. That means you can use the same CSV from <a href="/assignments/assignment-03">Assignment 3</a> or start fresh with different locations.</p>
+
+<p>However, the rows and columns must be copied to a spreadsheet in Google Sheets so the app can connect to it. Changes made to the sheet will be reflected on the map when refreshed.</p>
+
+<h2 id="steps">Steps</h2>
+<h3 id="part-1-create-a-google-sheet">Part 1: Create a Google Sheet</h3>
+<ol>
+  <li>Create a new blank spreadsheet on <a href="https://drive.google.com/drive/my-drive">Google Drive</a>.</li>
+  <li>You can either paste your CSV values from <a href="/assignments/assignment-03">Assignment 3</a>, which should still be saved in your ArcGIS Online account, or create new locations with <code>name</code>, <code>description</code>, <code>lat</code>, <code>long</code>, and <code>pic_url</code> columns. Other columns are not needed.<br />
+<img src="../../assignment-resources/images/google-sheet.png" alt="Google Sheet" /></li>
+  <li>After you have locations entered in the sheet, click <code>File</code> &gt; <code>Publish to the web</code>, and select <code>Sheet1</code> and <code>Comma-separated values (.csv)</code> in the dropdowns. You will be provided with a public URL, which should look like the URL below. Note the <code>output=csv</code> at the end.<br />
+<code>https://docs.google.com/spreadsheets/d/e/long-ID-here/pub?gid=0&amp;single=true&amp;output=csv</code><br />
+<img src="../../assignment-resources/images/sheets-publish.png" alt="Publish sheet as CSV" /><br />
+We will copy this URL later, so keep the tab open for now.</li>
+</ol>
+
+<h3 id="part-2-clone-a-github-repo">Part 2: Clone a Github repo</h3>
+<ol>
+  <li>Sign into Github, go to the <a href="https://github.com/geog4046/photomap">Photomap repository</a>. “Photomap” is a simple web map application made for this exercise.</li>
+  <li>Click <code>Fork</code>. This asks you to make a copy of the project in your Github account as a new repository at <code>yourusername/photomap</code>.</li>
+  <li>After creating the forked repository, go to the <code>Settings</code> tab and scroll down to Github Pages, which lets you publish a repository as a website. Select <code>main</code> and click <code>Save</code>.<br />
+<img src="../../assignment-resources/images/github-pages.png" alt="Github Pages" /><br />
+It might take a few minutes, but eventually your site will be live at <code>yourusername.github.io/photomap</code>. You can change the repository name in the settings to change the address. At the bottom of the settings page, you can delete the repository if needed.</li>
+  <li>Add a link to your live map in the <code>README.md</code> of your <code>yourusername.github.io</code> repository, the same as “Try It” Step 3 in <a href="http://localhost:4000/assignments/assignment-10/#try-it">Assignment 10</a>.<br />
+<img src="../../assignment-resources/images/edit-readme2.png" alt="Edit README" /></li>
+</ol>
+
+<h2 id="try-it">Try It</h2>
+<p>The “Photomap” web map should already work after forking it, but it will display example locations in Baton Rouge. Customize it by connecting to your own Google Sheets and photos, center and zoom the map accordingly, and choose a different basemap.</p>
+<ol>
+  <li>To connect the map to your own Google Sheets, click on the <code>Code</code> tab in Github for your photomap repository and click the file <code>photomap.js</code>. Click the pencil icon to edit it.</li>
+  <li>Look for the line of code that saves a Google Sheets URL to a variable, beginning <code>var csvUrl...</code> Replace the URL with your own sheet’s public URL from Part 1 Step 3.</li>
+  <li>You’ll also need to change the map center and zoom to focus on your own locations. You can use Google Maps to get latitude and longitude by right-clicking on the map in Google Maps. For zoom level, here is a rough guide:
+    <ul>
+      <li>4 fits the continental U.S.</li>
+      <li>8 fits Louisiana</li>
+      <li>13 fits Baton Rouge</li>
+    </ul>
+  </li>
+  <li>
+    <p>Choose a basemap that is appropriate for your locations and the overall theme of your map. For example, if you have locations within walking distance or a short ride, a detailed street map might be useful. A topographic basemap could work well for hiking locations, and an imagery basemap goes well with a variety of maps.</p>
+
+    <p>See the <a href="https://leaflet-extras.github.io/leaflet-providers/preview/">Leaflet basemap demo</a> for ideas and the code to add to your map. Note that some require signing up for a service.</p>
+
+    <p>The example basemap code in Photomap looks like this. You need to change it:</p>
+    <pre><code class="language-javascript">var basemap = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}', {
+ maxZoom: 16,
+ attribution: 'USGS'
+}).addTo(map);
+</code></pre>
+    <div class="alert alert-warning" role="alert">
+  <span class="material-icons">warning_amber</span>
+  When you copy a basemap code sample from the <a href="https://leaflet-extras.github.io/leaflet-providers/preview/">Leaflet basemap demo</a>, you will need to make sure it ends with <code>.addTo(map);</code> like the example above, or it won't be visible on the map. The semicolon goes at the very end of the line.  
+</div>
+  </li>
+  <li>Next, deal with the photos. If you copied the CSV from Assignment 3, you will already have working images with a full URL in the <code>pic_url</code> column of your spreadsheet. However, you might wish to remove your map’s dependence on images hosted on ArcGIS Online, and instead upload your photos to Github.
+    <ul>
+      <li>To add images to Github, go to the <code>Code</code> tab of your photomap repository and click the <code>images</code> folder.</li>
+      <li>If you have your own photos saved on your computer, you can choose <code>Add file</code> &gt; <code>Upload files</code>, then drag and drop the files from your computer to the page. <code>Commit changes</code>.<br />
+   <img src="../../assignment-resources/images/github-drag.png" alt="Github drag and drop images" /></li>
+      <li>Then change your Google Sheet <code>pic_url</code> column to use the path <code>images/filename.jpg</code>, where <code>filename</code> is different for each location.<br />
+   <img src="../../assignment-resources/images/pic_url.png" alt="Images paths" /></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="checklist">Checklist</h2>
+<ol>
+  <li>A fork of the “photomap” repository on Github.</li>
+  <li>A live Github website published from the photomap repository.</li>
+  <li>Map of locations loaded from your own Google Sheets spreadsheet (from Assignment 3 or new ones).</li>
+  <li>Appropriate center and zoom.</li>
+  <li>Popups showing location name, description, and photo.</li>
+  <li>Choose your own basemap, not the “USGSImageryTopo” from the example.</li>
+  <li>Link to this map in your README on Github.</li>
+</ol>
+
+<h2 id="submit">Submit</h2>
+<ol>
+  <li>
+    <p>A URL to your main repository page showing the README file with a link to your map. The URL you submit should look like <code>https://github.com/yourusername/yourusername.github.io</code>. <strong>This is the same URL you submitted for Assignment 10</strong>.</p>
+
+    <p>Your Assignment 10 and 11 maps should both be accessible from that page now.</p>
+  </li>
+</ol>
+
+    </section>
+<footer class="site-footer">
+  <small>&copy; All rights reserved.</small>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="/js/prism.js"></script>
+<script src="/js/custom.js"></script>
+</body>
+</html>
+

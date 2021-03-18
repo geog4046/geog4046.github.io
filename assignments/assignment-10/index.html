@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Assignment 10 | GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/prism.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/lessons">Lessons</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Assignment 10</h1>
+      <h2 class="text-center">Leaflet Web Map</h2>
+      <p>Host a website on Github and build a web map with Leaflet to display real-time weather radar and alerts from the National Weather Service.</p>
+
+<p>The web development concepts learned with the open-source Leaflet library can be applied to other web mapping libraries, such as the Google Maps JavaScript API and the ArcGIS JavaScript API. Github can be useful beyond web mapping for sharing source code and creating basic websites.</p>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+  <li><a href="#finished-example">Finished Example</a></li>
+  <li><a href="#data">Data</a></li>
+  <li><a href="#steps">Steps</a>
+    <ul>
+      <li><a href="#part-1-create-a-website">Part 1: Create a website</a></li>
+      <li><a href="#part-2-html-setup">Part 2. HTML setup</a></li>
+      <li><a href="#part-3-css-setup">Part 3: CSS setup</a></li>
+      <li><a href="#part-4-javascript-setup">Part 4: JavaScript setup</a></li>
+      <li><a href="#part-5-radar-layer">Part 5: Radar layer</a></li>
+      <li><a href="#part-6-alerts-layer">Part 6: Alerts layer</a></li>
+    </ul>
+  </li>
+  <li><a href="#try-it">Try It</a></li>
+  <li><a href="#checklist">Checklist</a></li>
+  <li><a href="#submit">Submit</a></li>
+  <li><a href="#appendix-full-code">Appendix: Full code</a></li>
+</ul>
+
+<h2 id="finished-example">Finished Example</h2>
+<iframe width="100%" height="450" src="../../examples/weather" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="data">Data</h2>
+<p>Aside from a basemap, we will have two layers to show current weather conditions in the United States:</p>
+<ul>
+  <li>Weather radar</li>
+  <li>Weather alerts</li>
+</ul>
+
+<h3 id="weather-radar">Weather radar</h3>
+<p><strong>Title</strong>: NEXRAD Base Reflectivity Current<br />
+<strong>Layer type</strong>: OGC Web Map Service<br />
+<strong>Summary</strong>: A National Weather Service image product depicting current precipitation derived from a network of radar stations. The web service is provided by <a href="https://mesonet.agron.iastate.edu/ogc/">Iowa State University Mesonet</a>.<br />
+<strong>Service URL</strong>: <code>https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi</code></p>
+
+<h3 id="weather-alerts">Weather alerts</h3>
+<p><strong>Title</strong>: National Weather Service Active Alerts<br />
+<strong>Layer type</strong>: GeoJSON<br />
+<strong>Summary</strong>: Areas under a weather alert issued by the National Weather Service, such as a tornado warning. See the NWS for <a href="https://www.weather.gov/documentation/services-web-api#/default/get_alerts_active">details on the API</a>.<br />
+<strong>Service URL</strong>: <code>https://www.weather.gov/documentation/services-web-api#/default/get_alerts_active</code></p>
+
+<h3 id="example-basemap">Example Basemap</h3>
+<p><strong>Title</strong>: OpenStreetMap<br />
+<strong>Layer type</strong>: Raster tiles<br />
+<strong>Summary</strong>: Crowd-sourced street map. See the details on the <a href="https://wiki.openstreetmap.org/wiki/Tile_servers">OpenStreetMap Wiki</a>.<br />
+<strong>Service URL</strong>: <code>https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</code></p>
+
+<h2 id="steps">Steps</h2>
+<h3 id="part-1-create-a-website">Part 1: Create a website</h3>
+<ol>
+  <li>Go to <a href="https://github.com/new">github.com/new</a> and sign in to create a repository, which is like a project where you can put folders and files of source code.<br />
+a. Name the repository <code>yourusername.github.io</code>, where <code>yourusername</code> is your Github username shown on the page.<br />
+b. Select <code>Public</code>.<br />
+c. Check <code>Add a README file</code>.<br />
+d. Click <code>Create repository</code>.<br />
+<img src="../../assignment-resources/images/github-new-repo.png" alt="Github new repository" /></li>
+  <li>On the <code>Code</code> tab for your new repository, click <code>Add file</code> &gt; <code>Create new file</code>.<br />
+<img src="../../assignment-resources/images/github-new-file.png" alt="Github new file" /></li>
+  <li>Type <code>weather/index.html</code> and Github will automatically create a folder named <code>weather</code> containing a file named <code>index.html</code>. This will be the webpage people see first when they visit the website.<br />
+<img src="../../assignment-resources/images/github-file-name.png" alt="Github file name" /></li>
+  <li>Still on the <code>Code</code> tab, under <code>Edit new file</code>, paste the code below for a basic HTML skeleton of the homepage.
+    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    The content goes here.
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+  </li>
+  <li>We’re going to be making a weather map, so enter an appropriate title between the <code>title</code> tags. This will appear in browser tabs and search engine results, among other places.
+    <pre><code class="language-html">&lt;title&gt;Instructor's Weather Map&lt;/title&gt;
+</code></pre>
+    <p><img src="../../assignment-resources/images/title.png" alt="Webpage title" /><br />
+<small><em>The image illustrates where users will end up seeing your title in the browser. It is not part of the webpage content.</em></small></p>
+  </li>
+  <li>Scroll down the page and click the green button, <code>Commit new file</code>. This saves the file. Go check out your page at: <code>yourusername.github.io/weather</code>. It should display “The content goes here.”<br />
+ 
+    <div class="alert alert-warning" role="alert">
+  <span class="material-icons">warning_amber</span>
+  It can sometimes take a few minutes for changes to become visible on the live website.
+</div>
+    <div class="alert alert-info" role="alert">
+  <span class="material-icons">info</span>
+  To return to editing a page at any time, go to <code>github.com/yourusername</code>, click your repository name, click the folder (weather), click the file name (index.html), then click the <b>pencil icon</b> at the top right of the code panel.  
+</div>
+  </li>
+</ol>
+
+<p>You now have a live website consisting of a single HTML file. In the next parts, we will add more HTML code to the file to prepare it for the web map, then create additional files for CSS and JavaScript.</p>
+
+<h3 id="part-2-html-setup">Part 2: HTML setup</h3>
+<ol>
+  <li>Continue editing your page, <code>weather/index.html</code>. We will include two libraries (Leaflet and jQuery) to help build the map, and create an element to draw the map in. First, include the CSS file for Leaflet, which affects the appearance of the map. Under the <code>title</code> element, add these lines:
+    <pre><code class="language-html">&lt;link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" rel="stylesheet"&gt;
+&lt;link href="weather.css" rel="stylesheet"&gt;
+</code></pre>
+    <p>This <code>link</code> element tells the user’s browser to download a CSS file from a URL. The first is the Leaflet CSS hosted by unpkg.com, and the other is a file we will create on Github soon called <code>weather.css</code>.</p>
+  </li>
+  <li>Between the <code>body</code> tags, replace “The content goes here” with a <code>div</code> element, and give it an <code>id</code> attribute to identify it as the box where the map will eventually be drawn. For now, the page will be blank.
+    <pre><code class="language-html">&lt;body&gt;
+  &lt;div id="map"&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+  </li>
+  <li>Then, under the <code>div</code> element but still within the <code>body</code>, add the lines:
+    <pre><code class="language-html">&lt;script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"&gt;&lt;/script&gt;
+&lt;script src="https://code.jquery.com/jquery-3.6.0.min.js"&gt;&lt;/script&gt;
+&lt;script src="weather.js"&gt;&lt;/script&gt;
+</code></pre>
+    <p>These <code>script</code> tags tell the browser to download JavaScript files. The first two are libraries:</p>
+    <ul>
+      <li><code>leaflet.js</code> is the engine of our web map—it is the geographic information system that will understand geographic data and know how to draw it on a map.</li>
+      <li><code>jquery.js</code> is a library with various shortcuts to make JavaScript easier to code; we will use it to fetch GeoJSON data from a URL.</li>
+      <li><code>weather.js</code> will be our own custom script where we build the weather map.</li>
+    </ul>
+  </li>
+  <li><code>Commit changes</code>. Go to your website address again to preview it, even though the page will still be blank. At the blank page, open your browser’s developer tools (<code>F12</code> in Chrome). If you click on the Console tab, you should see errors saying that <code>weather.css</code> and <code>weather.js</code> cannot be found. That is because we haven’t created them yet.<br />
+<img src="../../assignment-resources/images/error404.png" alt="Error 404" /></li>
+</ol>
+
+<h3 id="part-3-css-setup">Part 3: CSS setup</h3>
+<ol>
+  <li>From the editor page, click the <code>weather</code> folder:<br />
+<img src="../../assignment-resources/images/github-up-folder.png" alt="Github up folder" /></li>
+  <li>Then from the <code>weather</code> folder page, click <code>Add file</code> &gt; <code>Create new file</code>, and name it <code>weather.css</code>.<br />
+<img src="../../assignment-resources/images/github-file-name2.png" alt="Github file name" /></li>
+  <li>For the code, paste these lines of CSS to make a full-page map then click <code>Commit new file</code>.
+    <pre><code class="language-css">body {
+ padding: 0;
+ margin: 0;
+}
+html, body, #map {
+ height: 100%;
+ width: 100%;
+}
+</code></pre>
+  </li>
+</ol>
+
+<p>The selector <code>#map</code> references our <code>&lt;div id="map"&gt;&lt;/div&gt;</code> element in the HTML file. The word used for the ID doesn’t have to be “map”, but it must match in both files.</p>
+
+<p>These CSS styles tell the browser to draw the map at 100% of the browser window size with no spacing (padding, margin) around the edges, i.e., full page.</p>
+
+<h3 id="part-4-javascript-setup">Part 4: JavaScript setup</h3>
+<ol>
+  <li>Back at the <code>weather</code> folder, create another new file and name it <code>weather.js</code>.</li>
+  <li>Paste the following lines to create a map object and basemap. This will tell Leaflet to connect to the tile service at the specified URL, and the tiles will be assembled and displayed in the user’s browser in the <code>div</code> with the <code>id</code> of <code>map</code>:
+    <pre><code class="language-javascript">var map = L.map('map').setView([38, -95], 4);
+var basemapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var basemap = L.tileLayer(basemapUrl).addTo(map);
+</code></pre>
+    <p>You should now have three files in your <code>weather</code> folder and you can preview your website to see if the basemap is working at <code>yourusername.github.io/weather</code>.<br />
+<img src="../../assignment-resources/images/github-files.png" alt="Github files" /></p>
+
+    <p><img src="../../assignment-resources/images/leaflet-basemap.png" alt="Leaflet basemap only" /></p>
+  </li>
+</ol>
+
+<p>Now that the HTML, CSS, and JavaScript files are set up, we need to work on our JavaScript to add operational layers and popups to complete the weather map. We will not change the HTML and CSS any further.</p>
+
+<h3 id="part-5-radar-layer">Part 5: Radar layer</h3>
+<ol>
+  <li>Add the national precipitation radar layer using these lines in <code>weather.js</code>. We specify the URL of the web service, the layer name to use from the service, and format it as a transparent image to hide pixels with no precipitation.
+    <pre><code class="language-javascript">var radarUrl = 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi';
+var radarDisplayOptions = {
+  layers: 'nexrad-n0r-900913',
+  format: 'image/png',
+  transparent: true
+};
+var radar = L.tileLayer.wms(radarUrl, radarDisplayOptions).addTo(map);
+</code></pre>
+    <p>If you preview the map, you should see the weather radar over the basemap, assuming there is precipitation somewhere in the country at the moment.<br />
+  <img src="../../assignment-resources/images/leaflet-radar.png" alt="Leaflet radar layer" /></p>
+  </li>
+</ol>
+
+<h3 id="part-6-alerts-layer">Part 6: Alerts layer</h3>
+<p>Adding the weather alerts layer will involve more complex code, so let’s do it in small steps.</p>
+<ol>
+  <li>Since we included the jQuery library in our HTML file, we can use the jQuery function <code>getJSON</code> to request current weather alerts from the National Weather Service in JSON format, saved to a variable named <code>data</code>. This function does not exist in plain JavaScript, and accomplishing this without jQuery would take some extra code.
+    <pre><code class="language-javascript">var weatherAlertsUrl = 'https://api.weather.gov/alerts/active?region_type=land';
+$.getJSON(weatherAlertsUrl, function(data) {
+  // add more code here later
+});
+</code></pre>
+  </li>
+  <li>The code above gets the alert data but doesn’t display it. We need to pass the <code>data</code> variable to a Leaflet function to read the GeoJSON features and draw them on the map. Replace <code>// add more code here later</code> with:
+    <pre><code class="language-javascript">L.geoJSON(data).addTo(map);
+</code></pre>
+    <p>Now you can <code>Commit changes</code> and preview your map. You should see polygons (Leaflet’s default is blue) representing areas that have flood watches, thunderstorm warnings, etc.<br />
+  <img src="../../assignment-resources/images/leaflet-alerts0.png" alt="Leaflet alert polygons" /></p>
+  </li>
+  <li>Let’s add a style to change the polygon color. Instead of only passing the <code>data</code> variable to the <code>geoJSON</code> function, we can pass options enclosed in curly brackets <code>{ }</code>. Replace the previous line with the code below, which has been broken up onto multiple lines to make it easier to read:
+    <pre><code class="language-javascript">L.geoJSON(data, {
+  style: { color: 'orange' },
+  // more options go here
+}).addTo(map);
+</code></pre>
+    <p>The blue polygons will now be colored orange.<br />
+<img src="../../assignment-resources/images/leaflet-alerts.png" alt="Leaflet alert polygons" /></p>
+  </li>
+  <li>In addition to the <code>style</code> option, we can add the <code>onEachFeature</code> option to tell Leaflet to call a function for every single feature in the layer. In our case, let’s attach a popup to each alert polygon to give details like “Flood Warning in Springfield MO”. Replace <code>// more options go here</code> with:
+    <pre><code class="language-javascript">onEachFeature: function(feature, layer) {
+  layer.bindPopup(feature.properties.headline);
+}
+</code></pre>
+    <p><img src="../../assignment-resources/images/leaflet-popup.png" alt="Leaflet popup" /><br />
+  Whatever text or variable is passed to the <code>bindPopup</code> function will be printed in the popup when the user clicks a polygon. If we put <code>bindPopup('Hello')</code>, then each popup would just show <code>Hello</code>. Instead, we are displaying the <code>headline</code> attribute that the National Weather Service includes in their alerts GeoJSON layer. You can view the <a href="https://api.weather.gov/alerts/active?region_type=land">NWS alerts web service URL</a> in a browser to see the relevant attributes.<br />
+  <img src="../../assignment-resources/images/nws-geojson.png" alt="NWS GeoJSON for the alerts services" /><br />
+  Due to the way Leaflet handles GeoJSON data, attribute values are accessed via the object <code>feature.properties</code>. You could show users the longer description instead of the headline by passing <code>feature.properties.description</code> to the <code>bindPopup</code> function.</p>
+  </li>
+  <li>Finally, it would be nice to display the “severe” alerts in a different color to distinguish them from the watches and advisories. Revisit the <code>style</code> option: instead of specifying a color directly, we can write a function with some logic to determine the color based on an attribute value. This is the equivalent of changing the layer symbology in other GIS software. Replace <code>style: { color: 'orange' },</code> with:
+    <pre><code class="language-javascript">style: function(feature){
+  var alertColor = 'orange';
+  if (feature.properties.severity === 'Severe') alertColor = 'red';
+  return { color: alertColor };
+},
+</code></pre>
+    <p>That sets the color of alert polygons to orange, but if the alert has a severity of “Severe”, then the color for that polygon will be changed to red.<br />
+  <img src="../../assignment-resources/images/leaflet-alerts2.png" alt="Leaflet alert polygons colored red and orange" /><br />
+Make sure your map works (<code>yourusername.github.io/weather</code>). If it doesn’t, press <code>F12</code> to open your browser’s developer tools and look at the <code>Console</code> for errors that might hint at the problem. See the appendix for the full code example to compare for mistakes.</p>
+  </li>
+</ol>
+
+<h2 id="try-it">Try It</h2>
+<p>Go back and modify your existing map to meet the criteria below. <strong>Do not create a separate map for the Try It section.</strong></p>
+<ol>
+  <li>We already specified a color for “Severe” alerts. Add another line of code, in the right place, to make “Extreme” alerts <a href="https://htmlcolorcodes.com/color-names/">a different color</a>. If no extreme alerts are visible at the time, you could also add a line for “Minor” alerts, which are more common.</li>
+  <li>Set a different basemap that works well with our weather layers. You can choose from the URLs below or venture out to the <a href="https://leaflet-extras.github.io/leaflet-providers/preview/">Leaflet Providers Demo</a> for examples, though some of those might require signing up for a service.<br />
+   <br />
+  <strong>USGS Imagery Topo</strong> (<a href="https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer">Details</a>)<br />
+  Service URL:<br />
+  <small>https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}</small><br />
+   <br />
+  <strong>Esri World Dark Gray</strong> (<a href="https://www.arcgis.com/home/item.html?id=a284a9b99b3446a3910d4144a50990f6">Details</a>)<br />
+  Service URL:<br />
+<small>https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}</small><br />
+   </li>
+  <li>Edit your <code>README.md</code> file in your repository to link to the weather map with a short description, then <code>Commit changes</code>. The formatting used in <code>README.md</code> is called <a href="https://guides.github.com/features/mastering-markdown/">Markdown</a>.
+    <ul>
+      <li>A single <code>#</code> starts a large heading</li>
+      <li>A double <code>##</code> starts a subheading</li>
+      <li>Ending a line with a double space will begin a new line</li>
+      <li>Enclose a URL in <code>&lt; &gt;</code> to create a link, such as <code>&lt;https://yourusername.github.io/weather&gt;</code><br />
+<img src="../../assignment-resources/images/readme-edit.png" alt="Github README" /><br />
+Your main repository page will then show the README with a link to the weather map.<br />
+<img src="../../assignment-resources/images/readme.png" alt="Github README" /></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="checklist">Checklist</h2>
+<ol>
+  <li>A working website hosted on Github</li>
+  <li>A working map on the website</li>
+  <li>A different basemap instead of OpenStreetMap</li>
+  <li>Radar layer</li>
+  <li>Alerts layer</li>
+  <li>Symbology applied to alerts</li>
+  <li>A new color applied to Extreme alerts</li>
+  <li>Popup appears on alerts showing details</li>
+  <li>README file on Github links to map</li>
+</ol>
+
+<h2 id="submit">Submit</h2>
+<ol>
+  <li>A URL to your main repository page showing the README file with a link to your map. The URL you submit should look like <code>https://github.com/yourusername/yourusername.github.io</code></li>
+</ol>
+
+<h2 id="appendix-full-code">Appendix: Full code</h2>
+<h3 id="html">HTML</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Instructor's Weather Map&lt;/title&gt;
+    &lt;link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" rel="stylesheet"&gt;
+    &lt;link href="weather.css" rel="stylesheet"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="map"&gt;&lt;/div&gt;
+    &lt;script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"&gt;&lt;/script&gt;
+    &lt;script src="https://code.jquery.com/jquery-3.6.0.min.js"&gt;&lt;/script&gt;
+    &lt;script src="weather.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="css">CSS</h3>
+<pre><code class="language-css">body {
+  padding: 0;
+  margin: 0;
+}
+html, body, #map {
+  height: 100%;
+  width: 100%;
+}
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre><code class="language-javascript">// Create a new map centered on the continental US
+var map = L.map('map').setView([38, -95], 4);
+
+// Add OpenStreetMap to the map
+var basemapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var basemap = L.tileLayer(basemapUrl).addTo(map);
+
+// Add weather radar to the map
+var radarUrl = 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi';
+var radarDisplayOptions = {
+  layers: 'nexrad-n0r-900913',
+  format: 'image/png',
+  transparent: true
+};
+var radar = L.tileLayer.wms(radarUrl, radarDisplayOptions).addTo(map);
+
+// Get GeoJSON data from the NWS weather alerts API
+var weatherAlertsUrl = 'https://api.weather.gov/alerts/active?region_type=land';
+$.getJSON(weatherAlertsUrl, function(data) {
+  L.geoJSON(data, {
+    // Color all alert polygons orange, but color Severe polygons red
+    style: function(feature){
+      var alertColor = 'orange';
+      if (feature.properties.severity === 'Severe') alertColor = 'red';
+      return { color: alertColor }
+    },
+    // Add a popup on each feature showing the NWS alert headline
+    onEachFeature: function(feature, layer) {
+      layer.bindPopup(feature.properties.headline);
+    }
+  }).addTo(map);
+});
+</code></pre>
+
+    </section>
+<footer class="site-footer">
+  <small>&copy; All rights reserved.</small>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="/js/prism.js"></script>
+<script src="/js/custom.js"></script>
+</body>
+</html>
+

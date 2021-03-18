@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/css/cayman.css">
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/prism.css">
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
@@ -58,7 +58,7 @@
 <p><a href="https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer">https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer</a></p>
 
 <h2 id="code-editor">Code Editor</h2>
-<p>Go to the <a href="https://code.earthengine.google.com/">Google Earth Engine Code Editor</a>. Familiarize yourself with the interface, especially the <code class="highlighter-rouge">Code Editor</code> panel in the center, the <code class="highlighter-rouge">Map</code> at the bottom, and the <code class="highlighter-rouge">Inspector</code>/<code class="highlighter-rouge">Console</code>/<code class="highlighter-rouge">Tasks</code> panel on the right. The <code class="highlighter-rouge">Script</code> panel to the top left is where you can create new files and folders and see a list of your saved scripts.<br />
+<p>Go to the <a href="https://code.earthengine.google.com/">Google Earth Engine Code Editor</a>. Familiarize yourself with the interface, especially the <code>Code Editor</code> panel in the center, the <code>Map</code> at the bottom, and the <code>Inspector</code>/<code>Console</code>/<code>Tasks</code> panel on the right. The <code>Script</code> panel to the top left is where you can create new files and folders and see a list of your saved scripts.<br />
 <img src="../../assignment-resources/images/Code_editor_diagram.png" alt="Earth Engine Code Editor" class="no-shadow" /><br />
 <small><em>Labeled interface of the Earth Engine Code Editor. Source: <a href="https://developers.google.com/earth-engine/guides/playground">Earth Engine documentation</a>.</em></small></p>
 
@@ -67,19 +67,19 @@
 
 <p>The slope layer that we will display is not a separate dataset; it will be calculated on the fly by Earth Engine, demonstrating the platform’s ability to run pixel-level analysis. Earth Engine calculates a pixel’s slope based on the elevation difference with neighboring pixels using trigonometry.</p>
 
-<p>Preview the dataset before getting started. In the search bar at the top of the <a href="https://code.earthengine.google.com/">Google Earth Engine Code Editor</a>, search for <code class="highlighter-rouge">USGS National Elevation Dataset</code> and click <code class="highlighter-rouge">import</code>. Then paste this line of JavaScript into the editor panel and click <code class="highlighter-rouge">Run</code>:</p>
+<p>Preview the dataset before getting started. In the search bar at the top of the <a href="https://code.earthengine.google.com/">Google Earth Engine Code Editor</a>, search for <code>USGS National Elevation Dataset</code> and click <code>import</code>. Then paste this line of JavaScript into the editor panel and click <code>Run</code>:</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="p">{</span><span class="na">min</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="na">max</span><span class="p">:</span><span class="mi">3000</span><span class="p">});</span>
-</code></pre></div></div>
+<pre><code class="language-javascript">Map.addLayer(image, {min:0, max:3000});
+</code></pre>
 
-<p>Click the <code class="highlighter-rouge">Inspector</code> tab in the top right panel, then click a place on the map. The inspector will print the longitude, latitude, and elevation of the pixel you clicked. Adjust the <code class="highlighter-rouge">min</code> and <code class="highlighter-rouge">max</code> (elevation in meters) to see how it affects the display.</p>
+<p>Click the <code>Inspector</code> tab in the top right panel, then click a place on the map. The inspector will print the longitude, latitude, and elevation of the pixel you clicked. Adjust the <code>min</code> and <code>max</code> (elevation in meters) to see how it affects the display.</p>
 
-<p>Click <code class="highlighter-rouge">Reset</code> &gt; <code class="highlighter-rouge">Clear Script</code> to clear the code editor before starting the assignment.</p>
+<p>Click <code>Reset</code> &gt; <code>Clear Script</code> to clear the code editor before starting the assignment.</p>
 
 <h2 id="steps">Steps</h2>
 <p>The steps below build an app piece by piece, with short snippets of code gradually adding functionality to the app. The steps work for a Baton Rouge map but can be adapted for any area. Take a look at the <a href="https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer">finished app</a> to see what we’re working towards.</p>
 
-<p>Click <code class="highlighter-rouge">Save</code> to put a copy of your script into a repository, seen in the top left panel of the code editor. Save your work often while going through these steps.</p>
+<p>Click <code>Save</code> to put a copy of your script into a repository, seen in the top left panel of the code editor. Save your work often while going through these steps.</p>
 
 <h3 id="part-1-display-maps">Part 1: Display maps</h3>
 <ol>
@@ -87,75 +87,75 @@
     <p>First, we will define some variables to make it easy to change our map later.</p>
 
     <p>Set minimum and maximum values for elevation in meters and slope in degrees for your area of interest. These Baton Rouge values would be very different for the <a href="https://developers.google.com/earth-engine/tutorials/tutorial_api_02">Grand Canyon</a>. Adjust accordingly.</p>
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Minimum and maximum elevation in meters and slope in degrees for your area (approx.). Affects color.</span>
-<span class="kd">var</span> <span class="nx">minElevation</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">maxElevation</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">minSlope</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">maxSlope</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
-</code></pre></div>    </div>
+    <pre><code class="language-javascript">// Minimum and maximum elevation in meters and slope in degrees for your area (approx.). Affects color.
+var minElevation = 3;
+var maxElevation = 20;
+var minSlope = 0;
+var maxSlope = 30;
+</code></pre>
   </li>
-  <li>Set the color scheme for the DEM image we’re about to import. In addition to basic color names, you can use <a href="https://htmlcolorcodes.com/">HTML color codes</a> such as <code class="highlighter-rouge">925314</code>. Add colors to the list separated by commas and enclosed in quotes.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Elevation color gradient from lowest to highest. Add more colors for areas with more variation.</span>
-<span class="kd">var</span> <span class="nx">demColor</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'green'</span><span class="p">,</span> <span class="s1">'yellow'</span><span class="p">,</span> <span class="s1">'orange'</span><span class="p">];</span>
-</code></pre></div>    </div>
+  <li>Set the color scheme for the DEM image we’re about to import. In addition to basic color names, you can use <a href="https://htmlcolorcodes.com/">HTML color codes</a> such as <code>925314</code>. Add colors to the list separated by commas and enclosed in quotes.
+    <pre><code class="language-javascript">// Elevation color gradient from lowest to highest. Add more colors for areas with more variation.
+var demColor = ['green', 'yellow', 'orange'];
+</code></pre>
   </li>
-  <li>The wipe effect we’ll use to compare layers is acheived with two maps on top of each other. The slider bar hides one map and reveals the other when the user drags it back and forth. Therefore, create two empty maps to begin with. Because we have two maps, you’ll notice we often repeat commands.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Remove default map, create two maps for elevation and slope side by side</span>
-<span class="nx">ui</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
-<span class="kd">var</span> <span class="nx">Map1</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nb">Map</span><span class="p">();</span>
-<span class="kd">var</span> <span class="nx">Map2</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nb">Map</span><span class="p">();</span>
-<span class="nx">ui</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">Map1</span><span class="p">);</span>
-<span class="nx">ui</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">Map2</span><span class="p">);</span>
-</code></pre></div>    </div>
+  <li>The wipe effect we’ll use to compare layers is achieved with two maps on top of each other. The slider bar hides one map and reveals the other when the user drags it back and forth. Therefore, create two empty maps to begin with. Because we have two maps, you’ll notice we often repeat commands.
+    <pre><code class="language-javascript">// Remove default map, create two maps for elevation and slope side by side
+ui.root.clear();
+var Map1 = ui.Map();
+var Map2 = ui.Map();
+ui.root.add(Map1);
+ui.root.add(Map2);
+</code></pre>
     <div class="alert alert-success" role="alert">
   <span class="material-icons">play_circle_outline</span>
   Run the code to preview the progress: two street maps.  
 </div>
   </li>
   <li>Center the map on your location with appropriate zoom (4-17). Use the inspector to get lon/lat.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Set the map center and zoom level</span>
-<span class="nx">Map1</span><span class="p">.</span><span class="nx">setCenter</span><span class="p">(</span><span class="o">-</span><span class="mf">91.167275</span><span class="p">,</span> <span class="mf">30.398996</span><span class="p">,</span> <span class="mi">17</span><span class="p">);</span>
-</code></pre></div>    </div>
+    <pre><code class="language-javascript">// Set the map center and zoom level
+Map1.setCenter(-91.167275, 30.398996, 17);
+</code></pre>
     <div class="alert alert-success" role="alert">
   <span class="material-icons">play_circle_outline</span>
   Run the code: one map centers and zooms but the other doesn't change.  
 </div>
   </li>
-  <li>Use the <code class="highlighter-rouge">Linker</code> function to sync the movement of both maps.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Sync the pan and zoom of the two maps</span>
-<span class="nx">ui</span><span class="p">.</span><span class="nb">Map</span><span class="p">.</span><span class="nx">Linker</span><span class="p">([</span><span class="nx">Map1</span><span class="p">,</span> <span class="nx">Map2</span><span class="p">]);</span>
-</code></pre></div>    </div>
+  <li>Use the <code>Linker</code> function to sync the movement of both maps.
+    <pre><code class="language-javascript">// Sync the pan and zoom of the two maps
+ui.Map.Linker([Map1, Map2]);
+</code></pre>
     <div class="alert alert-success" role="alert">
   <span class="material-icons">play_circle_outline</span>
   Run the code: both maps pan/zoom together.  
 </div>
   </li>
   <li>Now we’re ready to add data. Import the DEM and add it with the min, max, and color options we specified in the first steps.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Load the digital elevation model (DEM) layer and add it to the default map.</span>
-<span class="kd">var</span> <span class="nx">dem</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s2">"USGS/NED"</span><span class="p">);</span>
-<span class="nx">Map1</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">dem</span><span class="p">,</span> <span class="p">{</span><span class="na">min</span><span class="p">:</span> <span class="nx">minElevation</span><span class="p">,</span> <span class="na">max</span><span class="p">:</span> <span class="nx">maxElevation</span><span class="p">,</span> <span class="na">palette</span><span class="p">:</span> <span class="nx">demColor</span><span class="p">},</span> <span class="s1">'Elevation'</span><span class="p">);</span>
-</code></pre></div>    </div>
+    <pre><code class="language-javascript">// Load the digital elevation model (DEM) layer and add it to the default map.
+var dem = ee.Image("USGS/NED");
+Map1.addLayer(dem, {min: minElevation, max: maxElevation, palette: demColor}, 'Elevation');
+</code></pre>
     <div class="alert alert-success" role="alert">
   <span class="material-icons">play_circle_outline</span>
   Run the code: Map1 displays the image layer.  
 </div>
     <p>Now would be a good time to adjust your min, max, and color settings if needed.</p>
   </li>
-  <li>With the DEM added, we can use the <code class="highlighter-rouge">slope</code> function to calculate how steep/flat the land is at each pixel.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Calculate pixel slope based on the DEM and add to the 2nd map</span>
-<span class="kd">var</span> <span class="nx">slope</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Terrain</span><span class="p">.</span><span class="nx">slope</span><span class="p">(</span><span class="nx">dem</span><span class="p">);</span>
-<span class="nx">Map2</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">slope</span><span class="p">,</span> <span class="p">{</span><span class="na">min</span><span class="p">:</span> <span class="nx">minSlope</span><span class="p">,</span> <span class="na">max</span><span class="p">:</span> <span class="nx">maxSlope</span><span class="p">},</span> <span class="s1">'Slope'</span><span class="p">);</span>
-</code></pre></div>    </div>
+  <li>With the DEM added, we can use the <code>slope</code> function to calculate how steep/flat the land is at each pixel.
+    <pre><code class="language-javascript">// Calculate pixel slope based on the DEM and add to the 2nd map
+var slope = ee.Terrain.slope(dem);
+Map2.addLayer(slope, {min: minSlope, max: maxSlope}, 'Slope');
+</code></pre>
     <div class="alert alert-success" role="alert">
   <span class="material-icons">play_circle_outline</span>
   Run the code: Map1 displays the DEM while Map2 shows the new slope layer.  
 </div>
   </li>
-  <li>Our maps are still side-by-side without a slider tool, so we need to add it, specifying the slide direction is <code class="highlighter-rouge">horizontal</code>.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Split the map panels so there is a swipe bar </span>
-<span class="kd">var</span> <span class="nx">splitPanel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">SplitPanel</span><span class="p">({</span><span class="na">firstPanel</span><span class="p">:</span> <span class="nx">Map1</span><span class="p">,</span> <span class="na">secondPanel</span><span class="p">:</span> <span class="nx">Map2</span><span class="p">,</span> <span class="na">orientation</span><span class="p">:</span> <span class="s1">'horizontal'</span><span class="p">,</span> <span class="na">wipe</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">style</span><span class="p">:</span> <span class="p">{</span><span class="na">stretch</span><span class="p">:</span> <span class="s1">'both'</span><span class="p">}});</span>
-<span class="nx">ui</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">widgets</span><span class="p">().</span><span class="nx">reset</span><span class="p">([</span><span class="nx">splitPanel</span><span class="p">]);</span>
-</code></pre></div>    </div>
+  <li>Our maps are still side-by-side without a slider tool, so we need to add it, specifying the slide direction is <code>horizontal</code>.
+    <pre><code class="language-javascript">// Split the map panels so there is a swipe bar 
+var splitPanel = ui.SplitPanel({firstPanel: Map1, secondPanel: Map2, orientation: 'horizontal', wipe: true, style: {stretch: 'both'}});
+ui.root.widgets().reset([splitPanel]);
+</code></pre>
     <div class="alert alert-success" role="alert">
   <span class="material-icons">play_circle_outline</span>
   Run the code: the maps are on top of each other instead of side-by-side, with a slider to show/hide them.  
@@ -168,75 +168,75 @@
 
 <ol>
   <li>To display information about our app and eventually print pixel values, we will create a side panel. For now, it will be a blank white space. We will modify these lines to add content in the following steps.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create the side panel where info will be printed</span>
-<span class="kd">var</span> <span class="nx">sidePanel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Panel</span><span class="p">([],</span> <span class="s1">'flow'</span><span class="p">,</span> <span class="p">{</span><span class="na">width</span><span class="p">:</span> <span class="s1">'20%'</span><span class="p">});</span> <span class="c1">// this line will be modified</span>
-<span class="nx">ui</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">sidePanel</span><span class="p">);</span>
-</code></pre></div>    </div>
+    <pre><code class="language-javascript">// Create the side panel where info will be printed
+var sidePanel = ui.Panel([], 'flow', {width: '20%'}); // this line will be modified
+ui.root.add(sidePanel);
+</code></pre>
     <div class="alert alert-success" role="alert">
   <span class="material-icons">play_circle_outline</span>
   Run the code: there is a blank white space to the right of the slope map.  
 </div>
   </li>
   <li>
-    <p>Create a title label for the side panel. We must define the title <strong>before</strong> we add it to the side panel, so add this first line <strong>above</strong> the <code class="highlighter-rouge">var sidePanel</code> definition in the previous snippet and then <strong>modify</strong> the <code class="highlighter-rouge">var sidePanel</code> line. <strong>Do not add another copy of the lines from the previous step; modify the existing line</strong>. In the <code class="highlighter-rouge">sidePanel</code> definition, add <code class="highlighter-rouge">titleLabel</code> between the square brackets.</p>
+    <p>Create a title label for the side panel. We must define the title <strong>before</strong> we add it to the side panel, so add this first line <strong>above</strong> the <code>var sidePanel</code> definition in the previous snippet and then <strong>modify</strong> the <code>var sidePanel</code> line. <strong>Do not add another copy of the lines from the previous step; modify the existing line</strong>. In the <code>sidePanel</code> definition, add <code>titleLabel</code> between the square brackets.</p>
 
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">titleLabel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Label</span><span class="p">({</span><span class="na">value</span><span class="p">:</span> <span class="s1">'Highland Road Elevation Explorer'</span><span class="p">,</span> <span class="na">style</span><span class="p">:</span> <span class="p">{</span><span class="na">fontSize</span><span class="p">:</span> <span class="s1">'2em'</span><span class="p">}});</span>
+    <pre><code class="language-javascript">var titleLabel = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}});
  
-<span class="c1">// Create the side panel where info will be printed</span>
-<span class="kd">var</span> <span class="nx">sidePanel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Panel</span><span class="p">([</span><span class="nx">titleLabel</span><span class="p">],</span> <span class="s1">'flow'</span><span class="p">,</span> <span class="p">{</span><span class="na">width</span><span class="p">:</span> <span class="s1">'20%'</span><span class="p">});</span>
-<span class="nx">ui</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">sidePanel</span><span class="p">);</span>
-</code></pre></div>    </div>
+// Create the side panel where info will be printed
+var sidePanel = ui.Panel([titleLabel], 'flow', {width: '20%'});
+ui.root.add(sidePanel);
+</code></pre>
     <div class="alert alert-success" role="alert">
   <span class="material-icons">play_circle_outline</span>
   Run the code: the side panel now has a title, "Highland Road Elevation Explorer".  
 </div>
   </li>
   <li>Under the title line, add a variable for a label to give our audience basic info about the app. Then update the side panel variable to include the new variable between the square brackets.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">titleLabel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Label</span><span class="p">({</span><span class="na">value</span><span class="p">:</span> <span class="s1">'Highland Road Elevation Explorer'</span><span class="p">,</span> <span class="na">style</span><span class="p">:</span> <span class="p">{</span><span class="na">fontSize</span><span class="p">:</span> <span class="s1">'2em'</span><span class="p">}});</span>
-<span class="kd">var</span> <span class="nx">instructionsLabel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Label</span><span class="p">(</span><span class="s1">'Explore elevation changes in an otherwise flat landscape along the historic Highland Road running along the natural floodplain of the Mississippi River. Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.'</span><span class="p">);</span>
+    <pre><code class="language-javascript">var titleLabel = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}});
+var instructionsLabel = ui.Label('Explore elevation changes in an otherwise flat landscape along the historic Highland Road running along the natural floodplain of the Mississippi River. Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.');
  
-<span class="c1">// Create the side panel where info will be printed</span>
-<span class="kd">var</span> <span class="nx">sidePanel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Panel</span><span class="p">([</span><span class="nx">titleLabel</span><span class="p">,</span><span class="nx">instructionsLabel</span><span class="p">],</span> <span class="s1">'flow'</span><span class="p">,</span> <span class="p">{</span><span class="na">width</span><span class="p">:</span> <span class="s1">'20%'</span><span class="p">});</span>
-<span class="nx">ui</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">sidePanel</span><span class="p">);</span>
-</code></pre></div>    </div>
+// Create the side panel where info will be printed
+var sidePanel = ui.Panel([titleLabel,instructionsLabel], 'flow', {width: '20%'});
+ui.root.add(sidePanel);
+</code></pre>
     <div class="alert alert-success" role="alert">
   <span class="material-icons">play_circle_outline</span>
   Run the code: instructional text appears under the title.  
 </div>
   </li>
   <li>Next we will create labels where the elevation and slope values will be printed when the user clicks the map. They won’t work at this point; they are placeholders for now.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">titleLabel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Label</span><span class="p">({</span><span class="na">value</span><span class="p">:</span> <span class="s1">'Highland Road Elevation Explorer'</span><span class="p">,</span> <span class="na">style</span><span class="p">:</span> <span class="p">{</span><span class="na">fontSize</span><span class="p">:</span> <span class="s1">'2em'</span><span class="p">}});</span>
-<span class="kd">var</span> <span class="nx">instructionsLabel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Label</span><span class="p">(</span><span class="s1">'Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">valuesLabel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Label</span><span class="p">(</span><span class="s1">'Elevation: (click map)</span><span class="err">\</span><span class="s1">nSlope: (click map)'</span><span class="p">,</span> <span class="p">{</span><span class="na">whiteSpace</span><span class="p">:</span> <span class="s1">'pre'</span><span class="p">});</span>
+    <pre><code class="language-javascript">var titleLabel = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}});
+var instructionsLabel = ui.Label('Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.');
+var valuesLabel = ui.Label('Elevation: (click map)\nSlope: (click map)', {whiteSpace: 'pre'});
  
-<span class="c1">// Create the side panel where info will be printed</span>
-<span class="kd">var</span> <span class="nx">sidePanel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Panel</span><span class="p">([</span><span class="nx">titleLabel</span><span class="p">,</span><span class="nx">instructionsLabel</span><span class="p">,</span><span class="nx">valuesLabel</span><span class="p">],</span> <span class="s1">'flow'</span><span class="p">,</span> <span class="p">{</span><span class="na">width</span><span class="p">:</span> <span class="s1">'20%'</span><span class="p">});</span>
-<span class="nx">ui</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">sidePanel</span><span class="p">);</span>
-</code></pre></div>    </div>
+// Create the side panel where info will be printed
+var sidePanel = ui.Panel([titleLabel,instructionsLabel,valuesLabel], 'flow', {width: '20%'});
+ui.root.add(sidePanel);
+</code></pre>
     <div class="alert alert-success" role="alert">
   <span class="material-icons">play_circle_outline</span>
   Run the code: "Elevation", "Slope", and "(click map)" labels appear.
 </div>
   </li>
   <li>For the final addition to the side panel, link to the dataset details page for the DEM layer.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">titleLabel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Label</span><span class="p">({</span><span class="na">value</span><span class="p">:</span> <span class="s1">'Highland Road Elevation Explorer'</span><span class="p">,</span> <span class="na">style</span><span class="p">:</span> <span class="p">{</span><span class="na">fontSize</span><span class="p">:</span> <span class="s1">'2em'</span><span class="p">}});</span>
-<span class="kd">var</span> <span class="nx">instructionsLabel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Label</span><span class="p">(</span><span class="s1">'Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">valuesLabel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Label</span><span class="p">(</span><span class="s1">'Elevation: (click map)</span><span class="err">\</span><span class="s1">nSlope: (click map)'</span><span class="p">,</span> <span class="p">{</span><span class="na">whiteSpace</span><span class="p">:</span> <span class="s1">'pre'</span><span class="p">});</span>
-<span class="kd">var</span> <span class="nx">sourceLink</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Label</span><span class="p">({</span>
-  <span class="na">value</span><span class="p">:</span> <span class="s1">'Data source: USGS National Elevation Dataset'</span><span class="p">,</span> 
-  <span class="na">targetUrl</span><span class="p">:</span> <span class="s1">'https://developers.google.com/earth-engine/datasets/catalog/USGS_NED'</span>
-<span class="p">});</span>
+    <pre><code class="language-javascript">var titleLabel = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}});
+var instructionsLabel = ui.Label('Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.');
+var valuesLabel = ui.Label('Elevation: (click map)\nSlope: (click map)', {whiteSpace: 'pre'});
+var sourceLink = ui.Label({
+  value: 'Data source: USGS National Elevation Dataset', 
+  targetUrl: 'https://developers.google.com/earth-engine/datasets/catalog/USGS_NED'
+});
  
-<span class="c1">// Create the side panel where info will be printed</span>
-<span class="kd">var</span> <span class="nx">sidePanel</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Panel</span><span class="p">([</span><span class="nx">titleLabel</span><span class="p">,</span><span class="nx">instructionsLabel</span><span class="p">,</span><span class="nx">valuesLabel</span><span class="p">,</span><span class="nx">sourceLink</span><span class="p">],</span> <span class="s1">'flow'</span><span class="p">,</span> <span class="p">{</span><span class="na">width</span><span class="p">:</span> <span class="s1">'20%'</span><span class="p">});</span>
-<span class="nx">ui</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">sidePanel</span><span class="p">);</span>
-</code></pre></div>    </div>
+// Create the side panel where info will be printed
+var sidePanel = ui.Panel([titleLabel,instructionsLabel,valuesLabel,sourceLink], 'flow', {width: '20%'});
+ui.root.add(sidePanel);
+</code></pre>
     <div class="alert alert-success" role="alert">
   <span class="material-icons">play_circle_outline</span>
   Run the code: a link to the USGS NED dataset appears.
 </div>
 
-    <p>You could continue to add labels to the side panel by copying these examples, just be sure to update the <code class="highlighter-rouge">var sidePanel</code> line with the variable names between the square brackets. The order of the labels in the panel depends on the order of the variable names between the brackets, from top to bottom: <code class="highlighter-rouge">[titleLabel,instructionsLabel,valuesLabel,sourceLink]</code>.</p>
+    <p>You could continue to add labels to the side panel by copying these examples, just be sure to update the <code>var sidePanel</code> line with the variable names between the square brackets. The order of the labels in the panel depends on the order of the variable names between the brackets, from top to bottom: <code>[titleLabel,instructionsLabel,valuesLabel,sourceLink]</code>.</p>
   </li>
 </ol>
 
@@ -244,40 +244,40 @@
 <p>The next step has a chunk of more complex code known as a function, whose lines all work together to perform a single task, so paste the whole snippet into your script instead of going line-by-line.</p>
 
 <ol>
-  <li>Define a function that takes lat/lon coordinates of a pixel as input. The function sends the coordinates to Earth Engine to get the pixel’s elevation and slope values from the dataset. Then the function prints those values to our side panel in <code class="highlighter-rouge">valuesLabel</code>, replacing “(click map)” with the pixel values.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Query a clicked pixel for elevation and slope.</span>
-<span class="kd">var</span> <span class="nx">getPixelValues</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">coords</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// Print "Loading..." in the valuesLabel first in case query is slow. </span>
-  <span class="nx">valuesLabel</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="s1">'Elevation: Loading...</span><span class="err">\</span><span class="s1">nSlope: Loading...'</span><span class="p">).</span><span class="nx">style</span><span class="p">({</span><span class="na">whiteSpace</span><span class="p">:</span> <span class="s1">'pre'</span><span class="p">});</span>
-  <span class="c1">// Send the clicked location to the server to request an elevation value</span>
-  <span class="kd">var</span> <span class="nx">location</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Point</span><span class="p">(</span><span class="nx">coords</span><span class="p">.</span><span class="nx">lon</span><span class="p">,</span> <span class="nx">coords</span><span class="p">.</span><span class="nx">lat</span><span class="p">);</span>
-  <span class="nx">dem</span><span class="p">.</span><span class="nx">reduceRegion</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Reducer</span><span class="p">.</span><span class="nx">first</span><span class="p">(),</span> <span class="nx">location</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">){</span>
- <span class="kd">var</span> <span class="nx">demText</span> <span class="o">=</span> <span class="nx">val</span><span class="p">.</span><span class="nx">elevation</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' meters'</span><span class="p">;</span>
- <span class="c1">// Request slope value from the server and print both elevation and slope to valuesLabel</span>
- <span class="nx">slope</span><span class="p">.</span><span class="nx">reduceRegion</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Reducer</span><span class="p">.</span><span class="nx">first</span><span class="p">(),</span> <span class="nx">location</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">){</span>
-   <span class="kd">var</span> <span class="nx">slopeText</span> <span class="o">=</span> <span class="nx">val</span><span class="p">.</span><span class="nx">slope</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' degrees'</span><span class="p">;</span>
-   <span class="nx">valuesLabel</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="s1">'Elevation: '</span> <span class="o">+</span> <span class="nx">demText</span> <span class="o">+</span> <span class="s1">'</span><span class="err">\</span><span class="s1">nSlope: '</span> <span class="o">+</span> <span class="nx">slopeText</span><span class="p">).</span><span class="nx">style</span><span class="p">({</span><span class="na">whiteSpace</span><span class="p">:</span> <span class="s1">'pre'</span><span class="p">});</span>
- <span class="p">});</span>
-  <span class="p">});</span>  
-<span class="p">}</span>
-</code></pre></div>    </div>
+  <li>Define a function that takes lat/lon coordinates of a pixel as input. The function sends the coordinates to Earth Engine to get the pixel’s elevation and slope values from the dataset. Then the function prints those values to our side panel in <code>valuesLabel</code>, replacing “(click map)” with the pixel values.
+    <pre><code class="language-javascript">// Query a clicked pixel for elevation and slope.
+var getPixelValues = function(coords) {
+  // Print "Loading..." in the valuesLabel first in case query is slow. 
+  valuesLabel.setValue('Elevation: Loading...\nSlope: Loading...').style({whiteSpace: 'pre'});
+  // Send the clicked location to the server to request an elevation value
+  var location = ee.Geometry.Point(coords.lon, coords.lat);
+  dem.reduceRegion(ee.Reducer.first(), location, 10).evaluate(function(val){
+ var demText = val.elevation.toFixed(2) + ' meters';
+ // Request slope value from the server and print both elevation and slope to valuesLabel
+ slope.reduceRegion(ee.Reducer.first(), location, 10).evaluate(function(val){
+   var slopeText = val.slope.toFixed(0) + ' degrees';
+   valuesLabel.setValue('Elevation: ' + demText + '\nSlope: ' + slopeText).style({whiteSpace: 'pre'});
+ });
+  });  
+}
+</code></pre>
     <p>Note: the code above only defines a function, it does not “call” it, and we haven’t told the map to respond to a user click. Therefore, the code above doesn’t do anything yet.</p>
   </li>
-  <li>We can use the lines below to create something in JavaScript called a “listener”. Listeners wait for some kind of event to happen in the browser, such as a mouse click, scroll wheel, or completed page load. You can tell listeners what to do when those events happen. In our case, we want our app to listen for mouse clicks on either map, and then run our <code class="highlighter-rouge">getPixelValues</code> function, defined in the previous step. The lat/lon where the user clicked will be pass along to our function.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Tell the maps to listen for a click and run our getPixelValues function. </span>
-<span class="nx">Map1</span><span class="p">.</span><span class="nx">onClick</span><span class="p">(</span><span class="nx">getPixelValues</span><span class="p">);</span>
-<span class="nx">Map2</span><span class="p">.</span><span class="nx">onClick</span><span class="p">(</span><span class="nx">getPixelValues</span><span class="p">);</span>
-</code></pre></div>    </div>
+  <li>We can use the lines below to create something in JavaScript called a “listener”. Listeners wait for some kind of event to happen in the browser, such as a mouse click, scroll wheel, or completed page load. You can tell listeners what to do when those events happen. In our case, we want our app to listen for mouse clicks on either map, and then run our <code>getPixelValues</code> function, defined in the previous step. The lat/lon where the user clicked will be pass along to our function.
+    <pre><code class="language-javascript">// Tell the maps to listen for a click and run our getPixelValues function. 
+Map1.onClick(getPixelValues);
+Map2.onClick(getPixelValues);
+</code></pre>
     <div class="alert alert-success" role="alert">
   <span class="material-icons">play_circle_outline</span>
   Run the code: you can click the map to see pixel values printed in the side panel.
 </div>
   </li>
   <li>Finally, the cherry on top: change the user’s mouse pointer from a grabber hand to a crosshair. Now they can click those pixels with pinpoint accuracy!
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Style the mouse pointer as a crosshair</span>
-<span class="nx">Map1</span><span class="p">.</span><span class="nx">style</span><span class="p">().</span><span class="kd">set</span><span class="p">(</span><span class="s1">'cursor'</span><span class="p">,</span> <span class="s1">'crosshair'</span><span class="p">);</span>
-<span class="nx">Map2</span><span class="p">.</span><span class="nx">style</span><span class="p">().</span><span class="kd">set</span><span class="p">(</span><span class="s1">'cursor'</span><span class="p">,</span> <span class="s1">'crosshair'</span><span class="p">);</span>
-</code></pre></div>    </div>
+    <pre><code class="language-javascript">// Style the mouse pointer as a crosshair
+Map1.style().set('cursor', 'crosshair');
+Map2.style().set('cursor', 'crosshair');
+</code></pre>
   </li>
 </ol>
 
@@ -286,19 +286,19 @@
   <li>Choose a new area of interest that is not in East Baton Rouge Parish:<br />
   a. Change map center and zoom.<br />
   b. Change the min/max elevation and slope, appropriate for the new location.<br />
-  c. For a location outside of the United States, you can use the lower-resolution <code class="highlighter-rouge">CGIAR/SRTM90_V4</code> dataset.</li>
+  c. For a location outside of the United States, you can use the lower-resolution <code>CGIAR/SRTM90_V4</code> dataset.</li>
   <li>Modify the DEM color palette (use colors that are distinguishable; see <a href="https://gis.stackexchange.com/questions/25099/choosing-colour-ramp-to-use-for-elevation">this thread</a> for ideas):<br />
   a. Change at least one of the existing colors.<br />
   b. Add at least one color.</li>
   <li>Optional: add a color palette to the slope layer.</li>
   <li>Take a screenshot of your map and side panel.</li>
   <li>Turn your map into an app.<br />
-  a. Click <code class="highlighter-rouge">Apps</code> &gt; <code class="highlighter-rouge">New App</code>.<br />
-  b. Give it an <code class="highlighter-rouge">App Name</code>.<br />
-  c. Check <code class="highlighter-rouge">Feature this app in your Public Apps Gallery</code>.<br />
+  a. Click <code>Apps</code> &gt; <code>New App</code>.<br />
+  b. Give it an <code>App Name</code>.<br />
+  c. Check <code>Feature this app in your Public Apps Gallery</code>.<br />
   d. Add your screenshot.<br />
-  e. Provide a brief <code class="highlighter-rouge">Description</code>.<br />
-  f. <code class="highlighter-rouge">Publish</code>.</li>
+  e. Provide a brief <code>Description</code>.<br />
+  f. <code>Publish</code>.</li>
 </ol>
 
 <h2 id="checklist">Checklist</h2>
@@ -315,7 +315,7 @@
 
 <h2 id="submit">Submit</h2>
 <ol>
-  <li>Example: <code class="highlighter-rouge">https://yourname.users.earthengine.app/view/your-app</code></li>
+  <li>Example: <code>https://yourname.users.earthengine.app/view/your-app</code></li>
 </ol>
 
     </section>
@@ -325,6 +325,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="/js/prism.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 </html>
 

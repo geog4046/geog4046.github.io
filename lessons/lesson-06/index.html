@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/css/cayman.css">
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/prism.css">
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
@@ -129,14 +129,14 @@
 <ol>
   <li>Let’s consider “features” the smallest building block in what will eventually become a Web GIS application. Features are the individual objects on a map representing things like rivers, parks, and campsites.</li>
   <li>Similar features are grouped together in a layer, so you might have a layer of rivers and another layer of campsites.</li>
-  <li>A layer or sometimes multiple layers can be published as a web service to act as a sort of package for deliverying the layers over the web.</li>
+  <li>A layer or sometimes multiple layers can be published as a web service to act as a sort of package for delivering the layers over the web.</li>
   <li>The layers in the web service can be added to a map and combined with other layers, such as showing a campsite layer over a satellite image basemap.</li>
   <li>Finally, the map can be displayed as part of an application (website, mobile app, other)</li>
 </ol>
 
 <p> <br />
 <img src="../../lessons/images/feature-to-app.png" alt="Steps to go from a feature to an app" class="no-shadow" /><br />
-<small><em>Figure 6. Progression of geographic information, from a single feature to a fully fledged web application.</em></small></p>
+<small><em>Figure 6. Progression of geographic information, from a single feature to a full-fledged web application.</em></small></p>
 
 <p>The way each step builds upon the last reminds me of nesting dolls, with each fitting inside the next to become something bigger.</p>
 
@@ -158,10 +158,10 @@
 <p>In Web GIS, however, you are less likely to need to decide on a projection, as there is already a de facto standard for web maps: <strong>Web Mercator</strong>.</p>
 
 <p> <br />
-<img src="../../lessons/images/2d-crs.png" alt="Web mercator is the projection used by major web map providers." class="no-shadow" /><br />
-<small><em>Figure 9. Web mercator is the projection used by major web map providers.</em></small></p>
+<img src="../../lessons/images/2d-crs.png" alt="Web Mercator is the projection used by major web map providers." class="no-shadow" /><br />
+<small><em>Figure 9. Web Mercator is the projection used by major web map providers.</em></small></p>
 
-<p>Understanding projections can still be useful when working with data that will be imported into Web GIS software. Web mercator coordinates use meters, not degrees latitude/longitude like WGS84 (the coordinate system used by GPS). Using data from a different coordinate system can have unexpected consequences when the data is published to Web GIS software.</p>
+<p>Understanding projections can still be useful when working with data that will be imported into Web GIS software. Web Mercator coordinates use meters, not degrees latitude/longitude like WGS84 (the coordinate system used by GPS). Using data from a different coordinate system can have unexpected consequences when the data is published to Web GIS software.</p>
 
 <p>Sometimes you can find such errors on web maps before they are fixed. If you navigate a web map to 0,0 where the Prime Meridian intersects the Equator off the western coast of Africa, occasionally you will find businesses, bike trails, and other user-generated content in the ocean, no doubt the result of a coordinate system mishap.</p>
 
@@ -195,6 +195,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="/js/prism.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 </html>
 

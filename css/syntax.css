@@ -1,4 +1,5 @@
 .highlight pre { background-color: #272822; }
+.highlight pre > code { color: #CCCCCC; }
 .highlight .hll { background-color: #272822; }
 .highlight .c { color: #75715e } /* Comment */
 .highlight .err { color: #960050; background-color: #1e0010 } /* Error */
@@ -32,7 +33,7 @@
 .highlight .nf { color: #a6e22e } /* Name.Function */
 .highlight .nl { color: #f8f8f2 } /* Name.Label */
 .highlight .nn { color: #f8f8f2 } /* Name.Namespace */
-.highlight .nx { color: #a6e22e } /* Name.Other */
+.highlight .nx { color: #eeeeee } /* Name.Other */
 .highlight .py { color: #f8f8f2 } /* Name.Property */
 .highlight .nt { color: #f92672 } /* Name.Tag */
 .highlight .nv { color: #f8f8f2 } /* Name.Variable */

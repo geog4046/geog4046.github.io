@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lesson 14 | GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/prism.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/lessons">Lessons</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Lesson 14</h1>
+      <h2 class="text-center">JavaScript and Leaflet</h2>
+      <h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#libraries">Libraries</a></li>
+  <li><a href="#javascript-console">JavaScript Console</a></li>
+  <li><a href="#variables">Variables</a></li>
+  <li><a href="#functions">Functions</a></li>
+  <li><a href="#summary">Summary</a></li>
+  <li><a href="#other-learning-resources">Other Learning Resources</a></li>
+</ul>
+
+<p>Terms: JavaScript, library, variable, object, array, functions and methods, parameter</p>
+
+<h2 id="introduction">Introduction</h2>
+<p><strong>JavaScript</strong> is a programming language that allows us to give instructions for how the browser should react to certain events, such as when the user clicks something or when the web page finishes loading. If a user clicks a polygon on a web map, for example, JavaScript can show a popup with information about the feature.</p>
+
+<p>JavaScript (not to be confused with Java, another programming language) lets us program logic into our web pages, making them smarter and turning them from simple documents into complex applications.</p>
+
+<p>As far as its relevance to Web GIS, JavaScript can retrieve data from web services, draw web map layers, and allow interaction with maps (zooming, popups, toggling layers, etc.). Major providers like OpenLayers, Google Maps, ArcGIS Online, Bing Maps, and Mapbox offer JavaScript libraries to use their services.</p>
+
+<h2 id="libraries">Libraries</h2>
+
+<p>A <strong>library</strong> is a collection of pre-written functions for common programming tasks. Libraries save developers from having to “re-invent the wheel” and develop those functions from scratch. To develop a web map, for example, you don’t have to write your own code from a blank slate to do everyday map-related tasks like arranging tiles from a tile layer, interpreting GeoJSON, and plotting latitude/longitude points on a coordinate system. Instead, you can employ one of the many JavaScript libraries made specifically for web maps.</p>
+
+<p>Using the Leaflet library, the JavaScript code to show a basemap can be as simple as:</p>
+
+<pre><code class="language-javascript">var map = L.map('map').setView([38, -95], 4);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+</code></pre>
+
+<p>Achieving that seemingly simple task without a library, using pure JavaScript, would involve hundreds or even thousands of lines of code to deal with the complexities of geometry, projections, web services, and drawing graphics on screen. Instead, fortunately, other people have created convenient libraries with all of that worked out.</p>
+
+<p>Still, creating a web map from a JavaScript library might not be as convenient as ArcGIS Online, which we used in previous assignments without writing any code at all. However, a free, open-source library like Leaflet can be useful for simple web maps that don’t need the full feature set of ArcGIS Online, as well as complex web applications that require extensive customization. Leaflet also offers freedom from becoming dependent on commercial services like ArcGIS, Google Maps, and Mapbox.</p>
+
+<h2 id="javascript-console">JavaScript Console</h2>
+
+<p>This lesson covers some programming basics that apply to JavaScript and web maps. You can type JavaScript code into your web browser to try it out—in Google Chrome, press <code>F12</code> to show the developer tools and then click the <code>Console</code> tab. You can type JavaScript directly into the console and keep it open while you read this lesson.</p>
+
+<p>We will use the console to explore the concepts of:</p>
+<ul>
+  <li>Variables</li>
+  <li>Functions</li>
+  <li>Objects and arrays</li>
+  <li>Conditional statements</li>
+</ul>
+
+<p> <br />
+<img src="../../assignment-resources/images/js-console.png" alt="JavaScript console in Google Chrome" /><br />
+<small><em>Figure 1. Most browsers have developer tools with features like the JavaScript console, which is useful for debugging your code or just messing around with JavaScript.</em></small></p>
+
+<h2 id="variables">Variables</h2>
+<p>An essential aspect of JavaScript and other programming languages is variables. Much like elementary algebra, <strong>variables</strong> use a name (or just a letter) to represent values. Paste this into the browser console:</p>
+
+<pre><code class="language-javascript">var x = 5
+var y = x + 6
+var a = "Good"
+var b = "Morning"
+var greeting = a + " " + b
+</code></pre>
+
+<p>The values are saved to each variable. You can see the value of a variable by typing it in the console and pressing enter. Type <code>greeting</code> and press Enter on your keyboard. The result is:</p>
+
+<p><code>"Good Morning"</code></p>
+
+<p>…because the variable <code>greeting</code> is the combination of variables <code>a</code> and <code>b</code> with a space <code>" "</code> in between. The values were combined using the plus sign <code>+</code>. Numbers get added together arithmetically by the plus sign, while strings (text) get concatenated or “glued” together.</p>
+
+<p> <br />
+<img src="../../assignment-resources/images/console-results.png" alt="JavaScript console results" /><br />
+<small><em>Figure 2. A screenshot of the console results open side-by-side with this lesson in Google Chrome.</em></small></p>
+
+<p>In JavaScript, variables can hold a variety of types of values:</p>
+<ul>
+  <li><em>string</em> - Text</li>
+  <li><em>number</em> - An integer or decimal</li>
+  <li><em>array</em> - A collection of values</li>
+  <li><em>object</em> - A collection of property names and values</li>
+  <li><em>Boolean</em> - Can either be <code>true</code> or <code>false</code></li>
+  <li><em>null</em> - No value</li>
+  <li><em>function</em> - Code that performs a specific action, useful for organizing code and avoiding duplicated code.</li>
+</ul>
+
+<pre><code class="language-javascript">var a = 'This is a string.'
+var b = 5
+var c = [ 'apples', 'oranges', 'grapes' ]
+var d = { myFavColor: 'green', myFavNumber: 8 }
+var e = true
+var f = null
+var g = function (){ alert('Hello!') }
+</code></pre>
+
+<p> </p>
+<div class="alert alert-warning" role="alert">
+  <span class="material-icons">warning_amber</span>
+  JavaScript is case sensitive, so "apples" is not the same as "Apples".
+</div>
+
+<p>To relate some of those variable types to web maps, here are variables used in the Google Earth Engine or Leaflet exercises.</p>
+
+<p>This a string, or plain text, saving a web service URL to a variable.</p>
+<pre><code class="language-javascript">var radarUrl = 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi';  
+</code></pre>
+<div class="nocopy"></div>
+
+<p>This is an integer, used as the maximum elevation to display on an elevation map in Earth Engine.</p>
+<pre><code class="language-javascript">var maxElevation = 20;
+</code></pre>
+<div class="nocopy"></div>
+
+<p>This is an array containing strings. The strings are colors used as the gradient of the elevation map in Earth Engine.</p>
+<pre><code class="language-javascript">var demColor = ['green', 'yellow', 'orange'];
+</code></pre>
+<div class="nocopy"></div>
+
+<p>This is also an array, this time containing latitude and longitude in decimal degrees for setting the center of a Leaflet map.</p>
+<pre><code class="language-javascript">var centerLatLong = [38.11, -95.02];
+</code></pre>
+<div class="nocopy"></div>
+
+<p>This is an object containing properties that will be used to display a layer on a Leaflet map. The value for <code>transparent</code> is a Boolean, <code>true</code>, meaning the layer’s white space should be transparent. The other values are strings.</p>
+<pre><code class="language-javascript">var radarDisplayOptions = {
+  layers: 'nexrad-n0r-900913',
+  format: 'image/png',
+  transparent: true
+};
+</code></pre>
+<div class="nocopy"></div>
+
+<p>This is a call to a function in Earth Engine to calculate the NDVI of a Landsat image using bands 5 and 4. The output image is saved as an object to the <code>ndvi</code> variable.</p>
+<pre><code class="language-javascript">var ndvi = image.normalizedDifference(['B5', 'B4']);
+</code></pre>
+<div class="nocopy"></div>
+
+<h2 id="functions">Functions</h2>
+<p>Functions, which can also be called methods in certain cases, are another essential part of programming. <strong>Functions</strong> tell the application to take action; if variables are the nouns of the JavaScript language, then functions are the verbs. Functions also help keep code organized and prevent you from having to repeat code. JavaScript has built-in functions, and you can also define your own functions.</p>
+
+<p>This example shows two built-in functions, <code>prompt()</code> and <code>alert()</code>.</p>
+<pre><code class="language-javascript">var userResponse = prompt("What is your name?");
+alert("Hello, " + userResponse + ".");
+</code></pre>
+<div class="nocopy"></div>
+<p><button class="btn btn-primary" id="btn1"><span class="material-icons">play_circle_outline</span> Run this code</button>
+<script type="text/javascript">
+  var button = document.getElementById("btn1");
+  button.addEventListener( "click", function () {
+    var userResponse = prompt("What is your name?");
+    alert("Hello, " + userResponse + ".");
+  })
+</script></p>
+
+<p>The function <code>prompt()</code> is a built-in JavaScript function that tells the browser to show a window with a text box to accept typed input from the user, while <code>alert()</code> is another built-in function that tells the browser to display a popup window with text in it. The first line saves the user’s input to a variable, and the second line displays that input in an alert message.</p>
+
+<p>You can see that the <code>prompt()</code> and <code>alert()</code> functions allow values to be added between the parentheses, and then the function uses those values within the function. They both take the values and display them in a popup window in the browser. The values that we pass to functions are called <strong>parameters</strong>.</p>
+<ul>
+  <li>For <code>prompt()</code>, the parameter is the string “What is your name?”</li>
+  <li>For <code>alert()</code>, the parameter is the string “Hello, “ combined with the value of the variable <code>userResponse</code>.</li>
+</ul>
+
+<div class="alert alert-warning" role="alert">
+  <span class="material-icons">warning_amber</span>
+  The alert() and prompt() functions are used here for easy examples but they are not typically used in practice.
+</div>
+
+<p>We can also create our own functions. The example below will multiply two numbers together and popup the answer. Paste this into your browser console:</p>
+<pre><code class="language-javascript">var multiplyTwoNumbers = function(number1, number2){
+  var product = number1 * number2;
+  alert(product);
+}
+</code></pre>
+<p>Nothing happens at first. You must “call” the function to execute its code by entering the function name followed by opening and closing parentheses, with the parameters inside if it has any. Our <code>multiplyTwoNumbers</code> function takes two parameters. You can use any two numbers. Try entering this in the console: <code>multiplyTwoNumbers(3, 5)</code>. You should get a popup printing <code>15</code>. Now paste this code, which passes variables <code>x</code> and <code>y</code> to the function instead of numbers directly.</p>
+<pre><code class="language-javascript">var x = 4;
+var y = 5;
+multiplyTwoNumbers(x, y);
+</code></pre>
+
+<p>As a real example from Leaflet, there is the <code>setView</code> function, which can center and zoom a map. It takes two parameters, an array and a number. The array is lat/lon coordinates and the number is the zoom level. It is used on the first line in the code sandbox below.</p>
+
+<iframe src="https://codesandbox.io/embed/leaflet-set-view-2cc91?fontsize=14&amp;hidenavigation=1&amp;module=%2Fscript.js&amp;theme=dark" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="Leaflet Set View" allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
+
+<p>In the code editor above, add a new call to the <code>setView</code> function to change the map’s center and zoom. Add the call on the last line, under <code>// Add more code under here</code>.</p>
+
+<pre><code class="language-javascript">map.setView([30, -90], 8);
+</code></pre>
+
+<p>The preview map should zoom to New Orleans. What if we used variables instead of entering the array and number values directly as parameters? The function still works.</p>
+
+<pre><code class="language-javascript">var batonRouge = [30.455, -91.187];
+var zoom = 12;
+map.setView(batonRouge, zoom);
+</code></pre>
+
+<p>Objects can also be passed to a function as a parameter. Let’s use Leaflet’s <code>wms</code> function to add a WMS layer to the map from a web service. Pass two parameters to the function, a string and an object. The string will be the URL to the web service, the object will be the same properties given as an example of an object earlier. Paste this into the sandbox:</p>
+
+<pre><code class="language-javascript">map.setView([30, -90], 4);
+var radarUrl = 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi';
+var radarDisplayOptions = {
+  layers: 'nexrad-n0r-900913',
+  format: 'image/png',
+  transparent: true
+};
+L.tileLayer.wms(radarUrl, radarDisplayOptions).addTo(map);
+</code></pre>
+
+<p>Here is what that would look if we didn’t use variables and entered the URL and the object directly between the parentheses. If you read documentation on JavaScript libraries, you will find many examples that do it this way as a shortcut, so learn to recognize this syntax. Remove the previous lines from the sandbox and paste this:</p>
+
+<pre><code class="language-javascript">map.setView([38, -95], 3);
+L.tileLayer.wms('https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi', {
+  layers: 'nexrad-n0r-900913',
+  format: 'image/png',
+  transparent: true
+}).addTo(map);
+</code></pre>
+
+<p>Examples like that might look like jumbled code, but if you think about the basics of variables, functions, and parameters, you might be able to make a little sense of it when reading documentation on your own.</p>
+
+<h2 id="summary">Summary</h2>
+<p>JavaScript lets us use some of the power of the browser to react to user input and modify webpage content, and even pull data from web services to display on a map. Unlike HTML and CSS, JavaScript allows for logic to be programmed into webpages, turning them into powerful applications.</p>
+
+<p>JavaScript is a world that is easy to get lost in, especially as a map maker who just wants to show a map on a webpage. You can start out modifying example code to fit your own projects, learning more and more as you go.</p>
+
+<h2 id="other-learning-resources">Other Learning Resources</h2>
+<h3 id="leaflet">Leaflet</h3>
+<ul>
+  <li><a href="https://gist.github.com/geog4046instructor">GEOG 4046 Gists on Github</a> - code snippets to do various things with Leaflet</li>
+  <li><a href="https://leafletjs.com/examples.html">Leaflet example tutorials</a></li>
+  <li><a href="https://leafletjs.com/reference-1.7.1.html">Leaflet reference</a> (advanced)</li>
+</ul>
+
+<h3 id="javascript">JavaScript</h3>
+<ul>
+  <li>Codecademy - <a href="https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-introduction">Introduction to JavaScript: Introduction</a>
+    <ul>
+      <li>This is a long lesson but doing only the first few parts could still be helpful.</li>
+    </ul>
+  </li>
+  <li>Mozilla - <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics">JavaScript Basics</a></li>
+</ul>
+
+      <a href="#top">Top</a><br>
+      <a href="../../lessons/">Back to Lessons</a>
+    </section>
+    
+<footer class="site-footer">
+  <small>&copy; All rights reserved.</small>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="/js/prism.js"></script>
+<script src="/js/custom.js"></script>
+</body>
+</html>
+

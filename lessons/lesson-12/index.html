@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lesson 12 | GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/prism.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/lessons">Lessons</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Lesson 12</h1>
+      <h2 class="text-center">HTML Basics</h2>
+      <h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#early-days">Early days</a></li>
+  <li><a href="#markup">Markup</a></li>
+  <li><a href="#tags-and-elements">Tags and Elements</a></li>
+  <li><a href="#semantics">Semantics</a></li>
+  <li><a href="#summary">Summary</a></li>
+</ul>
+
+<p>Terms: markup, element, tag, semantic HTML</p>
+
+<h2 id="introduction">Introduction</h2>
+<p>Hypertext Markup Language (HTML) is one of three key languages used to code webpages. HTML gives the browser information about the content and what resources to download, e.g., images, CSS files, and JavaScript files.</p>
+
+<p>HTML is important for Web GIS because client applications like websites and some mobile apps use HTML pages to display web maps.</p>
+
+<h2 id="early-days">Early days</h2>
+<p>HTML is a standard format for webpage documents first developed in the early 1990s. Documents had been exchanged on the Internet mainly as plain text, but with the advent of HTML and later graphical web browsers, the documents evolved into multimedia webpages.</p>
+
+<p> <br />
+<img src="../../assignment-resources/images/html-img-tag.png" alt="Original thread where the HTML img tag was proposed" /><br />
+<small><em>Figure 1. Part of the original thread where the HTML “img” tag was proposed to allow webpage documents to include images. Read the full thread at <a href="http://1997.webhistory.org/www.lists/www-talk.1993q1/0182.html">Webhistory.org</a>.</em></small></p>
+
+<p> <br />
+<img src="../../assignment-resources/images/mosaic-browser.png" alt="Screenshot of the Mosaic web browser" /><br />
+<small><em>Figure 2. Screenshot of Mosaic, an early web browser and the first to become widely popular. Image source: <a href="https://designblog.nzeldes.com/2008/05/a-glimpse-of-the-venerable-ncsa-mosaic-browser/">Nathan Zeldes</a>.</em></small></p>
+
+<h2 id="markup">Markup</h2>
+<p><strong>Markup</strong> languages, like HTML, are written instructions for how a program, like a browser, should handle content. Markup languages are not considered programming languages, but can be described more broadly as computer languages. To understand markup, think of handwritten notes on a piece of paper, describing how the text should look when printed and how the page should be structured.</p>
+
+<p> <br />
+<img src="../../assignment-resources/images/markup.jpg" alt="Handwritten markup" /><br />
+<small><em>Figure 3. Example of markup—handwritten instructions for preparing a document for print. Image source: <a href="https://www.marksimonson.com/notebook/view/the-lost-art-of-type-specing">Mark Simonson</a>.</em></small></p>
+
+<p>Like handwritten markup, HTML similarly describes webpage content to a browser. The code in HTML documents is plain text with special <strong>tags</strong> that describe the content. If your content is the word “Hello” and you want the font to appear bold in a browser, you must add markup to your HTML document. Here is an example of text content within HTML tags.</p>
+
+<p><small>Source code:</small></p>
+<pre><code class="language-html">&lt;b&gt;Hello&lt;/b&gt;
+</code></pre>
+<div class="nocopy"></div>
+<p> <br />
+<small>Result:</small></p>
+<div class="alert alert-secondary" role="alert">
+  <b>Hello</b>
+</div>
+
+<p>The text “Hello” will be rendered in the browser as <strong>Hello</strong> because the browser interprets the HTML, <code>&lt;b&gt;</code> and <code>&lt;/b&gt;</code>, and understands that any text between those two tags should be bold.</p>
+
+<h2 id="tags-and-elements">Tags and Elements</h2>
+
+<p>Opening and closing tags and content together make up an HTML <strong>element</strong>.</p>
+
+<p> <br />
+<img src="../../assignment-resources/images/html-element-anatomy.png" alt="HTML Element" /> 
+<small><em>Figure 4. Tags and content together make up an HTML element. Image source: <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics">Mozilla</a>.</em></small></p>
+
+<p>There are dozens of HTML tags. Here are just a few common examples.</p>
+
+<ul>
+  <li><code>&lt;h1&gt; &lt;h1&gt;</code> through <code>&lt;h6&gt; &lt;/h6&gt;</code> Headings</li>
+  <li><code>&lt;p&gt; &lt;/p&gt;</code> Paragraph of text</li>
+  <li><code>&lt;div&gt; &lt;/div&gt;</code>	A box that can help divide or structure a page</li>
+  <li><code>&lt;a&gt; &lt;/a&gt;</code> 	Hyperlink (a is for anchor)</li>
+  <li><code>&lt;img&gt;</code>	Displays an image file</li>
+  <li><code>&lt;br&gt;</code>	Break to the next line</li>
+  <li><code>&lt;hr&gt;</code>	Horizontal rule (line)</li>
+  <li><code>&lt;form&gt; &lt;/form&gt;</code>	Can contain checkboxes, textboxes, dropdowns, etc. for user input</li>
+</ul>
+
+<p>HTML tags begin and end with angle brackets, <code>&lt;</code> and <code>&gt;</code>, and the closing tag has a forward slash <code>/</code> before the tag name.</p>
+
+<p>Elements can contain other elements. The element on the outside is the parent element, and the nested element on the inside is the child. Child elements should be indented to make it clear they are children.</p>
+
+<pre><code class="language-html">&lt;div&gt;
+  &lt;h1&gt;Nested Heading&lt;/h1&gt;
+  &lt;p&gt;
+    I'm a paragraph element nested in a div. The div is my parent, and the 
+    h1 above is my sibling. This hr is my child. See my indentation?
+    &lt;hr&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="nocopy"></div>
+
+<div class="alert alert-info" role="alert">
+  <span class="material-icons">info</span>
+  All of these code examples can be tested on <a href="https://codepen.io/pen">CodePen</a>, a sandbox for easily testing HTML, CSS, and JavaScript code together. Paste the HTML into the HTML area and see how it renders in the result area.
+</div>
+
+<p>Tags can have attributes that provide further information about the element. The <code>&lt;a&gt;</code> element uses the <code>href</code> attribute to specify the link’s URL.</p>
+<pre><code class="language-html">See the &lt;a href="https://geog4046.github.io"&gt;GEOG 4046 Website&lt;/a&gt;.
+</code></pre>
+<div class="nocopy"></div>
+<p> <br />
+The <code>img</code> element uses the <code>src</code> attribute to specify the URL of an image file to display on the page.</p>
+<pre><code class="language-html">&lt;img src="https://geog4046.github.io/assignment-resources/images/html-element-anatomy.png"&gt;
+</code></pre>
+<div class="nocopy"></div>
+<p> <br />
+This <code>div</code> element is using the <code>id</code> attribute to give a unique identifier to the element so it can easily be read by JavaScript.</p>
+<pre><code class="language-html">&lt;div id="map"&gt;&lt;/div&gt;
+</code></pre>
+<div class="nocopy"></div>
+<p> <br />
+Here is an example of a complete but basic HTML document.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en-us"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Title goes here&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Heading Here&lt;/h1&gt;
+    &lt;p&gt;Paragraph goes here.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<div class="nocopy"></div>
+<p>This would be rendered in a browser as:<br />
+<img src="../../assignment-resources/images/rendered-html.png" alt="Rendered HTML" class="no-shadow" /></p>
+
+<p>Notice how the indentation works like an outline. Each element that is nested within (inside of) another element gets indented. Here, the indentation width is two spaces. Everything inside of the <code>html</code> tags is indented two spaces, such as the <code>head</code> tags. Then inside of the <code>head</code> tags we have <code>title</code> tags, so the <code>title</code> is indented two spaces relative to the <code>head</code> tag, but four spaces relative to the <code>html</code> tag.</p>
+
+<p>The <code>title</code>, <code>h1</code>, and <code>p</code> elements are written on a single line in this example, but you may split elements up onto different lines (like <code>head</code> and <code>body</code> are) to make the code easier to read.</p>
+
+<p>Here is a breakdown of the basic HTML skeleton presented above.</p>
+<ul>
+  <li>The example begins with a tag <code>&lt;!DOCTYPE html&gt;</code> that declares the type of document as HTML version 5 (written simply as <code>html</code>). This lets browsers understand how to interpret the code.</li>
+  <li>The opening <code>html</code> tag, <code>&lt;html lang="en-us"&gt;</code>, begins the document.</li>
+  <li>The <code>head</code> tag begins the part of the document giving metadata about the document. Here, only a <code>title</code> is given. This appears in the tab of a browser and is used as the page title in search engine results. It should be descriptive of the page content but brief.</li>
+  <li>The opening <code>body</code> tag begins the part of the document where content should be added. This is the part of the page that will be displayed in the browser and should contain all text, images, etc.</li>
+  <li>The <code>h1</code> and <code>p</code> tags are just examples of tags that can describe content (e.g., headings and paragraphs).</li>
+  <li>The closing <code>body</code> tag signals the end of the part of the document displayed in the browser. Typically, nothing should come after the closing <code>body</code> tag.</li>
+  <li>The closing <code>html</code> tag marks the end of the document.</li>
+</ul>
+
+<h2 id="semantics">Semantics</h2>
+<p>HTML gives <strong>semantic</strong> information about a webpage’s content, meaning HTML describes the content’s purpose or significance. For example, take the <code>&lt;h1&gt;</code> tags from the previous example:</p>
+
+<pre><code class="language-html">&lt;h1&gt;Heading Here&lt;/h1&gt;
+</code></pre>
+<div class="nocopy"></div>
+<p>When a browser or a search engine reads a webpage’s code and finds a heading tag <code>&lt;h1&gt;</code>, it assumes that the text within that tag is significant, probably describing the page’s topic, because it is the largest heading. Therefore, HTML is not simply a way to format the appearance of content, but a way to describe how the content should be interpreted. HTML has many semantic tags, such as <code>&lt;main&gt;</code> to identify the page’s primary content, <code>&lt;nav&gt;</code> to identify navigation like a menu of links to other pages in the website, or <code>&lt;footer&gt;</code> to identify the bottom area of a webpage where designers usually add a copyright, link to a privacy policy, and so on. These tags don’t change the appearance of content; they denote its significance.</p>
+
+<p>Semantic tags are useful for webpage developers trying to understand code, but they are also useful for machines like search engine crawlers. Semantic markup helps machines understand what your webpage is about, which in turn can help rank the page in search engine results, among other uses.</p>
+
+<p>Another machine that depends on semantic HTML tags is a screen reader application for the visually impaired. When a text-to-speech screen reader encounters the <code>&lt;em&gt;</code> (emphasis) tag, for example, it can add inflection to its voice or otherwise indicate that the content should have emphasis:</p>
+
+<pre><code class="language-html">HTML isn't &lt;em&gt;that&lt;/em&gt; hard, is it?
+</code></pre>
+<div class="nocopy"></div>
+<p>As a best practice, HTML should mainly be used for semantics, and not for aesthetics. Controlling the look of a webpage should be left to another language, CSS.</p>
+
+<h2 id="summary">Summary</h2>
+<p>HTML code uses tags to describe content, so the browser can know how certain parts of the webpage should look and react, especially when HTML is combined with CSS and JavaScript. It is a type of markup, and should mainly be used semantically to denote the purpose or significance of content on the page.</p>
+
+      <a href="#top">Top</a><br>
+      <a href="../../lessons/">Back to Lessons</a>
+    </section>
+    
+<footer class="site-footer">
+  <small>&copy; All rights reserved.</small>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="/js/prism.js"></script>
+<script src="/js/custom.js"></script>
+</body>
+</html>
+

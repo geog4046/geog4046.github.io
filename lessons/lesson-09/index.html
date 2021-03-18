@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/css/cayman.css">
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/prism.css">
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
@@ -50,7 +50,7 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>In our assignments so far we have added various layers to our maps from web services, some with the backdrop of a satellite basemap, but we have given little attention to the basemaps themselves. What kind of web service is the satellite basemap, and where does the data come from?</p>
+<p>In our assignments so far, we have added various layers to our maps from web services, some with the backdrop of a satellite basemap, but we have given little attention to the basemaps themselves. What kind of web service is the satellite basemap, and where does the data come from?</p>
 
 <p>Satellite images have become a staple of web maps, providing a bird’s-eye view of the landscape and a backdrop for streets and other features. They help the audience connect abstract representations like points, lines, and polygons to the real surface of the planet, showing familiar details such as trees and buildings.</p>
 
@@ -92,7 +92,7 @@
 
 <p>In short, a large image or mosaic is loaded into tiling software, split into numerous very small square images (tiles), and those images are stored online to be made available through a web GIS application or web service, such as an <strong>OGC Web Map Tile Service (WMTS)</strong> or an ArcGIS tile layer. A different set of tiles is created for each zoom level, so that when zoomed out, users only download low-detail tiles covering a large area, and when zoomed in, they only download high-detail tiles covering a small area.</p>
 
-<p>A <strong>zoom level</strong> is a representation of a map at different scales, with more detail at higher zoom levels, bringing the user’s view “closer” to the map as the zoom level increases. The <strong>map scale</strong> is the ratio between a distance on a map and distance on the ground. A map scale of 1:1,000 means that one centimeter on the map is equal to 1,000 cm on the ground, which is a high zoom only useful with very high resolution imagery. A map scale of 1:100,000,000 means one centimeter on the map equals 100 million centimeters (1,000 km) on the ground, appropriate for showing a world map.</p>
+<p>A <strong>zoom level</strong> is a representation of a map at different scales, with more detail at higher zoom levels, bringing the user’s view “closer” to the map as the zoom level increases. The <strong>map scale</strong> is the ratio between a distance on a map and distance on the ground. A map scale of 1:1,000 means that one centimeter on the map is equal to 1,000 cm on the ground, which is a high zoom only useful with very high-resolution imagery. A map scale of 1:100,000,000 means one centimeter on the map equals 100 million centimeters (1,000 km) on the ground, appropriate for showing a world map.</p>
 
 <p>Furthermore, the tiles are compressed, which might cause some loss of details in the image but makes maps load even faster.</p>
 
@@ -112,7 +112,7 @@
 <img src="../../lessons/images/google-maps-single-tile.png" alt="A single map tile" /><br />
 <small><em>Figure 7. The developer tools in a browser can be used to show the individual map tiles being downloaded when you view a web map. This screenshot of the Chrome developer tools shows the URL of an individual map tile (left), the tile image preview (center), and an approximate outline of the tile’s location on the assembled map.</em></small></p>
 
-<p>In Chrome you can press <code class="highlighter-rouge">F12</code> on your keyboard to see the browser’s developer tools. Click the <code class="highlighter-rouge">Network</code> tab to see details about what the browser is downloading. Go to <a href="https://www.google.com/maps">Google Maps</a> and show the satellite basemap. The developer tools will show numerous resources being downloaded, but if you sort through the list you should be able to pick out some tiles. You might have to click the <code class="highlighter-rouge">Clear</code> icon near the top of the tools and then pan and zoom out to load new tiles.</p>
+<p>In Chrome you can press <code>F12</code> on your keyboard to see the browser’s developer tools. Click the <code>Network</code> tab to see details about what the browser is downloading. Go to <a href="https://www.google.com/maps">Google Maps</a> and show the satellite basemap. The developer tools will show numerous resources being downloaded, but if you sort through the list you should be able to pick out some tiles. You might have to click the <code>Clear</code> icon near the top of the tools and then pan and zoom out to load new tiles.</p>
 
 <p>The client web map only downloads the tiles that are needed for the current view instead of all the tiles in the basemap. When you pan the map to a new area or zoom in and out, a new set of tiles will be downloaded to show the new areas or details that were not visible before.</p>
 
@@ -146,7 +146,7 @@
 
 <p><img src="../../lessons/images/tile-example-3.png" alt="Tile example 3" class="no-shadow" /></p>
 
-<p>Let’s call this zoomed-out view <code class="highlighter-rouge">Zoom level 0</code> (no zoom). When tiling software creates tiles, it organizes them not just by zoom level but by rows and columns. Like the zoom level, the counting starts at 0. Therefore, the first row is <code class="highlighter-rouge">Row 0</code>, and the first column is <code class="highlighter-rouge">Col 0</code>.</p>
+<p>Let’s call this zoomed-out view <code>Zoom level 0</code> (no zoom). When tiling software creates tiles, it organizes them not just by zoom level but by rows and columns. Like the zoom level, the counting starts at 0. Therefore, the first row is <code>Row 0</code>, and the first column is <code>Col 0</code>.</p>
 
 <p><img src="../../lessons/images/tile-example-4.png" alt="Tile example 4" class="no-shadow" /></p>
 
@@ -160,20 +160,20 @@
   Different software can organize tiles in different ways, but the method explained here helps illustrate the concept.
 </div>
 
-<p>Since we so far have only <code class="highlighter-rouge">Zoom level 0</code> with two rows and two columns, our files and folders in this tile cache would look like this:</p>
+<p>Since we so far have only <code>Zoom level 0</code> with two rows and two columns, our files and folders in this tile cache would look like this:</p>
 <ul>
-  <li><code class="highlighter-rouge">0</code> (zoom level folder)
+  <li><code>0</code> (zoom level folder)
     <ul>
-      <li><code class="highlighter-rouge">0</code> (row folder)
+      <li><code>0</code> (row folder)
         <ul>
-          <li><code class="highlighter-rouge">0.jpg</code> (tile in first row, first column)</li>
-          <li><code class="highlighter-rouge">1.jpg</code>  (tile in first row, second column)</li>
+          <li><code>0.jpg</code> (tile in first row, first column)</li>
+          <li><code>1.jpg</code>  (tile in first row, second column)</li>
         </ul>
       </li>
-      <li><code class="highlighter-rouge">1</code> (row folder)
+      <li><code>1</code> (row folder)
         <ul>
-          <li><code class="highlighter-rouge">0.jpg</code> (tile in second row, first column)</li>
-          <li><code class="highlighter-rouge">1.jpg</code> (tile in second row, second column)</li>
+          <li><code>0.jpg</code> (tile in second row, first column)</li>
+          <li><code>1.jpg</code> (tile in second row, second column)</li>
         </ul>
       </li>
     </ul>
@@ -182,19 +182,19 @@
 
 <p><img src="../../lessons/images/tile-example-5.png" alt="Tile example 5" class="no-shadow" /></p>
 
-<p>Now let’s say the user zooms in one level, to <code class="highlighter-rouge">Zoom level 1</code>. Their browser looks like this, showing a new set of tiles with different file names and a more zoomed-in view of the coast.</p>
+<p>Now let’s say the user zooms in one level, to <code>Zoom level 1</code>. Their browser looks like this, showing a new set of tiles with different file names and a more zoomed-in view of the coast.</p>
 
 <p><img src="../../lessons/images/tile-example-6.png" alt="Tile example 6" class="no-shadow" /></p>
 
-<p>In the zoomed-in view, Louisiana appears larger on screen and we can no longer see the full extent of the original map, which included Florida, more of Texas, etc. Even though the user’s current view only shows 4 tiles, <code class="highlighter-rouge">Zoom level 1</code> contains 16 tiles to cover the full extent of the original map in case the user pans the map.</p>
+<p>In the zoomed-in view, Louisiana appears larger on screen and we can no longer see the full extent of the original map, which included Florida, more of Texas, etc. Even though the user’s current view only shows 4 tiles, <code>Zoom level 1</code> contains 16 tiles to cover the full extent of the original map in case the user pans the map.</p>
 
 <p><img src="../../lessons/images/tile-example-7.png" alt="Tile example 7" class="no-shadow" /></p>
 
-<p>The figure below illustrates that only four tiles are downloaded and displayed on the user’s screen at this zoom level and position, but if the user panned the map directly east to Florida, for example, then the necessary additional tiles would be downloaded and displayed: <code class="highlighter-rouge">1/1/3.jpg</code> and <code class="highlighter-rouge">1/2/3.jpg</code>.</p>
+<p>The figure below illustrates that only four tiles are downloaded and displayed on the user’s screen at this zoom level and position, but if the user panned the map directly east to Florida, for example, then the necessary additional tiles would be downloaded and displayed: <code>1/1/3.jpg</code> and <code>1/2/3.jpg</code>.</p>
 
 <p><img src="../../lessons/images/tile-example-8.png" alt="Tile example 8" class="no-shadow" /></p>
 
-<p>So <code class="highlighter-rouge">Zoom level 0</code> contains 4 tiles, and <code class="highlighter-rouge">Zoom level 1</code> contains 16, and if we told our software to generate yet another level, allowing users to zoom in even closer, then <code class="highlighter-rouge">Zoom level 2</code> would contain 64 tiles.</p>
+<p>So <code>Zoom level 0</code> contains 4 tiles, and <code>Zoom level 1</code> contains 16, and if we told our software to generate yet another level, allowing users to zoom in even closer, then <code>Zoom level 2</code> would contain 64 tiles.</p>
 
 <p><img src="../../lessons/images/tile-example-9.png" alt="Tile example 9" class="no-shadow" /></p>
 
@@ -202,7 +202,7 @@
 
 <h2 id="how-much-zoom">How much zoom?</h2>
 
-<p>As shown in the figure above, at <code class="highlighter-rouge">Zoom level 2</code>, Louisiana is large enough on screen to take up most of the width (two tiles across), but no fine details like buildings and roads are visible. If we keep generating more tiles for additional zoom levels with more detail, the total tile count will grow to be enormous.</p>
+<p>As shown in the figure above, at <code>Zoom level 2</code>, Louisiana is large enough on screen to take up most of the width (two tiles across), but no fine details like buildings and roads are visible. If we keep generating more tiles for additional zoom levels with more detail, the total tile count will grow to be enormous.</p>
 <ul>
   <li>Zoom level 3 tile count is 64 x 4 = 256</li>
   <li>Zoom level 4 tile count is 256 x 4 = 1,024</li>
@@ -252,7 +252,7 @@
 <p>As for computing power and storage, vector tiles have an incredible advantage. A tiling job that might take hours or days to generate image tiles could be completed in minutes with vector tiles, and the storage requirements are only a fraction of the image tile equivalent.</p>
 
 <h2 id="summary">Summary</h2>
-<p>This lesson covered the concept of map tiling, a technique widely used in Web GIS to faciliate the viewing of large map layers, especially imagery basemaps. Most of the websites and apps you use involving maps probably employ map tiles in some way.</p>
+<p>This lesson covered the concept of map tiling, a technique widely used in Web GIS to facilitate the viewing of large map layers, especially imagery basemaps. Most of the websites and apps you use involving maps probably employ map tiles in some way.</p>
 
 <p>The file sizes of imagery datasets are too large to expect clients to download on a web map, so they have to be broken up. Map tiles serve this purpose and allow clients to only download the tiles of the area they are viewing at a specific zoom level.</p>
 
@@ -283,6 +283,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="/js/prism.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 </html>
 

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/css/cayman.css">
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/prism.css">
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
@@ -68,10 +68,10 @@
 
 <p>The JavaScript code that would be added to a webpage or app can be as simple as:</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">navigator</span><span class="p">.</span><span class="nx">geolocation</span><span class="p">.</span><span class="nx">getCurrentPosition</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">pos</span><span class="p">){</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="nx">pos</span><span class="p">.</span><span class="nx">coords</span><span class="p">.</span><span class="nx">latitude</span> <span class="o">+</span> <span class="s1">','</span> <span class="o">+</span> <span class="nx">pos</span><span class="p">.</span><span class="nx">coords</span><span class="p">.</span><span class="nx">longitude</span><span class="p">)</span>
-<span class="p">})</span>
-</code></pre></div></div>
+<pre><code class="language-javascript">navigator.geolocation.getCurrentPosition(function(pos){
+  alert(pos.coords.latitude + ',' + pos.coords.longitude)
+})
+</code></pre>
 <p><button class="btn btn-primary" id="locateButton">Try it: find my location</button></p>
 
 <script type="text/javascript">
@@ -83,7 +83,7 @@
   })
 </script>
 
-<p>When you click the blue button, your browser will first ask for permisson to use your location. Then it will collect whatever information it can about your device’s location, send it to the geolocation service, and then display a popup with the latitude and longitude.</p>
+<p>When you click the blue button, your browser will first ask for permission to use your location. Then it will collect whatever information it can about your device’s location, send it to the geolocation service, and then display a popup with the latitude and longitude.</p>
 
 <p>If you are not on a mobile device, then the only information your browser will send will likely be your IP address, which will not give an accurate location. But if you are on a phone, the coordinates should be pretty close. When I try on LSU’s campus using a device with only GPS and Wi-Fi, the service usually locates me in the correct classroom, on the correct side of the room.</p>
 
@@ -128,7 +128,7 @@
 
 <p>Road networks are huge complex systems with constantly changing conditions, making them a prime use-case for VGI. Waze is an app that allows users to submit traffic and travel information such as crashes and police speed traps. Google uses location data from Android phones and Google apps, noting not just use location but their speed, to determine traffic flow and calculate travel times and routes. (However, are users aware that they are “volunteering”?)</p>
 
-<p>When Malaysia Airlines Flight 370 disappeared in 2014, millions of amateurs pored over satellite imagery to search for remnants of the aircraft in a crowd-sourcing effort organized by imagery provider Digital Globe. In this case, the information the crowd submitted was not the imagery iteself but an attribute for the location of the image: whether or not it potentially contained wreckage.</p>
+<p>When Malaysia Airlines Flight 370 disappeared in 2014, millions of amateurs pored over satellite imagery to search for remnants of the aircraft in a crowd-sourcing effort organized by imagery provider Digital Globe. In this case, the information the crowd submitted was not the imagery itself but an attribute for the location of the image: whether or not it potentially contained wreckage.</p>
 
 <p>The City of New Orleans manages 72,000 catch basins for street drainage. Each one is mapped on the <a href="https://catchbasin.nola.gov/">Adopt-A-Catchbasin web GIS application</a> that allows citizens to report whether drains are clear or clogged, and even “adopt” a catch basin to take responsibility for keeping the rainwater flowing out of their street.</p>
 
@@ -157,6 +157,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="/js/prism.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 </html>
 

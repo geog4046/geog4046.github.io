@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/css/cayman.css">
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/prism.css">
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
@@ -44,7 +44,7 @@
 <h2 id="first-contact-getting-a-response-from-a-web-service">First contact: getting a response from a web service</h2>
 <p>You have experience with typing a URL into a web browser to visit a webpage, but what about a web service? Let’s go back to a URL that was used in the previous lesson’s introduction.</p>
 
-<p>First, note that in these examples we will interact with web services using a particular HTTP method involving URLs, because URLs are easy to use in a beginner’s guide like the one you are reading. <strong>HTTP (Hypertext Transfer Protocol)</strong> is the protocol that applicatons use to communicate things like webapages and images over the web, and HTTP has several methods for doing so. The one we will use with these example URLs is called GET, which, as the name suggests, is a method for clients to request and get a resource from a web server. Furthermore, these web services are examples of RESTful services. <strong>REST (representational state transfer)</strong> web services allow clients to send input parameters via a URL, again making them easy to use in a beginner’s tutorial.</p>
+<p>First, note that in these examples we will interact with web services using a particular HTTP method involving URLs, because URLs are easy to use in a beginner’s guide like the one you are reading. <strong>HTTP (Hypertext Transfer Protocol)</strong> is the protocol that applications use to communicate things like webpages and images over the web, and HTTP has several methods for doing so. The one we will use with these example URLs is called GET, which, as the name suggests, is a method for clients to request and get a resource from a web server. Furthermore, these web services are examples of RESTful services. <strong>REST (representational state transfer)</strong> web services allow clients to send input parameters via a URL, again making them easy to use in a beginner’s tutorial.</p>
 
 <p>The other methods are outside the scope of this course, but if you learn more about web services, you will encounter some that work quite differently from these simple examples.</p>
 
@@ -54,14 +54,14 @@
 
 <p>The text in the URL above specifies what information we are requesting from the server. This <strong>endpoint</strong>, or URL for a web service, points to a U.S. Census Bureau application that returns census data based on your request parameters. Note these two parts in the URL:</p>
 
-<p><code class="highlighter-rouge">get=B01003_001E</code><br />
-<code class="highlighter-rouge">for=state:22</code></p>
+<p><code>get=B01003_001E</code><br />
+<code>for=state:22</code></p>
 
-<p>The value <code class="highlighter-rouge">B01003_001E</code> is the code for total population and <code class="highlighter-rouge">22</code> is the code for Louisiana. So this endpoint triggers the Census Bureau application to dig into its data sources to find that information. Once found, the application responds in text format, sending the following output across the Internet to your web browser.</p>
+<p>The value <code>B01003_001E</code> is the code for total population and <code>22</code> is the code for Louisiana. So this endpoint triggers the Census Bureau application to dig into its data sources to find that information. Once found, the application responds in text format, sending the following output across the Internet to your web browser.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[["B01003_001E","state"],
+<pre><code>[["B01003_001E","state"],
 ["4664362","22"]]
-</code></pre></div></div>
+</code></pre>
 
 <h3 id="google-maps-geocoding-api">Google Maps Geocoding API</h3>
 
@@ -69,11 +69,11 @@
 
 <p><a href="https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBpMtOAYhhjn6SBDaxN8yHCkvfrGb7TuSc&amp;address=5151 Highland Road, Baton Rouge, LA">https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBpMtOAYhhjn6SBDaxN8yHCkvfrGb7TuSc&amp;address=5151 Highland Road, Baton Rouge, LA</a></p>
 
-<p>You can pick out the address at the end of the URL, where it is assigned to a variable named <code class="highlighter-rouge">address</code>.</p>
+<p>You can pick out the address at the end of the URL, where it is assigned to a variable named <code>address</code>.</p>
 
 <p>The response looks like a lot of code, from which we can pick out the part that gives the latitude and longitude.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+<pre><code>...
 "formatted_address" : "5151 Highland Rd, Baton Rouge, LA 70808, USA",
   "geometry" : {
     "location" : {
@@ -81,7 +81,7 @@
        "lng" : -91.16252729999999
     },
 ...
-</code></pre></div></div>
+</code></pre>
 
 <p>Yet another example URL for the geocoding service does a reverse lookup and gives us an address based on the latitude and longitude we put in the URL:</p>
 
@@ -89,10 +89,10 @@
 
 <p>At the end of the URL you can see the variable “latlng” and it is equal to “30,-90”, a simple latitude and longitude pair. In the result you can find the full address that the API found for those coordinates.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+<pre><code>...
 "formatted_address" : "7501 Terminal Rd, New Orleans, LA 70126, USA",
 ...
-</code></pre></div></div>
+</code></pre>
 
 <h3 id="noaa-web-service">NOAA web service</h3>
 
@@ -131,7 +131,7 @@
 <small><em>Figure 4. On the early web, information was broadcasted to audiences by the relatively small number of content creators who could make websites. Platforms evolved to allow the audience to contribute content, and more people became both consumers and producers of information (often called Web 2.0). Today, the web is characterized by increasingly connected platforms, transmitting information between applications.</em></small></p>
 
 <h3 id="reusability">Reusability</h3>
-<p>Google’s geocoding API is not only used by Google; they make it available for use by third parties. For example, imagine you are developing a ride sharing mobile app and it needs to display a street address for rider locations. The app takes the phone’s current GPS coordinates and sends them to <code class="highlighter-rouge">maps.googleapis.com</code>, which matches the coordinates with an address. Then the app reads the response from the API and extracts the address, and then finally the app prints the address on screen to the user.</p>
+<p>Google’s geocoding API is not only used by Google; they make it available for use by third parties. For example, imagine you are developing a ride sharing mobile app and it needs to display a street address for rider locations. The app takes the phone’s current GPS coordinates and sends them to <code>maps.googleapis.com</code>, which matches the coordinates with an address. Then the app reads the response from the API and extracts the address, and then finally the app prints the address on screen to the user.</p>
 
 <p>That is much easier than trying to take on the immense task of developing a geocoding application yourself, allowing you to focus on your ride sharing app (earlier in its development, Uber used the Google Maps APIs).</p>
 
@@ -152,6 +152,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="/js/prism.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 </html>
 

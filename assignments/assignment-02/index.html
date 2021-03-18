@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/css/cayman.css">
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/prism.css">
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
@@ -53,8 +53,8 @@
   <li>
     <p>Once the Sandbox is created, take a moment to absorb what is on the screen, because it will seem like a lot. Note four main areas of interest:</p>
     <ul>
-      <li>Files - <code class="highlighter-rouge">index.js</code> is created by default as our main application file. Click a file to view and edit its code.</li>
-      <li>Code - <code class="highlighter-rouge">index.js</code> contains some default JavaScript that we will modify here in the code area.</li>
+      <li>Files - <code>index.js</code> is created by default as our main application file. Click a file to view and edit its code.</li>
+      <li>Code - <code>index.js</code> contains some default JavaScript that we will modify here in the code area.</li>
       <li>Preview - Your application’s output will be previewed here in an emulated browser.</li>
       <li>URL - You can copy this URL to a real browser to view your application’s output, just like a real web app!<br />
 <img src="../../assignment-resources/images/csb-first-view.png" alt="CodeSandbox Node template" /></li>
@@ -69,62 +69,58 @@
 
 <h2 id="steps">Steps</h2>
 <ol>
-  <li>Delete all of the existing code in <code class="highlighter-rouge">index.js</code> and copy and paste the code below. Notice the three italicized lines beginning with <code class="highlighter-rouge">//</code>. These are comments and they indicate what the blocks of code under them do, for any person reading the code. You do not need to understand every bit of code here, just the general purpose of each part.
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"http"</span><span class="p">);</span>
-<span class="nx">http</span>
-  <span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
- <span class="c1">// Read the URL used to contact the web service and extract the latitude and longitude values, saving them each to a variable</span>
- <span class="kd">var</span> <span class="nx">requestUrl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URL</span><span class="p">(</span><span class="s2">"http://"</span> <span class="o">+</span> <span class="nx">request</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">host</span> <span class="o">+</span> <span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
- <span class="kd">var</span> <span class="nx">latA</span> <span class="o">=</span> <span class="nx">requestUrl</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s2">"latA"</span><span class="p">);</span>
- <span class="kd">var</span> <span class="nx">lonA</span> <span class="o">=</span> <span class="nx">requestUrl</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s2">"lonA"</span><span class="p">);</span>
- <span class="kd">var</span> <span class="nx">latB</span> <span class="o">=</span> <span class="nx">requestUrl</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s2">"latB"</span><span class="p">);</span>
- <span class="kd">var</span> <span class="nx">lonB</span> <span class="o">=</span> <span class="nx">requestUrl</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s2">"lonB"</span><span class="p">);</span>
-
- <span class="c1">// Use the spherical law of cosines formula to calculate distance along the surface of a sphere. It is not the most accurate method for Earth, but it is good enough. Source: https://www.movable-type.co.uk/scripts/latlong.html </span>
- <span class="kd">const</span> <span class="err">φ</span><span class="mi">1</span> <span class="o">=</span> <span class="p">(</span><span class="nx">latA</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">)</span> <span class="o">/</span> <span class="mi">180</span><span class="p">;</span>
- <span class="kd">const</span> <span class="err">φ</span><span class="mi">2</span> <span class="o">=</span> <span class="p">(</span><span class="nx">latB</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">)</span> <span class="o">/</span> <span class="mi">180</span><span class="p">;</span>
- <span class="kd">const</span> <span class="err">Δλ</span> <span class="o">=</span> <span class="p">((</span><span class="nx">lonB</span> <span class="o">-</span> <span class="nx">lonA</span><span class="p">)</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">)</span> <span class="o">/</span> <span class="mi">180</span><span class="p">;</span>
- <span class="kd">const</span> <span class="nx">R</span> <span class="o">=</span> <span class="mi">6371</span><span class="p">;</span> <span class="c1">// Earth's radius in km</span>
- <span class="kd">const</span> <span class="nx">d</span> <span class="o">=</span>
-   <span class="nb">Math</span><span class="p">.</span><span class="nx">acos</span><span class="p">(</span>
-     <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="err">φ</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="err">φ</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="err">φ</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="err">φ</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="err">Δλ</span><span class="p">)</span>
-   <span class="p">)</span> <span class="o">*</span> <span class="nx">R</span><span class="p">;</span>
-
- <span class="c1">// Output the calculated distance value to the client and complete the execution of the program. </span>
- <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"{distance: "</span> <span class="o">+</span> <span class="nx">d</span> <span class="o">+</span> <span class="s2">"}"</span><span class="p">);</span>
- <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
-</code></pre></div>    </div>
+  <li>Delete all of the existing code in <code>index.js</code> and copy and paste the code below. Notice the three italicized lines beginning with <code>//</code>. These are comments and they indicate what the blocks of code under them do, for any person reading the code. You do not need to understand every bit of code here, just the general purpose of each part.
+    <pre><code class="language-javascript">var http = require("http");
+http
+  .createServer(function (request, response) {
+    // Read the URL used to contact the web service and extract the latitude and longitude values, saving them each to a variable
+    var requestUrl = new URL("http://" + request.headers.host + request.url);
+    var latA = requestUrl.searchParams.get("latA");
+    var lonA = requestUrl.searchParams.get("lonA");
+    var latB = requestUrl.searchParams.get("latB");
+    var lonB = requestUrl.searchParams.get("lonB");
+ 
+    // Use the spherical law of cosines formula to calculate distance along the surface of a sphere. It is not the most accurate method for Earth, but it is good  enough. Source: https://www.movable-type.co.uk/scripts/latlong.html 
+    const φ1 = (latA * Math.PI) / 180;
+    const φ2 = (latB * Math.PI) / 180;
+    const Δλ = ((lonB - lonA) * Math.PI) / 180;
+    const R = 6371; // Earth's radius in km
+    const d =
+      Math.acos(
+        Math.sin(φ1) * Math.sin(φ2) + Math.cos(φ1) * Math.cos(φ2) * Math.cos(Δλ)
+      ) * R;
+ 
+    // Output the calculated distance value to the client and complete the execution of the program. 
+    response.write("{distance: " + d + "}");
+    response.end();
+  })
+  .listen(8080);
+</code></pre>
   </li>
-  <li>Save <code class="highlighter-rouge">index.js</code> by clicking <strong>File &gt; Save</strong>, or use the shortcut <code class="highlighter-rouge">Ctrl</code>+<code class="highlighter-rouge">S</code> (<code class="highlighter-rouge">Cmd</code>+<code class="highlighter-rouge">S</code> on Mac).</li>
-  <li>Refresh the <strong>preview browser</strong> (not your browser); it should output <code class="highlighter-rouge">{distance: 0}</code> because we did not provide input in the URL.</li>
-  <li>In the <strong>preview browser’s</strong> address bar, add the following text to the end of the URL and press <code class="highlighter-rouge">Enter</code> on your keyboard:</li>
-</ol>
-<pre>
-  ?latA=30&amp;lonA=-90&amp;latB=30.45&amp;lonB=-91.187
-  </pre>
-<p>The URL now contains parameters with values. There are lat/lon pairs for a “point A” (New Orleans) and “point B” (Baton Rouge). These values are then plugged into the formula to calculate the distance:</p>
-<ul>
-  <li><code class="highlighter-rouge">latA</code> = 30</li>
-  <li><code class="highlighter-rouge">lonA</code> = -90</li>
-  <li><code class="highlighter-rouge">latB</code> = 30.45</li>
-  <li><code class="highlighter-rouge">lonB</code> = -91.187</li>
-</ul>
-
-<ol>
-  <li>The web service should now output <code class="highlighter-rouge">{distance: 124.53850456983854}</code>, which is the distance in kilometers.</li>
+  <li>Save <code>index.js</code> by clicking <strong>File &gt; Save</strong>, or use the shortcut <code>Ctrl</code>+<code>S</code> (<code>Cmd</code>+<code>S</code> on Mac).</li>
+  <li>Refresh the <strong>preview browser</strong> (not your browser); it should output <code>{distance: 0}</code> because we did not provide input in the URL.</li>
+  <li>In the <strong>preview browser’s</strong> address bar, add the following text to the end of the URL and press <code>Enter</code> on your keyboard:<br />
+  <code>?latA=30&amp;lonA=-90&amp;latB=30.45&amp;lonB=-91.187</code><br />
+  The URL now contains parameters with values. There are lat/lon pairs for a “point A” (New Orleans) and “point B” (Baton Rouge). These values are then plugged into the formula to calculate the distance:
+    <ul>
+      <li><code>latA</code> = 30</li>
+      <li><code>lonA</code> = -90</li>
+      <li><code>latB</code> = 30.45</li>
+      <li><code>lonB</code> = -91.187</li>
+    </ul>
+  </li>
+  <li>The web service should now output <code>{distance: 124.53850456983854}</code>, which is the distance in kilometers.</li>
 </ol>
 
 <h2 id="try-it">Try it</h2>
 <ol>
   <li>Use <a href="https://www.google.com/maps">Google Maps</a> to get the latitude and longitude of two locations of your choosing, different from the New Orleans and Baton Rouge example above. Right-click the map to copy the coordinates at each place you choose.</li>
   <li>Substitute the new coordinate values into the URL of your web service and observe the new distance value. Compare this value to the distance measured with Google Maps (right-click the map, <strong>Measure distance</strong>).</li>
-  <li>At the top of your code, on Line 1, insert a new comment. An alternative syntax for multiline comments opens with <code class="highlighter-rouge">/*</code> and closes with <code class="highlighter-rouge">*/</code>. Give the following in the comments:
+  <li>At the top of your code, on Line 1, insert a new comment. An alternative syntax for multiline comments opens with <code>/*</code> and closes with <code>*/</code>. Give the following in the comments:
     <ul>
       <li>A description of your program in one or two brief sentences. What does it do, and what are the expected input and output?</li>
       <li>Your complete input URL with the coordinates you found. It should be something like:<br />
- <code class="highlighter-rouge">https://yoursandbox.sse.codesandbox.io/?latA=30&amp;lonA=-90&amp;latB=30.45&amp;lonB=-91.187</code></li>
+ <code>https://yoursandbox.sse.codesandbox.io/?latA=30&amp;lonA=-90&amp;latB=30.45&amp;lonB=-91.187</code></li>
       <li>The names of the locations you used for your coordinates (e.g., “the southwestern corner of Howe-Russell”, or “Beijing”)</li>
       <li>The output distance</li>
     </ul>
@@ -139,7 +135,7 @@
 
 <h2 id="submit">Submit</h2>
 <ol>
-  <li>Submit the URL to your sandbox. The sandbox should include a working <code class="highlighter-rouge">index.js</code> with the proper comment, including your web service URL so your instructor can easily copy the web service URL and paste it into the test browser.</li>
+  <li>Submit the URL to your sandbox. The sandbox should include a working <code>index.js</code> with the proper comment, including your web service URL so your instructor can easily copy the web service URL and paste it into the test browser.</li>
 </ol>
 
 <h2 id="appendix">Appendix</h2>
@@ -155,6 +151,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="/js/prism.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 </html>
 

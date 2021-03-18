@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/css/cayman.css">
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/prism.css">
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
@@ -111,29 +111,29 @@
 <ol>
   <li>Sign into your ArcGIS Online account, provided in class by your instructor.</li>
   <li>Go to your <strong>Content</strong> page.</li>
-  <li>Click <code class="highlighter-rouge">Create</code> &gt; <code class="highlighter-rouge">Feature Layer</code>.</li>
-  <li>Choose the “Debris Report” template and click <code class="highlighter-rouge">Create</code>.</li>
+  <li>Click <code>Create</code> &gt; <code>Feature Layer</code>.</li>
+  <li>Choose the “Debris Report” template and click <code>Create</code>.</li>
   <li>You will be prompted to define an “extent” for your dataset. Zoom the map to the area that you expect to be the boundary for potential data entries. In the example of reporting debris on campus, the map should be centered on campus but zoomed out enough to show the entire campus.</li>
-  <li>After clicking <code class="highlighter-rouge">Next</code> and filling out the details, the layer will be created and you will see its <strong>Item Details</strong> page.</li>
-  <li>Click the <code class="highlighter-rouge">Data</code> tab at the top of the page to see the predefined attributes (there are no features under the attributes yet).</li>
-  <li>Click <code class="highlighter-rouge">Visualize</code> to see the template’s predefined symbology. For the “Debris Reports” template, the symbols correspond to different types of debris (vegetation, hazardous material, etc.). The map should be blank except for the basemap.</li>
-  <li>Click <code class="highlighter-rouge">Settings</code> and note that the <code class="highlighter-rouge">Feature Layer (hosted)</code> section has options enabled already for editing. By default, anyone can add, update, and delete features in your layer if you share the layer with them, but by default the layer is private, not shared. Keep it private.</li>
+  <li>After clicking <code>Next</code> and filling out the details, the layer will be created and you will see its <strong>Item Details</strong> page.</li>
+  <li>Click the <code>Data</code> tab at the top of the page to see the predefined attributes (there are no features under the attributes yet).</li>
+  <li>Click <code>Visualize</code> to see the template’s predefined symbology. For the “Debris Reports” template, the symbols correspond to different types of debris (vegetation, hazardous material, etc.). The map should be blank except for the basemap.</li>
+  <li>Click <code>Settings</code> and note that the <code>Feature Layer (hosted)</code> section has options enabled already for editing. By default, anyone can add, update, and delete features in your layer if you share the layer with them, but by default the layer is private, not shared. Keep it private.</li>
 </ol>
 
 <h3 id="part-2-create-a-web-map">Part 2: Create a web map</h3>
 <ol>
-  <li>Still on the <strong>Item Details</strong> page of the new feature layer, click <code class="highlighter-rouge">Overview</code>, then click <code class="highlighter-rouge">Open in Map Viewer</code> to add the layer to a new map.</li>
-  <li>In the <strong>Map Viewer</strong>, the empty layer should appear in the <code class="highlighter-rouge">Content</code> pane with symbols already. The map should already be zoomed to extent you defined.</li>
-  <li><code class="highlighter-rouge">Save</code> the map and name it with “Private” at the end of the name. <strong>Do not</strong> share with <code class="highlighter-rouge">Everyone</code>, because this map contains the private layer for internal use.</li>
+  <li>Still on the <strong>Item Details</strong> page of the new feature layer, click <code>Overview</code>, then click <code>Open in Map Viewer</code> to add the layer to a new map.</li>
+  <li>In the <strong>Map Viewer</strong>, the empty layer should appear in the <code>Content</code> pane with symbols already. The map should already be zoomed to extent you defined.</li>
+  <li><code>Save</code> the map and name it with “Private” at the end of the name. <strong>Do not</strong> share with <code>Everyone</code>, because this map contains the private layer for internal use.</li>
 </ol>
 
 <h3 id="part-3-set-up-arcgis-collector">Part 3: Set up ArcGIS Collector</h3>
 <ol>
   <li>On a mobile device (iOS, Android, Windows), install Collector for ArcGIS (Esri) from your device’s app store.</li>
   <li>Once installed, sign into Collector with your ArcGIS Online account.</li>
-  <li>Browse for <code class="highlighter-rouge">Maps</code> in Collector to see the maps saved in your account <em>that have an editable feature layer added</em>. Tap your debris report map to open.</li>
-  <li>Depending on your version of Collector, tap <code class="highlighter-rouge">Collect</code>, <code class="highlighter-rouge">Capture</code>, or <code class="highlighter-rouge">+</code> to add a new feature to the layer. Collector will try to use your current location, but you can tap the map to drop a point marker instead.</li>
-  <li>Fill out some basic attributes and attach an image. Tap <code class="highlighter-rouge">Submit</code>.</li>
+  <li>Browse for <code>Maps</code> in Collector to see the maps saved in your account <em>that have an editable feature layer added</em>. Tap your debris report map to open.</li>
+  <li>Depending on your version of Collector, tap <code>Collect</code>, <code>Capture</code>, or <code>+</code> to add a new feature to the layer. Collector will try to use your current location, but you can tap the map to drop a point marker instead.</li>
+  <li>Fill out some basic attributes and attach an image. Tap <code>Submit</code>.</li>
   <li>The new feature will appear on your map. You can refresh the map on your computer to see the feature you just input from your phone.</li>
 </ol>
 
@@ -141,7 +141,7 @@
 <ol>
   <li>Return to the layer’s <strong>Item Details</strong> page.</li>
   <li>
-    <p>Click <code class="highlighter-rouge">Create View Layer</code> and use the same name but add <code class="highlighter-rouge">Public</code> to the end of the name.
+    <p>Click <code>Create View Layer</code> and use the same name but add <code>Public</code> to the end of the name.
  <img src="../../assignment-resources/images/agol-layer-view.png" alt="Create View Layer button" /><br />
  <small><em>Item Details page showing the Create View Layer button.</em></small></p>
   </li>
@@ -150,8 +150,8 @@
  <img src="../../assignment-resources/images/agol-item2.png" alt="Content page with a view layer" /><br />
  <small><em>Content page showing a separate item for a feature layer view.</em></small></p>
   </li>
-  <li>Go to the view layer’s <strong>Item Details</strong> page and click <code class="highlighter-rouge">Settings</code>.</li>
-  <li>Check <code class="highlighter-rouge">Approve this layer to be shared with the public when editing is enabled</code> and <code class="highlighter-rouge">Enable editing</code> and click <code class="highlighter-rouge">Save</code>. You will then be able to set more specific permissions for editing.</li>
+  <li>Go to the view layer’s <strong>Item Details</strong> page and click <code>Settings</code>.</li>
+  <li>Check <code>Approve this layer to be shared with the public when editing is enabled</code> and <code>Enable editing</code> and click <code>Save</code>. You will then be able to set more specific permissions for editing.</li>
 </ol>
 
 <h2 id="try-it">Try it</h2>
@@ -178,7 +178,7 @@
 
 <h2 id="submit">Submit</h2>
 <ol>
-  <li>The URL to the <strong>Item Details</strong> page of your <strong>public web app</strong>. Example: <code class="highlighter-rouge">https://www.arcgis.com/home/item.html?id=ABC123</code> or <code class="highlighter-rouge">https://arcg.is/ABC123</code></li>
+  <li>The URL to the <strong>Item Details</strong> page of your <strong>public web app</strong>. Example: <code>https://www.arcgis.com/home/item.html?id=ABC123</code> or <code>https://arcg.is/ABC123</code></li>
 </ol>
 
     </section>
@@ -188,6 +188,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="/js/prism.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 </html>
 

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lesson 13 | GEOG 4046 Web GIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cayman.css">
+    <link rel="stylesheet" href="/css/prism.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <div class="shadebox">
+        <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
+        <h2 class="project-tagline">An Introduction to Web GIS</h2>
+        <div class="text-center">
+          <a href="/">Syllabus</a> |
+          <a href="/assignments">Assignments</a> |
+          <a href="/lessons">Lessons</a> |
+          <a href="/schedule">Schedule and Due Dates</a>
+        </div>
+      </div>
+    </section>
+    <section class="main-menu">
+
+    </section>
+
+    <section class="main-content">
+      <h1 class="text-center">Lesson 13</h1>
+      <h2 class="text-center">CSS Basics</h2>
+      <h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#css-for-looks">CSS for Looks</a></li>
+  <li><a href="#css-for-structure">CSS for Structure</a></li>
+  <li><a href="#summary">Summary</a></li>
+  <li><a href="#other-learning-resources">Other Learning Resources</a></li>
+</ul>
+
+<p>Terms: CSS, rule, selector, property</p>
+
+<h2 id="introduction">Introduction</h2>
+<p><strong>Cascading Style Sheets (CSS)</strong> are documents containing rules for how webpage content should be presented. CSS works alongside HTML in a web browser. To get an idea of how much of a typical website’s appearance is controlled with CSS, look at the difference when CSS is disabled in the browser for LSU.edu:</p>
+
+<p> <br />
+<img src="../../assignment-resources/images/lsu-no-css.png" alt="Comparison of a webpage rendered in a browser with CSS and without CSS" /><br />
+<small><em>Figure 1. Comparison of a webpage rendered in a browser with CSS and without CSS.</em></small></p>
+
+<p>The comparison in the figure shows that CSS rules control not only colors and fonts but also the entire structure of the page.</p>
+
+<h2 id="css-for-looks">CSS for Looks</h2>
+<p>To see CSS in action, let’s revisit the <code>h1</code> tag example from the HTML lesson, a simple page with heading text:</p>
+
+<pre><code class="language-html">&lt;h1&gt;Heading Here&lt;/h1&gt;
+&lt;p&gt;Paragraph goes here.&lt;/p&gt;
+</code></pre>
+<div class="nocopy"></div>
+<p><img src="../../assignment-resources/images/rendered-html.png" alt="Rendered HTML" class="no-shadow" /></p>
+
+<p>By default, the browser rendered the heading text with the font Times New Roman and the color black. We can use CSS to change the font to Arial and color to gray. Below is a CSS rule. Note the syntax:</p>
+<ul>
+  <li>The <strong>selector</strong> is <code>h1</code>, meaning the rule will apply to all <code>h1</code> elements in the HTML.</li>
+  <li>The property:value pair is <code>font-family: 'Arial'</code>.</li>
+  <li>Property:value pairs are contained within curly brackets <code>{ }</code>.</li>
+  <li>Each property:value pair ends with a semicolon <code>;</code></li>
+</ul>
+
+<pre><code class="language-css">h1 {
+  color: Gray;
+  font-family: 'Arial';
+}
+</code></pre>
+<div class="nocopy"></div>
+<p>The result in this example is a heading now rendered differently in the browser:<br />
+<img src="../../assignment-resources/images/rendered-html2.png" alt="Rendered HTML" /></p>
+
+<p>These groups of CSS <strong>properties</strong> that get applied to HTML elements are called <strong>rules</strong>. CSS rules are normally placed in a <code>.css</code> file and linked to the HTML file (more on that later). Each rule begins with a <strong>selector</strong>, which can be HTML tags, class names, and IDs. The selectors tell the browser which HTML elements the rule should be applied to. In the example above, <code>h1</code> is the selector.</p>
+
+<p>Edit this CodeSandbox to see the rules work for yourself. Try changing <a href="https://css-tricks.com/snippets/css/css-font-families/">the font</a> and <a href="https://htmlcolorcodes.com/color-names/">color</a> names.</p>
+
+<iframe src="https://codesandbox.io/embed/css-demo-3zr3g?fontsize=14&amp;hidenavigation=1&amp;module=%2Fstyle.css&amp;theme=dark" style="width:100%; height:250px; border:0; border-radius: 4px; overflow:hidden;" title="CSS Demo" allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
+
+<p>Can you figure out how to change the color and font of the paragraph text in that example?</p>
+
+<h2 id="css-for-structure">CSS for structure</h2>
+<p>For the web maps that we will create in this course, we will need to use CSS to make a place on the webpage to draw a map. Guides typically use the <code>div</code> (division) tag to create a sort of box to hold a map. Let’s modify the previous example to draw a <code>div</code> box around the paragraph text.</p>
+
+<p>In the CodeSandbox, switch to the <code>index.html</code> tab to add these tags. First, enclose the paragraph tags within <code>div</code> tags, like this:</p>
+<pre><code class="language-html">&lt;div&gt;
+  &lt;p&gt;Paragraph goes here.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>If you insert that into the CodeSandbox, there is no change in appearance because, by default, the browser does not draw a border around a <code>div</code>. Switch back to the <code>style.css</code> tab and create a CSS rule to draw a border. The result should be a black border around the words “Paragraph goes here.”</p>
+
+<pre><code class="language-css">div {
+  border-style: solid;
+}
+</code></pre>
+
+<p>In addition to the <code>border-style</code> property, add another property into that rule to give the <code>div</code> an on-screen height of 400 pixels.</p>
+
+<pre><code class="language-css">div {
+  border-style: solid;
+  height: 400px;
+}
+</code></pre>
+
+<p>Our rules so far, for <code>h1</code> and <code>div</code>, will affect every <code>h1</code> and <code>div</code> on our page. What if we only want a rule to apply to a single <code>div</code>? HTML tags can have attributes that help identify them, which is useful for applying CSS rules to specific tags. Replace your CodeSandbox’s HTML and CSS with the code below.</p>
+
+<p>HTML tags with <code>class</code> and <code>id</code> attributes:</p>
+<pre><code class="language-html">&lt;h1 class="my-class"&gt;Heading Here&lt;/h1&gt;
+&lt;div id="my-id"&gt;
+  &lt;p&gt;Paragraph goes here.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>CSS with a class selector (preceded by a period) and an ID selector (preceded with a <code>#</code>):</p>
+<pre><code class="language-css">.my-class {
+  font-family: Arial;
+  color: Gray
+}
+#my-id {
+  border-style: solid;
+  height: 400px;
+}
+</code></pre>
+<p>Our selectors are no longer the elements <code>h1</code> and <code>div</code>. Instead, we are using the class <code>my-class</code> and the ID <code>my-id</code> to identify the <code>h1</code> and <code>div</code> elements, respectively. Those class and ID selectors correspond to the attributes in the HTML code.  The <code>h1</code> heading in the HTML has been assigned a class of <code>my-class</code>, and the <code>div</code> has been assigned an ID of <code>my-id</code>. The examples <code>my-class</code> and <code>my-id</code> could be replaced with anything that makes sense, such as <code>main-heading</code> and <code>bigDiv</code>, but avoid spaces and special characters besides the hyphen.</p>
+
+<p>To summarize:</p>
+<ul>
+  <li><code>class="my-class"</code> (HTML) corresponds to <code>.my-class</code> (CSS)</li>
+  <li><code>id="my-id"</code> (HTML) corresponds to <code>#my-id</code> (CSS)</li>
+</ul>
+
+<p>What is the difference between an ID and a class attribute? An ID should have a unique value, whereas a class can be reused on multiple tags.</p>
+
+<p>Therefore, if we wanted the paragraph text to be formatted as gray Arial like the heading, we could give the <code>p</code> tag the same class:</p>
+
+<pre><code class="language-html">&lt;p class="my-class"&gt;Paragraph goes here.&lt;/p&gt;
+</code></pre>
+
+<p>However, you should not create another <code>div</code> using the same ID value. If you want other <code>div</code> tags to also have a black border, you should use a class instead.</p>
+
+<p>Most web map libraries require a map to be contained in a <code>div</code> with an <code>id</code> attribute, which is the main reason why the <code>id</code> attribute is included in this lesson.</p>
+
+<p>Our example now contains HTML and CSS, giving us a static (unchanging) webpage, but it does not allow for any interaction, which is something we will need later with our web maps. For that, we need JavaScript.</p>
+
+<h2 id="summary">Summary</h2>
+<p>There is much, much more to CSS than will be covered in this course, but an understanding of CSS selectors, properties, and their relationship with the <code>id</code> and <code>class</code> attributes in HTML will prepare you to follow guides for Web GIS JavaScript libraries.</p>
+
+<h2 id="other-learning-resources">Other Learning Resources</h2>
+<ul>
+  <li>Codecademy - <a href="https://www.codecademy.com/learn/learn-css/modules/learn-css-selectors-visual-rules">Learn CSS: Selectors and Visual Rules</a>
+    <ul>
+      <li>This is a long lesson but doing only the first few parts could still be helpful.</li>
+    </ul>
+  </li>
+  <li>Mozilla - <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics">CSS Basics</a></li>
+</ul>
+
+      <a href="#top">Top</a><br>
+      <a href="../../lessons/">Back to Lessons</a>
+    </section>
+    
+<footer class="site-footer">
+  <small>&copy; All rights reserved.</small>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="/js/prism.js"></script>
+<script src="/js/custom.js"></script>
+</body>
+</html>
+

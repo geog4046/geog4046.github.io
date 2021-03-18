@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/css/cayman.css">
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/prism.css">
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
@@ -49,7 +49,7 @@
 
 <p> <br />
 <img src="../../lessons/images/gp-diagram.png" alt="Geoprocessing service diagram" class="no-shadow" /><br />
-<small><em>Figure 1. A geoprocessing tool receives an input layer or layers, such a points, and outputs another layer based on the calculations performed by the tool. In this diagram, the tool receives the locations of hospitals as a point layer and responds with a new layer of polygons representing a 2-mile radius around the hospital.</em></small></p>
+<small><em>Figure 1. A geoprocessing tool receives an input layer or layers, such as points, and outputs another layer based on the calculations performed by the tool. In this diagram, the tool receives the locations of hospitals as a point layer and responds with a new layer of polygons representing a 2-mile radius around the hospital.</em></small></p>
 
 <p>These analysis tools can be made available online as web services. In Assignment 2, we created a very simple geoprocessing web service to calculate the distance between two latitude/longitude coordinate pairs.</p>
 
@@ -60,13 +60,13 @@
 
 <p><strong>Geoprocessing</strong> in GIS is the analysis or manipulation of data layers. Geoprocessing can be performed using geoprocessing tools in GIS software. These tools can be made available online as web services, referred to as <strong>geoprocessing services</strong>.</p>
 
-<p>The buffer operation is one simple example. In its most basic form in GIS software, the <code class="highlighter-rouge">buffer</code> tool will accept as input a layer (points, lines, or polygons) and a distance parameter (how far the buffer extends from each feature) and produce as output a new polygon layer, which resembles a more plump version of the original layer.</p>
+<p>The buffer operation is one simple example. In its most basic form in GIS software, the <code>buffer</code> tool will accept as input a layer (points, lines, or polygons) and a distance parameter (how far the buffer extends from each feature) and produce as output a new polygon layer, which resembles a more plump version of the original layer.</p>
 
 <p> <br />
 <img src="../../lessons/images/buffer-example.png" alt="Buffer example" /><br />
 <small><em>Figure 2. A buffer is the area within a specified distance of a feature. In the case of point features, the buffer distance is the radius of the circle centered on the point.</em></small></p>
 
-<p>The figure below shows another common tool that counts the number of features within another feature; in this case, hospitals (points) within a parish (polygon). This is a <code class="highlighter-rouge">summarize within</code> tool, and in addition to counting features it can typically perform statistics on an attribute of the summarized layer. If the hospitals layer had a “beds” attribute, the summarize tool could tell us the average, total, minimum, or maximum number of beds in the parish’s hospitals.</p>
+<p>The figure below shows another common tool that counts the number of features within another feature; in this case, hospitals (points) within a parish (polygon). This is a <code>summarize within</code> tool, and in addition to counting features it can typically perform statistics on an attribute of the summarized layer. If the hospitals layer had a “beds” attribute, the summarize tool could tell us the average, total, minimum, or maximum number of beds in the parish’s hospitals.</p>
 
 <p> <br />
 <img src="../../lessons/images/summarize-example.png" alt="Summarize example" /><br />
@@ -88,7 +88,7 @@
 <h2 id="arcgis-online">ArcGIS Online</h2>
 <p>ArcGIS Online provides two ways to use their geoprocessing tools through the website interface. The analysis tools are not for use in public apps and they consume ArcGIS Online credits.</p>
 
-<p>One way is through the Map Viewer. There is a <code class="highlighter-rouge">Perform Analysis</code> button that will let you browse through the available tools. There is also a button among the icons under each layer name in the table of contents of the map, if the layer is one that can be analyzed. This is a good option for more experienced GIS users who know how to add layers to a map and choose the appropriate analysis tools for their objectives.</p>
+<p>One way is through the Map Viewer. There is a <code>Perform Analysis</code> button that will let you browse through the available tools. There is also a button among the icons under each layer name in the table of contents of the map, if the layer is one that can be analyzed. This is a good option for more experienced GIS users who know how to add layers to a map and choose the appropriate analysis tools for their objectives.</p>
 
 <p> <br />
 <img src="../../lessons/images/map-analysis.png" alt="Map Viewer perform analysis" class="no-shadow" /><br />
@@ -126,6 +126,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="/js/prism.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 </html>
 
