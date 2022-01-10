@@ -17,14 +17,14 @@
   </head>
   <body>
     <section class="page-header">
-      <div class="shadebox">
+      <div class="shadebox title-box">
         <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
         <h2 class="project-tagline">An Introduction to Web GIS</h2>
         <div class="text-center">
-          <a href="/">Syllabus</a> |
-          <a href="/assignments">Assignments</a> |
+          <a href="/">About</a> |
           <a href="/lessons">Lessons</a> |
-          <a href="/schedule">Schedule and Due Dates</a>
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule</a>
         </div>
       </div>
     </section>
@@ -33,8 +33,8 @@
     </section>
 
     <section class="main-content">
-      <h1 class="text-center">Lesson 3</h1>
-      <h2 class="text-center">Web GIS Concepts, Part 2</h2>
+      <div class="text-left"><small>Module 1 &rsaquo; Lesson 3 </small></div>
+      <h1 class="text-center">Web GIS Concepts, Part 2</h1>
       <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#first-contact-getting-a-response-from-a-web-service">First contact: getting a response from a web service</a></li>
@@ -45,34 +45,38 @@
 <p>Terms: HTTP, REST, endpoint, application programming interface, interoperability</p>
 
 <h2 id="first-contact-getting-a-response-from-a-web-service">First contact: getting a response from a web service</h2>
-<p>You have experience with typing a URL into a web browser to visit a webpage, but what about a web service? Let’s go back to a URL that was used in the previous lesson’s introduction.</p>
+<p>You have experience with typing a <dfn title="Uniform Resource Locator, the address of a file or application on the web (Lesson 2)">URL</dfn> into a <dfn title="Software that reads the code of a webpage document and renders the code as visual elements, e.g., fonts and graphics, to display on screen to the user (Lesson 11).">browser</dfn> to visit a webpage, but what about a <dfn title="Web services are how machines talk to machines online, sharing and processing data. (Lesson 2)">web service</dfn>? Let’s go back to a URL that was used in the previous lesson’s introduction.</p>
 
 <p>First, note that in these examples we will interact with web services using a particular HTTP method involving URLs, because URLs are easy to use in a beginner’s guide like the one you are reading. <strong>HTTP (Hypertext Transfer Protocol)</strong> is the protocol that applications use to communicate things like webpages and images over the web, and HTTP has several methods for doing so. The one we will use with these example URLs is called GET, which, as the name suggests, is a method for clients to request and get a resource from a web server. Furthermore, these web services are examples of RESTful services. <strong>REST (representational state transfer)</strong> web services allow clients to send input parameters via a URL, again making them easy to use in a beginner’s tutorial.</p>
 
 <p>The other methods are outside the scope of this course, but if you learn more about web services, you will encounter some that work quite differently from these simple examples.</p>
 
+<p>Let’s move on by using our web browser to access a web service for US Census data.</p>
+
 <h3 id="census-api">Census API</h3>
 
 <p><a href="https://api.census.gov/data/2019/acs/acs5?get=B01003_001E&amp;for=state:22">https://api.census.gov/data/2019/acs/acs5?get=B01003_001E&amp;for=state:22</a></p>
 
-<p>The text in the URL above specifies what information we are requesting from the server. This <strong>endpoint</strong>, or URL for a web service, points to a U.S. Census Bureau application that returns census data based on your request parameters. Note these two parts in the URL:</p>
+<p>The text in the URL above specifies what information we are requesting from the server. This <strong>endpoint</strong>, or URL for a web service, points to a U.S. Census Bureau application that returns census data based on your request parameters. Note these two parameters in the URL:</p>
 
 <p><code>get=B01003_001E</code><br />
 <code>for=state:22</code></p>
 
-<p>The value <code>B01003_001E</code> is the code for total population and <code>22</code> is the code for Louisiana. So this endpoint triggers the Census Bureau application to dig into its data sources to find that information. Once found, the application responds in text format, sending the following output across the Internet to your web browser.</p>
+<p>The value <code>B01003_001E</code> is the code for total population and <code>22</code> is the code for Louisiana. So this endpoint triggers the Census Bureau application to dig into its data sources to find the population of Louisiana. Once found, the application responds in text format, sending the following output across the Internet to your web browser.</p>
 
 <pre><code>[["B01003_001E","state"],
 ["4664362","22"]]
 </code></pre>
 
+<p>We just used a web service!</p>
+
 <h3 id="google-maps-geocoding-api">Google Maps Geocoding API</h3>
 
-<p>Let’s take a look at another example using one of Google’s web services. This is a URL for Google’s geocoding service. It turns street addresses into latitude and longitude coordinates. Note the use of the letters “api” in this and the previous example, referring to an <strong>application programming interface</strong>. API is a common term in the world of Web GIS, web services, and programming in general. Web services can be considered a type of API, as they are an interface for applications to talk to one another.</p>
+<p>Let’s take a look at another example using one of Google’s web services. This is a URL for Google’s geocoding service. It turns street addresses into latitude and longitude coordinates. Note the use of the letters “api” in this and the previous example, referring to an <strong>application programming interface</strong>, a system that allows a program to offer its functions to other connected programs. API is a common term in the world of Web GIS, web services, and programming in general. Web services can be considered a type of API, as they are an interface for applications to talk to one another.</p>
 
 <p><a href="https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBpMtOAYhhjn6SBDaxN8yHCkvfrGb7TuSc&amp;address=5151 Highland Road, Baton Rouge, LA">https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBpMtOAYhhjn6SBDaxN8yHCkvfrGb7TuSc&amp;address=5151 Highland Road, Baton Rouge, LA</a></p>
 
-<p>You can pick out the address at the end of the URL, where it is assigned to a variable named <code>address</code>.</p>
+<p>You can pick out the street address at the end of the URL, where it is assigned to a variable named <code>address</code>.</p>
 
 <p>The response looks like a lot of code, from which we can pick out the part that gives the latitude and longitude.</p>
 
@@ -103,15 +107,13 @@
 
 <p><a href="https://nowcoast.noaa.gov/arcgis/rest/services/nowcoast/radar_meteo_imagery_nexrad_time/MapServer/export?bbox=-125%2C27%2C-75%2C45&amp;bboxSR=4326&amp;layers=&amp;layerDefs=&amp;size=800%2C600&amp;imageSR=&amp;format=png&amp;transparent=true&amp;dpi=&amp;time=&amp;layerTimeOptions=&amp;dynamicLayers=&amp;gdbVersion=&amp;mapScale=&amp;rotation=&amp;datumTransformations=&amp;layerParameterValues=&amp;mapRangeValues=&amp;layerRangeValues=&amp;f=Image">https://nowcoast.noaa.gov/arcgis/rest/services/nowcoast/radar_meteo_imagery_nexrad_time/MapServer/export?bbox=-125%2C27%2C-75%2C45&amp;bboxSR=4326&amp;layers=&amp;layerDefs=&amp;size=800%2C600&amp;imageSR=&amp;format=png&amp;transparent=true&amp;dpi=&amp;time=&amp;layerTimeOptions=&amp;dynamicLayers=&amp;gdbVersion=&amp;mapScale=&amp;rotation=&amp;datumTransformations=&amp;layerParameterValues=&amp;mapRangeValues=&amp;layerRangeValues=&amp;f=Image</a></p>
 
-<p> <br />
-<img src="../../lessons/images/weather-service-response.png" alt="Response from a web service that produces an image" /><br />
-<small><em>Figure 1. Response from a NOAA weather radar web service showing current precipitation at the time the image was captured. The response is an image covering the continental U.S., demonstrating that web services can return more types of information than only text.</em></small></p>
+<p><img src="../../lessons/images/weather-service-response.png" alt="Response from a web service that produces an image" />
+<em>Figure 1. Response from a NOAA weather radar web service showing current precipitation at the time the image was captured. The response is an image covering the continental U.S., demonstrating that web services can return more types of information than only text.</em></p>
 
 <p>You can see, though, that the image is of limited use by itself; it is intended to be consumed by an application that then does something with it, like overlay it onto a national map. For example, ArcGIS Online can display map data from a web service.</p>
 
-<p> 
-<img src="../../lessons/images/arcgis-online-display-web-service.png" alt="ArcGIS Online displays a web service" /><br />
-<small><em>Figure 2. The ArcGIS Online Map Viewer is an application capable of displaying the response of a web map service. The radar imagery shown in the viewer comes from a NOAA web service, while the gray map in the background comes from an Esri web service.</em></small></p>
+<p><img src="../../lessons/images/arcgis-online-display-web-service.png" alt="ArcGIS Online displays a web service" />
+<em>Figure 2. The ArcGIS Online Map Viewer is an application capable of displaying the response of a web map service. The radar imagery shown in the viewer comes from a NOAA web service, while the gray map in the background comes from an <dfn title="Company that develops ArcGIS software">Esri</dfn> web service.</em></p>
 
 <h2 id="discussion">Discussion</h2>
 <p>If a web service is not a website, then what are we seeing when we enter these URLs? The response we see is the output of a program. Recall from earlier that a service is a program dedicated to a specific task. So, when we contact a web service via its endpoint URL, we are running a program. In the geocoding example above, Google hosts a program that converts coordinates into addresses and vice versa, but instead of installing this program on your computer, you use it via the web service by sending your input to an endpoint URL.</p>
@@ -121,17 +123,15 @@
 
 <p>If a human wants to see an address location on a map, they can just put the address into a search engine and see a map in the results. No one is going to fool with a web service for that. Behind the scenes, however, there are applications using services to work together to generate those results. Google Search, which is an application, is using Google’s geocoding service, sending your input to the service, receiving the response, and nicely displaying it on a map.</p>
 
-<p> <br />
-<img src="../../lessons/images/google-map-search-results.png" alt="Google search results with a map" /><br />
-<small><em>Figure 3. Google search results for the address “5151 Highland Rd, Baton Rouge, LA 70808, USA”, showing the address location as a point on a map. Google Search uses the Google Maps Geocoding API behind the scenes to translate the address into latitude and longitude coordinates (30.3964204, -91.1625273).</em></small></p>
+<p><img src="../../lessons/images/google-map-search-results.png" alt="Google search results with a map" />
+<em>Figure 3. Google search results for the address “5151 Highland Rd, Baton Rouge, LA 70808, USA”, showing the address location as a point on a map. Google Search uses the Google Maps Geocoding API behind the scenes to translate the address into latitude and longitude coordinates (30.3964204, -91.1625273).</em></p>
 
 <p>The significance here is that, since web services can transfer information between applications, they can enable automation: applications do not always need a human operator, or a human manually copying data from system to system. For something like weather that changes often, it would be hard to imagine a weather app that required the developer to manually go to a government website to download new radar data every 15 minutes, then upload it into their own application. With web services, they don’t have to. The dataset is provided as a utility that is always on and connected (like electricity), streaming the most up-to-date information into their app’s logic or onto the screen for users.</p>
 
 <p>Where the web was once a place where information was exchanged between people and applications, it is increasingly a system for connecting applications to each other through web services. The ability of applications to exchange information with other computer systems is known as <strong>interoperability</strong>.</p>
 
-<p> <br />
-<img src="../../lessons/images/web-evolution.png" alt="Evolution of web communication" class="no-shadow" /><br />
-<small><em>Figure 4. On the early web, information was broadcasted to audiences by the relatively small number of content creators who could make websites. Platforms evolved to allow the audience to contribute content, and more people became both consumers and producers of information (often called Web 2.0). Today, the web is characterized by increasingly connected platforms, transmitting information between applications.</em></small></p>
+<p><img src="../../lessons/images/web-evolution.png" alt="Evolution of web communication" class="no-shadow" />
+<em>Figure 4. On the early web, information was broadcasted to audiences by the relatively small number of content creators who could make websites. Platforms evolved to allow the audience to contribute content, and more people became both consumers and producers of information (often called Web 2.0). Today, the web is characterized by increasingly connected platforms, transmitting information between applications.</em></p>
 
 <h3 id="reusability">Reusability</h3>
 <p>Google’s geocoding API is not only used by Google; they make it available for use by third parties. For example, imagine you are developing a ride sharing mobile app and it needs to display a street address for rider locations. The app takes the phone’s current GPS coordinates and sends them to <code>maps.googleapis.com</code>, which matches the coordinates with an address. Then the app reads the response from the API and extracts the address, and then finally the app prints the address on screen to the user.</p>
@@ -143,7 +143,7 @@
 <p>NOAA, for example, makes its weather radar imagery and other data available as a web service. Anyone can make a website or application that uses this data. That is much more useful than if NOAA forced users to view its own website to see the data (which until recently was quite outdated).</p>
 
 <h2 id="summary">Summary</h2>
-<p>Web services are a core part of Web GIS. They allow geographic information (map data) to be spread and re-used in websites and applications for research, commercial, or administrative use. They are part of a wider trend in computing where applications communicate with other applications through services. The service-oriented architecture philosophy has extended to the Internet, and web services are the result. Maps, a form of information that has existed for thousands of years, are now also following this trend and being turned into web services to be consumed not just by humans but applications as well. It is now easier than ever to create online maps with diverse datasets from across the Internet using web services.</p>
+<p>Web services are a core part of Web GIS. They allow geographic information (map data) to be spread and re-used in websites and applications for research, commercial, administrative, or personal use. Web services are part of a wider trend in computing where applications communicate with other applications through services, and web services are the extension of that practice to the web. Maps, a form of information that has existed for thousands of years, are now also following this trend and being turned into web services to be consumed not just by humans but applications. If map layers are offered as web services, they can be re-used by many applications, and those applications can combine layers from other providers, too. This increases the potential for data to be shared and put to use.</p>
 
       <a href="#top">Top</a><br>
       <a href="../../lessons/">Back to Lessons</a>

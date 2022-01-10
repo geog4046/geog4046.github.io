@@ -17,14 +17,14 @@
   </head>
   <body>
     <section class="page-header">
-      <div class="shadebox">
+      <div class="shadebox title-box">
         <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
         <h2 class="project-tagline">An Introduction to Web GIS</h2>
         <div class="text-center">
-          <a href="/">Syllabus</a> |
-          <a href="/assignments">Assignments</a> |
+          <a href="/">About</a> |
           <a href="/lessons">Lessons</a> |
-          <a href="/schedule">Schedule and Due Dates</a>
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule</a>
         </div>
       </div>
     </section>
@@ -33,8 +33,8 @@
     </section>
 
     <section class="main-content">
-      <h1 class="text-center">Lesson 14</h1>
-      <h2 class="text-center">JavaScript and Leaflet</h2>
+      <div class="text-left"><small>Module 4 &rsaquo; Lesson 14 </small></div>
+      <h1 class="text-center">JavaScript and Leaflet</h1>
       <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#introduction">Introduction</a></li>
@@ -71,7 +71,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
 <h2 id="javascript-console">JavaScript Console</h2>
 
-<p>This lesson covers some programming basics that apply to JavaScript and web maps. You can type JavaScript code into your web browser to try it out—in Google Chrome, press <code>F12</code> to show the developer tools and then click the <code>Console</code> tab. You can type JavaScript directly into the console and keep it open while you read this lesson.</p>
+<p>This lesson covers some programming basics that apply to JavaScript and web maps. You can type JavaScript code into your <dfn title="Software that reads the code of a webpage document and renders the code as visual elements, e.g., fonts and graphics, to display on screen to the user (Lesson 11).">browser</dfn> to try it out—in Google Chrome, press <code>F12</code> to show the developer tools and then click the <code>Console</code> tab. You can type JavaScript directly into the console and keep it open while you read this lesson.</p>
 
 <p>We will use the console to explore the concepts of:</p>
 <ul>
@@ -81,9 +81,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
   <li>Conditional statements</li>
 </ul>
 
-<p> <br />
-<img src="../../assignment-resources/images/js-console.png" alt="JavaScript console in Google Chrome" /><br />
-<small><em>Figure 1. Most browsers have developer tools with features like the JavaScript console, which is useful for debugging your code or just messing around with JavaScript.</em></small></p>
+<p><img src="../../assignment-resources/images/js-console.png" alt="JavaScript console in Google Chrome" class="shadow" />
+<em>Figure 1. Most browsers have developer tools with features like the JavaScript console, which is useful for debugging your code or just messing around with JavaScript.</em></p>
 
 <h2 id="variables">Variables</h2>
 <p>An essential aspect of JavaScript and other programming languages is variables. Much like elementary algebra, <strong>variables</strong> use a name (or just a letter) to represent values. Paste this into the browser console:</p>
@@ -101,11 +100,9 @@ var greeting = a + " " + b
 
 <p>…because the variable <code>greeting</code> is the combination of variables <code>a</code> and <code>b</code> with a space <code>" "</code> in between. The values were combined using the plus sign <code>+</code>. Numbers get added together arithmetically by the plus sign, while strings (text) get concatenated or “glued” together.</p>
 
-<p> <br />
-<img src="../../assignment-resources/images/console-results.png" alt="JavaScript console results" /><br />
-<small><em>Figure 2. A screenshot of the console results open side-by-side with this lesson in Google Chrome.</em></small></p>
-
-<p>In JavaScript, variables can hold a variety of types of values:</p>
+<p><img src="../../assignment-resources/images/console-results.png" alt="JavaScript console results" class="shadow" />
+<em>Figure 2. A screenshot of the console results open side-by-side with this lesson in Google Chrome.</em>
+In JavaScript, variables can hold a variety of types of values:</p>
 <ul>
   <li><em>string</em> - Text</li>
   <li><em>number</em> - An integer or decimal</li>
@@ -247,7 +244,7 @@ L.tileLayer.wms('https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi', 
 }).addTo(map);
 </code></pre>
 
-<p>Examples like that might look like jumbled code, but if you think about the basics of variables, functions, and parameters, you might be able to make a little sense of it when reading documentation on your own.</p>
+<p>Examples like that might look like jumbled code, but if you think about the basics of variables, functions, and parameters, you can make sense of it when reading documentation on your own.</p>
 
 <h2 id="summary">Summary</h2>
 <p>JavaScript lets us use some of the power of the browser to react to user input and modify webpage content, and even pull data from web services to display on a map. Unlike HTML and CSS, JavaScript allows for logic to be programmed into webpages, turning them into powerful applications.</p>

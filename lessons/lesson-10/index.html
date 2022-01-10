@@ -17,14 +17,14 @@
   </head>
   <body>
     <section class="page-header">
-      <div class="shadebox">
+      <div class="shadebox title-box">
         <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
         <h2 class="project-tagline">An Introduction to Web GIS</h2>
         <div class="text-center">
-          <a href="/">Syllabus</a> |
-          <a href="/assignments">Assignments</a> |
+          <a href="/">About</a> |
           <a href="/lessons">Lessons</a> |
-          <a href="/schedule">Schedule and Due Dates</a>
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule</a>
         </div>
       </div>
     </section>
@@ -33,8 +33,8 @@
     </section>
 
     <section class="main-content">
-      <h1 class="text-center">Lesson 10</h1>
-      <h2 class="text-center">Image Analysis</h2>
+      <div class="text-left"><small>Module 3 &rsaquo; Lesson 10 </small></div>
+      <h1 class="text-center">Image Analysis</h1>
       <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#introduction">Introduction</a></li>
@@ -71,31 +71,26 @@
 
 <p>In regular digital photos and graphics, we can think of these pixels as dots of color that our eyes blend together into a picture.</p>
 
-<p> <br />
-<img src="../../lessons/images/dots.png" alt="Dots in a painting work similar to pixels in a digital image" /><br />
-<small><em>Figure 1. This <a href="https://www.artic.edu/artworks/27992/a-sunday-on-la-grande-jatte-1884">painting</a> is composed of many small strokes of color. Our eyes do the work of blending them together to recognize a picture.</em></small></p>
+<p><img src="../../lessons/images/dots.png" alt="Dots in a painting work similar to pixels in a digital image" />
+<em>Figure 1. This <a href="https://www.artic.edu/artworks/27992/a-sunday-on-la-grande-jatte-1884">painting</a> is composed of many small strokes of color. Our eyes do the work of blending them together to recognize a picture.</em></p>
 
-<p> <br />
-<img src="../../lessons/images/pixel-face.png" alt="Pixel values" /><br />
-<small><em>Figure 2. Pixel values can be represented as colors to turn a grid of data into an image. Here, a small 5x5-pixel image is “blown up” to show how each of its pixels is a numeric representation of a color, which the computer interprets to display on your screen.</em></small></p>
+<p><img src="../../lessons/images/pixel-face.png" alt="Pixel values" class="shadow" />
+<em>Figure 2. Pixel values can be represented as colors to turn a grid of data into an image. Here, a small 5x5-pixel image is “blown up” to show how each of its pixels is a numeric representation of a color, which the computer interprets to display on your screen.</em></p>
 
 <p>In a typical satellite image, however, the values are not simply colors. They are measurements of how much energy was reflected or emitted from the surface as electromagnetic waves.</p>
 
-<p> <br />
-<img src="../../lessons/images/reflectance.png" alt="Reflectance" class="no-shadow" /><br />
-<small><em>Figure 3. Energy emitted from the Sun reflects off of Earth’s surface and can be detected by sensors on aircraft and spacecraft.</em></small></p>
+<p><img src="../../lessons/images/reflectance.png" alt="Reflectance" />
+<em>Figure 3. Energy emitted from the Sun reflects off of Earth’s surface and can be detected by sensors on aircraft and spacecraft.</em></p>
 
 <p>In the Landsat satellite image below, each pixel covers a 30x30-meter square on the ground, and the numeric value of the pixel is a measurement taken by Landsat’s Operational Land Imager sensor. The OLI is measuring the brightness or intensity of electromagnetic waves from the Sun that are being reflected from Earth at that location.</p>
 
-<p> <br />
-<img src="../../lessons/images/landsat-pixels.png" alt="Landsat pixels" class="no-shadow" /><br />
-<small><em>Figure 4. Zooming into an image taken by the Landsat satellite shows the individual pixels, each of which has a value representing how much energy was reflected by Earth’s surface in that 30x30-meter area.</em></small></p>
+<p><img src="../../lessons/images/landsat-pixels.png" alt="Landsat pixels" />
+<em>Figure 4. Zooming into an image taken by the Landsat satellite shows the individual pixels, each of which has a value representing how much energy was reflected by Earth’s surface in that 30x30-meter area. A high-resolution aerial photograph (bottom left) is inset to show the structures on the ground at that location. The bright white roofs reflect more energy and are therefore represented in the Landsat image as lighter pixels.</em></p>
 
 <p>Areas on the ground with greater reflectance will be given higher pixels values, represented here with brighter shades.</p>
 
-<p> <br />
-<img src="../../lessons/images/bv-pixels.png" alt="Brightness values" class="no-shadow" /><br />
-<small><em>Figure 5. An example where individual pixels are given a value between 0 (black) and 255 (white).</em></small></p>
+<p><img src="../../lessons/images/bv-pixels.png" alt="Brightness values" />
+<em>Figure 5. An example image where individual pixels are given a value between 0 (black) and 255 (white) depending on how strong the reflectance was at the pixel’s location on the ground.</em></p>
 
 <h2 id="google-earth-engine">Google Earth Engine</h2>
 <p>To help give a more hands-on explanation of imagery, we will use Google Earth Engine.</p>
@@ -106,12 +101,13 @@
 
 <div class="alert alert-warning" role="alert">
   <span class="material-icons">warning_amber</span>
-  This lesson will not get into the finer details of JavaScript, focusing instead on the concepts of imagery analysis. General explanations are given for each code example.  
+  This lesson will not get into the finer details of JavaScript, focusing instead on the concepts of imagery analysis. General explanations are given for each code example. JavaScript is introduced in more detail later in the course.  
 </div>
 
-<p>Go to the <a href="https://code.earthengine.google.com/">Google Earth Engine Code Editor</a>. Familiarize yourself with the interface, especially the <code>Code Editor</code> panel in the center, the <code>Map</code> at the bottom, and the <code>Inspector</code>/<code>Console</code>/<code>Tasks</code> panel on the right. The <code>Script</code> panel to the top left is where you can create new files and folders and see a list of your saved scripts.<br />
-<img src="../../assignment-resources/images/Code_editor_diagram.png" alt="Earth Engine Code Editor" class="no-shadow" /><br />
-<small><em>Figure 6. Labeled interface of the Earth Engine Code Editor. Source: <a href="https://developers.google.com/earth-engine/guides/playground">Earth Engine documentation</a>.</em></small></p>
+<p>Go to the <a href="https://code.earthengine.google.com/">Google Earth Engine Code Editor</a>. Familiarize yourself with the interface, especially the <code>Code Editor</code> panel in the center, the <code>Map</code> at the bottom, and the <code>Inspector</code>/<code>Console</code>/<code>Tasks</code> panel on the right. The <code>Script</code> panel to the top left is where you can create new files and folders and see a list of your saved scripts.</p>
+
+<p><img src="../../assignment-resources/images/Code_editor_diagram.png" alt="Earth Engine Code Editor" />
+<em>Figure 6. Labeled interface of the Earth Engine Code Editor. Source: <a href="https://developers.google.com/earth-engine/guides/playground">Earth Engine documentation</a>.</em></p>
 
 <h3 id="first-run">First Run</h3>
 
@@ -130,18 +126,18 @@ Map.addLayer(landsatImage, layerOptions, 'Landsat true color'); // display image
   Text after a double-slash <code>//</code> is a comment to explain what the code does.
 </div>
 
-<p>Now click on the <code>Inspector</code> tab, then click anywhere on the Landsat image. Expand <code>Objects</code> &gt; <code>properties</code> to see details about the image. Notably, <code>DATE_ACQUIRED</code> is September 30, 2020, and <code>CLOUD_COVER</code> is zero, so no clouds obstruct our view of the ground from space. Expand <code>Pixels</code> &gt; <code>Landsat true color: Image (12 bands)</code> to see pixel values at the point you clicked. Higher values mean stronger reflectance.</p>
+<p>Now click on the <code>Inspector</code> tab, then click anywhere on the Landsat image. Expand <code>Objects</code> &gt; <code>properties</code> to see details about the image. Notably, <code>DATE_ACQUIRED</code> is September 30, 2020, and <code>CLOUD_COVER</code> is zero, so no clouds obstruct our view of the ground from space. Expand <code>Pixels</code> &gt; <code>Landsat true color: Image (12 bands)</code> to see pixel values at the point you clicked. Higher values mean stronger reflectance. You can click different places in the image to see how the reflectance values change depending on the surface, such as a white roof or green field.</p>
 
-<p><img src="../../lessons/images/inspector.png" alt="EE Inspector" /></p>
+<p><img src="../../lessons/images/inspector.png" alt="EE Inspector" class="shadow" />
+<em>Screenshot of the Inspector tab in Earth Engine to see image and pixel attributes.</em></p>
 
 <p>Keep this code in the editor; we will change and add to it during the lesson.</p>
 
 <h2 id="bands">Bands</h2>
 <p>Satellites will typically measure reflectance in different <strong>bands</strong>, or discrete ranges in the electromagnetic spectrum, divided by wavelength. Images with data from multiple bands are <strong>multispectral</strong>. When we inspected the pixel values in the example above, the Earth Engine inspector showed us multiple bands because the image was multispectral.</p>
 
-<p> <br />
-<img src="../../lessons/images/em-spectrum.png" alt="Spectrum" class="no-shadow" /><br />
-<small><em>Figure 7. The electromagnetic spectrum can be divided into different ranges, or bands. The range we are most familiar with is the visible spectrum. Satellites typically capture images in red, green, and blue parts of the spectrum to create true-color images. They also capture infrared and other bands.</em></small></p>
+<p><img src="../../lessons/images/em-spectrum.png" alt="Spectrum" />
+<em>Figure 7. The electromagnetic spectrum can be divided into different ranges, or bands. The range we are most familiar with is the visible spectrum. Satellites typically capture images in red, green, and blue parts of the spectrum to create true-color images. They also capture infrared and other bands.</em></p>
 
 <p>A <strong>true-color</strong> image, or what we might think of as a regular color photo, is actually a composite of three images from three bands on the electromagnetic spectrum:</p>
 <ul>
@@ -150,15 +146,14 @@ Map.addLayer(landsatImage, layerOptions, 'Landsat true color'); // display image
   <li>Blue: 400-500 nanometer wavelength</li>
 </ul>
 
-<p>This can be a point of confusion for a beginner working with satellite imagery that has not already been processed to look like a photo. The “image” you download might be separate images for each band measured by the satellite sensor, each looking like a black-and-white photo.</p>
+<p>This can be a point of confusion for a beginner working with satellite imagery that has not already been processed to look like a photo. The “image” you download from a data provider might be separate images for each band measured by the satellite sensor, each looking like a black-and-white photo.</p>
 
-<p> <br />
-<img src="../../lessons/images/hyperion.png" alt="Hyperion image bands" /><br />
-<small><em>Figure 8. Scenes captured by the Hyperion sensor onboard the EO-1 satellite contain more than 200 bands. Downloading one of its GeoTIFF products from USGS Earth Explorer gives you many separate image files, one for each band.</em></small></p>
+<p><img src="../../lessons/images/hyperion.png" alt="Hyperion image bands" class="shadow" />
+<em>Figure 8. Scenes captured by the Hyperion sensor onboard the EO-1 satellite contain more than 200 bands. Downloading one of its GeoTIFF products from USGS Earth Explorer gives you many separate image files, one for each band.</em></p>
 
 <p>I frequently use Landsat images as an example in lessons. The <strong>Landsat</strong> program, operated by the U.S. Geological Survey and NASA, has been observing the planet for more than 40 years through a series of satellites. A massive collection of images has accumulated, and it is now available to download for free. As a result, the data has been widely used in research.</p>
 
-<p>As of early 2021, Landsat 8 is the eighth and most current in the series, with Landsat 9 scheduled for launch later this year.</p>
+<p>Landsat 8 is the eighth and most recent operational satellite in the Landsat series, as of this lesson’s update in late 2021. However, Landsat 9 launched in September 2021 and NASA will begin delivering imagery in 2022. The specifications below for Landsat 8 will still apply to Landsat 9.</p>
 
 <p>The Landsat 8 satellite captures 11 images for 11 bands, from the visible-light to infrared regions of the spectrum.</p>
 <ul>
@@ -166,7 +161,7 @@ Map.addLayer(landsatImage, layerOptions, 'Landsat true color'); // display image
   <li>B2 blue</li>
   <li>B3 green</li>
   <li>B4 red</li>
-  <li>B5 near-infrared</li>
+  <li>B5 near-infrared (NIR)</li>
   <li>B6 shortwave infrared 1</li>
   <li>B7 shortwave infrared 2</li>
   <li>B8 panchromatic</li>
@@ -185,28 +180,26 @@ Map.addLayer(landsatImage, layerOptions, 'Landsat true color'); // display image
 <pre><code class="language-javascript">var layerOptions = {bands: ['B4'], max: 0.3};
 </code></pre>
 
-<p>You will see a grayscale image—a single band from only part of the visible spectrum.</p>
+<p>You will see a grayscale image—a single band from only part of the visible spectrum. It is Band 4, the red band. In the grayscale image, lighter pixels have more red light, meaning the ground at that location more strongly reflects electromagnetic waves in the 640-670 nanometer wavelength range, as defined for Landsat 8. The single-band image’s color ramp could be changed to other colors, but single-band images are by default displayed in grayscale.</p>
 
-<p>Now replace all of the code with the lines below to show several bands, and click <code>Run</code>. You can use the <code>Layers</code> control on the map to show and hide each layer to compare them.</p>
+<p>Now replace all of the code with the lines below to show several bands as separate images, and click <code>Run</code>. You can use the <code>Layers</code> control on the map to show and hide each layer to compare them (refer to Figure 6 for where controls are in Earth Engine).</p>
 
 <pre><code class="language-javascript">var landsatImage = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_024039_20200930");
 Map.centerObject(landsatImage, 8);
 
 Map.addLayer(landsatImage, {bands: ['B1'], palette: ['blue', 'white'], min: 0.10, max: 0.13}, 'Band 1 coastal/aerosol');
 Map.addLayer(landsatImage, {bands: ['B2'], max: 0.4}, 'Band 2 blue');
-Map.addLayer(landsatImage, {bands: ['B3'], max: 0.4}, 'Band 5 green');
-Map.addLayer(landsatImage, {bands: ['B4'], max: 0.4}, 'Band 5 red');
+Map.addLayer(landsatImage, {bands: ['B3'], max: 0.4}, 'Band 3 green');
+Map.addLayer(landsatImage, {bands: ['B4'], max: 0.4}, 'Band 4 red');
 Map.addLayer(landsatImage, {bands: ['B5'], max: 0.4}, 'Band 5 NIR');
-Map.addLayer(landsatImage, {bands: ['B10'], palette:['gray','yellow', 'red'], min: 295, max: 315}, 'Band 10 Thermal Infrared');
+Map.addLayer(landsatImage, {bands: ['B10'], palette:['gray','yellow','red'], min: 295, max: 315}, 'Band 10 Thermal Infrared');
 </code></pre>
 
-<p>I added false color to Band 1 to highlight variation in coastal waters. I also added false color to Band 10, thermal infrared, to better highlight hot spots. Visible + NIR bands 2-5, however, are all shown in grayscale with the same brightness so you can compare them. Notice how bright the NIR band is due to Louisiana’s dense vegetation cover.</p>
-
-<p>As you can see, there is more to imagery than just a color photo taken from space.</p>
+<p>The image for Band 1 is now represented by a blue and white color ramp to highlight variation in coastal waters. Band 10, thermal infrared, has a gray-yellow-red ramp to better highlight warm surfaces. Visible + <dfn title="Near-infrared, a wavelength reflected strongly by vegetation, but not visible to humans.">NIR</dfn> bands 2-5, however, are all shown in grayscale with the same brightness so you can compare them. Notice how bright the NIR band is due to Louisiana’s dense vegetation cover.</p>
 
 <div class="alert alert-info" role="alert">
   <span class="material-icons">info</span>
-  The JavaScript keyword <code>var</code> indicates a variable is being defined. You could change <code>landsatImage</code> to another name (begin with lowercase, no spaces).  
+  The JavaScript keyword <code>var</code> indicates a variable is being defined. You could change the variable name <code>landsatImage</code> to another name (begin with lowercase, no spaces).  
 </div>
 
 <h2 id="false-color">False color</h2>
@@ -216,9 +209,8 @@ Map.addLayer(landsatImage, {bands: ['B10'], palette:['gray','yellow', 'red'], mi
 
 <p>In the same way that cartographers must choose how to symbolize points, lines, and polygons on maps, they must also make decisions on how to symbolize imagery. Images that use unnatural combinations of red, green, and blue to depict bands outside of the visible spectrum are known as <strong>false-color</strong> images.</p>
 
-<p> <br />
-<img src="../../lessons/images/true-false.png" alt="True color and false color" class="no-shadow" /><br />
-<small><em>Figure 9. A true-color image (left) showing the visible light bands with a composite of shades of red, green, and blue; a false-color image (right) where the shortwave-infrared band is represented with shades of red, the near-infrared with green, and the green band with blue.</em></small></p>
+<p><img src="../../lessons/images/true-false.png" alt="True color and false color" class="no-shadow" /><br />
+<em>Figure 9. A true-color image (left) showing the visible light bands with a composite of shades of red, green, and blue; a false-color image (right) where the shortwave-infrared band is represented with shades of red, the near-infrared with green, and the green band with blue.</em></p>
 
 <p>Go back to Earth Engine and replace the code with the lines below to again show the Landsat image in true color.</p>
 
@@ -228,9 +220,9 @@ Map.centerObject(landsatImage, 8);
 Map.addLayer(landsatImage, layerOptions, 'Landsat true color');
 </code></pre>
 
-<p>Go to the <code>Inspector</code> tab. Now find the greenest place you see on the map and click the brightest green pixel. Look at the pixel values in the inspector. You would expect the green band <code>B3</code> to have a relatively high reflectance value compared to the blue <code>B2</code> and red <code>B4</code> bands, right? Looking at the figure below, we see that is the case for the pixel I clicked. It is higher than the red and blue values (slightly).</p>
+<p>Go to the <code>Inspector</code> tab. Now find the greenest place you see on the map and click the brightest green pixel. Look at the pixel values in the inspector. You would expect the green band <code>B3</code> to have a relatively high reflectance value compared to the blue <code>B2</code> and red <code>B4</code> bands, right? Looking at the figure below, we see that is the case for the pixel I clicked. It is higher than the red and blue values.</p>
 
-<p><img src="../../lessons/images/pixel-values.png" alt="Pixel values" /></p>
+<p><img src="../../lessons/images/gee-pixel-values.png" alt="Pixel values" class="shadow" /></p>
 
 <p>But what about band <code>B5</code>, which is not currently visible on the map? Its value is far greater than the green band. Band <code>B5</code> is the <strong>NIR band</strong> (near-infrared), in which Landsat measures reflectance in the 850-880 nanometer wavelength range to detect vegetation. The chlorophyll in plants reflects green light strongly, but the reflectance of NIR is even stronger—much more so.</p>
 
@@ -241,7 +233,7 @@ Map.addLayer(landsatImage, layerOptions, 'Landsat true color');
 <pre><code class="language-javascript">var layerOptions = {bands: ['B4', 'B3', 'B2'], max: 0.3};
 </code></pre>
 
-<p>We have a list of three bands there, and the order matters. Whichever band is in the first position will be displayed as red, the second green, and the third blue. Change the list to a 5-4-3 combination and click <code>Run</code>:</p>
+<p>We have a list of three bands there, and the order matters. Whichever band is in the first position will be displayed as red, the second green, and the third blue, making the order R-G-B. Change the list to a 5-4-3 combination and click <code>Run</code>:</p>
 
 <pre><code class="language-javascript">var layerOptions = {bands: ['B5', 'B4', 'B3'], max: 0.3};
 </code></pre>
@@ -274,7 +266,7 @@ Map.centerObject(landsatImage, 8);
 Map.addLayer(landsatImage, layerOptions, 'Landsat true color');
 </code></pre>
 
-<p>The NDVI formula takes the red <code>B4</code> and NIR <code>B5</code> band values, so add these lines below the existing four lines. This will save the NIR and red bands to separate variables:</p>
+<p>The NDVI formula takes the red <code>B4</code> and NIR <code>B5</code> band values, so add these lines below the first four lines. This will save the NIR and red bands to separate variables:</p>
 
 <pre><code class="language-javascript">var nir = landsatImage.select('B5');
 var red = landsatImage.select('B4');
@@ -343,7 +335,7 @@ var landsat8 = ee.ImageCollection('LANDSAT/LC08/C01/T1_TOA');
   The second line, with <code>.filter</code>, could be put on the end of the first line, but it is broken into two lines to make it easier to read.  
 </div>
 
-<p>The Landsat dataset contains images for the entire planet since 2013, so it needs to be limited to Louisiana in 2020 for the latest pixels.</p>
+<p>The Landsat dataset contains images for the entire planet since 2013, so it needs to be limited to Louisiana in 2020 for recent pixels.</p>
 
 <pre><code class="language-javascript">var landsatFiltered = landsat8
   .filterDate('2020-01-01', '2020-12-31')
@@ -406,6 +398,7 @@ var landsat8 = ee.ImageCollection('LANDSAT/LC08/C01/T1_TOA');
   .map(filterClouds)
   .map(addWater)
   .mosaic()
+  .select('NDWI')
   .clip(statePolygon);
 </code></pre>
 <p>To see what the water layer looks like alone, add this and <code>Run</code>, but delete after previewing:</p>
@@ -500,9 +493,8 @@ Map.addLayer(mosaicLandWater, {}, 'State Landsat mosaic');
 
 <p>Software can recognize patterns in reflectance from different surfaces and look through every pixel in an image collection to place each pixel into categories of land cover. Then, the software can produce statistics and maps, such as how many square kilometers of forest are in a region, or a map of water bodies.</p>
 
-<p> <br />
-<img src="../../lessons/images/lc.png" alt="Land cover map" class="no-shadow" /><br />
-<small><em>Figure 10. Pixels covering the continental U.S. classified as different land cover types in the National Land Cover Database.</em></small></p>
+<p><img src="../../lessons/images/lc.png" alt="Land cover map" class="no-shadow" /><br />
+<em>Figure 10. Pixels covering the continental U.S. classified as different land cover types in the National Land Cover Database.</em></p>
 
 <p>There is a dataset available in Earth Engine with Landsat pixels that have been classified as tree cover. With this we can approximate the area of tree cover in Louisiana. Open the <a href="https://code.earthengine.google.com/">Code Editor</a>, paste and <code>Run</code> this code. A tree cover value in square meters will be printed to the <code>Console</code> (no map yet).</p>
 
@@ -533,15 +525,13 @@ Map.addLayer(treeCover, {palette: 'green'}, 'Tree Cover');
 <h2 id="elevation">Elevation</h2>
 <p>Another type of imagery you might encounter is a <strong>digital elevation model (DEM)</strong>, which has pixel values representing elevation. Airborne and spaceborne lidar sensors fire beams of light at the surface to measure distance and calculate terrain elevation. This information is coded into a grid of pixels (a raster), where each pixel represents the average elevation for that patch of land.</p>
 
-<p> <br />
-<img src="../../lessons/images/lidar-plane.png" alt="Airborne lidar" class="no-shadow" /><br />
-<small><em>Figure 11. Diagram of an aircraft collecting elevation data using a lidar sensor. The 3D lidar points can be processed into a 2D image for display on maps.</em></small></p>
+<p><img src="../../lessons/images/lidar-plane.png" alt="Airborne lidar" class="no-shadow" /><br />
+<em>Figure 11. Diagram of an aircraft collecting elevation data using a lidar sensor. The 3D lidar points can be processed into a 2D image for display on maps.</em></p>
 
 <p>In the source DEM of the figure below, each pixel is a 5x5-meter square on the ground, and the pixel value is the average elevation in feet measured by a lidar sensor. GIS software was used to color the data in grayscale. In this case, lower elevations are dark and higher elevations are light. Other colors could also be used (see the orange-yellow-green image on the header of this website, derived from the same lidar dataset).</p>
 
-<p> <br />
-<img src="../../lessons/images/dem.png" alt="Digital Elevation Model" /><br />
-<small><em>Figure 12. An image representing elevation in south Baton Rouge. Every pixel has an elevation value that is colored in grayscale, where darker pixels are lower elevation and lighter pixels are higher.</em></small></p>
+<p><img src="../../lessons/images/dem.png" alt="Digital Elevation Model" /><br />
+<em>Figure 12. An image representing elevation in south Baton Rouge. Every pixel has an elevation value that is colored in grayscale, where darker pixels are lower elevation and lighter pixels are higher.</em></p>
 
 <p>A defining feature of this image is the sharp change from light to dark along a line running northwest-southeast. This is the Mississippi River flood plain in south Baton Rouge. Pixels have values around 30-40 feet to the northeast and less than 20 feet to the southwest. This elevation change can be clearly seen when driving on Highland Road eastward from the campus of LSU, where there is usually low land to your right and high land to your left.</p>
 
@@ -553,7 +543,7 @@ Map.setCenter(-95, 37, 4);
 </code></pre>
 
 <h2 id="pixel-values-from-tiles">Pixel values from tiles?</h2>
-<p>We’ve learned that tile layers of imagery do not contain pixel data, they are just regular JPG or PNG images, and are not suitable for analysis (see the lesson tiling). Yet in the last section, we were able to click on the Landsat image in the map, which was a tile layer, and the inspector gave us pixel values for the pixel we clicked. How is that possible?</p>
+<p>We’ve learned that tile layers of imagery do not contain the original image data, such as reflectance values; they are just regular JPG or PNG images and are not suitable for analysis (see the lesson on tiling). Yet in the last section, we were able to click on the Landsat image in the map, which was a tile layer, and the inspector gave us pixel values for the pixel we clicked. How is that possible?</p>
 
 <p>The images and mosaics you see in Earth Engine are indeed tile layers (you can usually notice the squares loading), and when you view the tile layer you are not downloading the original image’s pixel values. Instead, when you click the map, Earth Engine knows the lat/lon position you clicked and queries the imagery dataset on a server for the pixel at that location, then returns the pixel values to your browser.</p>
 

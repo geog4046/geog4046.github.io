@@ -17,14 +17,14 @@
   </head>
   <body>
     <section class="page-header">
-      <div class="shadebox">
+      <div class="shadebox title-box">
         <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
         <h2 class="project-tagline">An Introduction to Web GIS</h2>
         <div class="text-center">
-          <a href="/">Syllabus</a> |
-          <a href="/assignments">Assignments</a> |
+          <a href="/">About</a> |
           <a href="/lessons">Lessons</a> |
-          <a href="/schedule">Schedule and Due Dates</a>
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule</a>
         </div>
       </div>
     </section>
@@ -33,8 +33,8 @@
     </section>
 
     <section class="main-content">
-      <h1 class="text-center">Lesson 13</h1>
-      <h2 class="text-center">CSS Basics</h2>
+      <div class="text-left"><small>Module 4 &rsaquo; Lesson 13 </small></div>
+      <h1 class="text-center">CSS Basics</h1>
       <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#introduction">Introduction</a></li>
@@ -47,11 +47,10 @@
 <p>Terms: CSS, rule, selector, property</p>
 
 <h2 id="introduction">Introduction</h2>
-<p><strong>Cascading Style Sheets (CSS)</strong> are documents containing rules for how webpage content should be presented. CSS works alongside HTML in a web browser. To get an idea of how much of a typical website’s appearance is controlled with CSS, look at the difference when CSS is disabled in the browser for LSU.edu:</p>
+<p><strong>Cascading Style Sheets (CSS)</strong> are documents containing rules for how webpage content should be presented. CSS works alongside HTML in a <dfn title="Software that reads the code of a webpage document and renders the code as visual elements, e.g., fonts and graphics, to display on screen to the user (Lesson 11).">browser</dfn>. To get an idea of how much of a typical website’s appearance is controlled with CSS, look at the difference when CSS is disabled in the browser for LSU.edu:</p>
 
-<p> <br />
-<img src="../../assignment-resources/images/lsu-no-css.png" alt="Comparison of a webpage rendered in a browser with CSS and without CSS" /><br />
-<small><em>Figure 1. Comparison of a webpage rendered in a browser with CSS and without CSS.</em></small></p>
+<p><img src="../../assignment-resources/images/lsu-no-css.png" alt="Comparison of a webpage rendered in a browser with CSS and without CSS" />
+<em>Figure 1. Comparison of a webpage rendered in a browser with CSS and without CSS.</em></p>
 
 <p>The comparison in the figure shows that CSS rules control not only colors and fonts but also the entire structure of the page.</p>
 
@@ -62,7 +61,8 @@
 &lt;p&gt;Paragraph goes here.&lt;/p&gt;
 </code></pre>
 <div class="nocopy"></div>
-<p><img src="../../assignment-resources/images/rendered-html.png" alt="Rendered HTML" class="no-shadow" /></p>
+
+<p><img src="../../assignment-resources/images/rendered-html.png" alt="Rendered HTML" class="shadow" /></p>
 
 <p>By default, the browser rendered the heading text with the font Times New Roman and the color black. We can use CSS to change the font to Arial and color to gray. Below is a CSS rule. Note the syntax:</p>
 <ul>
@@ -79,7 +79,7 @@
 </code></pre>
 <div class="nocopy"></div>
 <p>The result in this example is a heading now rendered differently in the browser:<br />
-<img src="../../assignment-resources/images/rendered-html2.png" alt="Rendered HTML" /></p>
+<img src="../../assignment-resources/images/rendered-html2.png" alt="Rendered HTML" class="shadow" /></p>
 
 <p>These groups of CSS <strong>properties</strong> that get applied to HTML elements are called <strong>rules</strong>. CSS rules are normally placed in a <code>.css</code> file and linked to the HTML file (more on that later). Each rule begins with a <strong>selector</strong>, which can be HTML tags, class names, and IDs. The selectors tell the browser which HTML elements the rule should be applied to. In the example above, <code>h1</code> is the selector.</p>
 

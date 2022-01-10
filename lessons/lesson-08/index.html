@@ -17,14 +17,14 @@
   </head>
   <body>
     <section class="page-header">
-      <div class="shadebox">
+      <div class="shadebox title-box">
         <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
         <h2 class="project-tagline">An Introduction to Web GIS</h2>
         <div class="text-center">
-          <a href="/">Syllabus</a> |
-          <a href="/assignments">Assignments</a> |
+          <a href="/">About</a> |
           <a href="/lessons">Lessons</a> |
-          <a href="/schedule">Schedule and Due Dates</a>
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule</a>
         </div>
       </div>
     </section>
@@ -33,8 +33,8 @@
     </section>
 
     <section class="main-content">
-      <h1 class="text-center">Lesson 8</h1>
-      <h2 class="text-center">Geoprocessing</h2>
+      <div class="text-left"><small>Module 3 &rsaquo; Lesson 8 </small></div>
+      <h1 class="text-center">Geoprocessing</h1>
       <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#introduction">Introduction</a></li>
@@ -50,9 +50,8 @@
 <h2 id="introduction">Introduction</h2>
 <p>In addition to storing, sharing, and mapping data, Web GIS can perform analysis. This can be as simple as drawing a 2-mile buffer around a hospital, or more complex operations like looking for crime hotspots.</p>
 
-<p> <br />
-<img src="../../lessons/images/gp-diagram.png" alt="Geoprocessing service diagram" class="no-shadow" /><br />
-<small><em>Figure 1. A geoprocessing tool receives an input layer or layers, such as points, and outputs another layer based on the calculations performed by the tool. In this diagram, the tool receives the locations of hospitals as a point layer and responds with a new layer of polygons representing a 2-mile radius around the hospital.</em></small></p>
+<p><img src="../../lessons/images/gp-diagram.png" alt="Geoprocessing service diagram" />
+<em>Figure 1. A geoprocessing tool receives an input layer or layers, such as points, and outputs another layer based on the calculations performed by the tool. In this diagram, the tool receives the locations of hospitals as a point layer and responds with a new layer of polygons representing a 2-mile radius around the hospital.</em></p>
 
 <p>These analysis tools can be made available online as web services. In Assignment 2, we created a very simple geoprocessing web service to calculate the distance between two latitude/longitude coordinate pairs.</p>
 
@@ -65,15 +64,13 @@
 
 <p>The buffer operation is one simple example. In its most basic form in GIS software, the <code>buffer</code> tool will accept as input a layer (points, lines, or polygons) and a distance parameter (how far the buffer extends from each feature) and produce as output a new polygon layer, which resembles a more plump version of the original layer.</p>
 
-<p> <br />
-<img src="../../lessons/images/buffer-example.png" alt="Buffer example" /><br />
-<small><em>Figure 2. A buffer is the area within a specified distance of a feature. In the case of point features, the buffer distance is the radius of the circle centered on the point.</em></small></p>
+<p><img src="../../lessons/images/buffer-example.png" alt="Buffer example" class="shadow" />
+<em>Figure 2. A buffer is the area within a specified distance of a feature. In the case of point features, the buffer distance is the radius of the circle centered on the point.</em></p>
 
 <p>The figure below shows another common tool that counts the number of features within another feature; in this case, hospitals (points) within a parish (polygon). This is a <code>summarize within</code> tool, and in addition to counting features it can typically perform statistics on an attribute of the summarized layer. If the hospitals layer had a “beds” attribute, the summarize tool could tell us the average, total, minimum, or maximum number of beds in the parish’s hospitals.</p>
 
-<p> <br />
-<img src="../../lessons/images/summarize-example.png" alt="Summarize example" /><br />
-<small><em>Figure 3. Another example, the “summarize within” tool, tells us something about the relationship between two layers, such as how many features from one layer are located within the boundaries of a feature from another layer.</em></small></p>
+<p><img src="../../lessons/images/summarize-example.png" alt="Summarize example" class="shadow" />
+<em>Figure 3. Another example, the “summarize within” tool, tells us something about the relationship between two layers, such as how many features from one layer are located within the boundaries of a feature from another layer.</em></p>
 
 <h2 id="geoprocessing-as-a-web-service">Geoprocessing as a web service</h2>
 <p>A geoprocessing tool could, as another example, take two addresses as input, and output the shortest or fastest route between the two. In that sense, you could consider Google Maps directions a geoprocessing tool. Google makes this service available as a geoprocessing service for use in your own applications through the <a href="https://developers.google.com/maps/documentation/directions/overview">Google Maps Directions API</a>. Think of the “from” and “to” addresses as an input layer of points (converted to lat/lon by Google’s geocoding service), and the output layer is a line along the road network representing the optimal route.</p>
@@ -91,25 +88,23 @@
 <h2 id="arcgis-online">ArcGIS Online</h2>
 <p>ArcGIS Online provides two ways to use their geoprocessing tools through the website interface. The analysis tools are not for use in public apps and they consume ArcGIS Online credits.</p>
 
-<p>One way is through the Map Viewer. There is a <code>Perform Analysis</code> button that will let you browse through the available tools. There is also a button among the icons under each layer name in the table of contents of the map, if the layer is one that can be analyzed. This is a good option for more experienced GIS users who know how to add layers to a map and choose the appropriate analysis tools for their objectives.</p>
+<p>One way is through the Map Viewer. There is a <code>Perform Analysis</code> button that will let you browse through the available tools. There is also a button among the icons under each layer name in the table of contents of the map, if the layer is one that can be analyzed. The Map Viewer is appropriate for more experienced GIS users who know how to add layers to a map and choose the right analysis tools for their objectives.</p>
 
-<p> <br />
-<img src="../../lessons/images/map-analysis.png" alt="Map Viewer perform analysis" class="no-shadow" /><br />
-<small><em>Figure 4. The buttons to perform analysis on a layer in ArcGIS Online.</em></small></p>
+<p><img src="../../lessons/images/map-analysis.png" alt="Map Viewer perform analysis" />
+<em>Figure 4. The buttons to perform analysis on a layer in ArcGIS Online.</em></p>
 
-<p>The other option is to create a web app to which you, the app designer, add specific tools to make things easier for your audience, the app users.</p>
+<p>Another option in ArcGIS Online is to create a web app to which you, the app designer, add specific tools tailored to your audience, the app users. Your app can have layers preloaded on the map and buttons to run preselected tools. Showing only the necessary information and tools simplifies the app and makes it easier to use, which means more people can use it without GIS expertise.</p>
 
-<p> <br />
-<img src="../../lessons/images/app-analysis.png" alt="Web App Builder perform analysis" class="no-shadow" /><br />
-<small><em>Figure 5. The analysis widget in ArcGIS Web AppBuilder allows you to give users access only to the tools they need for a more simplified app.</em></small></p>
+<p><img src="../../lessons/images/app-analysis.png" alt="Web App Builder perform analysis" />
+<em>Figure 5. The analysis widget in ArcGIS Web AppBuilder allows you to give users access only to the tools they need for a more simplified app.</em></p>
 
 <h2 id="what-can-be-analyzed">What can be analyzed?</h2>
 <p>Certain analysis tools only work with certain types of layers and data; not every tool can be used for every dataset. Here are some considerations.</p>
 <ul>
   <li>The analysis tools in this lesson only work with vector layers of points, lines, and polygons. There are other kinds of tools for image analysis (next lessons).</li>
-  <li>Analysis tools need access to geometry data and attributes, so layers where this is absent will not work, including tile layers (tiles are just compressed images of layers and do not contain the original data of the source dataset)</li>
-  <li>Some tools are made to work only with points (e.g., “Aggregate Points”), some only with polygons (“Find Centroids”)</li>
-  <li>Some tools only work with certain attribute data (e.g., Find Similar Locations will only work with two layers that have attributes with similar values)</li>
+  <li>Analysis tools need access to geometry data and attributes, so layers where this is absent will not work, including tile layers (tiles are just compressed images of layers and do not contain the original data of the source dataset).</li>
+  <li>Some tools are made to work only with points (e.g., “Aggregate Points”), some only with polygons (“Find Centroids”).</li>
+  <li>Some tools only work with certain attribute data (“Find Similar Locations” will only work with two layers that have attributes with similar values).</li>
 </ul>
 
 <h2 id="summary">Summary</h2>

@@ -17,14 +17,14 @@
   </head>
   <body>
     <section class="page-header">
-      <div class="shadebox">
+      <div class="shadebox title-box">
         <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
         <h2 class="project-tagline">An Introduction to Web GIS</h2>
         <div class="text-center">
-          <a href="/">Syllabus</a> |
-          <a href="/assignments">Assignments</a> |
+          <a href="/">About</a> |
           <a href="/lessons">Lessons</a> |
-          <a href="/schedule">Schedule and Due Dates</a>
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule</a>
         </div>
       </div>
     </section>
@@ -33,8 +33,8 @@
     </section>
 
     <section class="main-content">
-      <h1 class="text-center">Lesson 7</h1>
-      <h2 class="text-center">Mobile GIS</h2>
+      <div class="text-left"><small>Module 2 &rsaquo; Lesson 7 </small></div>
+      <h1 class="text-center">Mobile GIS</h1>
       <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#introduction">Introduction</a></li>
@@ -53,7 +53,7 @@
 
 <p><em>A map that knows where it is</em>. This sounds like something from the realm of fantasy—enter the magic passcode to unlock the map, and it will reveal to whomever holds it their current location on the very map they are holding. This is the reality that has been made possible by portable, location-aware electronics.</p>
 
-<p>The popularity of smartphones has implications for how web maps look and work. They have smaller screens and different input methods with which to interact with maps—seen as shortcomings to those used to designing for monitors, a mouse, and keyboard. But phones also allow people to become part of the map, opening up new possibilities for Web GIS. From Uber to Pokemon Go to Tinder, Web GIS is a common feature in mobile applications.</p>
+<p>The popularity of smartphones has implications for how web maps look and work. They have smaller screens and different input methods with which to interact with maps, which could be seen as shortcomings to those used to designing for monitors, a mouse, and keyboard. But phones also allow people to become part of the map, opening up new possibilities for Web GIS. From Uber to Pokemon Go to Tinder, Web GIS is a common feature in mobile applications.</p>
 
 <h2 id="location-awareness">Location awareness</h2>
 
@@ -63,7 +63,7 @@
 
 <h2 id="geolocation-api">Geolocation API</h2>
 
-<p>A <strong>geolocation API</strong> allows applications to improve their location awareness by transmitting the device’s location data to a third party over the Internet (via a web service). The service compares the location data with databases of network devices for any information that might give clues about the device’s true location. Is the device close to a known Starbucks Wi-Fi, or a bluetooth beacon at GameStop?</p>
+<p>A <strong>geolocation <dfn title="Application Programming Interface">API</dfn></strong> allows applications to improve their location awareness by transmitting the device’s location data to a third party over the Internet (via a web service). The service compares the location data with databases of network devices for any information that might give clues about the device’s true location. Is the device close to a known Starbucks Wi-Fi, or a bluetooth beacon at GameStop?</p>
 
 <p>The web service response is a new location with the estimated accuracy. Android apps will probably use Google’s geolocation service, while iOS apps might use Apple’s.</p>
 
@@ -94,32 +94,13 @@
 
 <p>Instead of making a window pop up like in the example above, applications can send your location off to another application to provide some kind of functionality or information to you. This is a <strong>location-based service</strong> (LBS). Uber and any other app that relies on your location can be considered LBS. You can probably find many more examples by going into your phone’s privacy settings to see which apps have or would like permission to use your location. Go ahead, check.</p>
 
-<p>“Input” into computer programs in the traditional sense involves things like clicking, scrolling, typing, tapping, and swiping. These inputs, known as “events”, trigger a response from the program. But with LBS, your movement, and the resulting change in location, can itself become a sort of input. When your movement into or out of a certain area triggers a reaction from a location-based service, this is called <strong>geofencing</strong>.</p>
+<p>“Input” into computer programs in the traditional sense involves things like clicking, scrolling, typing, tapping, and swiping. These inputs, known as “events”, trigger a response from the program. But with LBS, your movement, and the resulting change in location, can itself become an input. When your movement into or out of a certain area triggers a reaction from a location-based service, this is called <strong>geofencing</strong>.</p>
 <ul>
   <li>Leave house, turn off heater</li>
   <li>Vehicles leave parking lot, notify fleet management software</li>
   <li>Walk by a store, receive a coupon</li>
   <li>Go to church, later see a political campaign ad</li>
 </ul>
-
-<h2 id="privacy">Privacy</h2>
-
-<p>Now that much of the population willingly carries a tracking device everywhere, it does not take much imagination to see the potential for abuse. Let’s watch the news grapple with the issue:</p>
-
-<p> <br />
-<a href="https://www.youtube.com/watch?v=-rM-IWTPRNY">How Companies Are Using Geofence Technology To Find New Hires | NBC Nightly News</a> (2017)</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-rM-IWTPRNY?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-
-<p>   <br />
-<a href="https://www.youtube.com/watch?v=SC2yWbJnpWE">Campaigns target voters at the polls through geofencing | WXYZ-TV Detroit | Channel 7</a> (2018)</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SC2yWbJnpWE?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-
-<p>   <br />
-<a href="https://www.npr.org/2020/02/06/803508851/how-political-campaigns-are-using-geofencing-technology-to-target-catholics-at-m">How Political Campaigns Are Using ‘Geofencing’ Technology To Target Catholics At Mass</a> (2020)</p>
-<iframe src="https://www.npr.org/player/embed/803508851/803508852" width="100%" height="290" frameborder="0" scrolling="no" title="NPR embedded audio player"></iframe>
-
-<p>   <br />
-<a href="https://www.nbcnews.com/news/us-news/police-used-google-location-data-find-accused-bank-robber-he-n1086836">Police used Google location data to find an accused bank robber. He says that’s illegal.</a></p>
 
 <h2 id="volunteered-geographic-information">Volunteered Geographic Information</h2>
 
@@ -129,7 +110,7 @@
 
 <p>VGI has been used in response to wildfires, with citizens reporting on the quickly spreading perimeter through web-based maps.</p>
 
-<p>Road networks are huge complex systems with constantly changing conditions, making them a prime use-case for VGI. Waze is an app that allows users to submit traffic and travel information such as crashes and police speed traps. Google uses location data from Android phones and Google apps, noting not just use location but their speed, to determine traffic flow and calculate travel times and routes. (However, are users aware that they are “volunteering”?)</p>
+<p>Road networks are huge complex systems with constantly changing conditions, making them a prime use-case for VGI. Waze is an app that allows users to submit traffic and travel information such as crashes and police speed traps. Google uses location data from Android phones and Google apps, recording not just location but speed, to determine traffic flow and calculate travel times and routes. (However, are users aware that they are “volunteering”?)</p>
 
 <p>When Malaysia Airlines Flight 370 disappeared in 2014, millions of amateurs pored over satellite imagery to search for remnants of the aircraft in a crowd-sourcing effort organized by imagery provider Digital Globe. In this case, the information the crowd submitted was not the imagery itself but an attribute for the location of the image: whether or not it potentially contained wreckage.</p>
 
@@ -143,7 +124,7 @@
 <h2 id="end-of-module-questions">End of Module Questions</h2>
 <p>Think back on the lessons on data formats, standards, mobile GIS, and considerations for making web-based maps. Relate the concepts to the assignments.</p>
 <ul>
-  <li>When we created CSV and GeoJSON files and uploaded them to ArcGIS Online, in what format do you think the data was then stored on the ArcGIS Online servers? Did it remain solely as CSV and GeoJSON files?</li>
+  <li>When we created CSV and GeoJSON files and uploaded them to ArcGIS Online, how do you think the data is stored on the ArcGIS Online servers: did it remain as CSV and GeoJSON files, is it converted to shapefiles, or another type of system?</li>
   <li>We used web services for each of this module’s assignments. If we had used open-source software that uses open standards for web services, what type of service would our layers have been (e.g., Web Map Service, Web Tile Service, etc.)? Why?</li>
   <li>Did your COVID-19 dashboard perform well on mobile? How could it be optimized for devices with low bandwidth and small screens?</li>
   <li>In your COVID-19 maps, did the symbology you chose introduce any bias or do you think it was a fair representation of the data? Explain.</li>

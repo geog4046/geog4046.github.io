@@ -17,14 +17,14 @@
   </head>
   <body>
     <section class="page-header">
-      <div class="shadebox">
+      <div class="shadebox title-box">
         <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
         <h2 class="project-tagline">An Introduction to Web GIS</h2>
         <div class="text-center">
-          <a href="/">Syllabus</a> |
-          <a href="/assignments">Assignments</a> |
+          <a href="/">About</a> |
           <a href="/lessons">Lessons</a> |
-          <a href="/schedule">Schedule and Due Dates</a>
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule</a>
         </div>
       </div>
     </section>
@@ -33,8 +33,8 @@
     </section>
 
     <section class="main-content">
-      <h1 class="text-center">Lesson 12</h1>
-      <h2 class="text-center">HTML Basics</h2>
+      <div class="text-left"><small>Module 4 &rsaquo; Lesson 12 </small></div>
+      <h1 class="text-center">HTML Basics</h1>
       <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#introduction">Introduction</a></li>
@@ -53,22 +53,19 @@
 <p>HTML is important for Web GIS because client applications like websites and some mobile apps use HTML pages to display web maps.</p>
 
 <h2 id="early-days">Early days</h2>
-<p>HTML is a standard format for webpage documents first developed in the early 1990s. Documents had been exchanged on the Internet mainly as plain text, but with the advent of HTML and later graphical web browsers, the documents evolved into multimedia webpages.</p>
+<p>HTML is a standard format for webpage documents first developed in the early 1990s. Documents had been exchanged on the Internet mainly as plain text, but with the advent of HTML and later graphical <dfn title="Software that reads the code of a webpage document and renders the code as visual elements, e.g., fonts and graphics, to display on screen to the user (Lesson 11).">browser</dfn>s, the documents evolved into multimedia webpages.</p>
 
-<p> <br />
-<img src="../../assignment-resources/images/html-img-tag.png" alt="Original thread where the HTML img tag was proposed" /><br />
-<small><em>Figure 1. Part of the original thread where the HTML “img” tag was proposed to allow webpage documents to include images. Read the full thread at <a href="http://1997.webhistory.org/www.lists/www-talk.1993q1/0182.html">Webhistory.org</a>.</em></small></p>
+<p><img src="../../assignment-resources/images/html-img-tag.png" alt="Original thread where the HTML img tag was proposed" class="shadow" />
+<em>Figure 1. Part of the original thread where the HTML “img” tag was proposed to allow webpage documents to include images. Read the full thread at <a href="http://1997.webhistory.org/www.lists/www-talk.1993q1/0182.html">Webhistory.org</a>.</em></p>
 
-<p> <br />
-<img src="../../assignment-resources/images/mosaic-browser.png" alt="Screenshot of the Mosaic web browser" /><br />
-<small><em>Figure 2. Screenshot of Mosaic, an early web browser and the first to become widely popular. Image source: <a href="https://designblog.nzeldes.com/2008/05/a-glimpse-of-the-venerable-ncsa-mosaic-browser/">Nathan Zeldes</a>.</em></small></p>
+<p><img src="../../assignment-resources/images/mosaic-browser.png" alt="Screenshot of the Mosaic web browser" class="shadow" />
+<em>Figure 2. Screenshot of Mosaic, an early web browser and the first to become widely popular. Image source: <a href="https://designblog.nzeldes.com/2008/05/a-glimpse-of-the-venerable-ncsa-mosaic-browser/">Nathan Zeldes</a>.</em></p>
 
 <h2 id="markup">Markup</h2>
 <p><strong>Markup</strong> languages, like HTML, are written instructions for how a program, like a browser, should handle content. Markup languages are not considered programming languages, but can be described more broadly as computer languages. To understand markup, think of handwritten notes on a piece of paper, describing how the text should look when printed and how the page should be structured.</p>
 
-<p> <br />
-<img src="../../assignment-resources/images/markup.jpg" alt="Handwritten markup" /><br />
-<small><em>Figure 3. Example of markup—handwritten instructions for preparing a document for print. Image source: <a href="https://www.marksimonson.com/notebook/view/the-lost-art-of-type-specing">Mark Simonson</a>.</em></small></p>
+<p><img src="../../assignment-resources/images/markup.jpg" alt="Handwritten markup" class="shadow" />
+<em>Figure 3. Example of markup—handwritten instructions for preparing a document for print. Image source: <a href="https://www.marksimonson.com/notebook/view/the-lost-art-of-type-specing">Mark Simonson</a>.</em></p>
 
 <p>Like handwritten markup, HTML similarly describes webpage content to a browser. The code in HTML documents is plain text with special <strong>tags</strong> that describe the content. If your content is the word “Hello” and you want the font to appear bold in a browser, you must add markup to your HTML document. Here is an example of text content within HTML tags.</p>
 
@@ -82,15 +79,14 @@
   <b>Hello</b>
 </div>
 
-<p>The text “Hello” will be rendered in the browser as <strong>Hello</strong> because the browser interprets the HTML, <code>&lt;b&gt;</code> and <code>&lt;/b&gt;</code>, and understands that any text between those two tags should be bold.</p>
+<p>The text “Hello” will be rendered in the browser as <strong>Hello</strong> because the browser interprets the HTML, <code>&lt;b&gt;</code> and <code>&lt;/b&gt;</code>, and understands that any text between those two tags should be styled as bold.</p>
 
 <h2 id="tags-and-elements">Tags and Elements</h2>
 
 <p>Opening and closing tags and content together make up an HTML <strong>element</strong>.</p>
 
-<p> <br />
-<img src="../../assignment-resources/images/html-element-anatomy.png" alt="HTML Element" /> 
-<small><em>Figure 4. Tags and content together make up an HTML element. Image source: <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics">Mozilla</a>.</em></small></p>
+<p><img src="../../assignment-resources/images/html-element-anatomy.png" alt="HTML Element" />
+<em>Figure 4. Tags and content together make up an HTML element. Image source: <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics">Mozilla</a>.</em></p>
 
 <p>There are dozens of HTML tags. Here are just a few common examples.</p>
 
@@ -153,8 +149,10 @@ Here is an example of a complete but basic HTML document.</p>
 &lt;/html&gt;
 </code></pre>
 <div class="nocopy"></div>
-<p>This would be rendered in a browser as:<br />
-<img src="../../assignment-resources/images/rendered-html.png" alt="Rendered HTML" class="no-shadow" /></p>
+
+<p> 
+This would be rendered in a browser as:<br />
+<img src="../../assignment-resources/images/rendered-html.png" alt="Rendered HTML" class="shadow" /></p>
 
 <p>Notice how the indentation works like an outline. Each element that is nested within (inside of) another element gets indented. Here, the indentation width is two spaces. Everything inside of the <code>html</code> tags is indented two spaces, such as the <code>head</code> tags. Then inside of the <code>head</code> tags we have <code>title</code> tags, so the <code>title</code> is indented two spaces relative to the <code>head</code> tag, but four spaces relative to the <code>html</code> tag.</p>
 

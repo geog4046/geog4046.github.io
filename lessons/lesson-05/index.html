@@ -17,14 +17,14 @@
   </head>
   <body>
     <section class="page-header">
-      <div class="shadebox">
+      <div class="shadebox title-box">
         <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
         <h2 class="project-tagline">An Introduction to Web GIS</h2>
         <div class="text-center">
-          <a href="/">Syllabus</a> |
-          <a href="/assignments">Assignments</a> |
+          <a href="/">About</a> |
           <a href="/lessons">Lessons</a> |
-          <a href="/schedule">Schedule and Due Dates</a>
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule</a>
         </div>
       </div>
     </section>
@@ -33,8 +33,8 @@
     </section>
 
     <section class="main-content">
-      <h1 class="text-center">Lesson 5</h1>
-      <h2 class="text-center">Data formats and standards</h2>
+      <div class="text-left"><small>Module 2 &rsaquo; Lesson 5 </small></div>
+      <h1 class="text-center">Data formats and standards</h1>
       <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#introduction">Introduction</a></li>
@@ -63,9 +63,9 @@
 <p>Terms: technical standard, CSV, raster, file geodatabase, KML, GeoJSON, open standards, enterprise geodatabase</p>
 
 <h2 id="introduction">Introduction</h2>
-<p><strong>Technical standards</strong> are rules that encourage interoperability. In simple terms, they ensure that a product you make will be compatible with a product made by someone else. Ancient Rome had standards for road widths for compatibility with horse-drawn carts, and electronics you buy today will plug into your electrical outlets at home following regional standards.</p>
+<p><strong>Technical standards</strong> are rules that encourage <dfn title="The ability of applications to exchange information with other computer systems (Lesson 3)">interoperability</dfn>. In simple terms, they ensure that a product you make will be compatible with a product made by someone else, as long as you both adhere to a standard. Ancient Rome had standards for lane and axle widths for compatibility between roads and horse-drawn carts. Today, many phone manufacturers are following the USB-C standard for charging cables.</p>
 
-<p>In computing there are standards for how to format data so it can be interpreted by applications. There are file formats for storing files on a computer, such as a Microsoft Word document or an <dfn title="Company that makes the ArcGIS software">Esri</dfn> shapefile. There are also interchange formats meant for transferring data between applications over the Internet, such as JSON and GeoJSON formats. Web services will typically format their output in an interchange format, with standards for how requests and responses should look.</p>
+<p>In computing, there are standards for how to format data so it can be interpreted by applications. There are file formats for storing files on a computer, such as a Microsoft Word document or an <dfn title="Company that develops ArcGIS software">Esri</dfn> shapefile. There are also interchange formats meant for transferring data between applications over the Internet, such as JSON and GeoJSON formats. Web services will typically format their output in an interchange format, with standards for how requests and responses should look.</p>
 
 <p>Standards can be created by governments, industry organizations, or other stakeholders. The Open Geospatial Consortium (OGC) and the Internet Engineering Task Force (IETF) are two examples of bodies creating standards for Web GIS.</p>
 
@@ -73,7 +73,7 @@
 
 <h2 id="why-use-standards">Why use standards?</h2>
 
-<p>For an example of why standards are useful in Web GIS, imagine a web service that outputs data on recent earthquakes, e.g., time, location, and magnitude. The web service developers must decide how to format their data so it can be read by other applications, such as a website showing a real-time map of earthquakes. The web service developers could make up their own data format, or they could use an existing standard.</p>
+<p>For an example of why standards are useful in Web GIS, imagine a web service that outputs data on recent earthquakes: time, location, and magnitude. The web service developers must decide how to format their data so it can be read by other applications, such as a website showing a real-time map of earthquakes. The web service developers could make up their own data format, or they could use an existing standard.</p>
 
 <p>Let’s say the hypothetical developers make up their own format, and a sample of hypothetical data looks like this:</p>
 
@@ -89,13 +89,12 @@
 
 <p>This CSV standard is very common, and there are many existing tools that developers can incorporate into their applications to read CSV data. The web map developers who want to read the earthquake data in this example would not need custom code for a custom format as long as data providers follow the <a href="https://tools.ietf.org/html/rfc4180">CSV specification</a>. Both data providers and data consumers can be confident that their applications will operate together; in other words, <em>the standard ensures interoperability</em>.</p>
 
-<p>To see this in action, sign into ArcGIS Online (see <a href="../../assignments/assignment-1">Assignment 1</a>) and open the map viewer. Click <code>Add</code>, <code>Add Layer from Web</code>, <code>A CSV File</code>. Paste in the URL to the USGS earthquake feed (past hour) <code>https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.csv</code> and click <code>Add Layer</code>. Any earthquakes that occurred in the past hour will appear on the map.</p>
+<p>To see this in action, sign into ArcGIS Online (see <a href="../../assignments/assignment-01">Assignment 1</a>) and open the map viewer. Click <code>Add</code>, <code>Add Layer from Web</code>, <code>A CSV File</code>. Paste in the URL to the USGS earthquake feed (past hour) <code>https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.csv</code> and click <code>Add Layer</code>. Any earthquakes that occurred in the past hour will appear on the map.</p>
 
-<p> <br />
-<img src="../../lessons/images/csv-mapped.png" alt="CSV data displayed on a map" class="no-shadow" /><br />
-<small><em>Figure 1. An earthquake map driven by data in CSV format.</em></small></p>
+<p><img src="../../lessons/images/csv-mapped.png" alt="CSV data displayed on a map" />
+<em>Figure 1. An earthquake map driven by data in CSV format.</em></p>
 
-<p>This works because the USGS feed is following a standard, and ArcGIS Online understands that standard. Note that the USGS feed is also offered in other formats, such as GeoJSON and KML covered later in this lesson. ArcGIS Online also supports other formats for web services, which we will also look at.</p>
+<p>This works because the USGS feed is following a standard, and ArcGIS Online understands that standard. Note that the USGS feed is also offered in other formats, such as GeoJSON and KML covered later in this lesson. ArcGIS Online supports other formats for web services, which we will also look at.</p>
 
 <h2 id="journey-across-the-internet">Journey across the Internet</h2>
 
@@ -103,15 +102,14 @@
 
 <p>Recall this figure from the previous lesson. Look at it now from the perspective of data traveling from servers to clients, taking different forms along the way.</p>
 
-<p> <br />
-<img src="../../lessons/images/webgis-3-servers.png" alt="Web GIS architecture with three servers" class="no-shadow" /><br />
-<small><em>Figure 2. A Web GIS infrastructure with three servers. The web server communicates with public clients and the internal GIS server, which hosts web services. These web services pull their data from the data store.</em></small></p>
+<p><img src="../../lessons/images/webgis-3-servers.png" alt="Web GIS architecture with three servers" />
+<em>Figure 2. A Web GIS infrastructure with three servers. The web server communicates with public clients and the internal GIS server, which hosts web services. These web services pull their data from the data store.</em></p>
 
-<p>Let’s use a <a href="https://portal-nolagis.opendata.arcgis.com/datasets/parks-polygon">layer of public parks in New Orleans</a> as an example.</p>
+<p>Let’s use a <a href="https://portal-nolagis.opendata.arcgis.com/datasets/nordc-facilities">layer of public recreational facilities in New Orleans</a> as an example.</p>
 <ul>
-  <li>The layer lives on the “data store” server in a database—software that uses a series of tables to store the layer’s location data (coordinates of the park boundaries) and attribute data (park names, year built, etc.).</li>
-  <li>When the web service receives a request from a client for the parks layer, the data’s journey begins. The GIS server retrieves the layer from the database and converts it to a text-based interchange format that can easily be passed over the web to another application. In this case, the <a href="https://opendata.arcgis.com/datasets/3273a5f8334d40838681ff0337eddb8c_0.geojson">parks are available in GeoJSON format</a>.</li>
-  <li>Now in the GeoJSON format, the parks data is transmitted over the web to a client application, such as a desktop GIS program installed on your computer (<a href="https://qgis.org">QGIS</a> works on Linux, macOS, and Windows). The layer can then be saved to a file in yet another format, such as KML.</li>
+  <li>The layer lives on the “data store” server in a database—software that uses a series of tables to store the layer’s location data (coordinates of the facilities) and attribute data (park names, year built, etc.).</li>
+  <li>When the web service receives a request from a client for the facilities layer, such as when you click the link below, the data’s journey begins. The GIS server retrieves the layer from the database and converts it to a text-based interchange format that can easily be passed over the web to another application. In this case, the <a href="https://opendata.arcgis.com/api/v3/datasets/6b300a5418b9422f8ac20452e3183120_0/downloads/data?format=geojson&amp;spatialRefId=4326">layer is available in GeoJSON format</a>.</li>
+  <li>Now in the GeoJSON format, the data is transmitted over the web to a client application, such as a desktop GIS program installed on your computer (<a href="https://qgis.org">QGIS</a> works on Linux, macOS, and Windows). The layer can then be saved to a file in yet another format, such as KML.</li>
 </ul>
 
 <h2 id="file-and-interchange-formats">File and interchange formats</h2>
@@ -120,19 +118,17 @@
 
 <h3 id="shapefile">Shapefile</h3>
 
-<p>The shapefile format was created by Esri to store vector data (points, lines, and polygons). It is an older but popular format that you might have used in an introductory GIS course, though it has been superseded by the file geodatabase. It is still common and could be used to prepare data before uploading to a Web GIS application. Otherwise, it has little use in Web GIS and is mainly mentioned here due to its ubiquity in desktop GIS.</p>
+<p>The shapefile format was created by <dfn title="Company that develops ArcGIS software">Esri</dfn> to store vector data (points, lines, and polygons). It is an older but popular format that you might have used in an introductory GIS course, though it has been superseded by the file geodatabase. It is still common and could be used to prepare data before uploading to a Web GIS application. Otherwise, it has little use in Web GIS and is mainly mentioned here due to its ubiquity in desktop GIS.</p>
 
-<p> <br />
-<img src="../../lessons/images/format-shapefile.png" alt="Shapefile" class="no-shadow" /><br />
-<small><em>Figure 3. The shapefile is a classic format in the world of desktop GIS, though its use is now discouraged in favor of other formats.</em></small></p>
+<p><img src="../../lessons/images/format-shapefile.png" alt="Shapefile" />
+<em>Figure 3. The shapefile is a classic format in the world of desktop GIS, though its use is now discouraged in favor of other formats and it has little use in Web GIS.</em></p>
 
 <h3 id="comma-separated-values">Comma-separated values</h3>
 
-<p>The <strong>comma-separated value (CSV)</strong> format is used to store tabular data as text, with each line of text representing a record, and commas in the records delineating a field. CSV files can be thought of as a spreadsheet, where each line is a row and each field is a column. Despite the name, some CSV implementations use other characters besides commas to delineate different fields, such as a semicolon <code>;</code>.</p>
+<p>The <strong>comma-separated value (CSV)</strong> format is used to store tabular data as text, with each line of text representing a record, and commas in the records delineating a field. CSV files can be thought of as a spreadsheet, where each line is a row and each field is a column. Despite the name, some CSV implementations use characters other than commas to delineate different fields, such as a semicolon <code>;</code>.</p>
 
-<p> <br />
-<img src="../../lessons/images/format-csv.png" alt="Comma-separated values data format" class="no-shadow" /><br />
-<small><em>Figure 4. The comma-separated values (CSV) format stores data in plain text, with fields delimited by commas or other characters. The format is commonly used for importing and exporting data from computer systems.</em></small></p>
+<p><img src="../../lessons/images/format-csv.png" alt="Comma-separated values data format" />
+<em>Figure 4. The comma-separated values (CSV) format stores data in plain text, with fields delimited by commas or other characters. The format is commonly used for importing and exporting data from computer systems.</em></p>
 
 <p>CSV is a common format for importing and exporting data from websites and other software. Your bank software might allow you to download your transaction history as a CSV, and ArcGIS Online allows a CSV to be imported to plot coordinates on a map if the CSV contains columns for latitude and longitude.</p>
 
@@ -140,23 +136,21 @@
 
 <p><a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.csv">https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.csv</a></p>
 
-<p>CSV is certainly not unique to GIS and when used for that purpose it is limited to point data only. There is a variation of the CSV, the GeoCSV, that allows for more complex geometry.</p>
+<p>CSV is not unique to GIS and when used for that purpose it is limited to point data only. There is a variation of the CSV, the GeoCSV, that allows for more complex geometry.</p>
 
 <h3 id="raster">Raster</h3>
 
-<p><strong>Rasters</strong> are images, consisting of a grid of pixels that represent the properties of the ground where the image was captured. Rasters can be photos from satellite and aircraft or they can be color-coded representations of other properties of the ground, such as elevation or land cover. Common standards for raster file types include GeoTIFF, SID, DEM, and JP2. There will be more about rasters in another lesson.</p>
+<p><strong>Rasters</strong> are images, consisting of a grid of pixels that represent the properties of the ground where the image was captured. Rasters can be photos from satellites and aircraft or they can be color-coded representations of other properties of the ground, such as elevation or land cover. Common standards for raster file types include GeoTIFF, SID, DEM, and JP2. There will be more about rasters in another lesson.</p>
 
-<p> <br />
-<img src="../../lessons/images/format-raster.png" alt="Raster format" class="no-shadow" /><br />
-<small><em>Figure 5. A raster image, with a portion of the image blown up to show the individual pixels.</em></small></p>
+<p><img src="../../lessons/images/format-raster.png" alt="Raster format" />
+<em>Figure 5. A raster image, with a portion of the image blown up to show the individual pixels.</em></p>
 
 <h3 id="file-geodatabase">File geodatabase</h3>
 
-<p>The <strong>file geodatabase</strong> was created by Esri for the ArcGIS platform but it can be used in other software. It is essentially Esri’s replacement for the shapefile. File geodatabases have a number of advantages: they can hold multiple layers of different types, can be accessed and edited simultaneously by multiple users, and they have a larger file size capacity, <a href="https://www.esri.com/news/arcuser/0309/files/9reasons.pdf">among other reasons</a>.</p>
+<p>The <strong>file geodatabase</strong> was created by <dfn title="Company that develops ArcGIS software">Esri</dfn> for the ArcGIS platform but it can be used in other software. It is essentially Esri’s replacement for the shapefile. File geodatabases have a number of advantages: they can hold multiple layers of different types, can be accessed and edited simultaneously by multiple users, and they have a larger file size capacity, <a href="https://www.esri.com/news/arcuser/0309/files/9reasons.pdf">among other reasons</a>.</p>
 
-<p> <br />
-<img src="../../lessons/images/format-fgdb.png" alt="File geodatabase data format" class="no-shadow" /><br />
-<small><em>Figure 6. File geodatabases can store multiple layers of points, lines, polygons, and rasters.</em></small></p>
+<p><img src="../../lessons/images/format-fgdb.png" alt="File geodatabase data format" />
+<em>Figure 6. File geodatabases can store multiple layers of points, lines, polygons, and rasters.</em></p>
 
 <p>In Web GIS, a file geodatabase is suitable for use on the “data store” (see Figure 2) from which web services pull data to send to clients. File geodatabases can also be uploaded to ArcGIS Online.</p>
 
@@ -166,24 +160,22 @@
 
 <p><strong>Keyhole Markup Language (KML)</strong> is a plain-text format for points, lines, and polygons as well as references to images. It is commonly used to display layers in Google Earth (Google acquired the predecessor to Google Earth from Keyhole Inc.) or for data interchange. KML is a markup language, which will be covered in the lesson on HTML basics, but for now, think of KML as a sort of Word document or webpage but for map layers.</p>
 
-<p> <br />
-<img src="../../lessons/images/format-kml.png" alt="KML data format" class="no-shadow" /><br />
-<small><em>Figure 6. KML is a language for representing geographic information. KML files can contain points, lines, polygons, and references to images.</em></small></p>
+<p><img src="../../lessons/images/format-kml.png" alt="KML data format" />
+<em>Figure 6. KML is a language for representing geographic information. KML files can contain points, lines, polygons, and references to images.</em></p>
 
 <h3 id="geojson">GeoJSON</h3>
 
 <p><strong>GeoJSON</strong> is another plain-text interchange format for points, lines, and polygons. It is based on JSON, JavaScript Object Notation, a widely used standard for interoperability between web applications.</p>
 
-<p> <br />
-<img src="../../lessons/images/format-geojson.png" alt="GeoJSON data format" class="no-shadow" /><br />
-<small><em>Figure 7. GeoJSON is a standard for point, line, and polygon data. It is based on JSON, a format widely used for exchanging data via web services.</em></small></p>
+<p><img src="../../lessons/images/format-geojson.png" alt="GeoJSON data format" />
+<em>Figure 7. GeoJSON is a standard for point, line, and polygon data. It is based on JSON, a format widely used for exchanging data via web services.</em></p>
 
 <p>A basic JSON object looks like this:</p>
 
 <pre><code class="language-json">{ "someproperty" : "somevalue" }
 </code></pre>
 
-<p>Building the example a little more, here is another object, representing fruit. The properties of the fruit are on the left, while the values of those properties are on the right. Think of the property names (left side) as column names.</p>
+<p>Building the example a little more, here is another object, representing fruit. The properties of the fruit are on the left, while the values of those properties are on the right. Think of the property names (left side) as column names if the data were in a spreadsheet.</p>
 
 <pre><code class="language-json">{
   "name" : "apple",
@@ -217,15 +209,14 @@
 
 <p>The GeoJSON sample above contains a single point with an attribute named “city”, with a value “New Orleans”. The GeoJSON can be mapped on <a href="http://geojson.io">geojson.io</a> to see a marker at 30 degrees latitude and -90 degrees longitude.</p>
 
-<p> <br />
-<img src="../../lessons/images/format-geojson-map.png" alt="GeoJSON data mapped" /><br />
-<small><em>Figure 8. GeoJSON data mapped on <a href="http://geojson.io">geojson.io</a>.</em></small></p>
+<p><img src="../../lessons/images/format-geojson-map.png" alt="GeoJSON data mapped" />
+<em>Figure 8. GeoJSON data mapped on <a href="http://geojson.io">geojson.io</a>.</em></p>
 
 <h2 id="web-service-standards">Web service standards</h2>
 
 <p>Standards for web services specify how requests and responses should look when applications communicate through the service. We will focus on how some popular services are used, rather than the technical specifications themselves. For the most part in this course, we simply take the URL of a web service and enter it into our application.</p>
 
-<p>This section will cover open standards for web services and standards created by Esri for the ArcGIS platform.</p>
+<p>This section will cover open standards for web services and standards created by <dfn title="Company that develops ArcGIS software">Esri</dfn> for the ArcGIS platform.</p>
 
 <h3 id="open-standards">Open standards</h3>
 
@@ -291,7 +282,7 @@
 
 <h3 id="esri-standards">Esri standards</h3>
 
-<p>Since we will use the ArcGIS platform in this course, here are some common web services from Esri. The table indicates whether they are supported by ArcGIS Online, meaning you can make them with your account used in this course. Those unsupported by ArcGIS Online are only supported in ArcGIS Enterprise, along with a handful of other types not listed here.</p>
+<p>Since we will use the ArcGIS platform in this course, here are some common web services from <dfn title="Company that develops ArcGIS software">Esri</dfn>. The table indicates whether they are supported by ArcGIS Online, meaning you can make them with your account used in this course. Those unsupported by ArcGIS Online are only supported in ArcGIS Enterprise, along with a handful of other types not listed here.</p>
 
 <table>
   <thead>
@@ -335,7 +326,8 @@
   </tbody>
 </table>
 
-<p>Though the ArcGIS web services are not considered open standards themselves, they may output data in an open format such as GeoJSON, depending on how they are configured by their administrator.</p>
+<p> <br />
+Though the ArcGIS web services are not considered open standards themselves, they may output data in an open format such as GeoJSON, depending on how they are configured by their administrator.</p>
 
 <h2 id="databases">Databases</h2>
 
@@ -347,9 +339,8 @@
 
 <p>Enterprise geodatabases work by installing software called a database management system (DBMS) on a server (the “data store” in Figure 2). The DBMS can be connected to GIS software to create a series of related tables to hold geographic information. GIS software can be used to add data to the database from files. GIS server software can retrieve data from the database in response to requests from web services.</p>
 
-<p> <br />
-<img src="../../lessons/images/dbms.png" alt="Database Management Systems" class="no-shadow" /><br />
-<small><em>Figure 9. Examples of database management system (DBMS) software that can be used as an enterprise geodatabase.</em></small></p>
+<p><img src="../../lessons/images/dbms.png" alt="Database Management Systems" />
+<em>Figure 9. Examples of database management system (DBMS) software that can be used as an enterprise geodatabase.</em></p>
 
 <p>Oracle, Microsoft SQL Server, and PostgreSQL are examples of DBMS products that can be used for enterprise geodatabases, all widely used outside of GIS as well. When you upload files to ArcGIS Online, the data is stored behind the scenes in a product called ArcGIS Data Store, a DBMS based on PostgreSQL.</p>
 

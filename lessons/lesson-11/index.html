@@ -17,14 +17,14 @@
   </head>
   <body>
     <section class="page-header">
-      <div class="shadebox">
+      <div class="shadebox title-box">
         <h1 class="project-name"><a href="/">GEOG 4046</a></h1>
         <h2 class="project-tagline">An Introduction to Web GIS</h2>
         <div class="text-center">
-          <a href="/">Syllabus</a> |
-          <a href="/assignments">Assignments</a> |
+          <a href="/">About</a> |
           <a href="/lessons">Lessons</a> |
-          <a href="/schedule">Schedule and Due Dates</a>
+          <a href="/assignments">Assignments</a> |
+          <a href="/schedule">Schedule</a>
         </div>
       </div>
     </section>
@@ -33,8 +33,8 @@
     </section>
 
     <section class="main-content">
-      <h1 class="text-center">Lesson 11</h1>
-      <h2 class="text-center">Webpage Basics</h2>
+      <div class="text-left"><small>Module 4 &rsaquo; Lesson 11 </small></div>
+      <h1 class="text-center">Webpage Basics</h1>
       <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#introduction">Introduction</a></li>
@@ -46,36 +46,39 @@
   <li><a href="#other-learning-resources">Other Learning Resources</a></li>
 </ul>
 
-<p>Terms: webpage, source code, web browser, Hypertext Markup Language (HTML), Cascading Style Sheets (CSS), JavaScript</p>
+<p>Terms: webpage, website, source code, web browser, Hypertext Markup Language (HTML), Cascading Style Sheets (CSS), JavaScript</p>
 
 <h2 id="introduction">Introduction</h2>
-<p>This is a Web GIS beginner’s guide to webpages. The information in this lesson is the foundation for understanding how webpages work and how to code your own web maps. The focus will be on the three computer languages used in webpages—HTML, CSS, and JavaScript—and how web browsers interpret these languages to display a webpage.</p>
+<p>So far in this course we have mainly used Web GIS without programming. Google Earth Engine was a shift toward coding, requiring some copy &amp; paste coding with a bit of customization, as a segue into the final module of this course where we build our own maps and apps.</p>
+
+<p>This is a Web GIS beginner’s guide to webpages. The information in this lesson is the foundation for understanding how webpages work but with a focus on web maps, to keep the material within the realm of a GIS course. The lessons are on the three computer languages used in webpages—HTML, CSS, and JavaScript—and how web browsers interpret these languages to display webpages and maps.</p>
 
 <p>The goal of the following lessons is to give enough background on HTML, CSS, and JavaScript that you would be able to follow a basic guide to Web GIS JavaScript libraries offered by <a href="https://developers.google.com/maps/documentation/javascript/tutorial">Google</a>, <a href="https://developers.arcgis.com/javascript/latest/display-a-map/">Esri</a>, <a href="https://leafletjs.com/examples/quick-start/">Leaflet</a>, and <a href="https://github.com/geog4046/geog4046.github.io/wiki/Web-GIS-Examples#getting-started-tutorials">others</a>.</p>
 
-<p><strong>Your goal should be to understand the concepts, not memorize code.</strong></p>
+<p>However, since this course is primarily about GIS, you are not expected to memorize code syntax. Instead, understand how the applications work and how to reference documentation. This approach will prepare you to understand whatever lies in the future of Web GIS while still learning practical skills for the present.</p>
 
-<p><strong>Webpages</strong> are documents displaying information in the form of text, maps, images, videos, and other media content. Webpages are composed of <strong>source code</strong> written in computer languages that give a web browser instructions for how the webpage should look and behave. A <strong>web browser</strong> reads the source code of a webpage document and displays the output to the user. The output is a rendered version of the document, meaning the browser interprets the source code to determine how to display the document, e.g., what font color and size or where to show an image.</p>
+<p><strong>Webpages</strong> are documents displaying information in the form of text, maps, images, videos, and other media. Webpages are composed of text <strong>source code</strong> written in computer languages that give a web browser instructions for how the webpage should look and behave. A <strong>web browser</strong> is software that reads the code of a webpage document and renders the code as visual elements, e.g., fonts and graphics, to display on screen to the user.</p>
 
-<p> <br />
-<img src="../../assignment-resources/images/browser-renders-code.png" alt="Browser renders code" class="no-shadow" /><br />
-<small><em>Figure 1. The job of the web browser is to retrieve a document from a URL, interpret the document’s code, and display the rendered webpage in the browser window for the user to see, including all linked images, videos, and other media.</em></small></p>
+<p>A <strong>website</strong> is a collection of related webpages linked together in the same web space, such as a domain like <em>example.org</em>, a subdomain like <em>blog.example.org</em>, or a subsite like <em>example.org/mikes-blog</em>.</p>
+
+<p><img src="../../assignment-resources/images/browser-renders-code.png" alt="Browser renders code" />
+<em>Figure 1. The job of the web browser is to retrieve a document from a URL, interpret the document’s code, and display the rendered webpage in the browser window for the user to see, including all linked images, videos, and other media.</em></p>
 
 <h2 id="webpages-and-web-browsers">Webpages and Web Browsers</h2>
 
 <p>If you are reading this lesson, you might not have much experience with creating webpage documents from scratch, but there is another type of document that you have probably created many times: a Word document. To understand how webpages and browsers work, let’s first look at how a browser is similar to a word processor, Microsoft Word.<br />
-<img src="../../assignment-resources/images/word-docx.png" alt="Word document icon" class="no-shadow" /></p>
+<img src="../../assignment-resources/images/word-docx.png" alt="Word document icon" /></p>
 
 <p>You can follow along by <a href="../../assignment-resources/data/New%20Document.docx">downloading the example document</a>.</p>
 
 <p>Opening the file in Word shows a rendered document with formatted text “This is a Word document” and an image of a map.</p>
 
-<p> <br />
-<img src="../../assignment-resources/images/word-docx-rendered.png" alt="Screenshot of a rendered Word document showing formatted text and an image" /><br />
-<small><em>Figure 2. A document rendered by Microsoft Word. The way a word processing program renders a document is similar to how a browser renders a webpage.</em></small></p>
+<p><img src="../../assignment-resources/images/word-docx-rendered.png" alt="Screenshot of a rendered Word document showing formatted text and an image" class="shadow" />
+<em>Figure 2. A document rendered by Microsoft Word. The way a word processing program renders a document is similar to how a browser renders a webpage.</em></p>
 
-<p>Now let’s look behind the scenes in the <code>docx</code> file. If you rename the file from <code>New Document.docx</code> to <code>New Document.zip</code> in Windows File Explorer, you can open the zip file and see that the Word document is actually a collection of files and folders.<br />
-<img src="../../assignment-resources/images/word-docx-zip.png" alt="Word document renamed as a zip file" class="no-shadow" /></p>
+<p>Now let’s look behind the scenes in the <code>docx</code> file. If you rename the file from <code>New Document.docx</code> to <code>New Document.zip</code> in Windows File Explorer, you can open the zip file and see that the Word document is actually a collection of files and folders.</p>
+
+<p><img src="../../assignment-resources/images/word-docx-zip.png" alt="Word document renamed as a zip file" /></p>
 
 <pre>
 _rels
@@ -86,9 +89,8 @@ word
 
 <p>In <code>New Document.zip</code>, browse into the <code>word</code> folder. These files contain the code that tells Word how to display the document with the correct content (fonts, colors, graphics, etc.). Find <code>document.xml</code> and open it with Edge or just look at the screenshot below. The highlights in the screenshot show some recognizable text within the code—“This is a Word document”, the color code <code>FF0000</code> to make “Word” red, and a reference to the map image file.</p>
 
-<p> <br />
-<img src="../../assignment-resources/images/word-code.png" alt="XML of a Word document" /><br />
-<small><em>Figure 3. This document is written in a language called XML. It is a file included in a Microsoft Word document that tells the program how to display the document.</em></small></p>
+<p><img src="../../assignment-resources/images/word-code.png" alt="XML of a Word document" class="shadow" />
+<em>Figure 3. This document is written in a language called XML. It is a file included in a Microsoft Word document that tells the program how to display the document.</em></p>
 
 <p>Note that the map image is stored as a separate file, and the file <code>document.xml</code> only has a piece of code that points to the image file. Therefore, Word will read <code>document.xml</code> for instructions for how to display the document, and when it gets to the code pointing to the image, Word will look for the image file and display it within the document. In this example, the image is referenced with its original file name <code>map.png</code>. We can find this image file in the <code>word\media</code> folder, renamed to <code>image1.png</code>.</p>
 
@@ -126,9 +128,8 @@ is the same as:<br />
 
 <p>They are linked together through the HTML file. Remember how the Word document had code to reference a separate image file? HTML files can do the same thing. HTML uses special “elements” (more on elements in another lesson), <code>link</code> and <code>script</code>, which refer to the CSS and JavaScript files, respectively. When a browser reads your webpage’s HTML, it will encounter these elements and download the files they reference, giving the browser additional instructions on how the webpage should look and act.</p>
 
-<p> <br />
-<img src="../../assignment-resources/images/files-html-css-js.png" alt="HTML, CSS, and JavaScript files" class="no-shadow" /><br />
-<small><em>Figure 4. An HTML document references other files. The <code>link</code> and <code>script</code> tags allow you to specify CSS and JavaScript files to include with your HTML.</em></small></p>
+<p><img src="../../assignment-resources/images/files-html-css-js.png" alt="HTML, CSS, and JavaScript files" />
+<em>Figure 4. An HTML document references other files. The <code>link</code> and <code>script</code> tags allow you to specify CSS and JavaScript files to include with your HTML.</em></p>
 
 <h2 id="html-css-js-for-web-maps">HTML-CSS-JS for Web Maps</h2>
 <p>HTML, CSS, and JavaScript each serve roles in displaying a web map on a webpage.</p>
@@ -138,15 +139,13 @@ is the same as:<br />
   <li>JS retrieves data from web services, draws layers on the HTML canvas, listens for user clicks, zooms, pans, etc.</li>
 </ul>
 
-<p> <br />
-<img src="../../assignment-resources/images/roles-html-css-js.png" alt="The roles of HTML, CSS, and JavaScript in a web map" class="no-shadow" /><br />
-<small><em>Figure 5. Some of the roles that HTML, CSS, and JavaScript play in displaying a map on a webpage.</em></small></p>
+<p><img src="../../assignment-resources/images/roles-html-css-js.png" alt="The roles of HTML, CSS, and JavaScript in a web map" />
+<em>Figure 5. Some of the roles that HTML, CSS, and JavaScript play in displaying a map on a webpage.</em></p>
 
 <p>In terms of how those roles translate into code in each HTML, CSS, and JS file, each map displayed on the webpage has a unique <code>id</code> that is referenced in the HTML. Then CSS and JS work together to control the appearance and behavior of the map.</p>
 
-<p> <br />
-<img src="../../assignment-resources/images/id-id-id.png" alt="HTML, CSS, and JavaScript code using the same ID" class="no-shadow" /><br />
-<small><em>Figure 6. The same <code>id</code> will be used to identify the map in the HTML, CSS, and JavaScript. The <code>id</code> is a unique name that you create, though usually a simple <code>map</code> will do.</em></small></p>
+<p><img src="../../assignment-resources/images/id-id-id.png" alt="HTML, CSS, and JavaScript code using the same ID" />
+<em>Figure 6. The same <code>id</code> will be used to identify the map in the HTML, CSS, and JavaScript. The <code>id</code> is a unique name that you create, though usually a simple <code>map</code> will do.</em></p>
 
 <p>All three components are needed.</p>
 <ul>
