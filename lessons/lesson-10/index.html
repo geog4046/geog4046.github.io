@@ -71,7 +71,7 @@
 
 <p>In regular digital photos and graphics, we can think of these pixels as dots of color that our eyes blend together into a picture.</p>
 
-<p><img src="../../lessons/images/dots.png" alt="Dots in a painting work similar to pixels in a digital image" />
+<p><img src="../../lessons/images/dots.png" alt="Dots in a painting work similar to pixels in a digital image" class="shadow" />
 <em>Figure 1. This <a href="https://www.artic.edu/artworks/27992/a-sunday-on-la-grande-jatte-1884">painting</a> is composed of many small strokes of color. Our eyes do the work of blending them together to recognize a picture.</em></p>
 
 <p><img src="../../lessons/images/pixel-face.png" alt="Pixel values" class="shadow" />
@@ -311,11 +311,11 @@ Map.centerObject(ndvi, 8);
 
 <p>Landsat images have a <code>CLOUD_COVER</code> attribute, and NDVI can be used to identify vegetated pixels at the greenest time of the year. Therefore, we too can build a pretty mosaic. We will use Earth Engine to go from this:</p>
 
-<p><img src="../../lessons/images/la-cloudy.png" alt="LA Cloudy" /></p>
+<p><img src="../../lessons/images/la-cloudy.png" alt="LA Cloudy" class="shadow" /></p>
 
 <p>To this:</p>
 
-<p><img src="../../lessons/images/la-clear.png" alt="LA Clear" /></p>
+<p><img src="../../lessons/images/la-clear.png" alt="LA Clear" class="shadow" /></p>
 
 <p>First, import two datasets already hosted in the Earth Engine catalog:</p>
 <ul>
@@ -525,12 +525,12 @@ Map.addLayer(treeCover, {palette: 'green'}, 'Tree Cover');
 <h2 id="elevation">Elevation</h2>
 <p>Another type of imagery you might encounter is a <strong>digital elevation model (DEM)</strong>, which has pixel values representing elevation. Airborne and spaceborne lidar sensors fire beams of light at the surface to measure distance and calculate terrain elevation. This information is coded into a grid of pixels (a raster), where each pixel represents the average elevation for that patch of land.</p>
 
-<p><img src="../../lessons/images/lidar-plane.png" alt="Airborne lidar" class="no-shadow" /><br />
+<p><img src="../../lessons/images/lidar-plane.png" alt="Airborne lidar" />
 <em>Figure 11. Diagram of an aircraft collecting elevation data using a lidar sensor. The 3D lidar points can be processed into a 2D image for display on maps.</em></p>
 
 <p>In the source DEM of the figure below, each pixel is a 5x5-meter square on the ground, and the pixel value is the average elevation in feet measured by a lidar sensor. GIS software was used to color the data in grayscale. In this case, lower elevations are dark and higher elevations are light. Other colors could also be used (see the orange-yellow-green image on the header of this website, derived from the same lidar dataset).</p>
 
-<p><img src="../../lessons/images/dem.png" alt="Digital Elevation Model" /><br />
+<p><img src="../../lessons/images/dem.png" alt="Digital Elevation Model" class="shadow" />
 <em>Figure 12. An image representing elevation in south Baton Rouge. Every pixel has an elevation value that is colored in grayscale, where darker pixels are lower elevation and lighter pixels are higher.</em></p>
 
 <p>A defining feature of this image is the sharp change from light to dark along a line running northwest-southeast. This is the Mississippi River flood plain in south Baton Rouge. Pixels have values around 30-40 feet to the northeast and less than 20 feet to the southwest. This elevation change can be clearly seen when driving on Highland Road eastward from the campus of LSU, where there is usually low land to your right and high land to your left.</p>

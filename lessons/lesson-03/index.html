@@ -112,7 +112,7 @@
 
 <p>You can see, though, that the image is of limited use by itself; it is intended to be consumed by an application that then does something with it, like overlay it onto a national map. For example, ArcGIS Online can display map data from a web service.</p>
 
-<p><img src="../../lessons/images/arcgis-online-display-web-service.png" alt="ArcGIS Online displays a web service" />
+<p><img src="../../lessons/images/arcgis-online-display-web-service.png" alt="ArcGIS Online displays a web service" class="shadow" />
 <em>Figure 2. The ArcGIS Online Map Viewer is an application capable of displaying the response of a web map service. The radar imagery shown in the viewer comes from a NOAA web service, while the gray map in the background comes from an <dfn title="Company that develops ArcGIS software">Esri</dfn> web service.</em></p>
 
 <h2 id="discussion">Discussion</h2>
@@ -123,7 +123,7 @@
 
 <p>If a human wants to see an address location on a map, they can just put the address into a search engine and see a map in the results. No one is going to fool with a web service for that. Behind the scenes, however, there are applications using services to work together to generate those results. Google Search, which is an application, is using Google’s geocoding service, sending your input to the service, receiving the response, and nicely displaying it on a map.</p>
 
-<p><img src="../../lessons/images/google-map-search-results.png" alt="Google search results with a map" />
+<p><img src="../../lessons/images/google-map-search-results.png" alt="Google search results with a map" class="shadow" />
 <em>Figure 3. Google search results for the address “5151 Highland Rd, Baton Rouge, LA 70808, USA”, showing the address location as a point on a map. Google Search uses the Google Maps Geocoding API behind the scenes to translate the address into latitude and longitude coordinates (30.3964204, -91.1625273).</em></p>
 
 <p>The significance here is that, since web services can transfer information between applications, they can enable automation: applications do not always need a human operator, or a human manually copying data from system to system. For something like weather that changes often, it would be hard to imagine a weather app that required the developer to manually go to a government website to download new radar data every 15 minutes, then upload it into their own application. With web services, they don’t have to. The dataset is provided as a utility that is always on and connected (like electricity), streaming the most up-to-date information into their app’s logic or onto the screen for users.</p>

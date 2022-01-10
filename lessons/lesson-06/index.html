@@ -72,7 +72,7 @@
   </li>
 </ul>
 
-<p><img src="../../lessons/images/discrete-continuous.png" alt="Discrete object view vs. continuous field view" />
+<p><img src="../../lessons/images/discrete-continuous.png" alt="Discrete object view vs. continuous field view" class="shadow" />
 <em>Figure 1. Maps of the same location shown as a discrete object view (left), with discernable objects such as water bodies and roads, and a continuous field view (right), where the ground elevation is depicted as a continuous color ramp representing low elevation in green and higher elevations in red.</em></p>
 
 <p>Either way, cartographers must decide how the map should visually represent the real world. Visual properties such as icons and colors chosen to represent layers on a map are the <strong>symbology</strong>. The symbology is often driven by the attributes of each feature in a layer. For example, in a global map of population density by country, countries with a higher population density could have a darker shade. In a map of earthquakes, a bullseye symbol could be used at each epicenter, with larger magnitude earthquakes given larger symbols. While data might be considered objective, symbology can introduce subjectivity and bias.</p>
@@ -144,7 +144,7 @@
 
 <p>Coordinate systems are fundamental to GIS. Locations on Earth expressed as numeric coordinates allow for quantitative analysis of distance and spatial relationships.</p>
 
-<p><img src="../../lessons/images/2d-crs.png" alt="A simple 2D coordinate system" />
+<p><img src="../../lessons/images/2d-crs.png" alt="A simple 2D coordinate system" class="shadow" />
 <em>Figure 8. A simple coordinate system, similar in concept to the coordinate reference systems used in maps.</em></p>
 
 <p>Where coordinate systems come into play in cartography is in choosing a projection. <strong>Projections</strong> are methods for transforming the 3D surface of a globe into a 2D plane for use in maps. The video below gives a nice overview of projections and the issues they can pose for cartographers.</p>
@@ -153,16 +153,16 @@
 
 <p>In Web GIS, however, you are less likely to need to decide on a projection, as there is already a de facto standard for web maps: <strong>Web Mercator</strong>.</p>
 
-<p><img src="../../lessons/images/web-mercator.png" alt="Web Mercator is the projection used by major web map providers." /></p>
+<p><img src="../../lessons/images/web-mercator.png" alt="Web Mercator is the projection used by major web map providers." class="shadow" /></p>
 
 <p>Understanding projections can still be useful when working with data that will be imported into Web GIS software. Web Mercator coordinates use meters, not degrees latitude/longitude like WGS84 (the coordinate system used by GPS). Using data from a different coordinate system can have unexpected consequences when the data is published to Web GIS software.</p>
 
 <p>Sometimes you can find such errors on web maps before they are fixed. If you navigate a web map to 0,0 where the Prime Meridian intersects the Equator off the western coast of Africa, occasionally you will find businesses, bike trails, and other user-generated content in the ocean, no doubt the result of a coordinate system mishap.</p>
 
-<p><img src="../../lessons/images/ocean-home-goods.png" alt="A Home Goods location in the ocean due to a coordinate system mishap" />
+<p><img src="../../lessons/images/ocean-home-goods.png" alt="A Home Goods location in the ocean due to a coordinate system mishap" class="shadow" />
 <em>Figure 10. A Home Goods location placed in the ocean on Google Maps where the Prime Meridian intersects the Equator, likely due to a coordinate system mishap.</em></p>
 
-<p><img src="../../lessons/images/ocean-osm.png" alt="Coordinate system mishap on OpenStreetMap" />
+<p><img src="../../lessons/images/ocean-osm.png" alt="Coordinate system mishap on OpenStreetMap" class="shadow" />
 <em>Figure 11. A layer available on OpenStreetMap.org shows a location mistakenly put into the ocean.</em></p>
 
 <p>Even though ArcGIS Online uses Web Mercator, you can still import data with latitude and longitude coordinates (WGS84 coordinate system) because ArcGIS Online will automatically project those coordinates for you into Web Mercator.</p>
