@@ -35,13 +35,28 @@
     <section class="main-content">
       <h1 class="text-center">Assignment 2</h1>
       <h2 class="text-center">Code a Web Service</h2>
-      <p>Web services were introduced in the lessons as programs that allow other programs to talk to each other. In web GIS, this often means exchanging text data or images. In later assignments we will use other people’s web services in our applications, but today we will write the code to create our own web service from scratch.</p>
+      <p>Web services were introduced in the lessons as programs that allow other programs to talk to each other, which in Web GIS usually means showing maps in a browser or app. In the previous assignment, roads, demographics, and basemap layers were streamed to our app via web services, and most of our assignments will pull data in this way. Today we will write the code to create our own web service from scratch.</p>
 
-<p>The web service will perform a simple operation: find the distance between two points on Earth.</p>
+<p>To do this, we will need a web server to host our application and listen for requests from clients. We will use CodeSandbox.io as a free test environment*.</p>
 
-<p>To do this, we will need a web server to host our application and listen for requests from clients. We will use CodeSandbox.io as a free test environment.</p>
+<p>The web service will perform a simple operation: find the distance between two points on Earth. The programming language we will use is JavaScript.</p>
 
-<p>The programming language we will use is JavaScript.</p>
+<p><em>*The same environment could be set up on your own server or personal computer by installing <a href="https://nodejs.org/en/download/">Node.js</a> on Windows, macOS, or Linux.</em></p>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+  <li><a href="#prep">Prep</a></li>
+  <li><a href="#steps">Steps</a>
+    <ul>
+      <li><a href="#part-1-make-a-web-service">Part 1: Make a web service</a></li>
+      <li><a href="#part-2-make-an-app">Part 2. Make an app</a></li>
+    </ul>
+  </li>
+  <li><a href="#try-it">Try It</a></li>
+  <li><a href="#checklist">Checklist</a></li>
+  <li><a href="#submit">Submit</a></li>
+  <li><a href="#appendix">Appendix</a></li>
+</ul>
 
 <h2 id="prep">Prep</h2>
 <ol>
@@ -68,43 +83,45 @@
 <p>You don’t have a web service yet, but you’re all set to start coding one.</p>
 
 <h2 id="data">Data</h2>
-<p>The data will just be two pairs of latitude and longitude coordinates representing the two locations to calculate the distance between. For example, 30 degrees latitude and -90 longitude for New Orleans and 30.45 degrees latitude and -91.187 longitude for Baton Rouge.</p>
+<p>The data to calculate distance will be two pairs of latitude and longitude coordinates representing two locations. For example, 30 degrees latitude and -90 longitude for New Orleans and 30.45 degrees latitude and -91.187 longitude for Baton Rouge.</p>
 
 <h2 id="steps">Steps</h2>
+<h3 id="part-1-make-a-web-service">Part 1: Make a web service</h3>
 <ol>
-  <li>Delete all of the existing code in <code>index.js</code> and copy and paste the code below. Notice the three italicized lines beginning with <code>//</code>. These are comments and they indicate what the blocks of code under them do, for any person reading the code. You do not need to understand every bit of code here, just the general purpose of each part.
-    <pre><code class="language-javascript">var http = require("http");
-http
-  .createServer(function (request, response) {
-    // Read the URL used to contact the web service and extract the latitude and longitude values, saving them each to a variable
-    var requestUrl = new URL("http://" + request.headers.host + request.url);
-    var latA = requestUrl.searchParams.get("latA");
-    var lonA = requestUrl.searchParams.get("lonA");
-    var latB = requestUrl.searchParams.get("latB");
-    var lonB = requestUrl.searchParams.get("lonB");
- 
-    // Use the spherical law of cosines formula to calculate distance along the surface of a sphere. It is not the most accurate method for Earth, but it is good  enough. Source: https://www.movable-type.co.uk/scripts/latlong.html 
-    const φ1 = (latA * Math.PI) / 180;
-    const φ2 = (latB * Math.PI) / 180;
-    const Δλ = ((lonB - lonA) * Math.PI) / 180;
-    const R = 6371; // Earth's radius in km
-    const d =
-      Math.acos(
-        Math.sin(φ1) * Math.sin(φ2) + Math.cos(φ1) * Math.cos(φ2) * Math.cos(Δλ)
-      ) * R;
- 
-    // Output the calculated distance value to the client and complete the execution of the program. 
-    response.write("{distance: " + d + "}");
-    response.end();
-  })
-  .listen(8080);
+  <li>Delete all default code in <code>index.js</code> and copy and paste the code below. Notice the three italicized lines beginning with <code>//</code>. These are comments and they indicate what the blocks of code under them do, for any person reading the code. You do not need to understand every bit of code here, just the general purpose of each part.
+    <pre><code class="language-javascript">  var http = require("http");
+  http
+ .createServer(function (request, response) {
+   // Read the URL used to contact the web service and extract the latitude and longitude values, saving them each to a variable
+   var requestUrl = new URL("http://" + request.headers.host + request.url);
+   var latA = requestUrl.searchParams.get("latA");
+   var lonA = requestUrl.searchParams.get("lonA");
+   var latB = requestUrl.searchParams.get("latB");
+   var lonB = requestUrl.searchParams.get("lonB");
+
+   // Use the spherical law of cosines formula to calculate distance along the surface of a sphere. It is not the most accurate method for Earth, but it is good enough. Source: https://www.movable-type.co.uk/scripts/latlong.html
+   const φ1 = (latA * Math.PI) / 180;
+   const φ2 = (latB * Math.PI) / 180;
+   const Δλ = ((lonB - lonA) * Math.PI) / 180;
+   const R = 6371; // Earth's radius in km
+   const distance =
+     Math.acos(
+       Math.sin(φ1) * Math.sin(φ2) + Math.cos(φ1) * Math.cos(φ2) * Math.cos(Δλ)
+     ) * R;
+
+   // Output the calculated distance value to the client and complete the execution of the program.
+   response.setHeader("Access-Control-Allow-Origin", "*");
+   response.write('{"distance": "' + distance.toFixed(2) + '"}');
+   response.end();
+ })
+ .listen(8080);
 </code></pre>
   </li>
   <li>Save <code>index.js</code> by clicking <strong>File &gt; Save</strong>, or use the shortcut <code>Ctrl</code>+<code>S</code> (<code>Cmd</code>+<code>S</code> on Mac).</li>
-  <li>Refresh the <strong>preview browser</strong> (not your browser); it should output <code>{distance: 0}</code> because we did not provide input in the URL.</li>
+  <li>Refresh the <strong>preview browser</strong> (not your web browser); it should output <code>{"distance": "0"}</code> because we did not provide input in the URL.</li>
   <li>In the <strong>preview browser’s</strong> address bar, add the following text to the end of the URL and press <code>Enter</code> on your keyboard:<br />
   <code>?latA=30&amp;lonA=-90&amp;latB=30.45&amp;lonB=-91.187</code><br />
-  The URL now contains parameters with values. There are lat/lon pairs for a “point A” (New Orleans) and “point B” (Baton Rouge). These values are then plugged into the formula to calculate the distance:
+  The URL now contains parameters with values. When you press enter, the lat/lon values for a “point A” (New Orleans) and “point B” (Baton Rouge) are passed to the web service, which calculates the distance using the formula we entered in JavaScript.
     <ul>
       <li><code>latA</code> = 30</li>
       <li><code>lonA</code> = -90</li>
@@ -112,14 +129,73 @@ http
       <li><code>lonB</code> = -91.187</li>
     </ul>
   </li>
-  <li>The web service should now output <code>{distance: 124.53850456983854}</code>, which is the distance in kilometers.</li>
+  <li>The web service should now output <code>{"distance": "124.53850456983854"}</code>, which is the distance in kilometers.</li>
+  <li>Note the URL that your web service is using by looking in the address bar of the <strong>preview browser</strong> (not your web browser). You will need this URL in the next part, so copy it now. The URL should be similar to <code>https://abc123.sse.codesandbox.io</code>.</li>
+</ol>
+
+<p>The web service is ready to receive requests at that URL from other apps needing a distance calculation.</p>
+
+<h3 id="part-2-make-an-app">Part 2: Make an app</h3>
+<p>With the web service now listening for requests, let’s make an app to request a distance calculation from it.</p>
+
+<ol>
+  <li>Follow the steps in the <a href="#prep">Prep</a> section again to create another sandbox, but this time under <strong>Create Sandbox</strong> choose <strong>Vanilla</strong> for a plain web server.</li>
+  <li>Once the sandbox is created, click <code>index.html</code> in the <strong>Files</strong> area.</li>
+  <li>
+    <p>Replace the contents of <code>index.html</code> with the code below, but replace <code>https://abc123.sse.codesandbox.io</code> with the URL of your own web service from the last step in Part 1.</p>
+
+    <pre><code class="language-html"> &lt;!DOCTYPE html&gt;
+ &lt;html&gt;
+   &lt;head&gt;
+     &lt;title&gt;Distance Calculator&lt;/title&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+     &lt;h2&gt;Enter latitude and longitude&lt;/h2&gt;
+     Place A
+     &lt;input type="text" id="latA" placeholder="Place A lat" /&gt;
+     &lt;input type="text" id="lonA" placeholder="Place A lon" /&gt;
+     &lt;hr /&gt;
+     Place B
+     &lt;input type="text" id="latB" placeholder="Place B lat" /&gt;
+     &lt;input type="text" id="lonB" placeholder="Place B lon" /&gt;
+     &lt;hr /&gt;
+     &lt;input type="submit" id="submit" value="Calculate Distance (km)" /&gt;
+     &lt;br /&gt;&lt;br /&gt;
+     Distance:
+     &lt;h1 id="output"&gt;0&lt;/h1&gt;
+     &lt;script src="https://code.jquery.com/jquery-3.6.0.min.js"&gt;&lt;/script&gt;
+     &lt;script&gt;
+       $("#submit").click(function () {
+         // Read the text input boxes to get the user's coordinates, add them to the URL to request the web service
+         $.getJSON(
+           "https://abc123.sse.codesandbox.io",
+           {
+             latA: $("#latA").val(),
+             lonA: $("#lonA").val(),
+             latB: $("#latB").val(),
+             lonB: $("#lonB").val()
+           },
+           // Receive the response from the web service, print the distance on the webpage
+           function (data) {
+             $("#output").html(data.distance);
+           }
+         );
+       });
+     &lt;/script&gt;
+   &lt;/body&gt;
+ &lt;/html&gt;
+</code></pre>
+    <p>This code is a mix of HTML and JavaScript to build a user interface. This is more human-friendly than editing a URL, like we did to test our web service in Part 1. The <strong>preview browser</strong> area will show a form for users to enter latitude and longitude coordinates to calculate their distance.</p>
+  </li>
+  <li>Save <code>index.html</code> by clicking <strong>File &gt; Save</strong>, or use the shortcut <code>Ctrl</code>+<code>S</code> (<code>Cmd</code>+<code>S</code> on Mac) . You might have to refresh the page to see the form.</li>
+  <li>Use the same lat/lon test values from Part 1 and click the button to submit the form. It should print the distance value on the page.</li>
 </ol>
 
 <h2 id="try-it">Try it</h2>
 <ol>
   <li>Use <a href="https://www.google.com/maps">Google Maps</a> to get the latitude and longitude of two locations of your choosing, different from the New Orleans and Baton Rouge example above. Right-click the map to copy the coordinates at each place you choose.</li>
-  <li>Substitute the new coordinate values into the URL of your web service and observe the new distance value. Compare this value to the distance measured with Google Maps (right-click the map, <strong>Measure distance</strong>).</li>
-  <li>At the top of your code, on Line 1, insert a new comment. An alternative syntax for multiline comments opens with <code>/*</code> and closes with <code>*/</code>. Give the following in the comments:
+  <li>Substitute the new coordinate values into the form you made and observe the new distance value. Compare this value to the distance measured with Google Maps (right-click the map, <strong>Measure distance</strong>) to make sure it is roughly correct.</li>
+  <li>At the top of your <strong>web service</strong> code, on Line 1, insert a new comment. An alternative syntax for multiline comments opens with <code>/*</code> and closes with <code>*/</code>. Give the following in the comments:
     <ul>
       <li>A description of your program in one or two brief sentences. What does it do, and what are the expected input and output?</li>
       <li>Your complete input URL with the coordinates you found. It should be something like:<br />
@@ -130,16 +206,30 @@ http
   </li>
   <li>The comment should look similar to the screenshot below.<br />
 <img src="../../assignment-resources/images/csb-comment.png" alt="Screenshot of a JavaScript comment" /></li>
-  <li>You can change your sandbox’s name by clicking the name at the top of the window.<br />
+  <li>You can change your sandbox names by clicking their names at the top of the window.<br />
 <img src="../../assignment-resources/images/csb-name.png" alt="Where to change sandbox name" /></li>
-  <li>Copy the URL to your sandbox to submit for this assignment.<br />
+  <li>Copy the URL to your <strong>web app</strong> sandbox (the one with the form) to submit for this assignment.<br />
 <img src="../../assignment-resources/images/csb-url.png" alt="Sandbox URL" /></li>
+</ol>
+
+<h2 id="checklist">Checklist</h2>
+<ol>
+  <li>A Node.js sandbox</li>
+  <li>An HTML and JavaScript (“vanilla”) sandbox.</li>
+  <li>A comment in the Node.js sandbox explaining what it does.</li>
+  <li>Copy the URL to the vanilla sandbox.</li>
+  <li>Test your URL in an <a href="https://support.google.com/chrome/answer/95464">incognito window</a> to make sure it works and shows the source code.</li>
 </ol>
 
 <h2 id="submit">Submit</h2>
 <ol>
-  <li>Submit the URL to your sandbox. The sandbox should include a working <code>index.js</code> with the proper comment, including your web service URL so your instructor can easily copy the web service URL and paste it into the test browser.</li>
+  <li>Submit the URL to your “vanilla” <strong>web app sandbox</strong>, the one with the HTML form in <code>index.html</code>. The sandbox should include a working form that sends a request to your web service sandbox and prints the response (distance) on the webpage under the form. Since your web app code includes the URL to your web service, you <strong>do not</strong> need to submit the web service URL separately.</li>
 </ol>
+
+<p>The URL to your <strong>web app sandbox</strong> should look like:<br />
+<code>https://codesandbox.io/s/your-app-name-abc123</code></p>
+
+<p>Note that this is different from the preview URL, which you <strong>do not</strong> need to submit.</p>
 
 <h2 id="appendix">Appendix</h2>
 <ol>
@@ -147,6 +237,7 @@ http
   <img src="../../assignment-resources/images/csb-github.png" alt="Sandbox URL" /></li>
 </ol>
 
+      <a href="#top">Top</a>
     </section>
 <footer class="site-footer">
   <small>&copy; All rights reserved.</small>

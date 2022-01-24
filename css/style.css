@@ -1,3 +1,9 @@
+a { 
+  color:#0066ff
+}
+a:hover  { 
+  color:#00F;
+}
 dfn {
   font-style: normal;
   text-decoration: dotted underline;
@@ -45,7 +51,7 @@ h2.project-tagline {
 .main-content > p > img  {
   margin-top: 3.0rem !important;
 }
-.main-content > p > img + em {
+.main-content p > img + em {
   display: block;
   font-size: small;
   margin-bottom: 3.0rem;
