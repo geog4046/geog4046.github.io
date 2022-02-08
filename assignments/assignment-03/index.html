@@ -37,7 +37,23 @@
       <h2 class="text-center">Create your own geographic information and map it</h2>
       <p>Geographic information is the foundation of Web GIS. In this exercise, create your own simple datasets of geographic information following a standard data format and display them on a web map.</p>
 
-<iframe width="100%" height="600" src="https://lsu-its.maps.arcgis.com/apps/MapTour/index.html?appid=cc2a69a4e6784a2baa203fec4fbc4f5c" frameborder="0" allowfullscreen=""></iframe>
+<iframe width="100%" height="600" src="https://lsu-its.maps.arcgis.com/apps/MapTour/index.html?appid=960a471090624204b9686e62898c9f06" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="contents">Contents</h2>
+<ul>
+  <li><a href="#data">Data</a></li>
+  <li><a href="#steps">Steps</a>
+    <ul>
+      <li><a href="#part-1-prepare-the-csv">Part 1: Prepare the CSV</a></li>
+      <li><a href="#part-2-prepare-the-geojson">Part 2: Prepare the GeoJSON</a></li>
+      <li><a href="#part-3-create-a-web-service">Part 3: Create a web service</a></li>
+      <li><a href="#part-4-create-the-app">Part 4: Create the App</a></li>
+      <li><a href="#part-5-edit-the-map">Part 5: Edit the Map</a></li>
+      <li><a href="#part-6-metadata">Part 6: Metadata</a></li>
+    </ul>
+  </li>
+  <li><a href="#submit">Submit</a></li>
+</ul>
 
 <h2 id="data">Data</h2>
 
@@ -56,22 +72,10 @@
 
 <p><strong>You may use the restaurant example or choose your own topic</strong>. This tutorial uses four landmarks in Baton Rouge as an example, with placeholder text and images from Wikipedia.</p>
 
-<p>We will use a spreadsheet to create the CSV point layer and <a href="http://geojson.io/">Geojson.io</a> to draw the polygon or line layer. We will then use ArcGIS Online to create web services and display them in a Story Map.</p>
+<p>We will use a spreadsheet to create the CSV point layer and <a href="http://geojson.io/">Geojson.io</a> to draw the polygon or line layer. We will then use ArcGIS Online to create a web service a Story Map.</p>
 
 <h2 id="steps">Steps</h2>
 <p>After you decide on a topic and pick out your locations of interest, follow the steps below, substituting your own locations for the Baton Rouge examples.</p>
-<ul>
-  <li><a href="#part-1-prepare-the-csv">Part 1: Prepare the CSV</a></li>
-  <li><a href="#part-2-prepare-the-geojson">Part 2: Prepare the GeoJSON</a></li>
-  <li><a href="#part-3-create-web-services">Part 3: Create web services</a></li>
-  <li><a href="#part-4-create-the-map">Part 4: Create the Map</a></li>
-  <li><a href="#part-5-create-the-app">Part 5: Create the App</a></li>
-  <li><a href="#part-6-metadata">Part 6: Metadata</a></li>
-  <li><a href="#submit">Submit</a></li>
-</ul>
-
-<p><img src="../../assignment-resources/images/matryoshka.png" alt="The steps in this exercise build on each other" />
-<em>Relate the steps in this assignment to a figure from the lessons. The data layers are created, then made into web services, then added to a map, then the map is added to an application.</em></p>
 
 <h3 id="part-1-prepare-the-csv">Part 1: Prepare the CSV</h3>
 <p>Your first dataset will be in the simple comma-separated values (CSV) file format and will contain the names and descriptions of several places of interest along with their latitude and longitude coordinates (points).</p>
@@ -156,60 +160,51 @@
 
 <p>That completes the polygon layer.</p>
 
-<h3 id="part-3-create-web-services">Part 3: Create web services</h3>
-<p>Next we will create web services so that web mapping applications can access the data layers we just created. However, unlike the Node.js assignment on CodeSandbox, we will not do any coding to create the web service. Instead, we will use the web interface of ArcGIS Online to automatically set up a web service when we upload our CSV and GeoJSON files.</p>
+<h3 id="part-3-create-a-web-service">Part 3: Create a web service</h3>
+<p>Next we will create a web service so that web mapping applications can access the GeoJSON layer we just created. However, unlike the Node.js assignment on CodeSandbox, we will not do any coding to create the web service. Instead, we will use the web interface of ArcGIS Online to automatically set up a web service when we upload our GeoJSON file.</p>
+
+<p>(The CSV file will be added later)</p>
 
 <ol>
   <li>
     <p>Sign into ArcGIS Online using the details provided by your instructor.</p>
   </li>
+  <li>In ArcGIS Online, go to your <strong>Content</strong> page to upload your GeoJSON file. Click <code>New item</code> &gt; <code>Your device</code> and browse the files on your computer for the <code>.geojson</code> file you saved in the previous section.</li>
   <li>
-    <p>In ArcGIS Online, go to your <strong>Content</strong> page to upload your CSV file. Click <code>Content</code> &gt; <code>Add Item</code> &gt; <code>From your computer</code>.<br />
-  <img src="../../assignment-resources/images/add-item.png" alt="Add Item to ArcGIS Online" class="shadow" /></p>
+    <p>For <code>How would you like to add this GeoJSON?</code>, choose the option to <code>create a hosted feature layer</code> and click <code>Next</code>, <code>Next</code>, <code>Save</code>. This will create a web service.</p>
   </li>
-  <li>
-    <p>Click <code>Choose File</code> to browse for your CSV. Give it a descriptive <code>Title</code> and <code>Tags</code>, check the box for <code>Publish this file as a hosted layer</code>, make sure <code>Coordinates</code> is selected, and <code>Latitude</code> and <code>Longitude</code> are selected for your <code>lat</code> and <code>long</code> fields, respectively. ArcGIS Online should detect that your CSV has latitude and longitude fields and automatically complete those options. Finally, click <code>Add Item</code>.<br />
-  <img src="../../assignment-resources/images/publish-hosted.png" alt="Publish a file as a hosted layer" class="shadow" /></p>
-  </li>
-  <li>
-    <p>After adding, you will be shown the <strong>Item Details</strong> page. Click the <code>Share</code> button and choose <code>Everyone</code> to make your layer public. Also scroll down the page to see your web service’s URL. This is the URL that applications can use to request data from your web service. Keep this tab open; soon you will come back to copy this URL.<br />
-  <img src="../../assignment-resources/images/item-details-share-url.png" alt="Item Details page" class="shadow" /></p>
-  </li>
-  <li>
-    <p>Repeat steps 2 through 4 for the GeoJSON file, though there will be fewer options.<br />
-  <img src="../../assignment-resources/images/add-geojson.png" alt="Add GeoJSON" class="shadow" /></p>
-  </li>
-  <li>
-    <p>After adding the item you will be shown its <strong>Item Details</strong> page where you can share the layer publicly and copy the URL.</p>
-  </li>
+  <li>After adding, you will be shown the <strong>Item Details</strong> page. Click the <code>Share</code> button and choose <code>Everyone</code> to make your layer public. Also scroll down the page to see your web service’s URL. This is the URL that applications can use to request data from your web service. Keep this tab open; soon you will come back to copy this URL.<br />
+  <img src="../../assignment-resources/images/item-details-share-url.png" alt="Item Details page" class="shadow" /></li>
 </ol>
 
-<p>You now have two web services that will give applications access to your point and polygon layers. The data is completely self-contained within ArcGIS Online, and any changes you make to the CSV and GeoJSON files on your computer will not affect the layers in ArcGIS Online.</p>
+<p>You now have a web service that will give applications access to your polygon layer. The data is completely self-contained within ArcGIS Online, and any changes you make to the GeoJSON file on your computer will not affect the layer in ArcGIS Online.</p>
 
-<h3 id="part-4-create-the-map">Part 4: Create the Map</h3>
+<h3 id="part-4-create-the-app">Part 4: Create the App</h3>
+<ol>
+  <li>Go to <a href="https://storymaps-classic.arcgis.com/en/app-list/map-tour/">https://storymaps-classic.arcgis.com/en/app-list/map-tour/</a> and click <code>Build a map tour</code>.</li>
+  <li>At the welcome page, click the gears icon for advanced options, then <code>Import Tour data from a CSV file</code>, then select the CSV file from your computer and click <code>Import</code>.</li>
+  <li>The app should now display your points on the map, the captions, and a photo for the first tour location. Optionally, you can click a map marker to change its color.</li>
+  <li>Edit the title at the top from <code>Edit me!</code> to something appropriate for your tour, such as <code>Baton Rouge Tour</code>.</li>
+  <li>Click the button in the top left to save the app. This will save a new <code>Web Mapping Application</code> item and <code>Web Map</code> item on your <strong>Content</strong> page using the title you just specified in the previous step.</li>
+  <li>Go to <strong>Content</strong> to see the new items.</li>
+</ol>
+
+<h3 id="part-5-edit-the-map">Part 5: Edit the Map</h3>
 <ol>
   <li>
-    <p>In ArcGIS Online, open <strong>Map Viewer classic</strong> with a new map.<br />
-  <img src="../../assignment-resources/images/arcgis-map-viewer.png" alt="Map Viewer" class="shadow" /></p>
+    <p>In <strong>Content</strong>, click on the new <code>Web Map</code> item, then on the <strong>Item Details</strong> page click <code>Open in Map Viewer Classic</code>. Your point layer from the CSV will already be in the map’s table of contents.</p>
   </li>
   <li>
-    <p>Click <code>Add</code> &gt; <code>Add Layer from Web</code> and paste the URL for your polygon layer’s web service (the one that originated from your GeoJSON file).<br />
-  <strong>So far, the course lessons have stated many, many times that applications request data from web services through a URL. Well this is it! It’s happening! We are creating a map application and telling it the endpoint URLs from which it can get data to display on the map.</strong><br />
+    <p>Click <code>Add</code> &gt; <code>Add Layer from Web</code> and paste the URL for your polygon layer’s web service (the URL from Part 3 Step 4).<br />
+  <strong>So far, the course lessons have stated many, many times that applications request data from web services through a URL. Well this is it! It’s happening! We are creating a map application and telling it the endpoint URL from which it can get data to display on the map.</strong><br />
   There are other ways to add layers to maps in ArcGIS Online, but this explicit use of a URL demonstrates that the map is using a web service endpoint.</p>
   </li>
   <li>
-    <p>Repeat step 2 for your point layer’s web service. The points will appear on the map on top of your polygons.</p>
-  </li>
-  <li>
-    <p>Change the point layer symbols by clicking the <code>Change Style</code> icon, and in the <code>Choose an attribute to show</code> dropdown, select <code>name</code>. Click <code>Done</code>.<br />
+    <p>Change the polygon layer symbols by clicking the <code>Change Style</code> icon, and in the <code>Choose an attribute to show</code> dropdown, select <code>name</code>. Click <code>Done</code>. This gives the layer a unique color and shows each feature’s name in the legend. Optionally, you could choose your own styles, such as removing the fill color so that only your polygon outlines are visible. You can see your symbols in the contents pane.<br />
 <img src="../../assignment-resources/images/change-style.png" alt="ArcGIS Online contents pane" class="shadow" /></p>
   </li>
   <li>
-    <p>Repeat step 4 for the polygon layer. This gives both layers a unique color and shows each feature’s name in the legend. Optionally, you could choose your own styles, such as removing the fill color so that only your polygon outlines are visible. You can see your symbols in the contents pane.<br />
-<img src="../../assignment-resources/images/agol-contents.png" alt="ArcGIS Online contents pane" class="shadow" /></p>
-  </li>
-  <li>
-    <p>Click the <code>More Options</code> button under the polygon layer and choose <code>Create Labels</code>.<br />
+    <p>Click the <code>More Options</code> button under the polygon layer and choose <code>Create Labels</code> then <code>OK</code>.<br />
 <img src="../../assignment-resources/images/agol-labels.png" alt="ArcGIS Online create labels" class="shadow" />
 <em>The More Options icon (three blue dots) gives you access to more settings, including the option to turn on labels.</em></p>
 
@@ -230,32 +225,7 @@
     <p>Finally, zoom and pan the map to fit your features into the viewer. The view you see now will be the default for apps you create with this map.</p>
   </li>
   <li>
-    <p>Click the <code>Save</code> button and give your map a title, tags, and summary. This will save a new <code>Web Map</code> item in your content. Leave the map open for the next steps.</p>
-  </li>
-</ol>
-
-<h3 id="part-5-create-the-app">Part 5: Create the app</h3>
-
-<ol>
-  <li>
-    <p>With your map open in the Map Viewer, click the <code>Share</code> button.</p>
-  </li>
-  <li>
-    <p>Check the box for <code>Everyone (public)</code>. This changes the map’s viewing permission from private to public.</p>
-  </li>
-  <li>
-    <p>Click the <code>Create a Web App</code> button.</p>
-  </li>
-  <li>
-    <p>From the selection of configurable apps, choose the Story Map Tour template and click <code>Create Web App</code>. You can use the same title, tags, and summary as the map, then click <code>Done</code>.</p>
-  </li>
-  <li>
-    <p>You should now see a preview of the app populated with the images and text that you originally entered into the CSV files. This is the <strong>Configure Web App</strong> page, where you can change settings for things like colors and the layout. At least change or remove:</p>
-    <ul>
-      <li>The app colors (default is gray)</li>
-      <li>The logo (default is the Esri logo)<br />
-<strong>Warning</strong>: There is a problem where images don’t appear on the Configure Web App page, but will work when the app is viewed.</li>
-    </ul>
+    <p>Click the <code>Save</code> button.</p>
   </li>
 </ol>
 
@@ -267,7 +237,7 @@
 <img src="../../assignment-resources/images/content-items.png" alt="Items in Content" class="shadow" /></p>
   </li>
   <li>
-    <p>Click on the item for your Story Map app to see its <strong>Item Details</strong> page. The URL of the Item Details page is what you will submit for the assignment.<br />
+    <p>Click on the item for your <code>Web Mapping Application</code> to see its <strong>Item Details</strong> page. The URL of the Item Details page is what you will submit for the assignment.<br />
 <img src="../../assignment-resources/images/agol-item-details-page.png" alt="ArcGIS Online Item Details Page" class="shadow" />
 <em>Example of an Item Details page in ArcGIS Online: <a href="https://www.arcgis.com/home/item.html?id=cc2a69a4e6784a2baa203fec4fbc4f5c">https://www.arcgis.com/home/item.html?id=cc2a69a4e6784a2baa203fec4fbc4f5c</a>.</em></p>
   </li>
@@ -280,16 +250,15 @@
       <li><strong>Credits (Attribution)</strong> - similarly, give credit for any images or layers used in your map</li>
     </ul>
   </li>
-  <li>At the bottom of the <strong>Description</strong> field, add the two URLs to your web services (the endpoints you added to the map). They should look like this, above the Terms of Use section:<br />
-<small>https://services2.arcgis.com/ABC123/arcgis/rest/services/YourLayer1/FeatureServer</small>
-<small>https://services2.arcgis.com/ABC123/arcgis/rest/services/YourLayer2/FeatureServer</small></li>
+  <li>At the bottom of the <strong>Description</strong> field, add the URL to your web service (the endpoints you added to the map). It should look like this, above the Terms of Use section:<br />
+<small>https://services2.arcgis.com/ABC123/arcgis/rest/services/YourLayer1/FeatureServer</small></li>
 </ol>
 
-<p>From this page you can click <code>View Application</code> to launch the app, or click <code>Configure App</code> to make further changes. The app configuration only makes changes to the app, not the underlying map. The map would have to be edited in the Map Viewer again to make changes to symbols, labels, or the basemap.</p>
+<p>From this page you can click <code>View Application</code> to launch the app, or click <code>Configure App</code> to make further changes to the app.</p>
 
 <h2 id="submit">Submit</h2>
 <ol>
-  <li>Copy the URL to the <strong>Item Details</strong> page of your Story Map. <em>Make sure the description section has the URLs to your web services at the bottom and your app is shared publicly</em>. An Item Details page URL should look something like <code>https://www.arcgis.com/home/item.html?id=ABC123</code> or <code>https://arcg.is/123ABC</code>.<br />
+  <li>Copy the URL to the <strong>Item Details</strong> page of your Story Map. <em>Make sure the description section has the URL to your web service at the bottom and your app is shared publicly</em>. An Item Details page URL should look something like <code>https://www.arcgis.com/home/item.html?id=ABC123</code> or <code>https://arcg.is/123ABC</code>.<br />
 <img src="../../assignment-resources/images/share-item-details.png" alt="ArcGIS Online Item Details Page URL" class="shadow" /></li>
   <li>Open an <a href="https://www.google.com/search?q=how+to+incognito+window">incognito/private</a> browser window and paste your Item Details page URL. Click <code>View Application</code>.</li>
   <li>If you can view your app and Item Details page in the incognito window, then submit the <strong>Item Details page URL</strong> on Moodle.</li>
