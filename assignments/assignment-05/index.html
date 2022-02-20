@@ -114,20 +114,19 @@
 <ol>
   <li>Sign into your ArcGIS Online account, provided in class by your instructor.</li>
   <li>Go to your <strong>Content</strong> page.</li>
-  <li>Click <code>Create</code> &gt; <code>Feature Layer</code>.</li>
-  <li>Choose the “Debris Report” template and click <code>Create</code>.</li>
-  <li>You will be prompted to define an “extent” for your dataset. Zoom the map to the area that you expect to be the boundary for potential data entries. In the example of reporting debris on campus, the map should be centered on campus but zoomed out enough to show the entire campus.</li>
-  <li>After clicking <code>Next</code> and filling out the details, the layer will be created and you will see its <strong>Item Details</strong> page.</li>
+  <li>Click <code>New Item</code> &gt; <code>Feature Layer</code>.</li>
+  <li>Click <code>Use a template</code>, <code>Next</code>, and search for the “Debris Reports” template. Select it and click <code>Next</code> until asked for a title and tags, then click <code>Save</code>. The layer will be created and you will see its <strong>Item Details</strong> page.</li>
   <li>Click the <code>Data</code> tab at the top of the page to see the predefined attributes (there are no features under the attributes yet).</li>
-  <li>Click <code>Visualize</code> to see the template’s predefined symbology. For the “Debris Reports” template, the symbols correspond to different types of debris (vegetation, hazardous material, etc.). The map should be blank except for the basemap.</li>
-  <li>Click <code>Settings</code> and note that the <code>Feature Layer (hosted)</code> section has options enabled already for editing. By default, anyone can add, update, and delete features in your layer if you share the layer with them, but by default the layer is private, not shared. Keep it private.</li>
+  <li>Click the <code>Visualize</code> tab to see the template’s predefined symbology. For the “Debris Reports” template, the symbols correspond to different types of debris (vegetation, hazardous material, etc.). The map should be blank except for the basemap.</li>
+  <li>Click <code>Settings</code>, and in the <code>Feature Layer (hosted)</code> part of the settings, make sure the <code>Enable editing</code> box is checked. Click <code>Save</code>.</li>
 </ol>
 
 <h3 id="part-2-create-a-web-map">Part 2: Create a web map</h3>
 <ol>
-  <li>Still on the <strong>Item Details</strong> page of the new feature layer, click <code>Overview</code>, then click <code>Open in Map Viewer</code> to add the layer to a new map.</li>
-  <li>In the <strong>Map Viewer</strong>, the empty layer should appear in the <code>Content</code> pane with symbols already. The map should already be zoomed to extent you defined.</li>
-  <li><code>Save</code> the map and name it with “Private” at the end of the name. <strong>Do not</strong> share with <code>Everyone</code>, because this map contains the private layer for internal use.</li>
+  <li>Still on the <strong>Item Details</strong> page of the new feature layer, click the <code>Overview</code> tab, then click <code>Open in Map Viewer Classic</code> to add the layer to a new map.</li>
+  <li>In the <strong>Map Viewer</strong>, the empty layer should appear in the <code>Content</code> pane with symbols already.</li>
+  <li>Pan and zoom the map to your area of interest, such as the campus of LSU.</li>
+  <li><code>Save</code> the map and name it with “Private” at the end of the name to distinguish it from the public layer we will make later. <strong>Do not</strong> share with <code>Everyone</code>, because this map contains the private layer for our pretend organization’s internal use.</li>
 </ol>
 
 <h3 id="part-3-set-up-arcgis-collector">Part 3: Set up ArcGIS Collector</h3>
@@ -143,18 +142,18 @@
 <h3 id="part-4-create-a-view-layer-for-public-access">Part 4: Create a View Layer for public access</h3>
 <ol>
   <li>Return to the layer’s <strong>Item Details</strong> page.</li>
-  <li>
-    <p>Click <code>Create View Layer</code> and use the same name but add <code>Public</code> to the end of the name.
+  <li>Click <code>Create View Layer</code>.
  <img src="../../assignment-resources/images/agol-layer-view.png" alt="Create View Layer button" /><br />
- <small><em>Item Details page showing the Create View Layer button.</em></small></p>
-  </li>
-  <li>
-    <p>Note that this creates another item in your Content:<br />
+ <small><em>Item Details page showing the Create View Layer button.</em></small></li>
+  <li>On the <strong>Create View Layer</strong> page, click <code>Next</code> at the <code>Choose layers</code> step.</li>
+  <li>On the <code>Define view</code> step, click your layer to see options, then click <code>Area of interest</code>. Pan and zoom the map to the area where debris could be reported, then draw a box around the area.</li>
+  <li>Click the back arrow by <code>Layer definitions</code> and then <code>Next</code>.</li>
+  <li>Put “view” at the end of the title to distinguish this view layer from the original, then click <code>Create</code>.</li>
+  <li>Note that this creates another item in your Content:<br />
  <img src="../../assignment-resources/images/agol-item2.png" alt="Content page with a view layer" /><br />
- <small><em>Content page showing a separate item for a feature layer view.</em></small></p>
-  </li>
+ <small><em>Content page showing a separate item for a feature layer view.</em></small></li>
   <li>Go to the view layer’s <strong>Item Details</strong> page and click <code>Settings</code>.</li>
-  <li>Check <code>Approve this layer to be shared with the public when editing is enabled</code> and <code>Enable editing</code> and click <code>Save</code>. You will then be able to set more specific permissions for editing.</li>
+  <li>Check <code>Approve this layer to be shared with the public when editing is enabled</code> and <code>Save</code>, then <code>Enable editing</code> and <code>Save</code>. Note that there are several options under <code>Enable editing</code>. You will configure these on your own in the “Try it” section next.</li>
 </ol>
 
 <h2 id="try-it">Try it</h2>
@@ -168,7 +167,7 @@
   </li>
   <li>Add the View Layer to a new map. Set appropriate sharing permissions on the map, considering it will be used in a crowdsourcing app.</li>
   <li>Add the map to an app. Set the same sharing permissions.</li>
-  <li>Choose a configurable app meant for collecting and editing data, such as the “GeoForm” template. When setting up the app, consider which form fields need to be available for public input, e.g., you can hide the “volume” field as it is not realistic to expect people to know that and take the time to input a value.</li>
+  <li>Choose a configurable app meant for collecting and editing data, such as the “GeoForm” template. When setting up the app, consider which form fields need to be available for public input, e.g., you can hide the “volume” field as it is not realistic to expect people to know that.</li>
   <li>
     <p>Fill out the item information on the Item Details page of your public app. Describe what the app is for and how the audience is supposed to use it.<br />
 <img src="../../assignment-resources/images/agol-item-info-well-done.png" alt="Item info progress bar" /><br />
@@ -178,6 +177,8 @@
 <img src="../../assignment-resources/images/agol-mobile-gis-items.png" alt="Content page with items" /><br />
 <small><em>Content page with items for private and public layers, private and public maps, a public app, and any supporting files you uploaded.</em></small></li>
 </ol>
+
+<p>We have public and private layers, public and private maps, but only a public app, because ArcGIS Collector serves as our private app.</p>
 
 <h2 id="submit">Submit</h2>
 <ol>
