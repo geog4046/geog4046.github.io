@@ -35,12 +35,17 @@
     <section class="main-content">
       <h1 class="text-center">Assignment 6</h1>
       <h2 class="text-center">Geoprocessing emergency rooms, walking to Taco Bell</h2>
-      <p>Use ArcGIS Online to perform spatial analysis. Map the population of Baton Rouge, then create an app to analyze how many people live within 10 minutes of a hospital. The app will allow you to add different layers to create different analyses: how many people live within a 5-minute walk of a Taco Bell, 15-minute drive of a library, etc.</p>
+      <p>Use ArcGIS Online to perform spatial analysis. Map the population of Baton Rouge, then create an app to analyze how many people live within 10 minutes of a hospital. The app will allow you to add different layers to analyze: how many people live within a 5-minute walk of a Taco Bell, 15-minute drive of a library, etc.</p>
 
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#finished-example">Finished Example</a></li>
-  <li><a href="#data">Data</a></li>
+  <li><a href="#data">Data</a>
+    <ul>
+      <li><a href="#population-layer">Population layer</a></li>
+      <li><a href="#example-layer-hospitals">Example layer: Hospitals</a></li>
+    </ul>
+  </li>
   <li><a href="#steps">Steps</a>
     <ul>
       <li><a href="#part-1-create-a-map">Part 1: Create a map</a></li>
@@ -54,10 +59,8 @@
 </ul>
 
 <h2 id="finished-example">Finished Example</h2>
-
-<p><img src="../../assignment-resources/images/agol-drive-time-areas.png" alt="Drive-time Areas" /></p>
-
-<p><small><em>Only a screenshot is provided instead of an embedded app because the Analysis Widget requires sign-in and the app is not public.</em></small></p>
+<p><img src="../../assignment-resources/images/agol-drive-time-areas.png" alt="Drive-time Areas" class="shadow" /><br />
+<small><em>Screenshot of an app that uses the Analysis Widget, which requires users to sign into ArcGIS Online.</em></small></p>
 
 <h2 id="data">Data</h2>
 <p>This assignment uses feature layers already hosted in ArcGIS Online. Your app will use the population layer below, but in the <a href="#try-it">Try It</a> section you will run an analysis on a layer you find. Keep in mind that for layers to work with the analysis tools in this exercise:</p>
@@ -84,18 +87,18 @@
 <h2 id="steps">Steps</h2>
 <h3 id="part-1-create-a-map">Part 1: Create a map</h3>
 <ol>
-  <li>Go to the ArcGIS Online <strong>Map Viewer</strong> to create and save a new map called “Baton Rouge Population Block Groups”.</li>
-  <li>In the map viewer, click <code>Add</code> &gt; <code>Add Layer from Web</code>, paste the service URL for the population layer.</li>
-  <li>Change the layer symbols and basemap if desired.</li>
-  <li>Save the map and share it with everyone to begin creating a new web app. Even though the analysis tools we will use in this exercise cannot be used by public users, your app will still be viewable by your instructor.</li>
-  <li>In the <code>Create a New Web App</code> box, click the <code>Web AppBuilder</code> tab and name the app <code>Service Area Population Analysis</code>. Click <code>Get Started</code>.</li>
+  <li>Go to the ArcGIS Online <strong>Map Viewer Classic</strong> to create and save a new map called “Baton Rouge Population Block Groups”.</li>
+  <li>In the map viewer, click <code>Add</code> &gt; <code>Add Layer from Web</code>, paste the service URL for the <a href="#population-layer">Population layer</a>.</li>
+  <li>Uncheck the box next to the population layer so it is not visible on the map. It doesn’t need to be visible to use its population data in our analysis.</li>
+  <li>Change the basemap if desired.</li>
+  <li>Save the map and share it with <code>Everyone</code>. In the <code>Create a New Web App</code> box, click the <code>Web AppBuilder</code> tab and name the app <code>Service Area Population Analysis</code>. Click <code>Get Started</code>.</li>
 </ol>
 
 <h3 id="part-2-create-an-app">Part 2: Create an app</h3>
 <ol>
   <li>
     <p>You should now see Web AppBuilder, which lets you create ArcGIS Online apps with more flexibility than the configurable apps we’ve used in previous assignments.<br />
-<img src="../../assignment-resources/images/agol-wab.png" alt="Web AppBuilder" /><br />
+<img src="../../assignment-resources/images/agol-wab.png" alt="Web AppBuilder" class="shadow" /><br />
 <small><em>The initial view of Web AppBuilder.</em></small></p>
   </li>
   <li>Note the four main tabs on the left side of the page:
@@ -108,10 +111,10 @@
   </li>
   <li>
     <p>Click the <code>Widget</code> tab. Widgets are tools that let the user interact with the app and map, e.g., zoom, view attribute table, view the map legend, and perform analyses. In the default <code>Foldable Theme</code>, there are two areas where additional widgets can be added.<br />
-<img src="../../assignment-resources/images/agol-wab-widget-areas.png" alt="Web AppBuilder widgets" /><br />
+<img src="../../assignment-resources/images/agol-wab-widget-areas.png" alt="Web AppBuilder widgets" class="shadow" /><br />
 <small><em>This is the widget tab of Web AppBuilder showing possible widget areas, with red boxes showing where widgets will appear in the app when added to different widget areas.</em></small></p>
   </li>
-  <li>On the <code>Widget</code> tab, click the gray box at the bottom for Widget 1. This will show all of the available widgets. Click the <code>Add Data</code> widget and <code>OK</code>. This will allow you to add a layer while using your app.</li>
+  <li>On the <code>Widget</code> tab, click the gray box at the bottom for Widget 1. This will show all of the available widgets. Click the <code>Add Data</code> widget and <code>OK</code>. This will allow your app’s users to add a layer to the map while using your app.</li>
   <li>Click the next widget slot and click <code>Analysis</code>.</li>
   <li>You should now see the <code>Configure Analysis</code> options, where you can choose specific analysis tools to allow in the widget (see <a href="https://doc.arcgis.com/en/arcgis-online/analyze/perform-analysis.htm">Perform Analysis</a> for details on each tool).</li>
   <li>Check the boxes for:
@@ -134,7 +137,7 @@ You should see hospital locations added to the map.</li>
       <li><strong>Choose point layer to calculate drive-time areas around</strong>: hospitals (emergency rooms) layer</li>
       <li><strong>Measure</strong>: <code>Driving Time</code>, <code>10</code>, <code>minutes</code></li>
       <li><strong>Travel direction</strong>: <code>Towards Facility</code></li>
-      <li><strong>Areas from different points</strong>: <code>Overlap</code></li>
+      <li><strong>Areas from different points</strong>: <code>Split</code></li>
       <li><strong>Use current map extent</strong>: checked, but make sure you can see all points on your map</li>
     </ul>
   </li>
@@ -158,7 +161,7 @@ You should see hospital locations added to the map.</li>
   </li>
   <li>Check the credit usage, run the analysis, and once the task completes, close the <code>Analysis</code> widget.</li>
   <li>On the map, click one of the polygons in the new Hospital Service Area Population polygons (you can hide the old polygon layer using the Layer List widget). In the popup, there should be a new field added: <code>Sum population</code>. This is the number of people who live within a 10-minute drive of that hospital.<br />
-  <img src="../../assignment-resources/images/service-area-popup.png" alt="Service area population" /><br />
+  <img src="../../assignment-resources/images/service-area-popup.png" alt="Service area population" class="shadow" /><br />
   <small><em>“Sum population” is the total number of people living within a 10-minute drive of this hospital.</em></small></li>
 </ol>
 
@@ -169,42 +172,29 @@ You should see hospital locations added to the map.</li>
 
 <h2 id="try-it">Try it</h2>
 <ol>
-  <li>
-    <p>Calculate the service area population for a different layer besides hospitals. This could be your points of interest from Assignment 3 or any layer you find in ArcGIS Online. You can either paste the service URL like we did in the steps above, or use the search box in the <code>Add Data</code> widget within your app. For example, you could search for <code>Taco Bell</code> and add the layer in the results from EsriMedia. Make sure you are zoomed into the Baton Rouge area so you do not run the analysis nationwide.</p>
-  </li>
-  <li>
-    <p>Optional: add the Draw widget to your app so you can calculate a drive-time area for any point you click on the map.</p>
-  </li>
-  <li>
-    <p>Take a screenshot of your app showing:<br />
-a. Your chosen locations layer (restaurants, etc.)<br />
-b. Service area polygons<br />
-c. Popup of one service area polygon showing the sum population<br />
-  <img src="../../assignment-resources/images/service-areas.png" alt="Service area population" /><br />
-  <small><em>Your screenshot should show your point and polygons layers and a popup with the population for one of the service areas.</em></small></p>
-  </li>
-  <li>Find the service area polygons layer with population in your <strong>Content</strong> and go to its <strong>Item Details</strong> page. Fill out the fields:<br />
+  <li>Reload your app to clear the hospitals and service areas.</li>
+  <li>Use the <code>Add Data</code> widget to add a new layer in your app. This could be your points of interest from Assignment 3, a layer you find in ArcGIS Online, or any other sources. For example, you could search for <code>Taco Bell</code> and add the layer in the results from EsriMedia. Make sure you are zoomed into the Baton Rouge area so you do not run the analysis nationwide.</li>
+  <li>Calculate the service area population for the new layer, e.g., how many people live within a 5-minute drive of a Taco Bell.</li>
+  <li>Find the <strong>service area polygons layer</strong> with population you just created in Step 3 in your <strong>Content</strong> and go to its <strong>Item Details</strong> page. Fill out the fields:<br />
 a. Title<br />
-b. Thumbnail using your screenshot<br />
-c. Summary<br />
-d. Description (&lt;200 words):
+b. Summary<br />
+c. Description (&lt;200 words):
     <ol>
       <li>Explain what the layer is, how it was created.</li>
-      <li>Give example population count for one of your locations, e.g., “Our Lady of the Lake Livingston has a 10-minute drive service area population of 9,717.”</li>
+      <li>Give example population count for one of the locations in the layer you chose, e.g., “Our Lady of the Lake Livingston has a 10-minute drive service area population of 9,717.”</li>
       <li>Link to your app.<br />
-e. Terms, such as “None” or “CC BY-SA”.<br />
-f. Credit the source of any data used to generate your layer</li>
+d. Terms, such as “None” or “CC BY-SA”.<br />
+e. Credit the source of any data used to generate your layer</li>
     </ol>
   </li>
-  <li>Copy the link to your layer’s <strong>Item Details</strong> page using the social icons on the right side of the page:<br />
-<img src="../../assignment-resources/images/agol-share.png" alt="Share icons on the Item Details page" /><br />
-<small><em>Get the link to your Item Details page by clicking the Link icon.</em></small></li>
+  <li>For the link you will submit on Moodle, copy the link to your layer’s <strong>Item Details</strong> page using the social icons on the right side of the page:<br />
+   <img src="../../assignment-resources/images/agol-share.png" alt="Share icons on the Item Details page" class="shadow" /><br />
+   <small><em>Get the link to your Item Details page by clicking the Link icon.</em></small></li>
 </ol>
 
 <h2 id="checklist">Checklist</h2>
 <ol>
   <li><strong>Item Details</strong> page with basic info for the feature layer of the service areas you generated with your app.</li>
-  <li>Thumbnail showing point and polygon layers and popup with population field.</li>
   <li>Description of the layer and how it was generated.</li>
   <li>Example population for one of your locations, given in the Description.</li>
   <li>Link to your app in the Description.</li>

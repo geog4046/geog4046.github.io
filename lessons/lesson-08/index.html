@@ -62,12 +62,12 @@
 
 <p><strong>Geoprocessing</strong> in GIS is the analysis or manipulation of data layers. Geoprocessing can be performed using geoprocessing tools in GIS software. These tools can be made available online as web services, referred to as <strong>geoprocessing services</strong>.</p>
 
-<p>The buffer operation is one simple example. In its most basic form in GIS software, the <code>buffer</code> tool will accept as input a layer (points, lines, or polygons) and a distance parameter (how far the buffer extends from each feature) and produce as output a new polygon layer, which resembles a more plump version of the original layer.</p>
+<p>The buffer operation is one simple example. In its most basic form in GIS software, a buffer tool will accept as input a layer (points, lines, or polygons) and a distance parameter (how far the buffer extends from each feature) and produce as output a new polygon layer, which resembles a more plump version of the original layer.</p>
 
 <p><img src="../../lessons/images/buffer-example.png" alt="Buffer example" class="shadow" />
 <em>Figure 2. A buffer is the area within a specified distance of a feature. In the case of point features, the buffer distance is the radius of the circle centered on the point.</em></p>
 
-<p>The figure below shows another common tool that counts the number of features within another feature; in this case, hospitals (points) within a parish (polygon). This is a <code>summarize within</code> tool, and in addition to counting features it can typically perform statistics on an attribute of the summarized layer. If the hospitals layer had a “beds” attribute, the summarize tool could tell us the average, total, minimum, or maximum number of beds in the parish’s hospitals.</p>
+<p>The figure below shows a common tool that counts the number of features within another feature; in this case, hospitals (points) within a parish (polygon). This is a <code>summarize within</code> tool, and in addition to counting features it can typically perform statistics on an attribute of the summarized layer. If the hospitals layer had a “beds” attribute, the summarize tool could tell us the average, total, minimum, or maximum number of beds in the parish’s hospitals.</p>
 
 <p><img src="../../lessons/images/summarize-example.png" alt="Summarize example" class="shadow" />
 <em>Figure 3. Another example, the “summarize within” tool, tells us something about the relationship between two layers, such as how many features from one layer are located within the boundaries of a feature from another layer.</em></p>
