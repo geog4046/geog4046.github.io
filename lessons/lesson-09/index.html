@@ -88,11 +88,11 @@
 <h2 id="map-tiling">Map Tiling</h2>
 <p><strong>Map tiling</strong> is the process of dividing large images into small square images, or tiles, that can be quickly sent over the Internet to a client web map application, which reassembles the tiles into a map to display on screen.</p>
 
-<p>In short, a large image or mosaic is loaded into tiling software, split into numerous very small square images (tiles), and those images are stored online to be made available through a web GIS application or web service, such as an <strong>OGC Web Map Tile Service (WMTS)</strong> or an ArcGIS tile layer. A different set of tiles is created for each zoom level, so that when zoomed out, users only download low-detail tiles covering a large area, and when zoomed in, they only download high-detail tiles covering a small area.</p>
+<p>In short, a large image or mosaic is loaded into tiling software, split into numerous very small square images (tiles), and those images are stored online to be made available through a web GIS application or web service, such as an <strong>OGC Web Map Tile Service (WMTS)</strong> or an ArcGIS tile layer. A different set of tiles is created for each zoom level, so that when zoomed out, users only download low-detail tiles covering a large geographic area, and when zoomed in, they only download high-detail tiles covering a small geographic area.</p>
 
 <p>A <strong>zoom level</strong> is a representation of a map at different scales, with more detail at higher zoom levels, bringing the user’s view “closer” to the map as the zoom level increases. The <strong>map scale</strong> is the ratio between a distance on a map and distance on the ground. A map scale of 1:1,000 means that one centimeter on the map is equal to 1,000 cm on the ground, which is a high zoom only useful with very high-resolution imagery. A map scale of 1:100,000,000 means one centimeter on the map equals 100 million centimeters (1,000 km) on the ground, appropriate for showing a world map.</p>
 
-<p>Furthermore, the tiles are compressed, which might cause some loss of details in the image but makes maps load even faster.</p>
+<p>Furthermore, the tiles are compressed, which might cause loss of detail in the image but makes maps load even faster.</p>
 
 <p>Therefore, when displaying imagery on a web map, it makes sense to use some form of tiling.</p>
 
@@ -116,7 +116,7 @@
 
 <h2 id="tiling-software">Tiling software</h2>
 
-<p>GIS software can automate the map tiling process by taking large images as input and generating the set of compressed map tiles, known as a tile cache, for different zoom levels. Allowing greater zoom, i.e., showing more detail, will require more tiles. For example, at a zoom level where streets and large buildings become clearly visible, a tile cache for the state of Louisiana might contain 50,000 tiles. At the closest zoom level where the details of vehicles and houses are clear, a statewide tile cache for Louisiana could exceed 50,000,000 tiles.</p>
+<p>GIS software can automate the map tiling process by taking large images or mosaics as input and generating the set of compressed map tiles, known as a tile cache, for different zoom levels. Allowing greater zoom, i.e., showing more detail, will require more tiles. For example, at a zoom level where streets and large buildings become clearly visible, a tile cache for the state of Louisiana might contain 50,000 tiles. At the closest zoom level where the details of vehicles and houses are clear, a statewide tile cache for Louisiana could exceed 50,000,000 tiles.</p>
 
 <p>ArcGIS Pro will be used in this course to generate tiles for ArcGIS Online, but numerous other applications exist for tiling maps and large images.</p>
 

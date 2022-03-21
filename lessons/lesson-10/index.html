@@ -101,7 +101,7 @@
 
 <div class="alert alert-warning" role="alert">
   <span class="material-icons">warning_amber</span>
-  This lesson will not get into the finer details of JavaScript, focusing instead on the concepts of imagery analysis. General explanations are given for each code example. JavaScript is introduced in more detail later in the course.  
+  This lesson will not get into the finer details of JavaScript, focusing instead on the concepts of image analysis. General explanations are given for each code example. JavaScript is introduced in more detail later in the course.  
 </div>
 
 <p>Go to the <a href="https://code.earthengine.google.com/">Google Earth Engine Code Editor</a>. Familiarize yourself with the interface, especially the <code>Code Editor</code> panel in the center, the <code>Map</code> at the bottom, and the <code>Inspector</code>/<code>Console</code>/<code>Tasks</code> panel on the right. The <code>Script</code> panel to the top left is where you can create new files and folders and see a list of your saved scripts.</p>
@@ -238,7 +238,7 @@ Map.addLayer(landsatImage, layerOptions, 'Landsat true color');
 <pre><code class="language-javascript">var layerOptions = {bands: ['B5', 'B4', 'B3'], max: 0.3};
 </code></pre>
 
-<p>Some common false-color band combinations are 5-4-3, 6-4-3, and 7-6-4. Give them a try!</p>
+<p>Some common false-color band combinations are 5-4-3, 6-4-3, and 7-6-4. Give them a try and see how they highlight vegetation, water, and artificial surfaces differently.</p>
 
 <h2 id="image-analysis">Image analysis</h2>
 <p>Since there is a numeric value behind each pixel in a digital image, we can perform calculations on the pixel values to gain a better understanding of what is on the ground.</p>
@@ -251,7 +251,7 @@ Map.addLayer(landsatImage, layerOptions, 'Landsat true color');
 
 <p>NDVI = (NIR - Red) ÷ (NIR + Red)</p>
 
-<p>In Earth Engine, you could use the inspector to tell you pixel values for Landsat’s red <code>B4</code> and NIR <code>B5</code> bands, then plug those values into the formula above to calculate a pixel’s NDVI. Let’s say you clicked a pixel in a forest, you might get a red value of 0.03 and NIR value of 0.20.</p>
+<p>In Earth Engine, you could use the inspector to see pixel values for Landsat’s red <code>B4</code> and NIR <code>B5</code> bands, then plug those values into the formula above to calculate a pixel’s NDVI. Let’s say you clicked a pixel in a forest, you might get a red value of 0.03 and NIR value of 0.20.</p>
 
 <p>NDVI = (0.20 - 0.03) ÷ (0.20 + 0.03)<br />
 NDVI = 0.74</p>
@@ -543,9 +543,9 @@ Map.setCenter(-95, 37, 4);
 </code></pre>
 
 <h2 id="pixel-values-from-tiles">Pixel values from tiles?</h2>
-<p>We’ve learned that tile layers of imagery do not contain the original image data, such as reflectance values; they are just regular JPG or PNG images and are not suitable for analysis (see the lesson on tiling). Yet in the last section, we were able to click on the Landsat image in the map, which was a tile layer, and the inspector gave us pixel values for the pixel we clicked. How is that possible?</p>
+<p>We’ve learned that tile layers of imagery do not contain the original image data, such as reflectance values; they are just regular JPG or PNG images and are not suitable for analysis (see the lesson on tiling). Yet in the last section, using Google Earth Engine we were able to click on a Landsat image, which was a tile layer, and the inspector gave us pixel values for the pixel we clicked. How is that possible?</p>
 
-<p>The images and mosaics you see in Earth Engine are indeed tile layers (you can usually notice the squares loading), and when you view the tile layer you are not downloading the original image’s pixel values. Instead, when you click the map, Earth Engine knows the lat/lon position you clicked and queries the imagery dataset on a server for the pixel at that location, then returns the pixel values to your browser.</p>
+<p>The images and mosaics you see in Earth Engine are tile layers (you can usually notice the squares loading), and when you view the tile layer you are not downloading the original image’s pixel values. Instead, when you click the map, Earth Engine knows the lat/lon position you clicked and queries the imagery dataset on a server for the pixel at that location, then returns the pixel values to your browser.</p>
 
 <p>The same goes for all of the image processing we did. When you change an image from true-color to false-color, for example, the processing is taking place with the source images on Google’s servers, and the result is tiled and sent to your browser. That way, you never have to download the massive source imagery collections, just the speedy tile layers for your current zoom level.</p>
 
