@@ -23,8 +23,7 @@
         <div class="text-center">
           <a href="/">About</a> |
           <a href="/lessons">Lessons</a> |
-          <a href="/assignments">Assignments</a> |
-          <a href="/schedule">Schedule</a>
+          <a href="/assignments">Assignments</a>
         </div>
       </div>
     </section>
@@ -335,7 +334,7 @@ var landsat8 = ee.ImageCollection('LANDSAT/LC08/C01/T1_TOA');
   The second line, with <code>.filter</code>, could be put on the end of the first line, but it is broken into two lines to make it easier to read.  
 </div>
 
-<p>The Landsat dataset contains images for the entire planet since 2013, so it needs to be limited to Louisiana in 2020 for recent pixels.</p>
+<p>The Landsat 8 dataset contains images for the entire planet since 2013, so it needs to be limited to Louisiana in 2020 for recent pixels.</p>
 
 <pre><code class="language-javascript">var landsatFiltered = landsat8
   .filterDate('2020-01-01', '2020-12-31')
