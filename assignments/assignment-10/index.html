@@ -94,11 +94,11 @@ a. Name the repository <code>yourusername.github.io</code>, where <code>youruser
 b. Select <code>Public</code>.<br />
 c. Check <code>Add a README file</code>.<br />
 d. Click <code>Create repository</code>.<br />
-<img src="../../assignment-resources/images/github-new-repo.png" alt="Github new repository" /></li>
+<img src="../../assignment-resources/images/github-new-repo.png" alt="Github new repository" class="shadow" /></li>
   <li>On the <code>Code</code> tab for your new repository, click <code>Add file</code> &gt; <code>Create new file</code>.<br />
-<img src="../../assignment-resources/images/github-new-file.png" alt="Github new file" /></li>
+<img src="../../assignment-resources/images/github-new-file.png" alt="Github new file" class="shadow" /></li>
   <li>Type <code>weather/index.html</code> and Github will automatically create a folder named <code>weather</code> containing a file named <code>index.html</code>. This will be the webpage people see first when they visit the website.<br />
-<img src="../../assignment-resources/images/github-file-name.png" alt="Github file name" /></li>
+<img src="../../assignment-resources/images/github-file-name.png" alt="Github file name" class="shadow" /></li>
   <li>Still on the <code>Code</code> tab, under <code>Edit new file</code>, paste the code below for a basic HTML skeleton of the homepage.
     <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
@@ -160,15 +160,15 @@ d. Click <code>Create repository</code>.<br />
     </ul>
   </li>
   <li><code>Commit changes</code>. Go to your website address again to preview it, even though the page will still be blank. At the blank page, open your browser’s developer tools (<code>F12</code> in Chrome). If you click on the Console tab, you should see errors saying that <code>weather.css</code> and <code>weather.js</code> cannot be found. That is because we haven’t created them yet.<br />
-<img src="../../assignment-resources/images/error404.png" alt="Error 404" /></li>
+<img src="../../assignment-resources/images/error404.png" alt="Error 404" class="shadow" /></li>
 </ol>
 
 <h3 id="part-3-css-setup">Part 3: CSS setup</h3>
 <ol>
   <li>From the editor page, click the <code>weather</code> folder:<br />
-<img src="../../assignment-resources/images/github-up-folder.png" alt="Github up folder" /></li>
+<img src="../../assignment-resources/images/github-up-folder.png" alt="Github up folder" class="shadow" /></li>
   <li>Then from the <code>weather</code> folder page, click <code>Add file</code> &gt; <code>Create new file</code>, and name it <code>weather.css</code>.<br />
-<img src="../../assignment-resources/images/github-file-name2.png" alt="Github file name" /></li>
+<img src="../../assignment-resources/images/github-file-name2.png" alt="Github file name" class="shadow" /></li>
   <li>For the code, paste these lines of CSS to make a full-page map then click <code>Commit new file</code>.
     <pre><code class="language-css">body {
  padding: 0;
@@ -195,9 +195,9 @@ var basemapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 var basemap = L.tileLayer(basemapUrl).addTo(map);
 </code></pre>
     <p>You should now have three files in your <code>weather</code> folder and you can preview your website to see if the basemap is working at <code>yourusername.github.io/weather</code>.<br />
-<img src="../../assignment-resources/images/github-files.png" alt="Github files" /></p>
+<img src="../../assignment-resources/images/github-files.png" alt="Github files" class="shadow" /></p>
 
-    <p><img src="../../assignment-resources/images/leaflet-basemap.png" alt="Leaflet basemap only" /></p>
+    <p><img src="../../assignment-resources/images/leaflet-basemap.png" alt="Leaflet basemap only" class="shadow" /></p>
   </li>
 </ol>
 
@@ -233,7 +233,7 @@ $.getJSON(weatherAlertsUrl, function(data) {
     <pre><code class="language-javascript">L.geoJSON(data).addTo(map);
 </code></pre>
     <p>Now you can <code>Commit changes</code> and preview your map. You should see polygons (Leaflet’s default is blue) representing areas that have flood watches, thunderstorm warnings, etc.<br />
-  <img src="../../assignment-resources/images/leaflet-alerts0.png" alt="Leaflet alert polygons" /></p>
+  <img src="../../assignment-resources/images/leaflet-alerts0.png" alt="Leaflet alert polygons" class="shadow" /></p>
   </li>
   <li>Let’s add a style to change the polygon color. Instead of only passing the <code>data</code> variable to the <code>geoJSON</code> function, we can pass options enclosed in curly brackets <code>{ }</code>. Replace the previous line with the code below, which has been broken up onto multiple lines to make it easier to read:
     <pre><code class="language-javascript">L.geoJSON(data, {
@@ -242,16 +242,16 @@ $.getJSON(weatherAlertsUrl, function(data) {
 }).addTo(map);
 </code></pre>
     <p>The blue polygons will now be colored orange.<br />
-<img src="../../assignment-resources/images/leaflet-alerts.png" alt="Leaflet alert polygons" /></p>
+<img src="../../assignment-resources/images/leaflet-alerts.png" alt="Leaflet alert polygons" class="shadow" /></p>
   </li>
   <li>In addition to the <code>style</code> option, we can add the <code>onEachFeature</code> option to tell Leaflet to call a function for every single feature in the layer. In our case, let’s attach a popup to each alert polygon to give details like “Flood Warning in Springfield MO”. Replace <code>// more options go here</code> with:
     <pre><code class="language-javascript">onEachFeature: function(feature, layer) {
   layer.bindPopup(feature.properties.headline);
 }
 </code></pre>
-    <p><img src="../../assignment-resources/images/leaflet-popup.png" alt="Leaflet popup" /><br />
+    <p><img src="../../assignment-resources/images/leaflet-popup.png" alt="Leaflet popup" class="shadow" /><br />
   Whatever text or variable is passed to the <code>bindPopup</code> function will be printed in the popup when the user clicks a polygon. If we put <code>bindPopup('Hello')</code>, then each popup would just show <code>Hello</code>. Instead, we are displaying the <code>headline</code> attribute that the National Weather Service includes in their alerts GeoJSON layer. You can view the <a href="https://api.weather.gov/alerts/active?region_type=land">NWS alerts web service URL</a> in a browser to see the relevant attributes.<br />
-  <img src="../../assignment-resources/images/nws-geojson.png" alt="NWS GeoJSON for the alerts services" /><br />
+  <img src="../../assignment-resources/images/nws-geojson.png" alt="NWS GeoJSON for the alerts services" class="shadow" /><br />
   Due to the way Leaflet handles GeoJSON data, attribute values are accessed via the object <code>feature.properties</code>. You could show users the longer description instead of the headline by passing <code>feature.properties.description</code> to the <code>bindPopup</code> function.</p>
   </li>
   <li>Finally, it would be nice to display the “severe” alerts in a different color to distinguish them from the watches and advisories. Revisit the <code>style</code> option: instead of specifying a color directly, we can write a function with some logic to determine the color based on an attribute value. This is the equivalent of changing the layer symbology in other GIS software. Replace <code>style: { color: 'orange' },</code> with:
@@ -262,7 +262,7 @@ $.getJSON(weatherAlertsUrl, function(data) {
 },
 </code></pre>
     <p>That sets the color of alert polygons to orange, but if the alert has a severity of “Severe”, then the color for that polygon will be changed to red.<br />
-  <img src="../../assignment-resources/images/leaflet-alerts2.png" alt="Leaflet alert polygons colored red and orange" /><br />
+  <img src="../../assignment-resources/images/leaflet-alerts2.png" alt="Leaflet alert polygons colored red and orange" class="shadow" /><br />
 Make sure your map works (<code>yourusername.github.io/weather</code>). If it doesn’t, press <code>F12</code> to open your browser’s developer tools and look at the <code>Console</code> for errors that might hint at the problem. See the appendix for the full code example to compare for mistakes.</p>
   </li>
 </ol>
@@ -287,9 +287,9 @@ Make sure your map works (<code>yourusername.github.io/weather</code>). If it do
       <li>A double <code>##</code> starts a subheading</li>
       <li>Ending a line with a double space will begin a new line</li>
       <li>Enclose a URL in <code>&lt; &gt;</code> to create a link, such as <code>&lt;https://yourusername.github.io/weather&gt;</code><br />
-<img src="../../assignment-resources/images/readme-edit.png" alt="Github README" /><br />
+<img src="../../assignment-resources/images/readme-edit.png" alt="Github README" class="shadow" /><br />
 Your main repository page will then show the README with a link to the weather map.<br />
-<img src="../../assignment-resources/images/readme.png" alt="Github README" /></li>
+<img src="../../assignment-resources/images/readme.png" alt="Github README" class="shadow" /></li>
     </ul>
   </li>
 </ol>
@@ -302,8 +302,8 @@ Your main repository page will then show the README with a link to the weather m
   <li>Radar layer</li>
   <li>Alerts layer</li>
   <li>Symbology applied to alerts</li>
-  <li>A new color applied to Extreme alerts</li>
-  <li>Popup appears on alerts showing details</li>
+  <li>A new color applied to Extreme or Minor alerts</li>
+  <li>Popup appears when an alert area is clicked, showing details</li>
   <li>README file on Github links to map</li>
 </ol>
 
