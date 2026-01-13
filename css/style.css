@@ -1,8 +1,12 @@
 a { 
-  color:#0066ff
+  color:#00b7ff
 }
 a:hover  { 
-  color:#00F;
+  color:#0084ff;
+}
+body {
+  background-color: #171717;
+  color: #f2f2f2;
 }
 dfn {
   font-style: normal;
@@ -11,6 +15,7 @@ dfn {
 section.page-header {
   background-image: url('../images/header-lidar.jpg');
 }
+
 h1 { font-size: 2.00rem }
 h2 { font-size: 1.75rem }
 h3 { font-size: 1.25rem }
@@ -23,6 +28,12 @@ h1.project-name {
 h2.project-tagline {
   color: #EEE;
   opacity: 1
+}
+
+img.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .breadcrumb-item {
@@ -39,8 +50,15 @@ h2.project-tagline {
   margin-top: -10px;
   padding-top: 10px
 }
+.main-content code, .main-content pre {
+  color: #f3f6fa;
+  background-color: #253137;
+}
 .main-content h1 {
   margin-top: 1rem;
+}
+.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
+  color: rgb(74, 231, 153);
 }
 .main-content :first-child .leaflet-popup-content {
   margin: 13px 19px
@@ -55,9 +73,6 @@ h2.project-tagline {
   display: block;
   font-size: small;
   margin-bottom: 3.0rem;
-}
-.main-content pre > code {
-  color: inherit;
 }
 .material-icons {
   vertical-align: middle;  

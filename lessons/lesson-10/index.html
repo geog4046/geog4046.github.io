@@ -105,14 +105,14 @@
 
 <p>Go to the <a href="https://code.earthengine.google.com/">Google Earth Engine Code Editor</a>. Familiarize yourself with the interface, especially the <code>Code Editor</code> panel in the center, the <code>Map</code> at the bottom, and the <code>Inspector</code>/<code>Console</code>/<code>Tasks</code> panel on the right. The <code>Script</code> panel to the top left is where you can create new files and folders and see a list of your saved scripts.</p>
 
-<p><img src="../../assignment-resources/images/Code_editor_diagram.png" alt="Earth Engine Code Editor" />
-<em>Figure 6. Labeled interface of the Earth Engine Code Editor. Source: <a href="https://developers.google.com/earth-engine/guides/playground">Earth Engine documentation</a>.</em></p>
+<p><img src="../../lessons/images/gee-code-editor.png" alt="Earth Engine Code Editor" />
+<em>Figure 6. Labeled interface of the Earth Engine Code Editor. Source: <a href="https://earthengine.google.com/platform/">Earth Engine documentation</a>.</em></p>
 
 <h3 id="first-run">First Run</h3>
 
 <p>To create your first Earth Engine script, paste the following JavaScript code into the editor and click <code>Run</code>:</p>
 
-<pre><code class="language-javascript">var landsatImage = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_024039_20200930"); // import Landsat image
+<pre><code class="language-javascript">var landsatImage = ee.Image("LANDSAT/LC08/C02/T1_TOA/LC08_024039_20200930"); // import Landsat image
 var layerOptions = {bands: ['B4', 'B3', 'B2'], max: 0.3}; // set bands to display
 Map.centerObject(landsatImage, 8); // center map on image at zoom level 8
 Map.addLayer(landsatImage, layerOptions, 'Landsat true color'); // display image on map, labeled
@@ -183,7 +183,7 @@ Map.addLayer(landsatImage, layerOptions, 'Landsat true color'); // display image
 
 <p>Now replace all of the code with the lines below to show several bands as separate images, and click <code>Run</code>. You can use the <code>Layers</code> control on the map to show and hide each layer to compare them (refer to Figure 6 for where controls are in Earth Engine).</p>
 
-<pre><code class="language-javascript">var landsatImage = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_024039_20200930");
+<pre><code class="language-javascript">var landsatImage = ee.Image("LANDSAT/LC08/C02/T1_TOA/LC08_024039_20200930");
 Map.centerObject(landsatImage, 8);
 
 Map.addLayer(landsatImage, {bands: ['B1'], palette: ['blue', 'white'], min: 0.10, max: 0.13}, 'Band 1 coastal/aerosol');
@@ -213,7 +213,7 @@ Map.addLayer(landsatImage, {bands: ['B10'], palette:['gray','yellow','red'], min
 
 <p>Go back to Earth Engine and replace the code with the lines below to again show the Landsat image in true color.</p>
 
-<pre><code class="language-javascript">var landsatImage = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_024039_20200930");
+<pre><code class="language-javascript">var landsatImage = ee.Image("LANDSAT/LC08/C02/T1_TOA/LC08_024039_20200930");
 var layerOptions = {bands: ['B4', 'B3', 'B2'], max: 0.3};
 Map.centerObject(landsatImage, 8);
 Map.addLayer(landsatImage, layerOptions, 'Landsat true color');
@@ -250,7 +250,7 @@ Map.addLayer(landsatImage, layerOptions, 'Landsat true color');
 
 <p>NDVI = (NIR - Red) ÷ (NIR + Red)</p>
 
-<p>In Earth Engine, you could use the inspector to see pixel values for Landsat’s red <code>B4</code> and NIR <code>B5</code> bands, then plug those values into the formula above to calculate a pixel’s NDVI. Let’s say you clicked a pixel in a forest, you might get a red value of 0.03 and NIR value of 0.20.</p>
+<p>In Earth Engine, you could use the inspector to see pixel values for Landsat’s red <code>B4</code> and NIR <code>B5</code> bands, then plug those values into the formula above to calculate a pixel’s NDVI. Let us say you clicked a pixel in a forest, you might get a red value of 0.03 and NIR value of 0.20.</p>
 
 <p>NDVI = (0.20 - 0.03) ÷ (0.20 + 0.03)<br />
 NDVI = 0.74</p>
@@ -259,7 +259,7 @@ NDVI = 0.74</p>
 
 <p>Go back to the Code Editor and again start with a true-color Landsat image:</p>
 
-<pre><code class="language-javascript">var landsatImage = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_024039_20200930");
+<pre><code class="language-javascript">var landsatImage = ee.Image("LANDSAT/LC08/C02/T1_TOA/LC08_024039_20200930");
 var layerOptions = {bands: ['B4', 'B3', 'B2'], max: 0.3};
 Map.centerObject(landsatImage, 8);
 Map.addLayer(landsatImage, layerOptions, 'Landsat true color');
@@ -297,7 +297,7 @@ var red = landsatImage.select('B4');
 
 <p>There is actually a shortcut function in Earth Engine, <code>normalizedDifference()</code>, for calculating NDVI to help shorten the code. Altogether, the NDVI image can be produced with this simplified script:</p>
 
-<pre><code class="language-javascript">var ndvi = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_024039_20200930")
+<pre><code class="language-javascript">var ndvi = ee.Image("LANDSAT/LC08/C02/T1_TOA/LC08_024039_20200930")
   .normalizedDifference(['B5', 'B4'])
   .rename('NDVI');
 Map.addLayer(ndvi, {min: -1, max: 1, palette: ['blue', 'white', 'green']}, 'NDVI image');
@@ -316,6 +316,11 @@ Map.centerObject(ndvi, 8);
 
 <p><img src="../../lessons/images/la-clear.png" alt="LA Clear" class="shadow" /></p>
 
+<div class="alert alert-info" role="alert">
+  <span class="material-icons">info</span>
+  We're not just building a mosaic. We're writing a program that builds mosaics.  
+</div>
+
 <p>First, import two datasets already hosted in the Earth Engine catalog:</p>
 <ul>
   <li>U.S. state boundaries to clip the images to the outline of Louisiana</li>
@@ -326,7 +331,7 @@ Map.centerObject(ndvi, 8);
 
 <pre><code class="language-javascript">var statePolygon = ee.FeatureCollection("TIGER/2018/States")
   .filter(ee.Filter.eq('NAME', 'Louisiana'));
-var landsat8 = ee.ImageCollection('LANDSAT/LC08/C01/T1_TOA');
+var landsat8 = ee.ImageCollection('LANDSAT/LC08/C02/T1_TOA');
 </code></pre>
 
 <div class="alert alert-info" role="alert">
@@ -426,7 +431,7 @@ Map.addLayer(mosaicLandWater, {}, 'State Landsat mosaic');
 <pre><code class="language-javascript">// Import datasets
 var statePolygon = ee.FeatureCollection("TIGER/2018/States")
   .filter(ee.Filter.eq('NAME', 'Louisiana'));
-var landsat8 = ee.ImageCollection('LANDSAT/LC08/C01/T1_TOA');
+var landsat8 = ee.ImageCollection('LANDSAT/LC08/C02/T1_TOA');
 
 // Filter Landsat images of the state in a time period
 var landsatFiltered = landsat8
@@ -498,7 +503,7 @@ Map.addLayer(mosaicLandWater, {}, 'State Landsat mosaic');
 <p>There is a dataset available in Earth Engine with Landsat pixels that have been classified as tree cover. With this we can approximate the area of tree cover in Louisiana. Open the <a href="https://code.earthengine.google.com/">Code Editor</a>, paste and <code>Run</code> this code. A tree cover value in square meters will be printed to the <code>Console</code> (no map yet).</p>
 
 <pre><code class="language-javascript">var statePolygon = ee.FeatureCollection("TIGER/2018/States").filter(ee.Filter.eq('NAME', 'Louisiana'));
-var gfc2018 = ee.Image('UMD/hansen/global_forest_change_2019_v1_7');
+var gfc2018 = ee.Image('UMD/hansen/global_forest_change_2024_v1_12');
 var treeCover = gfc2018
   .clip(statePolygon)
   .select(['treecover2000']) // select tree cover from the raster
@@ -553,12 +558,12 @@ Map.setCenter(-95, 37, 4);
 
 <p>A single satellite or aerial image is not usually too much information for a personal computer to handle, but large image collections are better processed by cloud computing platforms employing Web GIS, where datasets and geoprocessing tools are offered as web services. Programming languages like JavaScript can be used to communicate with these web services, typically. Google Earth Engine has an online code editor where you can write JavaScript to analyze imagery and see the result displayed on a map or a console.</p>
 
-      <a href="#top">Top</a><br>
-      <a href="../../lessons/">Back to Lessons</a>
+      <a href="#top">&uarr; Top</a><br>
+      <a href="../../lessons/">&larr; Back to Lessons</a>
     </section>
     
 <footer class="site-footer">
-  <small>&copy; All rights reserved.</small>
+  <small>&nbsp;&copy; All rights reserved.</small>
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>

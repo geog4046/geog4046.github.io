@@ -102,7 +102,7 @@
 <p><img src="../../lessons/images/google-maps-tiles.png" alt="Google Maps tiles loading" class="shadow" />
 <em>Figure 6. A screenshot of Google Maps taken before the view has finished loading, showing individual map tiles still being downloaded and assembled by the browser.</em></p>
 
-<p>Your browser, the client, is loading the Google Maps webpage and requesting images (tiles) of the map, downloading them and displaying them on screen. Let’s use web developer tools to have a look behind the scenes.</p>
+<p>Your browser, the client, is loading the Google Maps webpage and requesting images (tiles) of the map, downloading them and displaying them on screen. We can use web developer tools to have a look behind the scenes.</p>
 
 <p><img src="../../lessons/images/google-maps-single-tile.png" alt="A single map tile" class="shadow" />
 <em>Figure 7. The developer tools in a browser can be used to show the individual map tiles being downloaded when you view a web map. This screenshot of the Chrome developer tools shows the URL of an individual map tile (left), the tile image preview (center), and an approximate outline of the tile’s location on the assembled map.</em></p>
@@ -131,7 +131,7 @@
 
 <p><img src="../../lessons/images/tile-example-1.png" alt="Tile example 1" class="shadow" /></p>
 
-<p>Let’s say that our browser window is 512x512 pixels, and the size of each tile will be 256x256 pixels, a typical tile size:</p>
+<p>Let us say that our browser window is 512x512 pixels, and the size of each tile will be 256x256 pixels, a typical tile size:</p>
 
 <p><img src="../../lessons/images/tile-example-2.png" alt="Tile example 2" /></p>
 
@@ -139,7 +139,7 @@
 
 <p><img src="../../lessons/images/tile-example-3.png" alt="Tile example 3" /></p>
 
-<p>Let’s call this zoomed-out view <code>Zoom level 0</code> (no zoom). When tiling software creates tiles, it organizes them not just by zoom level but by rows and columns. Like the zoom level, the counting starts at 0. Therefore, the first row is <code>Row 0</code>, and the first column is <code>Col 0</code>.</p>
+<p>We will call this zoomed-out view <code>Zoom level 0</code> (no zoom). When tiling software creates tiles, it organizes them not just by zoom level but by rows and columns. Like the zoom level, the counting starts at 0. Therefore, the first row is <code>Row 0</code>, and the first column is <code>Col 0</code>.</p>
 
 <p><img src="../../lessons/images/tile-example-4.png" alt="Tile example 4" /></p>
 
@@ -175,7 +175,7 @@
 
 <p><img src="../../lessons/images/tile-example-5.png" alt="Tile example 5" /></p>
 
-<p>Now let’s say the user zooms in one level, to <code>Zoom level 1</code>. Their browser looks like this, showing a new set of tiles with different file names and a more zoomed-in view of the coast.</p>
+<p>Now, say the user zooms in one level, to <code>Zoom level 1</code>. Their browser looks like this, showing a new set of tiles with different file names and a more zoomed-in view of the coast.</p>
 
 <p><img src="../../lessons/images/tile-example-6.png" alt="Tile example 6" /></p>
 
@@ -207,7 +207,7 @@
 
 <p>If you were creating a tile cache layer of your own, how would you know how many zoom levels to generate?</p>
 
-<p>One factor to consider is the resolution of the source image. Let’s say that with our example image, once we zoom in to level 10, the image starts to look pixelated and no further detail can be discerned. There is no point in creating further zoom levels.</p>
+<p>One factor to consider is the resolution of the source image. Imagine that with our example image, once we zoom in to level 10, the image starts to look pixelated and no further detail can be discerned. There is no point in creating further zoom levels.</p>
 
 <p>Another factor to consider is storage space and processing power. Tile images are files, and they will take up storage space on a server or cloud service. The benefits of giving your audience a closer zoom level must be weighed against the additional costs for your organization.</p>
 
@@ -263,12 +263,12 @@
 <p>One of the 5,041 tiles from the highest zoom level (7), showing the greatest level of detail:<br />
 <img src="https://maps.ga.lsu.edu/tiles/starstuff/7/27/35.png" alt="Zoom level 7 tile or Orion" class="shadow" /></p>
 
-      <a href="#top">Top</a><br>
-      <a href="../../lessons/">Back to Lessons</a>
+      <a href="#top">&uarr; Top</a><br>
+      <a href="../../lessons/">&larr; Back to Lessons</a>
     </section>
     
 <footer class="site-footer">
-  <small>&copy; All rights reserved.</small>
+  <small>&nbsp;&copy; All rights reserved.</small>
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>

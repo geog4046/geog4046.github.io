@@ -124,7 +124,7 @@
 <p>Going from data to web application involves a few steps in Web GIS if you want to offer your data as a web service. The following explanation is given based on the ArcGIS platform but it can pertain to other Web GIS setups as well.</p>
 
 <ol>
-  <li>Let’s consider “features” the smallest building block in what will eventually become a Web GIS application. Features are the individual objects on a map representing things like rivers, parks, and campsites.</li>
+  <li>Let us consider “features” the smallest building block in what will eventually become a Web GIS application. Features are the individual objects on a map representing things like rivers, parks, and campsites.</li>
   <li>Similar features are grouped together in a layer, so you might have a layer of rivers and another layer of campsites.</li>
   <li>A layer or sometimes multiple layers can be published as a web service to act as a package for delivering the layers over the web.</li>
   <li>The layers in the web service can be added to a map and combined with other layers, such as showing a campsite layer over a satellite image basemap.</li>
@@ -144,7 +144,7 @@
 <p>Coordinate systems are fundamental to GIS. Locations on Earth expressed as numeric coordinates allow for quantitative analysis of distance and spatial relationships.</p>
 
 <p><img src="../../lessons/images/2d-crs.png" alt="A simple 2D coordinate system" class="shadow" />
-<em>Figure 8. A simple coordinate system, similar in concept to the coordinate reference systems used in maps.</em></p>
+<em>Figure 8. A simple coordinate system, similar in concept to the coordinate reference systems used in GIS.</em></p>
 
 <p>Where coordinate systems come into play in cartography is in choosing a projection. <strong>Projections</strong> are methods for transforming the 3D surface of a globe into a 2D plane for use in maps. The video below gives a nice overview of projections and the issues they can pose for cartographers.</p>
 
@@ -159,7 +159,7 @@
 <p>Sometimes you can find such errors on web maps before they are fixed. If you navigate a web map to 0,0 where the Prime Meridian intersects the Equator off the western coast of Africa, occasionally you will find businesses, bike trails, and other user-generated content in the ocean, no doubt the result of a coordinate system mishap.</p>
 
 <p><img src="../../lessons/images/ocean-home-goods.png" alt="A Home Goods location in the ocean due to a coordinate system mishap" class="shadow" />
-<em>Figure 10. A Home Goods location placed in the ocean on Google Maps where the Prime Meridian intersects the Equator, likely due to a coordinate system mishap.</em></p>
+<em>Figure 10. A home goods store location placed in the ocean on Google Maps where the Prime Meridian intersects the Equator, likely due to a coordinate system mishap.</em></p>
 
 <p><img src="../../lessons/images/ocean-osm.png" alt="Coordinate system mishap on OpenStreetMap" class="shadow" />
 <em>Figure 11. A layer available on OpenStreetMap.org shows a location mistakenly put into the ocean.</em></p>
@@ -176,12 +176,12 @@
 
 <p>And while you might not have to worry about using a projection other than Web Mercator, you can bet you have a coordinate system issue if you ever import data in Web GIS that ends up projected in the ocean. You can use a desktop GIS application to project your data to Web Mercator prior to importing to your Web GIS, or convert it to WGS84 if your Web GIS accepts latitude/longitude input.</p>
 
-      <a href="#top">Top</a><br>
-      <a href="../../lessons/">Back to Lessons</a>
+      <a href="#top">&uarr; Top</a><br>
+      <a href="../../lessons/">&larr; Back to Lessons</a>
     </section>
     
 <footer class="site-footer">
-  <small>&copy; All rights reserved.</small>
+  <small>&nbsp;&copy; All rights reserved.</small>
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>

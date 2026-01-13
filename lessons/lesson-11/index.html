@@ -65,7 +65,7 @@
 
 <h2 id="webpages-and-web-browsers">Webpages and Web Browsers</h2>
 
-<p>If you are reading this lesson, you might not have much experience with creating webpage documents from scratch, but there is another type of document that you have probably created many times: a Word document. To understand how webpages and browsers work, let’s first look at how a browser is similar to a word processor, Microsoft Word.<br />
+<p>If you are reading this lesson, you might not have much experience with creating webpage documents from scratch, but there is another type of document that you have probably created many times: a Word document. To understand how webpages and browsers work, let us first look at how a browser is similar to a word processor, Microsoft Word.<br />
 <img src="../../assignment-resources/images/word-docx.png" alt="Word document icon" /></p>
 
 <p>You can follow along by <a href="../../assignment-resources/data/New%20Document.docx">downloading the example document</a>.</p>
@@ -75,7 +75,7 @@
 <p><img src="../../assignment-resources/images/word-docx-rendered.png" alt="Screenshot of a rendered Word document showing formatted text and an image" class="shadow" />
 <em>Figure 2. A document rendered by Microsoft Word. The way a word processing program renders a document is similar to how a browser renders a webpage.</em></p>
 
-<p>Now let’s look behind the scenes in the <code>docx</code> file. If you rename the file from <code>New Document.docx</code> to <code>New Document.zip</code> in Windows File Explorer, you can open the zip file and see that the Word document is actually a collection of files and folders.</p>
+<p>Now let us look behind the scenes in the <code>docx</code> file. If you rename the file from <code>New Document.docx</code> to <code>New Document.zip</code> in Windows File Explorer, you can open the zip file and see that the Word document is actually a collection of files and folders.</p>
 
 <p><img src="../../assignment-resources/images/word-docx-zip.png" alt="Word document renamed as a zip file" /></p>
 
@@ -96,7 +96,7 @@ word
 <p>The word processor’s job is to assemble and make sense of all of those different files and folders in order to display the content to the user. This is how a web browser works when it assembles the various webpages and graphics that make a website. Instead of opening a document file saved on your computer, the web browser opens a document online via a URL.</p>
 
 <h2 id="urls-and-files">URLs and Files</h2>
-<p>The URL is an address to another computer (a web server) on the Internet, and to a specific document on that web server, for example <code>https://example.com/index.html</code>. The document in this case is named <code>index.html</code>, and it contains the code that the browser will use to display the text, download and display images, and follow any other instructions needed to correctly display the webpage.</p>
+<p>As covered in Lesson 2, a URL is an address to another computer (a web server) on the Internet, and to a specific resource on that web server, for example <code>https://example.com/index.html</code>. The resource in this case is a document named <code>index.html</code>, and it contains the code that the browser will use to display the text, download and display images, and follow any other instructions needed to correctly display the webpage.</p>
 
 <p>If you omit the file name from the URL, the web server will assume you want the default document, which is often <code>index.html</code>. Therefore:</p>
 
@@ -113,35 +113,35 @@ is the same as:<br />
 <ul>
   <li><strong>Hypertext Markup Language (HTML)</strong> gives the browser information about the content and what resources to download, e.g., images, CSS files, and JavaScript files.</li>
   <li><strong>Cascading Style Sheets (CSS)</strong> contain rules for how webpage content should be presented, such as fonts, colors, and alignment.</li>
-  <li><strong>JavaScript (JS)</strong> is a programming language that allows us to give instructions for how the browser should react to certain events, such as a click or scroll.</li>
+  <li><strong>JavaScript</strong> is a programming language that allows us to give instructions for how the browser should react to certain events, such as a click or scroll.</li>
 </ul>
 
-<p>In short, HTML, CSS, and JS are the content, style, and behavior of a webpage, respectively.</p>
+<p>In short, HTML, CSS, and JavaScript are the content, style, and behavior of a webpage, respectively.</p>
 
 <p>The three languages are often embodied in the website as three separate files:</p>
 <ul>
   <li><code>index.html</code> (standard file name)</li>
-  <li><code>something.css</code></li>
-  <li><code>something.js</code></li>
+  <li><code>example.css</code></li>
+  <li><code>example.js</code></li>
 </ul>
 
-<p>They are linked together through the HTML file. Remember how the Word document had code to reference a separate image file? HTML files can do the same thing. HTML uses special “elements” (more on elements in another lesson), <code>link</code> and <code>script</code>, which refer to the CSS and JavaScript files, respectively. When a browser reads your webpage’s HTML, it will encounter these elements and download the files they reference, giving the browser additional instructions on how the webpage should look and act.</p>
+<p>They are linked together through the HTML file. Remember how the Word document had code to reference a separate image file? HTML files can do the same thing. HTML code uses special “elements” (more on elements in another lesson), <code>link</code> and <code>script</code>, which refer to the CSS and JavaScript files, respectively. When a browser reads your webpage’s HTML, it will encounter these elements and download the files they reference, giving the browser additional instructions on how the webpage should look and act.</p>
 
 <p><img src="../../assignment-resources/images/files-html-css-js.png" alt="HTML, CSS, and JavaScript files" />
-<em>Figure 4. An HTML document references other files. The <code>link</code> and <code>script</code> tags allow you to specify CSS and JavaScript files to include with your HTML.</em></p>
+<em>Figure 4. An HTML document’s code, showing the elements that reference other files in the same folder as the HTML document. The <code>link</code> and <code>script</code> tags allow you to specify CSS and JavaScript files to include with your HTML.</em></p>
 
 <h2 id="html-css-js-for-web-maps">HTML-CSS-JS for Web Maps</h2>
 <p>HTML, CSS, and JavaScript each serve roles in displaying a web map on a webpage.</p>
 <ul>
   <li>HTML creates an “invisible box” that will be like a canvas on which the map is drawn.</li>
   <li>CSS sets the dimensions of the box to control the size of the map on the screen, as well as the appearance of popups and other visual components of the map.</li>
-  <li>JS retrieves data from web services, draws layers on the HTML canvas, listens for user clicks, zooms, pans, etc.</li>
+  <li>JavaScript retrieves data from web services, draws layers on the HTML canvas, listens for user clicks, zooms, pans, etc.</li>
 </ul>
 
 <p><img src="../../assignment-resources/images/roles-html-css-js.png" alt="The roles of HTML, CSS, and JavaScript in a web map" />
 <em>Figure 5. Some of the roles that HTML, CSS, and JavaScript play in displaying a map on a webpage.</em></p>
 
-<p>In terms of how those roles translate into code in each HTML, CSS, and JS file, each map displayed on the webpage has a unique <code>id</code> that is referenced in the HTML. Then CSS and JS work together to control the appearance and behavior of the map.</p>
+<p>In terms of how those roles translate into code in each HTML, CSS, and JavaScript file, each map displayed on the webpage has a unique <code>id</code> that is referenced in the HTML. Then CSS and JavaScript work together to control the appearance and behavior of the map.</p>
 
 <p><img src="../../assignment-resources/images/id-id-id.png" alt="HTML, CSS, and JavaScript code using the same ID" />
 <em>Figure 6. The same <code>id</code> will be used to identify the map in the HTML, CSS, and JavaScript. The <code>id</code> is a unique name that you create, though usually a simple <code>map</code> will do.</em></p>
@@ -150,12 +150,12 @@ is the same as:<br />
 <ul>
   <li>Without the HTML, there would be no <code>div</code> element to draw the map in.</li>
   <li>Without the CSS, the <code>div</code> could exist in the HTML, but it would not have a height, and would therefore be invisible.</li>
-  <li>Without the JS, the <code>div</code> could exist in the HTML with a height specified in the CSS, but there would be no map because the layers weren’t retrieved and drawn on the map, and users could not click or scroll on the map.</li>
+  <li>Without the JavaScript, the <code>div</code> could exist in the HTML with a height specified in the CSS, but there would be no map because the layers weren’t retrieved and drawn on the map, and users could not click or scroll on the map.</li>
 </ul>
 
 <p>The browser reads the three languages and combines the instructions to create a seamless webpage that hides the complexities behind the scenes.</p>
 
-<p>It is possible to put CSS into an HTML file directly with the <code>style</code> tag, and JavaScript can be written between <code>script</code> tags in and HTML file. Doing so would leave you with a single <code>.html</code> file and no separate <code>.css</code> and <code>.js</code> files. However, in our assignments, we will always put scripts and styles in separate files, meaning each assignment will have an <code>index.html</code>, a <code>.css</code> file, and a <code>.js</code> file.</p>
+<p>It is possible to put CSS into an HTML file directly with the <code>style</code> tag, and JavaScript can be written between <code>script</code> tags in an HTML file. Doing so would leave you with a single <code>.html</code> file and no separate <code>.css</code> and <code>.js</code> files. However, in our assignments, we will always put scripts and styles in separate files, meaning each assignment will have an <code>index.html</code>, a <code>.css</code> file, and a <code>.js</code> file.</p>
 
 <h2 id="summary">Summary</h2>
 <p>A web browser opens a webpage via a URL and renders the content on screen. The web browser reads the webpage’s source code for instructions on how to display the webpage and react to user interactions, such as mouse clicks. The languages used to instruct the browser are HTML, CSS, and JavaScript.</p>
@@ -172,12 +172,12 @@ is the same as:<br />
   <li>Mozilla - <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web">Getting Started with the Web</a></li>
 </ul>
 
-      <a href="#top">Top</a><br>
-      <a href="../../lessons/">Back to Lessons</a>
+      <a href="#top">&uarr; Top</a><br>
+      <a href="../../lessons/">&larr; Back to Lessons</a>
     </section>
     
 <footer class="site-footer">
-  <small>&copy; All rights reserved.</small>
+  <small>&nbsp;&copy; All rights reserved.</small>
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>

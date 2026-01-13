@@ -74,12 +74,12 @@
 
 <p>For an example of why standards are useful in Web GIS, imagine a web service that outputs data on recent earthquakes: time, location, and magnitude. The web service developers must decide how to format their data so it can be read by other applications, such as a website showing a real-time map of earthquakes. The web service developers could make up their own data format, or they could use an existing standard.</p>
 
-<p>Let’s say the hypothetical developers make up their own format, and a sample of hypothetical data looks like this:</p>
+<p>Let us say the hypothetical developers make up their own format, and a sample of hypothetical data looks like this:</p>
 
 <pre><code>time?2021-01-17T16:18:18;lat?-20.9464;lon?170.5993;magnitude?4.5
 </code></pre>
 
-<p>Any other developers who want their applications to read that data will need to learn this format and tailor their code to work with it specifically. This can be a headache, especially when dealing with multiple data providers who all use their own homegrown formats. In our earthquake web map example, let’s say the developers wanted to use data from different governments and agencies, each using their own format. The web map would need custom code to interpret each custom format. The developers of the web map would have to try to keep up with any changes in these formats, and update their code accordingly.</p>
+<p>Any other developers who want their applications to read that data will need to learn this format and tailor their code to work with it specifically. This can be a headache, especially when dealing with multiple data providers who all use their own homegrown formats. In our earthquake web map example, let us say the developers wanted to use data from different governments and agencies, each using their own format. The web map would need custom code to interpret each custom format. The developers of the web map would have to try to keep up with any changes in these formats, and update their code accordingly.</p>
 
 <p>Alternatively, the web service developers could decide to use a standard data format, such as comma-separated values (CSV):</p>
 
@@ -104,7 +104,7 @@
 <p><img src="../../lessons/images/webgis-3-servers.png" alt="Web GIS architecture with three servers" />
 <em>Figure 2. A Web GIS infrastructure with three servers. The web server communicates with public clients and the internal GIS server, which hosts web services. These web services pull their data from the data store.</em></p>
 
-<p>Let’s use a <a href="https://portal-nolagis.opendata.arcgis.com/datasets/nordc-facilities">layer of public recreational facilities in New Orleans</a> as an example.</p>
+<p>Let us use a <a href="https://portal-nolagis.opendata.arcgis.com/datasets/nordc-facilities">layer of public recreational facilities in New Orleans</a> as an example.</p>
 <ul>
   <li>The layer lives on the “data store” server in a database—software that uses a series of tables to store the layer’s location data (coordinates of the facilities) and attribute data (park names, year built, etc.).</li>
   <li>When the web service receives a request from a client for the facilities layer, such as when you click the link below, the data’s journey begins. The GIS server retrieves the layer from the database and converts it to a text-based interchange format that can easily be passed over the web to another application. In this case, the <a href="https://opendata.arcgis.com/api/v3/datasets/6b300a5418b9422f8ac20452e3183120_0/downloads/data?format=geojson&amp;spatialRefId=4326">layer is available in GeoJSON format</a>.</li>
@@ -359,12 +359,12 @@ Though the ArcGIS web services are not considered open standards themselves, the
 
 <p>To put these concepts into practice, in the next assignment you will create your own geographic information saved in plain-text formats (GeoJSON, CSV) and publish the data in a Web GIS (ArcGIS Online) as a web service. You will then create an application to consume the web service and display the geographic information on a map.</p>
 
-      <a href="#top">Top</a><br>
-      <a href="../../lessons/">Back to Lessons</a>
+      <a href="#top">&uarr; Top</a><br>
+      <a href="../../lessons/">&larr; Back to Lessons</a>
     </section>
     
 <footer class="site-footer">
-  <small>&copy; All rights reserved.</small>
+  <small>&nbsp;&copy; All rights reserved.</small>
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
