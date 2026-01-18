@@ -33,61 +33,89 @@
 
     <section class="main-content">
       <h1 class="text-center">Assignment 2</h1>
-      <h2 class="text-center">Calculate distance using a web service</h2>
-      <p>Web services were introduced in the lessons as programs that allow communication between applications on the Internet, which in Web GIS usually means showing maps in a browser or app. In the previous assignment, roads, demographics, and basemap layers were streamed to our app via web services, and most of our assignments will pull data in this way. Today we will write the code to create our own web service from scratch.</p>
+      <h2 class="text-center">DIY web service</h2>
+      <p>Web services were introduced in the lessons as programs that allow communication between applications on the Internet, which in Web GIS usually means showing maps and data in a browser or app. In the previous assignment, roads, demographics, and basemap layers were “streamed” to our app via web services, and most of our assignments will pull data in this way. Today we will write the code to create our own web service from scratch.</p>
 
-<p>To do this, we will need a web server to host our application and listen for requests from clients. We will use CodeSandbox.io as a free test environment*.</p>
+<p>To do this, we will need a web server to host our application and listen for requests from clients. We will use CodeSandbox.io as a free test environment.</p>
 
 <p>The web service will perform a simple operation: find the distance between two points on Earth. The programming language we will use is JavaScript.</p>
 
-<p><em>*The same environment could be set up on your own server or personal computer by installing <a href="https://nodejs.org/en/download/">Node.js</a> on Windows, macOS, or Linux.</em></p>
+<p>Lastly, we will create a webpage that lets users enter two locations and see the distance between them in kilometers, with our web service doing the calculation behind the scenes.</p>
 
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#prep">Prep</a></li>
   <li><a href="#steps">Steps</a>
     <ul>
-      <li><a href="#part-1-make-a-web-service">Part 1: Make a web service</a></li>
-      <li><a href="#part-2-make-an-app">Part 2. Make an app</a></li>
+      <li><a href="#part-1-create-a-server-app">Part 1: Create a server app</a></li>
+      <li><a href="#part-2-create-a-client-app">Part 2. Create a client app</a></li>
     </ul>
   </li>
   <li><a href="#try-it">Try It</a></li>
   <li><a href="#checklist">Checklist</a></li>
   <li><a href="#submit">Submit</a></li>
-  <li><a href="#appendix">Appendix</a></li>
 </ul>
 
 <h2 id="prep">Prep</h2>
+<p>Our distance calculator web service will need to be hosted on a web server, so first we will set up a server on CodeSandbox.</p>
 <ol>
-  <li>
-    <p>Go to <a href="https://codesandbox.io/s">https://codesandbox.io/s</a> and click <strong>Sign in</strong>. Use your Github account to sign in.<br />
-<img src="../../assignment-resources/images/csb-signin.png" alt="CodeSandbox sign in link" /></p>
-  </li>
-  <li>
-    <p>Under <strong>Create Sandbox</strong>, choose <strong>Node HTTP Server</strong>.<br />
-<img src="../../assignment-resources/images/csb-node.png" alt="CodeSandbox Node template" /></p>
-  </li>
-  <li>
-    <p>Once the Sandbox is created, take a moment to absorb what is on the screen, because it will seem like a lot. Note four main areas of interest:</p>
+  <li>Go to <a href="https://codesandbox.io">https://codesandbox.io</a> and sign in with a Google or Github account.<br />
+ </li>
+  <li>Click “+ Create”, search for “Node HTTP Server”, and click its tile.<br />
+<img src="../../assignment-resources/images/node-http-server.png" alt="Node HTTP server" /><br />
+ </li>
+  <li>Options will appear to configure the server.
     <ul>
-      <li>Files - <code>index.js</code> is created by default as our main application file. Click a file to view and edit its code.</li>
-      <li>Code - <code>index.js</code> contains some default JavaScript that we will modify here in the code area.</li>
-      <li>Preview - Your application’s output will be previewed here in an emulated browser.</li>
-      <li>URL - You can copy this URL to a real browser to view your application’s output, just like a real web app!<br />
-<img src="../../assignment-resources/images/csb-first-view.png" alt="CodeSandbox Node template" /></li>
+      <li>Name: Distance Calc Server</li>
+      <li>Visibility: Unlisted</li>
+      <li>VM specs: Pico</li>
+      <li>Click “Create Devbox”<br />
+ </li>
     </ul>
   </li>
+  <li>Once the server is created, you will see a workspace with three main panels:
+    <ul>
+      <li>Files - <code>index.js</code> is created by default as our main application file.</li>
+      <li>Code - <code>index.js</code> contains some default JavaScript that we will modify.</li>
+      <li>Preview - Your application’s output will be previewed here in an emulated browser.<br />
+<img src="../../assignment-resources/images/csb-first-view.png" alt="CodeSandbox Node template" /><br />
+ </li>
+    </ul>
+  </li>
+  <li>Note your app URL, similar to <code>https://abc123-8080.csb.app</code>. You will use it later.</li>
 </ol>
 
-<p>You don’t have a web service yet, but you’re all set to start coding one.</p>
-
 <h2 id="data">Data</h2>
-<p>The data to calculate distance will be two pairs of latitude and longitude coordinates representing two locations. For example, 30 degrees latitude and -90 longitude for New Orleans and 30.45 degrees latitude and -91.187 longitude for Baton Rouge.</p>
+<p>The data to calculate distance will be the latitude and longitude of two locations, Location A and Location B; for example, 30 degrees latitude and -90 longitude for New Orleans and 30.45 degrees latitude and -91.187 longitude for Baton Rouge.</p>
+
+<p>Example data:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Location</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A</td>
+      <td>30.0</td>
+      <td>-90.0</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>30.45</td>
+      <td>-91.187</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="steps">Steps</h2>
-<h3 id="part-1-make-a-web-service">Part 1: Make a web service</h3>
+<h3 id="part-1-create-a-server-app">Part 1: Create a server app</h3>
 <ol>
-  <li>Delete all default code in <code>index.js</code> and copy and paste the code below. Notice the three italicized lines beginning with <code>//</code>. These are comments and they indicate what the blocks of code under them do, for any person reading the code. You do not need to understand every bit of code here, just the general purpose of each part.
+  <li>Delete all default code in <code>index.js</code> and copy and paste the code below. Read the lines beginning with <code>//</code> for comments describing what the code does. You do not need to understand every bit of code here, just the general purpose of each part.
     <pre><code class="language-javascript">  var http = require("http");
   http
  .createServer(function (request, response) {
@@ -98,7 +126,7 @@
    var latB = requestUrl.searchParams.get("latB");
    var lonB = requestUrl.searchParams.get("lonB");
 
-   // Use the spherical law of cosines formula to calculate distance along the surface of a sphere. It is not the most accurate method for Earth, but it is good enough. Source: https://www.movable-type.co.uk/scripts/latlong.html
+   // Use the spherical law of cosines formula to calculate distance in kilometers along the surface of a sphere. Source: https://www.movable-type.co.uk/scripts/latlong.html
    var φ1 = (latA * Math.PI) / 180;
    var φ2 = (latB * Math.PI) / 180;
    var Δλ = ((lonB - lonA) * Math.PI) / 180;
@@ -116,32 +144,46 @@
  .listen(8080);
 </code></pre>
   </li>
-  <li>Save <code>index.js</code> by clicking <strong>File &gt; Save</strong>, or use the shortcut <code>Ctrl</code>+<code>S</code> (<code>Cmd</code>+<code>S</code> on Mac).</li>
-  <li>Refresh the <strong>preview browser</strong> (not your web browser); it should output <code>{"distance": 0}</code> because we did not provide input in the URL.</li>
-  <li>In the <strong>preview browser’s</strong> address bar, add the following text to the end of the URL and press <code>Enter</code> on your keyboard:<br />
-  <code>?latA=30&amp;lonA=-90&amp;latB=30.45&amp;lonB=-91.187</code><br />
-  The URL now contains parameters with values. When you press enter, the lat/lon values for a “point A” (New Orleans) and “point B” (Baton Rouge) are passed to the web service, which calculates the distance using the formula we entered in JavaScript.
+  <li>Save <code>index.js</code> using the keyboard shortcut <code>Ctrl</code>+<code>S</code> (<code>Cmd</code>+<code>S</code> on Mac).</li>
+  <li>Refresh the preview (not your web browser); it should output <code>{"distance": 0.00}</code> because we did not provide input in the URL.</li>
+  <li>In the preview address bar, paste the following text to the end of your app URL and press Enter: <code>?latA=30&amp;lonA=-90&amp;latB=30.45&amp;lonB=-91.187</code>. This assigns values to the lat/lon parameters.
     <ul>
       <li><code>latA</code> = 30</li>
       <li><code>lonA</code> = -90</li>
       <li><code>latB</code> = 30.45</li>
-      <li><code>lonB</code> = -91.187</li>
+      <li><code>lonB</code> = -91.187<br />
+  Full URL example (replace <code>abc123</code> with your app’s ID):<br />
+  <code>https://abc123-8080.csb.app?latA=30&amp;lonA=-90&amp;latB=30.45&amp;lonB=-91.187</code>.</li>
     </ul>
   </li>
-  <li>The web service should now output <code>{"distance": 124.53850456983854}</code>, which is the distance in kilometers.</li>
-  <li>Note the URL that your web service is using by looking in the address bar of the Codesandbox <strong>preview browser</strong> (not your web browser). You will need this URL in the next part, so copy it now. The URL should be similar to <code>https://abc123.sse.codesandbox.io</code>.</li>
+  <li>The web service should now output <code>{"distance": 124.54}</code> because when you pressed Enter to preview the URL, the lat/lon values for a “point A” (New Orleans) and “point B” (Baton Rouge) were sent to your web service—the program you wrote to calculate distance.</li>
 </ol>
 
-<p>The web service is ready to receive requests at that URL from other apps needing a distance calculation.</p>
+<p>Your web service is now complete. Your server is listening at that URL for requests from other apps, ready to plug their input into the distance formula and output the result.</p>
 
-<h3 id="part-2-make-an-app">Part 2: Make an app</h3>
-<p>With the web service now listening for requests, let’s make an app to request a distance calculation from it.</p>
+<h3 id="part-2-create-a-client-app">Part 2: Create a client app</h3>
+<p>Now let us make an app to put the web service to use. Your app will be a webpage that:</p>
+<ul>
+  <li>Lets users type in the lat/lon of two locations.</li>
+  <li>Sends the lat/lon coordinates to your web service.</li>
+  <li>Shows the web service output (distance in km) to the user.</li>
+</ul>
+
+<p>You will create another sandbox to host this webpage.</p>
 
 <ol>
-  <li>Follow the steps in the <a href="#prep">Prep</a> section again to create another sandbox, but this time under <strong>Create Sandbox</strong> choose <strong>Vanilla</strong> for a plain web server.</li>
-  <li>Once the sandbox is created, click <code>index.html</code> in the <strong>Files</strong> area.</li>
+  <li>Follow the steps in the <a href="#prep">Prep</a> section again to create another sandbox, but this time search for “HTML + CSS” and configure with the following options:<br />
+<img src="../../assignment-resources/images/html-css.png" alt="CSB HTML CSS" />
+    <ul>
+      <li>Name: Distance Calc Client</li>
+      <li>Visibility: Unlisted</li>
+      <li>Runtime: Sandbox</li>
+      <li>Click “Create Sandbox”.</li>
+    </ul>
+  </li>
+  <li>Once the sandbox is created, click <code>index.html</code> in the Files panel.</li>
   <li>
-    <p>Replace the contents of <code>index.html</code> with the code below, but replace <code>https://abc123.sse.codesandbox.io</code> with the URL of your own web service from the last step in Part 1.</p>
+    <p>Delete the contents of <code>index.html</code> and replace with the code below, but again change <code>abc123</code> to the ID of your own web service app.</p>
 
     <pre><code class="language-html"> &lt;!DOCTYPE html&gt;
  &lt;html&gt;
@@ -160,14 +202,14 @@
      &lt;hr /&gt;
      &lt;input type="submit" id="submit" value="Calculate Distance (km)" /&gt;
      &lt;br /&gt;&lt;br /&gt;
-     Distance:
+     Distance (km):
      &lt;h1 id="output"&gt;0&lt;/h1&gt;
      &lt;script src="https://code.jquery.com/jquery-3.6.0.min.js"&gt;&lt;/script&gt;
      &lt;script&gt;
        $("#submit").click(function () {
          // Read the text input boxes to get the user's coordinates, add them to the URL to request the web service
          $.getJSON(
-           "https://abc123.sse.codesandbox.io",
+           "https://abc123-8080.csb.app",
            {
              latA: $("#latA").val(),
              lonA: $("#lonA").val(),
@@ -184,76 +226,46 @@
    &lt;/body&gt;
  &lt;/html&gt;
 </code></pre>
-    <p>This code is a mix of HTML and JavaScript to build a user interface. This interface is a more human-friendly way to use our web service, allowing the user to enter the latitude and longitude into a form instead of crafting a URL. The interface also returns the distance as part of the webpage text instead of the raw output <code>{"distance": value}</code>, like we did to test our web service in Part 1. The <strong>preview browser</strong> area will show the webpage form to calculate distance.</p>
+    <p>This code is a mix of HTML and JavaScript to build a user interface.</p>
   </li>
-  <li>Save <code>index.html</code> by clicking <strong>File &gt; Save</strong>, or use the shortcut <code>Ctrl</code>+<code>S</code> (<code>Cmd</code>+<code>S</code> on Mac) . You might have to refresh the page to see the form.</li>
+  <li>Save <code>index.html</code> using the shortcut <code>Ctrl</code>+<code>S</code> (<code>Cmd</code>+<code>S</code> on Mac). You might have to refresh the preview.</li>
   <li>Use the same lat/lon test values from Part 1 (30,-90 and 30.45,-91.187) and click the button to submit the form. It should print the distance value on the page.</li>
+  <li>Click the “Share” button in CodeSandbox and copy the “Share URL”. You will submit this URL to complete the assignment.</li>
+  <li>Test your URL in an <a href="https://support.google.com/chrome/answer/95464">incognito window</a> to make sure it works.</li>
 </ol>
 
 <h2 id="try-it">Try it</h2>
 
-<h3 id="option-1-test-and-document">Option 1: Test and document</h3>
+<h3 id="test-and-document">Test and document</h3>
 <ol>
-  <li>Use <a href="https://www.google.com/maps">Google Maps</a> to get the latitude and longitude of two locations of your choosing, different from the New Orleans and Baton Rouge example above. Right-click the map to copy the coordinates at each place you choose.</li>
-  <li>Substitute the new coordinate values into the form you made and observe the new distance value. Compare this value to the distance measured with Google Maps (right-click the map, <strong>Measure distance</strong>) to make sure it is roughly correct.</li>
-  <li>At the top of your <strong>web service</strong> code, on Line 1, insert a new comment. Give the following in the comment:
+  <li>Use <a href="https://www.google.com/maps">Google Maps</a> to get the latitude and longitude of two locations of your choosing by right-clicking the map to copy the coordinates at each place you choose.</li>
+  <li>On your client app webpage, enter the new coordinate values into the form and observe the new distance value. Roughly verify the accuracy using the Measure Distance tool in Google Maps.</li>
+  <li>At the top of your server app code, on Line 1, insert a new comment. Give the following in the comment:
     <ul>
-      <li>A description of your program in one or two brief sentences. What does it do, and what are the expected input and output?</li>
-      <li>Your complete input URL with the coordinates you found. It should be something like:<br />
- <code>https://yoursandbox.sse.codesandbox.io/?latA=30&amp;lonA=-90&amp;latB=30.45&amp;lonB=-91.187</code></li>
-      <li>The names of the locations you used for your coordinates (e.g., “the southwestern corner of Howe-Russell”, or “Beijing”)</li>
-      <li>The output distance</li>
-    </ul>
-  </li>
-  <li>The comment should look similar to the screenshot below.<br />
+      <li>One or two sentences describing what your program does, expected input, and expected output.</li>
+      <li>The names of the locations you used for your test coordinates (e.g., “the southwestern corner of Howe-Russell”, or “Beijing”).</li>
+      <li>The output distance of your test.</li>
+      <li>The comment should look similar to the screenshot below.<br />
 <img src="../../assignment-resources/images/csb-comment.png" alt="Screenshot of a JavaScript comment" /></li>
-  <li>You can change your sandbox names by clicking their names at the top of the window.<br />
-<img src="../../assignment-resources/images/csb-name.png" alt="Where to change sandbox name" /></li>
-  <li>Copy the URL to your <strong>web app</strong> sandbox (the one with the form from Part 2) to submit for this assignment.<br />
-<img src="../../assignment-resources/images/csb-url.png" alt="Sandbox URL" /></li>
-</ol>
-
-<h3 id="option-2-change-the-function">Option 2: Change the function</h3>
-<p>Instead of the web service calculating distance, what else could it do with lat/lon coordinates or other input? Replace the appropriate code from the assignment so it performs a different task, such as finding the midpoint between two coordinates. See <a href="https://www.movable-type.co.uk/scripts/latlong.html">https://www.movable-type.co.uk/scripts/latlong.html</a>, or do something entirely different if you have an idea for a web service. Follow these guidelines:</p>
-
-<ol>
-  <li>Change the web service sandbox to perform a different task.</li>
-  <li>Change the interface webpage to allow input to and output from the new web service.</li>
-  <li>Add a description to the web service code describing succinctly what the service does and the input and output you used to test if it works. See the template below.
-    <pre><code class="language-javascript">/*
-  Description of what the web service accomplishes
-  Example input:
-  Example output:
-*/
-</code></pre>
+    </ul>
   </li>
 </ol>
 
 <h2 id="checklist">Checklist</h2>
 <ol>
-  <li>A Node.js sandbox</li>
-  <li>An HTML and JavaScript (“vanilla”) sandbox.</li>
-  <li>A comment in the Node.js sandbox explaining what it does, the input you tested, and the expected output.</li>
-  <li>Copy the URL to the vanilla sandbox.</li>
-  <li>Test your URL in an <a href="https://support.google.com/chrome/answer/95464">incognito window</a> to make sure it works and shows the source code.</li>
+  <li>A “Node HTTP Server” sandbox (your server app; see Part 1). It should accept lat/lon inputs, calculate the distance between them, and output the distance.</li>
+  <li>An “HTML + CSS” sandbox (your client app; see Part 2). It should include a form that sends a request to your web service sandbox. It should print the response somewhere on the webpage.</li>
+  <li>A comment in the server app explaining what it does, the input you tested, and the expected output (see Try It).</li>
+  <li>The URL to the client app sandbox.</li>
 </ol>
 
 <h2 id="submit">Submit</h2>
-<ol>
-  <li>Submit the URL to your “vanilla” <strong>web app sandbox</strong>, the one with the HTML form in <code>index.html</code>. The sandbox should include a working form that sends a request to your web service sandbox and prints the response on the webpage under the form. Since your web app code includes the URL to your web service, you <strong>do not</strong> need to submit the web service URL separately.</li>
-</ol>
+<p>Submit the URL to your “HTML + CSS” client app sandbox, copied in Part 2 Step 6.</p>
 
-<p>The URL to your <strong>web app sandbox</strong> should look like:<br />
-<code>https://codesandbox.io/s/your-app-name-abc123</code></p>
+<p>The URL to your “HTML + CSS” sandbox should look like:<br />
+<code>https://codesandbox.io/p/sandbox/yourappid</code></p>
 
-<p>Note that this is different from the preview URL, which you <strong>do not</strong> need to submit.</p>
-
-<h2 id="appendix">Appendix</h2>
-<ol>
-  <li>You can save your sandbox code to a Github repository if you used your Github account to sign into CodeSandbox. Changes made in CodeSandbox will be reflected in the Github repository and vice versa. Be aware that creating a Github repository from a sandbox appears to change the sandbox’s URL.<br />
-  <img src="../../assignment-resources/images/csb-github.png" alt="Sandbox URL" /></li>
-</ol>
-
+      <br><br>
       <a href="#top">&uarr; Top</a><br>
       <a href="../../assignments/">&larr; Back to Assignments</a>
     </section>
