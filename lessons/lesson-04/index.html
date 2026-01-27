@@ -41,7 +41,7 @@
   <li><a href="#web-servers">Web servers</a></li>
   <li><a href="#web-gis-servers">Web GIS servers</a></li>
   <li><a href="#web-gis-software-stack">Web GIS software stack</a></li>
-  <li><a href="#summary">Summary</a></li>
+  <li><a href="#conclusion">Conclusion</a></li>
   <li><a href="#end-of-module-questions">End of Module Questions</a></li>
 </ul>
 
@@ -109,7 +109,7 @@
 <p>To demonstrate what a request to a web GIS server looks like in practice, the figure below shows data layers requested when viewing the lidar elevation map at <a href="https://maps.ga.lsu.edu/lidar2000">https://maps.ga.lsu.edu/lidar2000</a>. There is a layer of gridlines representing the footprint of each lidar image on the map, a parish boundary layer, and the lidar imagery layer. These three layers are pulled from the data store and transmitted through the GIS server’s web services and the web server to the client’s web browser for display.</p>
 
 <p><img src="../../lessons/images/atlas-webgis-components.png" alt="Server components involved in providing a web map" />
-<em>Figure 5. Server components (green) involved in providing a web map on <a href="https://maps.ga.lsu.edu/lidar2000">https://maps.ga.lsu.edu/lidar2000</a>. Client web browsers (orange) request the webpage containing the map, the web server relays the request to the GIS server, and the GIS server figures out which data layers are needed from the data store. The response is passed back through the web server to the client, where the web browser assembles the text, graphics, etc. to display the map.</em></p>
+<em>Figure 5. Server components involved in providing a web map on <a href="https://maps.ga.lsu.edu/lidar2000">https://maps.ga.lsu.edu/lidar2000</a>. Client web browsers request the webpage containing the map, the web server relays the request to the GIS server, and the GIS server figures out which data layers are needed from the data store. The response is passed back through the web server to the client, where the web browser assembles the text, graphics, etc. to display the map.</em></p>
 
 <h2 id="web-gis-software-stack">Web GIS software stack</h2>
 <p>The figures below show the names of specific applications that can be used to build a web GIS.</p>
@@ -124,20 +124,26 @@
 <p><img src="../../lessons/images/opensource-webgis.png" alt="Open-source suite for web GIS" />
 <em>Figure 7. Free, open-source software can work together to build a web GIS, namely Jetty web server, GeoServer GIS server, and PostgreSQL database.</em></p>
 
-<h2 id="summary">Summary</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>In current practice, web-based geographic information systems generally consist of three major components: a data store, a GIS server application, and a web server. These core components can deliver your data via web services to your websites and apps, or to third parties.</p>
 
-<p>Web GIS software can be set up in a variety of environments, from a computer in your office to a globally distributed cloud computing network. Regardless of specific software and hardware configurations, at least one characteristic of web GIS is likely to endure as the technology evolves: web services. The ability to link applications and share data layers makes web services a valuable component of web GIS.</p>
+<p>Web GIS software can be set up in a variety of environments, from a computer in your office to a globally distributed cloud computing network. Regardless of specific software and hardware configurations, at least one characteristic of web GIS is likely to endure as the technology evolves: web services/APIs. The ability to link applications and share data layers makes web services a valuable component of web GIS. They enable mobile apps to transmit location and other data, turning phones into sensors and incorporating GIS into the fabric of modern living.</p>
+
+<p>The internet has allowed GIS to become nearly ubiquitous for decision-making and daily life, while remaining invisible in many ways. However, understanding how web GIS technologies and policies work behind the scenes will give insight into how the world works in the digital age. Think about: who produces data, who grants access to it, and who decides how it is presented? The server→client model in web GIS describes the relationship between devices and applications, but does it also reflect wider patterns in society: producers→consumers, government→governed, core→periphery? Are there technology patterns in web GIS that could break those traditional arrangements?</p>
 
 <h2 id="end-of-module-questions">End of Module Questions</h2>
-<p>Think back on Assignment 1, where you created a map in ArcGIS Online, and relate that to the concepts and diagrams in the Module 1 lessons. Use this to evaluate your understanding of the material.</p>
-<ol>
+<p>Reflect on what we have learned in Lessons 1 through 4, in terms of technical concepts as well as overall trends in GIS and the web.</p>
+<ul>
   <li>When you use your laptop, desktop, or phone to view your Assignment 1 map, what client software is being used?</li>
   <li>Is there a server involved when your map is viewed?</li>
   <li>Is your map using web services, and if so, what do they do?</li>
-  <li>Does your map show images, points, lines, or polygon layers?</li>
-  <li>Did your layers have attributes? If so, what are the attribute names?</li>
-</ol>
+  <li>What are the parallels between your ArcGIS Online app (Assignment 1) and your Codesandbox app (Assignment 2), e.g., what was client, GIS server, web server, and web service?</li>
+</ul>
+
+<p>Think about our discussions of why GIS was created and how it looked in its early forms, compared with modern patterns that involve the web and mobile devices.</p>
+<ul>
+  <li>What is different between the earliest geographic information systems of the 1960s and web GIS today? What is the same?</li>
+</ul>
 
       <br><br>
       <a href="#top">&uarr; Top</a><br>
