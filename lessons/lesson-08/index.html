@@ -32,86 +32,103 @@
     </section>
 
     <section class="main-content">
-      <div class="text-left"><small>Module 3 &rsaquo; Lesson 8 </small></div>
-      <h1 class="text-center">Geoprocessing</h1>
+      <div class="text-left"><small>Module 2 &rsaquo; Lesson 8 </small></div>
+      <h1 class="text-center">Mobile GIS</h1>
       <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#introduction">Introduction</a></li>
-  <li><a href="#geoprocessing">Geoprocessing</a></li>
-  <li><a href="#geoprocessing-as-a-web-service">Geoprocessing as a web service</a></li>
-  <li><a href="#arcgis-online">ArcGIS Online</a></li>
-  <li><a href="#what-can-be-analyzed">What can be analyzed</a></li>
+  <li><a href="#location-awareness">Location awareness</a></li>
+  <li><a href="#geolocation-api">Geolocation API</a></li>
+  <li><a href="#location-based-services">Location-based services</a></li>
+  <li><a href="#privacy">Privacy</a></li>
+  <li><a href="#volunteered-geographic-information">Volunteered Geographic Information</a></li>
   <li><a href="#summary">Summary</a></li>
+  <li><a href="#end-of-module-questions">End of Module Questions</a></li>
 </ul>
 
-<p>Terms: geoprocessing, geoprocessing services, Web Processing Service, Web Coverage Processing Service</p>
+<p>Terms: location awareness, geolocation API, location-based service, geofencing, volunteered geographic information (VGI)</p>
 
 <h2 id="introduction">Introduction</h2>
-<p>In addition to storing, sharing, and mapping data, Web GIS can perform analysis. This can be as simple as drawing a 2-mile buffer around a hospital, or more complex operations like looking for crime hotspots.</p>
 
-<p><img src="../../lessons/images/gp-diagram.png" alt="Geoprocessing service diagram" />
-<em>Figure 1. A geoprocessing tool receives an input layer or layers, such as points, and outputs another layer based on the calculations performed by the tool. In this diagram, the tool receives the locations of hospitals as a point layer and responds with a new layer of polygons representing a 2-mile radius around the hospital.</em></p>
+<p><em>A map that knows where it is</em>. This sounds like something from the realm of fantasy—enter the magic passcode to unlock the map, and it will reveal to whomever holds it their current location on the very map they are holding. This is the reality that has been made possible by portable, location-aware electronics.</p>
 
-<p>These analysis tools can be made available online as web services. In Assignment 2, we created a very simple geoprocessing web service to calculate the distance between two latitude/longitude coordinate pairs.</p>
+<p>The popularity of smartphones has implications for how web maps look and work. They have smaller screens and different input methods with which to interact with maps, which could be seen as shortcomings to those used to designing for monitors, a mouse, and keyboard. But phones also allow people to become part of the map, opening up new possibilities for Web GIS. From Uber to Pokemon Go to Tinder, Web GIS is a common feature in mobile applications.</p>
 
-<p>This lesson will prepare you to use more sophisticated geoprocessing tools in ArcGIS Online and Google Earth Engine and understand how they work.</p>
+<h2 id="location-awareness">Location awareness</h2>
 
-<h2 id="geoprocessing">Geoprocessing</h2>
-<p>As mentioned in the introductory lessons of this course, one of the main functions of a geographic information system is to perform calculations related to distance. These calculations are possible because of numeric coordinate systems, such as latitude and longitude. Coordinate systems give us a way to precisely describe a location on Earth, and they give GIS software the numbers needed for the math that goes into spatial analysis.</p>
+<p>As the name implies, mobile devices move. Moreover, smartphones can know where they are, if they are moving and at what speed, and which direction they are facing.   This ability to determine location is called <strong>location awareness</strong>. A device can be aware of its position on Earth using GPS satellites, cell tower triangulation, proximity to known Wi-Fi networks, or a combination of these and other methods.</p>
 
-<p><strong>Geoprocessing</strong> in GIS is the analysis or manipulation of data layers. Geoprocessing can be performed using geoprocessing tools in GIS software. These tools can be made available online as web services, referred to as <strong>geoprocessing services</strong>.</p>
+<p>GPS chips in smartphones allow the device to calculate its location within several meters without the need for cellular service or the Internet. Disable your Wi-Fi and cell service (airplane mode) and your phone will still give you a reasonably accurate latitude and longitude, because the GPS chip is still receiving signals from GPS satellites and calculating the location based on those signals, although it will not be as accurate as when your device can use the Internet to communicate with a geolocation service.</p>
 
-<p>The buffer operation is one simple example. In its most basic form in GIS software, a buffer tool will accept as input a layer (points, lines, or polygons) and a distance parameter (how far the buffer extends from each feature) and produce as output a new polygon layer, which resembles a more plump version of the original layer.</p>
+<h2 id="geolocation-api">Geolocation API</h2>
 
-<p><img src="../../lessons/images/buffer-example.png" alt="Buffer example" class="shadow" />
-<em>Figure 2. A buffer is the area within a specified distance of a feature. In the case of point features, the buffer distance is the radius of the circle centered on the point.</em></p>
+<p>A <strong>geolocation <dfn title="Application Programming Interface">API</dfn></strong> allows applications to improve their location awareness by transmitting the device’s location data to a third party over the Internet (via a web service). The service compares the location data with databases of network devices for any information that might give clues about the device’s true location. Is the device close to a known Starbucks Wi-Fi, or a bluetooth beacon at GameStop?</p>
 
-<p>The figure below shows a common tool that counts the number of features within another feature; in this case, hospitals (points) within a parish (polygon). This is a <code>summarize within</code> tool, and in addition to counting features it can typically perform statistics on an attribute of the summarized layer. If the hospitals layer had a “beds” attribute, the summarize tool could tell us the average, total, minimum, or maximum number of beds in the parish’s hospitals.</p>
+<p>The web service response is a new location with the estimated accuracy. Android apps will probably use Google’s geolocation service, while iOS apps might use Apple’s.</p>
 
-<p><img src="../../lessons/images/summarize-example.png" alt="Summarize example" class="shadow" />
-<em>Figure 3. Another example, the “summarize within” tool, tells us something about the relationship between two layers, such as how many features from one layer are located within the boundaries of a feature from another layer.</em></p>
+<p>The World Wide Web Consortium (W3C) released a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation">technical standard for a geolocation API</a>. It provides a method for browsers and applications to use a location service.</p>
 
-<h2 id="geoprocessing-as-a-web-service">Geoprocessing as a web service</h2>
-<p>A geoprocessing tool could, as another example, take two addresses as input, and output the shortest or fastest route between the two. In that sense, you could consider Google Maps directions a geoprocessing tool. Google makes this service available as a geoprocessing service for use in your own applications through the <a href="https://developers.google.com/maps/documentation/directions/overview">Google Maps Directions API</a>. Think of the “from” and “to” addresses as an input layer of points (converted to lat/lon by Google’s geocoding service), and the output layer is a line along the road network representing the optimal route.</p>
+<p>The JavaScript code that would be added to a webpage or app can be as simple as:</p>
 
-<p>Our simple distance calculation web service on CodeSandbox for Assignment 2 was much less complex but the idea is the same. Our web service received input locations and used an algorithm to compute the distance between them, returning that distance to the user in the web service response.</p>
+<pre><code class="language-javascript">navigator.geolocation.getCurrentPosition(function(pos){
+  alert(pos.coords.latitude + ',' + pos.coords.longitude)
+})
+</code></pre>
+<p><button class="btn btn-primary" id="locateButton">Try it: find my location</button></p>
 
-<p>Geoprocessing services carry out their computations on the servers where they are installed, meaning client devices using websites and apps do not require a high capacity for storage and computing power.</p>
+<script type="text/javascript">
+  var button = document.getElementById("locateButton")
+  button.addEventListener( "click", function () {
+    navigator.geolocation.getCurrentPosition(function(pos){
+      alert(pos.coords.latitude + ',' + pos.coords.longitude)
+    }) 
+  })
+</script>
 
-<p>ArcGIS Online provides numerous geoprocessing services. They can be used in maps and apps created on ArcGIS Online, or they can be used through the ArcGIS JavaScript API in your own websites and apps. ArcGIS Enterprise lets you create your own geoprocessing services that can be published to ArcGIS Server in basically the same way that feature layers are published.</p>
+<p>When you click the blue button, your browser will first ask for permission to use your location. Then it will collect whatever information it can about your device’s location, send it to the geolocation service, and then display a popup with the latitude and longitude.</p>
 
-<p>There are also open standards for web services. There is the OGC <strong>Web Processing Service (WPS)</strong> open standard for use with Web Feature Service (WFS) layers of points, lines, and polygons, and the <strong>Web Coverage Processing Service (WCPS)</strong> open standard for use with Web Coverage Service (WCS) layers of images.</p>
+<p>If you are not on a mobile device, then the only information your browser will send will likely be your IP address, which will not give an accurate location. But if you are on a phone, the coordinates should be pretty close. When I try on LSU’s campus using a device with only GPS and Wi-Fi, the service usually locates me in the correct classroom, on the correct side of the room.</p>
 
-<p>In this course, we will not create our own geoprocessing services, unless you count the distance calculator on CodeSandbox. Instead, we will use ArcGIS Online and Google Earth Engine to create web apps that take advantage of existing geoprocessing services. Earth Engine will be introduced in more detail in a later lesson.</p>
+<h2 id="location-based-services">Location-based services</h2>
 
-<h2 id="arcgis-online">ArcGIS Online</h2>
-<p>ArcGIS Online provides two ways to use their geoprocessing tools through the website interface. The analysis tools are not for use in public apps and they consume ArcGIS Online credits.</p>
+<p>Instead of making a window pop up like in the example above, applications can send your location off to another application to provide some kind of functionality or information to you. This is a <strong>location-based service</strong> (LBS). Uber and any other app that relies on your location can be considered LBS. You can probably find many more examples by going into your phone’s privacy settings to see which apps have or would like permission to use your location. Go ahead, check.</p>
 
-<p>One way is through the Map Viewer. There is a <code>Perform Analysis</code> button that will let you browse through the available tools. There is also a button among the icons under each layer name in the table of contents of the map, if the layer is one that can be analyzed. The Map Viewer is appropriate for more experienced GIS users who know how to add layers to a map and choose the right analysis tools for their objectives.</p>
-
-<p><img src="../../lessons/images/map-analysis.png" alt="Map Viewer perform analysis" />
-<em>Figure 4. The buttons to perform analysis on a layer in ArcGIS Online.</em></p>
-
-<p>Another option in ArcGIS Online is to create a web app to which you, the app designer, add specific tools tailored to your audience, the app users. Your app can have layers preloaded on the map and buttons to run preselected tools. Showing only the necessary information and tools simplifies the app and makes it easier to use, which means more people can use it without GIS expertise.</p>
-
-<p><img src="../../lessons/images/app-analysis.png" alt="Web App Builder perform analysis" />
-<em>Figure 5. The analysis widget in ArcGIS Web AppBuilder allows you to give users access only to the tools they need for a more simplified app.</em></p>
-
-<h2 id="what-can-be-analyzed">What can be analyzed?</h2>
-<p>Certain analysis tools only work with certain types of layers and data; not every tool can be used for every dataset. Here are some considerations.</p>
+<p>“Input” into computer programs in the traditional sense involves things like clicking, scrolling, typing, tapping, and swiping. These inputs, known as “events”, trigger a response from the program. But with LBS, your movement, and the resulting change in location, can itself become an input. When your movement into or out of a certain area triggers a reaction from a location-based service, this is called <strong>geofencing</strong>.</p>
 <ul>
-  <li>The analysis tools in this lesson only work with vector layers of points, lines, and polygons. There are other kinds of tools for image analysis (next lessons).</li>
-  <li>Analysis tools need access to geometry data and attributes, so layers where this is absent will not work, including tile layers (tiles are just compressed images of layers and do not contain the original data of the source dataset).</li>
-  <li>Some tools are made to work only with points (e.g., “Aggregate Points”), some only with polygons (“Find Centroids”).</li>
-  <li>Some tools only work with certain attribute data (“Find Similar Locations” will only work with two layers that have attributes with similar values).</li>
+  <li>Leave house, turn off heater</li>
+  <li>Vehicles leave parking lot, notify fleet management software</li>
+  <li>Walk by a store, receive a coupon</li>
+  <li>Go to church, later see a political campaign ad</li>
 </ul>
 
+<h2 id="volunteered-geographic-information">Volunteered Geographic Information</h2>
+
+<p>The widespread use of location-aware devices has turned people into sensors, collecting data and transmitting it over the web almost constantly, even when not actively using a phone. This has become a new source of geographic information.</p>
+
+<p><strong>Volunteered geographic information (VGI)</strong> is crowd-sourced contributions of content with a location attribute. It is an alternative to authoritative data sources from governments or businesses. VGI is an evolution of Web 2.0, which has seen the rise of crowd-sourced platforms that depend on user-submitted content, such as Wikipedia, Youtube, and Facebook. VGI is especially useful for endeavors that are too large in scale or are changing too rapidly to be monitored by a smaller team of people.</p>
+
+<p>VGI has been used in response to wildfires, with citizens reporting on the quickly spreading perimeter through web-based maps.</p>
+
+<p>Road networks are huge complex systems with constantly changing conditions, making them a prime use-case for VGI. Waze is an app that allows users to submit traffic and travel information such as crashes and police speed traps. Google uses location data from Android phones and Google apps, recording not just location but speed, to determine traffic flow and calculate travel times and routes. (However, are users aware that they are “volunteering”?)</p>
+
+<p>When Malaysia Airlines Flight 370 disappeared in 2014, millions of amateurs pored over satellite imagery to search for remnants of the aircraft in a crowd-sourcing effort organized by imagery provider Digital Globe. In this case, the information the crowd submitted was not the imagery itself but an attribute for the location of the image: whether or not it potentially contained wreckage.</p>
+
+<p>The City of New Orleans manages 72,000 catch basins for street drainage. Each one is mapped on the <a href="https://catchbasin.nola.gov/">Adopt-A-Catchbasin web GIS application</a> that allows citizens to report whether drains are clear or clogged, and even “adopt” a catch basin to take responsibility for keeping the rainwater flowing out of their street.</p>
+
+<p>Crowd-sourced information raises questions of accuracy. It can be difficult to verify user submissions, making the platforms more susceptible to mistakes and vandalism than traditional authoritative data sources.</p>
+
 <h2 id="summary">Summary</h2>
-<p>This lesson provides a quick introduction to geoprocessing before you use the tools in the assignment. There is much more to learn about geoprocessing in GIS, however, and if you would like to know more about the specific tools in ArcGIS Online, see the <a href="https://doc.arcgis.com/en/arcgis-online/analyze/perform-analysis.htm">Perform Analysis documentation</a>.</p>
+<p>Location-awareness is now a defining characteristic of smartphones. Where desktop GIS brought maps to people, mobile GIS brings people to maps, making user locations the core aspect of some apps. Mobile GIS has spawned new apps and entire industries—would the rideshare industry exist without location-aware mobile devices and mapping applications? It has also raised new concerns for privacy and governance—aren’t citizens with trackers and identifiers a favorite dystopian trope?</p>
 
-<p>Geoprocessing tools for spatial analysis are a major use of GIS software, and the functionality has been extended to Web GIS via geoprocessing services. Much like how data layers can be shared as web services, geoprocessing functions can also be shared as web services so that developers can incorporate those functions in their own applications without having to code them from scratch. For example, if your application needs to give users directions from one address to another, wouldn’t it be a pain to have to come up with a way to do that from scratch? It would be much easier to connect your app with the Directions API and let Google’s servers do the work for you.</p>
-
-<p>Without having to write any code, ArcGIS Online allows you to create apps with access to geoprocessing tools, with some limitations on what layers can be processed, and at a cost to your ArcGIS Online credits.</p>
+<h2 id="end-of-module-questions">End of Module Questions</h2>
+<p>Think back on the lessons on data formats, standards, mobile GIS, and considerations for making web-based maps. Relate the concepts to the assignments.</p>
+<ul>
+  <li>When we created CSV and GeoJSON files and uploaded them to ArcGIS Online, how do you think the data is stored on the ArcGIS Online servers: did it remain as CSV and GeoJSON files, is it converted to shapefiles, or another type of system?</li>
+  <li>We used web services for each of this module’s assignments. If we had used open-source software that uses open standards for web services, what type of service would our layers have been (e.g., Web Map Service, Web Tile Service, etc.)? Why?</li>
+  <li>Did your COVID-19 dashboard perform well on mobile? How could it be optimized for devices with low bandwidth and small screens?</li>
+  <li>In your COVID-19 maps, did the symbology you chose introduce any bias or do you think it was a fair representation of the data? Explain.</li>
+  <li>What problems could you foresee with using a crowd-sourced map where the public can contribute data?</li>
+</ul>
 
       <br><br>
       <a href="#top">&uarr; Top</a><br>

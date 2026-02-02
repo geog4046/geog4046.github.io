@@ -107,7 +107,7 @@
 <p>Let us use a <a href="https://portal-nolagis.opendata.arcgis.com/datasets/nordc-facilities">layer of public recreational facilities in New Orleans</a> as an example.</p>
 <ul>
   <li>The layer lives on the “data store” server in a database—software that uses a series of tables to store the layer’s location data (coordinates of the facilities) and attribute data (park names, year built, etc.).</li>
-  <li>When the web service receives a request from a client for the facilities layer, such as when you click the link below, the data’s journey begins. The GIS server retrieves the layer from the database and converts it to a text-based interchange format that can easily be passed over the web to another application. In this case, the <a href="https://opendata.arcgis.com/api/v3/datasets/6b300a5418b9422f8ac20452e3183120_0/downloads/data?format=geojson&amp;spatialRefId=4326">layer is available in GeoJSON format</a>.</li>
+  <li>When the web service receives a request from a client for the facilities layer, such as when you click the link below, the data’s journey begins. The GIS server retrieves the layer from the database and converts it to a text-based interchange format that can easily be passed over the web to another application. In this case, the <a href="https://gis.nola.gov/arcgis/rest/services/Recreation/NORDcFacilities/MapServer/0/query?outFields=*&amp;where=1%3D1&amp;f=geojson">layer is available in GeoJSON format</a>.</li>
   <li>Now in the GeoJSON format, the data is transmitted over the web to a client application, such as a desktop GIS program installed on your computer (<a href="https://qgis.org">QGIS</a> works on Linux, macOS, and Windows). The layer can then be saved to a file in yet another format, such as KML.</li>
 </ul>
 
@@ -146,7 +146,7 @@
 
 <h3 id="file-geodatabase">File geodatabase</h3>
 
-<p>The <strong>file geodatabase</strong> was created by <dfn title="Company that develops ArcGIS software">Esri</dfn> for the ArcGIS platform but it can be used in other software. It is essentially Esri’s replacement for the shapefile. File geodatabases have a number of advantages: they can hold multiple layers of different types, can be accessed and edited simultaneously by multiple users, and they have a larger file size capacity, <a href="https://www.esri.com/news/arcuser/0309/files/9reasons.pdf">among other reasons</a>.</p>
+<p>The <strong>file geodatabase</strong> was created by <dfn title="Company that develops ArcGIS software">Esri</dfn> for the ArcGIS platform but it can be used in other software. It is essentially Esri’s replacement for the shapefile but with added capabilities: they can hold multiple layers of different types, can be accessed and edited simultaneously by multiple users, and they have a larger file size capacity, <a href="https://www.esri.com/news/arcuser/0309/files/9reasons.pdf">among other reasons</a>.</p>
 
 <p><img src="../../lessons/images/format-fgdb.png" alt="File geodatabase data format" />
 <em>Figure 6. File geodatabases can store multiple layers of points, lines, polygons, and rasters.</em></p>
@@ -223,22 +223,22 @@
 
 <ul>
   <li>
-    <p>Web Coverage Service (WCS) - Responds with raster data, such as satellite images or land use coverage</p>
+    <p>OGC API - Coverages (formerly WCS) - Responds with raster data, such as satellite images or land use coverage</p>
   </li>
   <li>
-    <p>Web Coverage Processing Service (WCPS) - Responds with the result of an image analysis task, e.g., average brightness value of image</p>
+    <p>OGC API - Features (formerly WFS) - Responds with geometry and attributes of vector data, e.g., airport locations and names</p>
   </li>
   <li>
-    <p>Web Feature Service (WFS) - Responds with geometry and attributes of vector data, e.g., airport locations and names</p>
+    <p>OGC API - Maps (formerly WMS) - Responds with a static image of a map, which can include multiple layers</p>
   </li>
   <li>
-    <p>Web Map Service (WMS) - Responds with a static image of a map, which can include multiple layers</p>
+    <p>OGC API - Tiles (formerly WMTS) - Responds with a series of square images (tiles) that can be assembled by the client into a map image, or tiles of vector data that can be assembled into a vector tile map</p>
   </li>
   <li>
-    <p>Web Map Tile Service (WMTS) - Responds with a series of square images that can be assembled by the client into a map</p>
+    <p>OGC API - Processes (formerly WPS and WCPS) - Responds with results of a feature analysis task, e.g., draw a 1-mile buffer around airports, or image analysis task, e.g., average brightness value of an image</p>
   </li>
   <li>
-    <p>Web Processing Service (WPS) - Responds with results of a feature analysis task, e.g., draw a 1-mile buffer around airports</p>
+    <p>See the OGC website for a <a href="https://www.ogc.org/standards/">comprehensive list of standards</a>.</p>
   </li>
 </ul>
 
@@ -260,19 +260,19 @@
   <tbody>
     <tr>
       <td style="text-align: left"><img src="../../lessons/images/thumbnail-raster.png" alt="Thumbnail of a raster" class="no-shadow" /></td>
-      <td>WCS</td>
+      <td>OGC API - Coverages</td>
       <td>rasters</td>
       <td>Yes</td>
     </tr>
     <tr>
       <td style="text-align: left"><img src="../../lessons/images/thumbnail-vector.png" alt="Thumbnail of a vector" class="no-shadow" /></td>
-      <td>WFS</td>
+      <td>OGC API - Features</td>
       <td>points, lines, and polygons</td>
       <td>Yes</td>
     </tr>
     <tr>
       <td style="text-align: left"><img src="../../lessons/images/thumbnail-map.png" alt="Thumbnail of a map" class="no-shadow" /></td>
-      <td>WMS</td>
+      <td>OGC API - Maps</td>
       <td>points, lines, polygons, and rasters</td>
       <td>No</td>
     </tr>
@@ -293,39 +293,39 @@
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">Image service</td>
-      <td>WCS</td>
+      <td style="text-align: left">Imagery layer</td>
+      <td>OGC API - Coverages</td>
       <td>Yes*</td>
     </tr>
     <tr>
-      <td style="text-align: left">Feature service</td>
-      <td>WFS</td>
+      <td style="text-align: left">Feature layer</td>
+      <td>OGC API - Features</td>
       <td>Yes</td>
     </tr>
     <tr>
-      <td style="text-align: left">Dynamic map service</td>
-      <td>WMS</td>
-      <td>No</td>
+      <td style="text-align: left">Map image layer</td>
+      <td>OGC API - Maps</td>
+      <td>Yes*</td>
     </tr>
     <tr>
-      <td style="text-align: left">Tiled map service</td>
-      <td>WMTS</td>
+      <td style="text-align: left">Tile layer</td>
+      <td>OGC API - Tiles</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Vector tile layer</td>
+      <td>OGC API - Tiles</td>
       <td>Yes</td>
     </tr>
     <tr>
       <td style="text-align: left">Geoprocessing service</td>
-      <td>WPS</td>
+      <td>OGC API - Processes</td>
       <td>No</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Vector tile layer</td>
-      <td>work in progress</td>
-      <td>Yes</td>
     </tr>
   </tbody>
 </table>
 
-<p>*Requires a separate license.</p>
+<p>*requires ArcGIS Image license</p>
 
 <p> <br />
 Though the ArcGIS web services are not considered open standards themselves, they may output data in an open format such as GeoJSON, depending on how they are configured by their administrator.</p>
@@ -341,7 +341,7 @@ Though the ArcGIS web services are not considered open standards themselves, the
 <p>Enterprise geodatabases work by installing software called a database management system (DBMS) on a server (the “data store” in Figure 2). The DBMS can be connected to GIS software to create a series of related tables to hold geographic information. GIS software can be used to add data to the database from files. GIS server software can retrieve data from the database in response to requests from web services.</p>
 
 <p><img src="../../lessons/images/dbms.png" alt="Database Management Systems" />
-<em>Figure 9. Examples of database management system (DBMS) software that can be used as an enterprise geodatabase.</em></p>
+<em>Figure 9. Examples of database management system (DBMS) software that can be used to create and manage an enterprise geodatabase, a place for GIS servers to store data and access data.</em></p>
 
 <p>Oracle, Microsoft SQL Server, and PostgreSQL are examples of DBMS products that can be used for enterprise geodatabases, all widely used outside of GIS as well. When you upload files to ArcGIS Online, the data is stored behind the scenes in a product called ArcGIS Data Store, a DBMS based on PostgreSQL.</p>
 
