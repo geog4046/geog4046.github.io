@@ -59,8 +59,6 @@
   <li><a href="#summary">Summary</a></li>
 </ul>
 
-<p>Terms: technical standard, CSV, raster, file geodatabase, KML, GeoJSON, open standards, enterprise geodatabase</p>
-
 <h2 id="introduction">Introduction</h2>
 <p><strong>Technical standards</strong> are rules that encourage <dfn title="The ability of applications to exchange information with other computer systems (Lesson 3)">interoperability</dfn>. In simple terms, they ensure that a product you make will be compatible with a product made by someone else, as long as you both adhere to a standard. Ancient Rome had standards for lane and axle widths for compatibility between roads and horse-drawn carts. Today, many phone manufacturers are following the USB-C standard for charging cables.</p>
 
@@ -160,14 +158,14 @@
 <p><strong>Keyhole Markup Language (KML)</strong> is a plain-text format for points, lines, and polygons as well as references to images. It is commonly used to display layers in Google Earth (Google acquired the predecessor to Google Earth from Keyhole Inc.) or for data interchange. KML is a markup language, which will be covered in the lesson on HTML basics, but for now, think of KML as a sort of Word document or webpage but for map layers.</p>
 
 <p><img src="../../lessons/images/format-kml.png" alt="KML data format" />
-<em>Figure 6. KML is a language for representing geographic information. KML files can contain points, lines, polygons, and references to images.</em></p>
+<em>Figure 7. KML is a language for representing geographic information. KML files can contain points, lines, polygons, and references to images.</em></p>
 
 <h3 id="geojson">GeoJSON</h3>
 
 <p><strong>GeoJSON</strong> is another plain-text interchange format for points, lines, and polygons. It is based on JSON, JavaScript Object Notation, a widely used standard for interoperability between web applications.</p>
 
 <p><img src="../../lessons/images/format-geojson.png" alt="GeoJSON data format" />
-<em>Figure 7. GeoJSON is a standard for point, line, and polygon data. It is based on JSON, a format widely used for exchanging data via web services.</em></p>
+<em>Figure 8. GeoJSON is a standard for point, line, and polygon data. It is based on JSON, a format widely used for exchanging data via web services.</em></p>
 
 <p>A basic JSON object looks like this:</p>
 
@@ -209,7 +207,7 @@
 <p>The GeoJSON sample above contains a single point with an attribute named “city”, with a value “New Orleans”. The GeoJSON can be mapped on <a href="http://geojson.io">geojson.io</a> to see a marker at 30 degrees latitude and -90 degrees longitude.</p>
 
 <p><img src="../../lessons/images/format-geojson-map.png" alt="GeoJSON data mapped" class="shadow" />
-<em>Figure 8. GeoJSON data mapped on <a href="http://geojson.io">geojson.io</a>.</em></p>
+<em>Figure 9. GeoJSON data mapped on <a href="http://geojson.io">geojson.io</a>.</em></p>
 
 <h2 id="web-service-standards">Web service standards</h2>
 
@@ -331,7 +329,6 @@
 Though the ArcGIS web services are not considered open standards themselves, they may output data in an open format such as GeoJSON, depending on how they are configured by their administrator.</p>
 
 <h2 id="databases">Databases</h2>
-
 <p>On servers, geographic information is often stored in databases instead of shapefiles, KML, CSV, or other formats common in desktop GIS. I alluded to the file geodatabase being suitable for servers, but for more advanced functionality or performance requirements, other types of geodatabases are used.</p>
 
 <p><strong>Enterprise geodatabases</strong> offer advanced features for large numbers of users, large datasets, multiple simultaneous editors, edit tracking, versioning, replication, security, and more. They are mainly limited by the hardware they are installed on and can be scaled up for high traffic and large databases.</p>
@@ -341,7 +338,10 @@ Though the ArcGIS web services are not considered open standards themselves, the
 <p>Enterprise geodatabases work by installing software called a database management system (DBMS) on a server (the “data store” in Figure 2). The DBMS can be connected to GIS software to create a series of related tables to hold geographic information. GIS software can be used to add data to the database from files. GIS server software can retrieve data from the database in response to requests from web services.</p>
 
 <p><img src="../../lessons/images/dbms.png" alt="Database Management Systems" />
-<em>Figure 9. Examples of database management system (DBMS) software that can be used to create and manage an enterprise geodatabase, a place for GIS servers to store data and access data.</em></p>
+<em>Figure 10. Examples of database management system (DBMS) software that can be used to create and manage an enterprise geodatabase, a place for GIS servers to store data and access data.</em></p>
+
+<p><img src="../../lessons/images/pg-qgis.png" alt="QGIS connected to PostgreSQL" />
+<em>Figure 11. GIS software (QGIS) connected to and browsing the layers in a geodatabase created in PostgreSQL hosted on a remote server on the internet.</em></p>
 
 <p>Oracle, Microsoft SQL Server, and PostgreSQL are examples of DBMS products that can be used for enterprise geodatabases, all widely used outside of GIS as well. When you upload files to ArcGIS Online, the data is stored behind the scenes in a product called ArcGIS Data Store, a DBMS based on PostgreSQL.</p>
 
