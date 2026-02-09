@@ -44,10 +44,8 @@
   <li><a href="#summary">Summary</a></li>
 </ul>
 
-<p>Terms: discrete object view, continuous field view, vector, raster, symbology, user interface, projection, Web Mercator</p>
-
 <h2 id="introduction">Introduction</h2>
-<p>Maps communicate information in a visual hierarchy that makes important things more visible or identifiable. What is considered important depends on the purpose of the map. It is the job of the cartographer to determine how to “tell the story of the data”, a task that blends science and art in a balance of objectivity and subjectivity.</p>
+<p>Maps communicate information in a visual hierarchy that makes important things more visible or identifiable. What is considered important depends on the purpose of the map. It is the job of the cartographer to determine how to tell the story of the data, a task that blends science and art in a balance of objectivity and subjectivity.</p>
 
 <p>This lesson will cover basic concepts in representing reality with maps, and special considerations for creating maps on the web.</p>
 
@@ -76,31 +74,30 @@
 
 <p>Either way, cartographers must decide how the map should visually represent the real world. Visual properties such as icons and colors chosen to represent layers on a map are the <strong>symbology</strong>. The symbology is often driven by the attributes of each feature in a layer. For example, in a global map of population density by country, countries with a higher population density could have a darker shade. In a map of earthquakes, a bullseye symbol could be used at each epicenter, with larger magnitude earthquakes given larger symbols. While data might be considered objective, symbology can introduce subjectivity and bias.</p>
 
-<p>Cartographers in Web GIS can also decide how much users can interact with the map and change its appearance, because unlike conventional maps, web maps are a <strong>user interface</strong> with controls for toggling layers, changing the scale (zooming), manipulating data, and any other means of interacting with the application.</p>
+<p>Cartographers in web GIS can also decide how much users can interact with the map and change its appearance, because unlike conventional maps, web maps are a <strong>user interface</strong> with controls for toggling layers, changing the scale (zooming), manipulating data, and any other means of interacting with the application.</p>
 
 <p>As the assignments in this course will demonstrate, building a web map is as much about building an interface as it is building the map itself.</p>
 
 <h2 id="possibilities-and-constraints">Possibilities and constraints</h2>
-
-<p>There are certain considerations for creating maps on the web. Some could apply to GIS in general but are especially important for Web GIS, where users might be on a <dfn title="Software that reads the code of a webpage document and renders the code as visual elements, e.g., fonts and graphics, to display on screen to the user (Lesson 11).">browser</dfn> instead of GIS software, a mobile device instead of a PC, and a slow connection instead of broadband Internet. These factors might lead developers to offer separate apps for different devices.</p>
+<p>There are certain considerations for creating maps on the web. Some could apply to GIS in general but are especially important for web GIS, where users might be on a <dfn title="Software that reads the code of a webpage document and renders the code as visual elements, e.g., fonts and graphics, to display on screen to the user (Lesson 11).">browser</dfn> instead of GIS software, a mobile device instead of a PC, and a slow connection instead of broadband internet. These factors might lead developers to offer separate apps for different devices.</p>
 
 <p><img src="../../lessons/images/jhu-mobile-desktop.png" alt="Mobile and desktop versions of the same app" />
-<em>Figure 2. The Johns Hopkins University coronavirus dashboard is offered as <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/85320e2ea5424dfaaa75ae62e5c06e61">mobile</a> and <a href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6">desktop</a> versions.</em></p>
+<em>Figure 2. The Johns Hopkins University coronavirus dashboard was offered as mobile (left) and desktop (right) versions.</em></p>
 
 <p>Possibilities</p>
 <ul>
   <li>Linked to additional content - web maps can link to other content like videos, pictures, and text, giving creators more options for communicating through the map</li>
   <li>Wide distribution - public web maps have the potential to be shared widely and reach a large, diverse audience, with the potential to go viral. The audience won’t only be GIS professionals, so the map must be easy enough to use for a general audience.</li>
-  <li>Interactive - aside from the typical zooming, panning, and toggling layers, Web GIS offers the ability for users to change the map in real-time, making for a more interactive experience than conventional maps. Furthermore, if you give users the ability to alter the map and view the data in different ways, you might be able to avoid the problem of biases in your design choices.</li>
+  <li>Interactive - aside from the typical zooming, panning, and toggling layers, web GIS offers the ability for users to change the map in real-time, making for a more interactive experience than conventional maps. Furthermore, if you give users the ability to alter the map and view the data in different ways, you might be able to avoid the problem of biases in your design choices.</li>
   <li>Frequent updates - a web map can be updated after release as frequently as needed, in contrast to releasing a PDF or image and not having control of copies after they are circulated.</li>
   <li>Augmented reality and 3D - maps do not have to be a 2D bird’s-eye view. The view of a phone/tablet camera can act as a real-time basemap, with graphics overlaid similar to layers of points, lines, and polygons.</li>
-  <li>Location-aware devices - if users view a web map on a phone or other location-aware device, a Web GIS application could potentially react to the user’s location to zoom the map or trigger events.</li>
+  <li>Location-aware devices - if users view a web map on a phone or other location-aware device, a web GIS application could potentially react to the user’s location to zoom the map or trigger events.</li>
 </ul>
 
-<p><img src="../../lessons/images/ar.gif" alt="Augmented reality GIS" class="shadow" />
-<em>Figure 3. Augmented reality and Web GIS in practice for managing utilities and infrastructure in New Jersey. Source: <a href="https://cartodyne.com/seeing-underground-infrastructure-using-augmented-reality/">Cartodyne</a>/<a href="https://www.esri.com/about/newsroom/publications/wherenext/nj-utility-on-forefront-with-new-mixed-reality-application/">Esri</a></em></p>
+<p><img src="../../lessons/images/ar.gif" alt="Augmented reality GIS" class="shadow centered" />
+<em>Figure 3. Augmented reality and web GIS in practice for managing utilities and infrastructure in New Jersey. Source: <a href="https://cartodyne.com/seeing-underground-infrastructure-using-augmented-reality/">Cartodyne</a>/<a href="https://www.esri.com/about/newsroom/publications/wherenext/nj-utility-on-forefront-with-new-mixed-reality-application/">Esri</a></em></p>
 
-<p><img src="../../lessons/images/location-services.png" alt="Location services on a mobile OS" class="shadow" />
+<p><img src="../../lessons/images/location-services.png" alt="Location services on a mobile OS" class="shadow centered" />
 <em>Figure 4. A message about enabling location services on a mobile device. Location services can turn the user’s current location into a data point on the map and change the map or app behavior depending on where the user is.</em></p>
 
 <p>Constraints</p>
@@ -121,10 +118,10 @@
 
 <h2 id="building-a-web-gis-application">Building a Web GIS application</h2>
 
-<p>Going from data to web application involves a few steps in Web GIS if you want to offer your data as a web service. The following explanation is given based on the ArcGIS platform but it can pertain to other Web GIS setups as well.</p>
+<p>Going from data to web application involves a few steps in web GIS if you want to offer your data as a web service. The following explanation is given based on the ArcGIS platform but it can pertain to other web GIS setups as well.</p>
 
 <ol>
-  <li>Let us consider “features” the smallest building block in what will eventually become a Web GIS application. Features are the individual objects on a map representing things like rivers, parks, and campsites.</li>
+  <li>Let us consider “features” the smallest building block in what will eventually become a web GIS application. Features are the individual objects on a map representing things like rivers, parks, and campsites.</li>
   <li>Similar features are grouped together in a layer, so you might have a layer of rivers and another layer of campsites.</li>
   <li>A layer or sometimes multiple layers can be published as a web service to act as a package for delivering the layers over the web.</li>
   <li>The layers in the web service can be added to a map and combined with other layers, such as showing a campsite layer over a satellite image basemap.</li>
@@ -137,32 +134,33 @@
 <p>The way each step builds upon the last reminds me of nesting dolls, with each fitting inside the next to become something bigger.</p>
 
 <p><img src="../../lessons/images/matryoshka.png" alt="Features fitting into layers etc. are analogous to nesting dolls" />
-<em>Figure 7. Features » Layers » Web services » Web maps » Web applications: the components of a Web GIS application fit inside the next like nesting dolls.</em></p>
+<em>Figure 7. Features » Layers » Web services » Web maps » Web applications: the components of a web GIS application fit inside the next like nesting dolls.</em></p>
 
 <h2 id="coordinate-systems-and-projections">Coordinate systems and projections</h2>
 
 <p>Coordinate systems are fundamental to GIS. Locations on Earth expressed as numeric coordinates allow for quantitative analysis of distance and spatial relationships.</p>
 
-<p><img src="../../lessons/images/2d-crs.png" alt="A simple 2D coordinate system" class="shadow" />
+<p><img src="../../lessons/images/2d-crs.png" alt="A simple 2D coordinate system" class="shadow centered" />
 <em>Figure 8. A simple coordinate system, similar in concept to the coordinate reference systems used in GIS.</em></p>
 
 <p>Where coordinate systems come into play in cartography is in choosing a projection. <strong>Projections</strong> are methods for transforming the 3D surface of a globe into a 2D plane for use in maps. The video below gives a nice overview of projections and the issues they can pose for cartographers.</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kIID5FDi2JQ?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<iframe width="815" height="458" src="https://www.youtube.com/embed/kIID5FDi2JQ?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 
-<p>In Web GIS, however, you are less likely to need to decide on a projection, as there is already a de facto standard for web maps: <strong>Web Mercator</strong>.</p>
+<p>In web GIS, however, you are less likely to need to decide on a projection, as there is already a de facto standard for web maps: <strong>Web Mercator</strong>.</p>
 
-<p><img src="../../lessons/images/web-mercator.png" alt="Web Mercator is the projection used by major web map providers." class="shadow" /></p>
+<p><img src="../../lessons/images/web-mercator.png" alt="Web Mercator is the projection used by major web map providers." class="centered" /></p>
 
-<p>Understanding projections can still be useful when working with data that will be imported into Web GIS software. Web Mercator coordinates use meters, not degrees latitude/longitude like WGS84 (the coordinate system used by GPS). Using data from a different coordinate system can have unexpected consequences when the data is published to Web GIS software.</p>
+<p>Understanding projections can still be useful when working with data that will be imported into web GIS software. Web Mercator coordinates use meters, not degrees latitude/longitude like WGS84 (the coordinate system used by GPS). Using data from a different coordinate system can have unexpected consequences when the data is published to web GIS software.</p>
 
 <p>Sometimes you can find such errors on web maps before they are fixed. If you navigate a web map to 0,0 where the Prime Meridian intersects the Equator off the western coast of Africa, occasionally you will find businesses, bike trails, and other user-generated content in the ocean, no doubt the result of a coordinate system mishap.</p>
 
 <p><img src="../../lessons/images/ocean-home-goods.png" alt="A Home Goods location in the ocean due to a coordinate system mishap" class="shadow" />
 <em>Figure 10. A home goods store location placed in the ocean on Google Maps where the Prime Meridian intersects the Equator, likely due to a coordinate system mishap.</em></p>
 
-<p><img src="../../lessons/images/ocean-osm.png" alt="Coordinate system mishap on OpenStreetMap" class="shadow" />
-<em>Figure 11. A layer available on OpenStreetMap.org shows a location mistakenly put into the ocean.</em></p>
+<p><img src="../../lessons/images/ocean-osm.png" alt="Coordinate system mishap on OpenStreetMap" class="shadow centered" />
+<img src="../../lessons/images/ocean-osm2.png" alt="Coordinate system mishap on OpenStreetMap" class="shadow centered" />
+<em>Figure 11. Layers available on OpenStreetMap.org showing features mistakenly put into the ocean near 0 degrees latitude, 0 degrees longitude.</em></p>
 
 <p>Even though ArcGIS Online uses Web Mercator, you can still import data with latitude and longitude coordinates (WGS84 coordinate system) because ArcGIS Online will automatically project those coordinates for you into Web Mercator.</p>
 
@@ -174,7 +172,7 @@
   <li>Does your app work on phones, desktops, and other devices?</li>
 </ul>
 
-<p>And while you might not have to worry about using a projection other than Web Mercator, you can bet you have a coordinate system issue if you ever import data in Web GIS that ends up projected in the ocean. You can use a desktop GIS application to project your data to Web Mercator prior to importing to your Web GIS, or convert it to WGS84 if your Web GIS accepts latitude/longitude input.</p>
+<p>And while you might not have to worry about using a projection other than Web Mercator, you can bet you have a coordinate system issue if you ever import data in web GIS that ends up projected in the ocean. You can use a desktop GIS application to project your data to Web Mercator prior to importing to your web GIS, or convert it to WGS84 if your web GIS accepts latitude/longitude input.</p>
 
       <br><br>
       <a href="#top">&uarr; Top</a><br>
