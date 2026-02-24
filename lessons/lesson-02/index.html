@@ -43,6 +43,8 @@
   <li><a href="#conclusion">Conclusion</a></li>
 </ul>
 
+<p>Terms: feature, layer, operational layer, basemap, application, server, client</p>
+
 <p>This lesson will go into more detail about modern concepts and technologies for sharing information, especially those relevant to geographic information.</p>
 
 <h2 id="information-the-core-of-maps">Information, the core of maps</h2>
@@ -109,7 +111,9 @@
 <p><img src="../../lessons/images/arcims-brochure-2000s.png" alt="Early Web Maps" class="shadow" />
 <em>Figure 8. Brochure from the 2000s advertising ArcIMS, a web GIS server application. Source: <a href="../../lessons/images/arcims_brochure.pdf">Esri, 2001</a>.</em></p>
 
-<p>In web GIS, applications like websites and mobile apps often communicate with databases of geographic information. Using Uber as an example, the app displays a map with a <dfn title="A map layer that acts as a background for reference or context (Lesson 1)">basemap</dfn> and <dfn title="Map layers containing the main information being communicated in a map, typically represented by points, lines, and polygons with an attribute table. They contrast with the basemap layer that is simply a static background image (Lesson 1).">operational layers</dfn>, including a point layer showing your location and the location of drivers and a line layer showing a route. The information in those layers is coming from files and databases stored on <dfn title="Servers are computers and applications that provide (serve) resources to other computers and applications (Lesson 4)">servers</dfn>, and then displayed in the app on your phone.</p>
+<p>People typically use web GIS through applications like websites, mobile apps, and desktop GIS software. <strong>Applications</strong> are programs or collections of programs that receive input and in return provide computing functions and access to data.</p>
+
+<p>In web GIS, applications often communicate with databases of geographic information. Using Uber as an example, the app displays a map with a <dfn title="A map layer that acts as a background for reference or context">basemap</dfn> and <dfn title="Map layers containing the main information being communicated in a map, typically represented by points, lines, and polygons with an attribute table. They contrast with the basemap layer that is simply a static background image (Lesson 1).">operational layers</dfn>, including a point layer showing your location and the location of drivers and a line layer showing a route. The information in those layers is coming from files and databases stored on <dfn title="Servers are computers and applications that provide (serve) resources to other computers and applications (Lesson 4)">servers</dfn>, and then displayed in the app on your phone.</p>
 
 <p><img src="../../lessons/images/uber-map.png" alt="Uber, a web GIS implementation" class="shadow centered" />
 <em>Figure 9. Uber map with operational layers and basemap. The mobile app displays the map data after requesting it from Uber’s servers or any third-party servers that Uber is using.</em></p>

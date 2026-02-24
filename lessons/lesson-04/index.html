@@ -45,6 +45,8 @@
   <li><a href="#end-of-module-questions">End of Module Questions</a></li>
 </ul>
 
+<p>Terms: data center, cloud computing, software as a service (SaaS), infrastructure as a service (IaaS), web server, GIS server</p>
+
 <p>The previous lesson covered general concepts that apply not only to web GIS but the web in general. We will now focus on the components of a typical web-based geographic information system. It is a peek under the hood of the web GIS machine so that when you build web maps later or encounter them outside of this course you will have a basic understanding of how it all works.</p>
 
 <p>Keep in mind that architectures and specific configurations will change as web GIS evolves. The technical details provided in this lesson should be taken as tangible examples of recent and current practices. These practices could change, so we’ll focus on the concepts more than specific software titles.</p>
@@ -70,7 +72,17 @@
 <p>Although we will use ArcGIS Online in this course, making us care-free SaaS users, this lesson will still take a look at how web GIS works to help you understand what is happening behind the scenes when you use ArcGIS Online. The sections below should give an idea of some of the applications involved if you were to configure your own web GIS servers.</p>
 
 <h2 id="web-servers">Web servers</h2>
-<p>Recall the client-server model for a website, where a client web browser downloads a webpage from a web server. For a simple webpage like <a href="https://atlas.ga.lsu.edu">https://atlas.ga.lsu.edu</a> with no web maps, the diagram has only the client and the server (Figure 1).</p>
+<p>A type of server application that connects various clients and servers on the web, listening for requests (input) and providing reponses (output) is a <strong>web server</strong>. Web servers can serve webpages, files, video, and other media, as well as web services. What all web servers have in common is the protocol they use for communicating with clients: <dfn title="Hypertext Transfer Protocol">HTTP</dfn>. HTTP (and the secure encrypted version HTTPS) are a standard for how communications between web clients and servers should take place. The protocol basically says that a client will contact a server, ask “Do you have the resource at this URL?”, and the server will respond, “Yes, here it is”, or “No, it does not exist (error 404)”, “No, you do not have access (error 403)”, etc.</p>
+
+<p>There are other types of applications, servers, and protocols that tranfer information over the internet, but they are not considered “web” applications unless they use HTTP.</p>
+
+<p>✅ Web server:<br />
+<code>https://example.org/prettypicture.jpg</code></p>
+
+<p>❌ Not a web server (it’s an <dfn title="File Transfer Protocol">FTP</dfn> server):<br />
+<code>ftp://example.org/prettypicture.jpg</code></p>
+
+<p>Recall the client-server model for a website, where, for example, a client web browser downloads a webpage from a web server. For a simple webpage like <a href="https://atlas.ga.lsu.edu">https://atlas.ga.lsu.edu</a> with no web maps, the diagram has only the client and the server (Figure 1).</p>
 
 <p><img src="../../lessons/images/atlas-server-client.png" alt="Atlas website server and client" />
 <em>Figure 1. A web server (left) sends a webpage to client web browsers requests the website <a href="https://atlas.ga.lsu.edu">https://atlas.ga.lsu.edu</a> and the server responds with the homepage.</em></p>
@@ -93,7 +105,7 @@
 <p>If we focus on the web GIS component of the previous figures in more detail, it can be broken down into three servers or applications. The figure below illustrates a typical web GIS configuration with three servers:</p>
 <ul>
   <li>Web server - listens for requests from clients and sends responses</li>
-  <li>GIS server - runs web services that provide the data used in maps</li>
+  <li><strong>GIS server</strong> - runs web services that provide the data used in maps and is capable of geoprocessing</li>
   <li>Data store - holds files and databases containing the data that is served through the GIS server’s web services</li>
 </ul>
 

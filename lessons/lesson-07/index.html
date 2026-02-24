@@ -44,7 +44,7 @@
   <li><a href="#summary">Summary</a></li>
 </ul>
 
-<p>Terms: geoprocessing, geoprocessing services, Web Processing Service, Web Coverage Processing Service</p>
+<p>Terms: geoprocessing, geoprocessing services</p>
 
 <h2 id="introduction">Introduction</h2>
 <p>In addition to storing, sharing, and mapping data, Web GIS can perform analysis. This can be as simple as drawing a 2-mile buffer around a hospital, or more complex operations like looking for crime hotspots.</p>
@@ -59,7 +59,7 @@
 <h2 id="geoprocessing">Geoprocessing</h2>
 <p>As mentioned in the introductory lessons of this course, one of the main functions of a geographic information system is to perform calculations related to distance. These calculations are possible because of numeric coordinate systems, such as latitude and longitude. Coordinate systems give us a way to precisely describe a location on Earth, and they give GIS software the numbers needed for the math that goes into spatial analysis.</p>
 
-<p><strong>Geoprocessing</strong> in GIS is the analysis or manipulation of data layers. Geoprocessing can be performed using geoprocessing tools in GIS software. These tools can be made available online as web services, referred to as <strong>geoprocessing services</strong>.</p>
+<p><strong>Geoprocessing</strong> in GIS is the analysis or manipulation of data layers. Geoprocessing can be performed using geoprocessing tools in GIS software. Geoprocessing tools are a means for conducting <strong>spatial analysis</strong>, an examination of the locations of features and how distance/proximity affect the properties of those features, or in other words, if or why location affects people, things, and phenomena.</p>
 
 <p>The buffer operation is one simple example. In its most basic form in GIS software, a buffer tool will accept as input a layer (points, lines, or polygons) and a distance parameter (how far the buffer extends from each feature) and produce as output a new polygon layer, which resembles a more plump version of the original layer.</p>
 
@@ -72,6 +72,8 @@
 <em>Figure 3. Another example, the “summarize within” tool, tells us something about the relationship between two layers, such as how many features from one layer are located within the boundaries of a feature from another layer.</em></p>
 
 <h2 id="geoprocessing-as-a-web-service">Geoprocessing as a web service</h2>
+<p>Much like how geographic information can be shared online through web services, geoprocessing tools can be made available online as web services, referred to as <strong>geoprocessing services</strong>.</p>
+
 <p>A geoprocessing tool could, as another example, take two addresses as input, and output the shortest or fastest route between the two. In that sense, you could consider Google Maps directions a geoprocessing tool. Google makes this service available as a geoprocessing service for use in your own applications through the <a href="https://developers.google.com/maps/documentation/directions/overview">Google Maps Directions API</a>. Think of the “from” and “to” addresses as an input layer of points (converted to lat/lon by Google’s geocoding service), and the output layer is a line along the road network representing the optimal route.</p>
 
 <p>Our simple distance calculation web service on CodeSandbox for Assignment 2 was much less complex but the idea is the same. Our web service received input locations and used an algorithm to compute the distance between them, returning that distance to the user in the web service response.</p>
@@ -80,7 +82,7 @@
 
 <p>ArcGIS Online provides numerous geoprocessing services. They can be used in maps and apps created on ArcGIS Online, or they can be used through the ArcGIS JavaScript API in your own websites and apps. ArcGIS Enterprise lets you create your own geoprocessing services that can be published to ArcGIS Server in basically the same way that feature layers are published.</p>
 
-<p>There are also open standards for web services. There is the OGC <strong>Web Processing Service (WPS)</strong> open standard for use with Web Feature Service (WFS) layers of points, lines, and polygons, and the <strong>Web Coverage Processing Service (WCPS)</strong> open standard for use with Web Coverage Service (WCS) layers of images.</p>
+<p>There are also open standards for web services. There is the OGC API - Processes (formerly WPS and WCPS) open standard for use with OGC API - Features (formerly WFS) layers of points, lines, and polygons and OGC API - Coverages (formerly WCS) layers of images.</p>
 
 <p>In this course, we will not create our own geoprocessing services, unless you count the distance calculator on CodeSandbox. Instead, we will use ArcGIS Online and Google Earth Engine to create web apps that take advantage of existing geoprocessing services. Earth Engine will be introduced in more detail in a later lesson.</p>
 

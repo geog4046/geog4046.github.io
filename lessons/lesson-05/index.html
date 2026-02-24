@@ -59,8 +59,10 @@
   <li><a href="#conclusion">Conclusion</a></li>
 </ul>
 
+<p>Terms: technical standard, vector, comma-separated values (CSV), raster, geodatabase, KML, GeoJSON, open standards, database management system (DBMS)</p>
+
 <h2 id="introduction">Introduction</h2>
-<p><strong>Technical standards</strong> are rules that encourage <dfn title="The ability of applications to exchange information with other computer systems (Lesson 3)">interoperability</dfn>. In simple terms, they ensure that a product you make will be compatible with a product made by someone else, as long as you both adhere to a standard. Ancient Rome had standards for lane and axle widths for compatibility between roads and horse-drawn carts. Today, many phone manufacturers are following the USB-C standard for charging cables.</p>
+<p><strong>Technical standards</strong> are rules that encourage <dfn title="The ability of applications to exchange information and functionality with other computer systems (Lesson 3)">interoperability</dfn>. In simple terms, they ensure that a product you make will be compatible with a product made by someone else, as long as you both adhere to a standard. Ancient Rome had standards for lane and axle widths for compatibility between roads and horse-drawn carts. Today, many phone manufacturers are following the USB-C standard for charging cables.</p>
 
 <p>In computing, there are standards for how to format data so it can be interpreted by applications. There are file formats for storing files on a computer, such as a Microsoft Word document or an <dfn title="Company that develops ArcGIS software">Esri</dfn> shapefile. There are also interchange formats meant for transferring data between applications over the Internet, such as JSON and GeoJSON formats. Web services will typically format their output in an interchange format, with standards for how requests and responses should look.</p>
 
@@ -115,14 +117,14 @@
 
 <h3 id="shapefile">Shapefile</h3>
 
-<p>The shapefile format was created by <dfn title="Company that develops ArcGIS software">Esri</dfn> to store vector data (points, lines, and polygons). It is an older but popular format that you might have used in an introductory GIS course, though it has been superseded by the file geodatabase. It is still common and could be used to prepare data before uploading to a Web GIS application. Otherwise, it has little use in Web GIS and is mainly mentioned here due to its ubiquity in desktop GIS.</p>
+<p>The shapefile format was created by <dfn title="Company that develops ArcGIS software">Esri</dfn> to store <strong>vector</strong> data (points, lines, and polygons). It is an older but popular format that you might have used in an introductory GIS course, though it has been superseded by the file geodatabase. It is still common and could be used to prepare data before uploading to a Web GIS application. Otherwise, it has little use in Web GIS and is mainly mentioned here due to its ubiquity in desktop GIS.</p>
 
 <p><img src="../../lessons/images/format-shapefile.png" alt="Shapefile" />
 <em>Figure 3. The shapefile is a classic format in the world of desktop GIS, though its use is now discouraged in favor of other formats and it has little use in Web GIS.</em></p>
 
 <h3 id="comma-separated-values">Comma-separated values</h3>
 
-<p>The <strong>comma-separated value (CSV)</strong> format is used to store tabular data as text, with each line of text representing a record, and commas in the records delineating a field. CSV files can be thought of as a spreadsheet, where each line is a row and each field is a column. Despite the name, some CSV implementations use characters other than commas to delineate different fields, such as a semicolon <code>;</code>.</p>
+<p>The <strong>comma-separated values (CSV)</strong> format is used to store tabular data as text, with each line of text representing a record, and commas in the records delineating a field. CSV files can be thought of as a spreadsheet, where each line is a row and each field is a column. Despite the name, some CSV implementations use characters other than commas to delineate different fields, such as a semicolon <code>;</code>.</p>
 
 <p><img src="../../lessons/images/format-csv.png" alt="Comma-separated values data format" />
 <em>Figure 4. The comma-separated values (CSV) format stores data in plain text, with fields delimited by commas or other characters. The format is commonly used for importing and exporting data from computer systems.</em></p>
@@ -143,8 +145,7 @@
 <em>Figure 5. A raster image, with a portion of the image blown up to show the individual pixels.</em></p>
 
 <h3 id="file-geodatabase">File geodatabase</h3>
-
-<p>The <strong>file geodatabase</strong> was created by <dfn title="Company that develops ArcGIS software">Esri</dfn> for the ArcGIS platform but it can be used in other software. It is essentially Esri’s replacement for the shapefile but with added capabilities: they can hold multiple layers of different types, can be accessed and edited simultaneously by multiple users, and they have a larger file size capacity, <a href="https://www.esri.com/news/arcuser/0309/files/9reasons.pdf">among other reasons</a>.</p>
+<p>A <strong>geodatabases</strong> is a system for storing geographic information, including layers of features comprising geometry and attributes, i.e., it is a database for GIS. A type of geodatabase, the File Geodatabase, was created by <dfn title="Company that develops ArcGIS software">Esri</dfn> for the ArcGIS platform but it can be used in other software. It is essentially Esri’s replacement for the shapefile but with added capabilities: they can hold multiple layers of different types, can be accessed and edited simultaneously by multiple users, and they have a larger file size capacity, <a href="https://www.esri.com/news/arcuser/0309/files/9reasons.pdf">among other reasons</a>.</p>
 
 <p><img src="../../lessons/images/format-fgdb.png" alt="File geodatabase data format" />
 <em>Figure 6. File geodatabases can store multiple layers of points, lines, polygons, and rasters.</em></p>
@@ -335,7 +336,7 @@ Though the ArcGIS web services are not considered open standards themselves, the
 
 <p>Therefore, while a simple, low-traffic Web GIS application might run fine with a file-based data store, an enterprise geodatabase might be necessary once the requirements become more complex.</p>
 
-<p>Enterprise geodatabases work by installing software called a database management system (DBMS) on a server (the “data store” in Figure 2). The DBMS can be connected to GIS software to create a series of related tables to hold geographic information. GIS software can be used to add data to the database from files. GIS server software can retrieve data from the database in response to requests from web services.</p>
+<p>Enterprise geodatabases work by installing software called a <strong>database management system (DBMS)</strong> on a server (the “data store” in Figure 2). The DBMS can be connected to GIS software to create a series of related tables to hold geographic information. GIS software can be used to add data to the database from files. GIS server software can retrieve data from the database in response to requests from web services.</p>
 
 <p><img src="../../lessons/images/dbms.png" alt="Database Management Systems" />
 <em>Figure 10. Examples of database management system (DBMS) software that can be used to create and manage an enterprise geodatabase, a place for GIS servers to store data and access data.</em></p>
