@@ -37,36 +37,51 @@
       <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#what-is-mobile-gis">What is mobile GIS?</a></li>
   <li><a href="#location-awareness">Location awareness</a></li>
   <li><a href="#geolocation-api">Geolocation API</a></li>
+  <li><a href="#accuracy-and-uncertainty">Accuracy and uncertainty</a></li>
   <li><a href="#location-based-services">Location-based services</a></li>
+  <li><a href="#geofencing">Geofencing</a></li>
   <li><a href="#privacy">Privacy</a></li>
+  <li><a href="#mobile-gis-in-the-field">Mobile GIS in the field</a></li>
+  <li><a href="#mobile-gis-architecture">Mobile GIS architecture</a></li>
   <li><a href="#volunteered-geographic-information">Volunteered Geographic Information</a></li>
   <li><a href="#summary">Summary</a></li>
   <li><a href="#end-of-module-questions">End of Module Questions</a></li>
 </ul>
 
-<p>Terms: location awareness, geolocation API, location-based service, geofencing, volunteered geographic information (VGI)</p>
+<p>Terms: location awareness, geolocation API, location-based service, geofencing, volunteered geographic information (VGI), offline mode, sensor fusion, accuracy, native app, web app</p>
 
 <h2 id="introduction">Introduction</h2>
 
-<p><em>A map that knows where it is</em>. This sounds like something from the realm of fantasy—enter the magic passcode to unlock the map, and it will reveal to whomever holds it their current location on the very map they are holding. This is the reality that has been made possible by portable, location-aware electronics.</p>
+<p><em>A map that knows where it is</em>. This sounds like something from the realm of fantasy—enter the magic passcode to unlock the map, and it will reveal to whomever holds it their current location on the very map they are holding! This is the reality that has been made possible by portable, location-aware electronics.</p>
 
-<p>The popularity of smartphones has implications for how web maps look and work. They have smaller screens and different input methods with which to interact with maps, which could be seen as shortcomings to those used to designing for monitors, a mouse, and keyboard. But phones also allow people to become part of the map, opening up new possibilities for Web GIS. From Uber to Pokemon Go to Tinder, Web GIS is a common feature in mobile applications.</p>
+<p>The popularity of phones has implications for how web maps look and work. Compared to desktop and laptop computers, phones and tablets have certain contraints, but they also allow people to become part of the map, opening up new possibilities for Web GIS. From Uber to Pokemon Go to Tinder, Web GIS is a common feature in mobile applications.</p>
+
+<h2 id="what-is-mobile-gis">What is mobile GIS?</h2>
+
+<p>Compare mobile GIS with desktop GIS. The latter is usually associated with larger screens, more computing power, and work performed in a relatively fixed environment, while the former assumes that the device, the user, and often the data collection activity itself are moving. The mobility of the device changes not only the interface, fit to a smaller screen, but the purpose of the system, which can now revolve around the location of the user.</p>
+
+<p>This commonly takes shape as location-based service apps that use a device’s location to provide a function or information, such as routing, finding nearby stores, or triggering an alert.</p>
+
+<p>Mobile GIS also includes apps that make mobile devices part of a GIS workflow, such as field data collection, navigation, or editing shared layers.</p>
 
 <h2 id="location-awareness">Location awareness</h2>
 
-<p>As the name implies, mobile devices move. Moreover, smartphones can know where they are, if they are moving and at what speed, and which direction they are facing.   This ability to determine location is called <strong>location awareness</strong>. A device can be aware of its position on Earth using GPS satellites, cell tower triangulation, proximity to known Wi-Fi networks, or a combination of these and other methods.</p>
+<p>As their name implies, mobile devices move. Moreover, phones can know where they are, if they are moving and at what speed, which direction they are facing, and other spatial metrics. This ability to determine location is called <strong>location awareness</strong>. A device can be aware of its position on Earth using GPS satellites, cell tower triangulation, proximity to known Wi-Fi networks, or a combination of these and other methods.</p>
 
-<p>GPS chips in smartphones allow the device to calculate its location within several meters without the need for cellular service or the Internet. Disable your Wi-Fi and cell service (airplane mode) and your phone will still give you a reasonably accurate latitude and longitude, because the GPS chip is still receiving signals from GPS satellites and calculating the location based on those signals, although it will not be as accurate as when your device can use the Internet to communicate with a geolocation service.</p>
+<p>GPS chips in phones allow the device to calculate its location within several meters without the need for cellular service or the Internet. Disable your Wi-Fi and cell service (airplane mode) and your phone might still give you a reasonably accurate latitude and longitude, because the GPS receiver is still receiving signals from GPS satellites and calculating the location based on those signals, although it will not be as accurate as when your device can use the Internet to communicate with a geolocation API.</p>
+
+<p>This is an important point conceptually: a phone’s location is not a magical fact that the device simply “knows.” It is an estimate produced by a system. That estimate can be very good, but it is still the result of measurements, models, and infrastructure with inherent uncertainty.</p>
 
 <h2 id="geolocation-api">Geolocation API</h2>
 
-<p>A <strong>geolocation <dfn title="Application Programming Interface">API</dfn></strong> allows applications to improve their location awareness by transmitting the device’s location data to a third party over the Internet (via a web service). The service compares the location data with databases of network devices for any information that might give clues about the device’s true location. Is the device close to a known Starbucks Wi-Fi, or a bluetooth beacon at GameStop?</p>
+<p>A <strong>geolocation API</strong> allows applications to improve their location awareness by transmitting the device’s location data to a third party over the Internet (via a web service). The service compares the location data with databases of network devices for any information that might give clues about the device’s true location. Is the device close to a known Starbucks Wi-Fi, or a bluetooth beacon at GameStop?</p>
 
-<p>The web service response is a new location with the estimated accuracy. Android apps will probably use Google’s geolocation service, while iOS apps might use Apple’s.</p>
+<p>The web service response is a location with the estimated accuracy. Android apps will probably use Google’s geolocation service, while iOS apps might use Apple’s.</p>
 
-<p>The World Wide Web Consortium (W3C) released a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation">technical standard for a geolocation API</a>. It provides a method for browsers and applications to use a location service.</p>
+<p>The World Wide Web Consortium (W3C) released a <dfn title="Technical standards are rules that encourage interoperability, e.g., the ability of applications to exchange information and functionality with other computer systems (Lesson 5)">technical standard</dfn> for a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation">geolocation API</a>. It provides a method for browsers and applications to use a location service. The underlying standard is maintained by W3C as the <a href="https://w3c.github.io/geolocation/">Geolocation API specification</a>.</p>
 
 <p>The JavaScript code that would be added to a webpage or app can be as simple as:</p>
 
@@ -85,27 +100,79 @@
   })
 </script>
 
-<p>When you click the blue button, your browser will first ask for permission to use your location. Then it will collect whatever information it can about your device’s location, send it to the geolocation service, and then display a popup with the latitude and longitude.</p>
+<p>If you are not on a mobile device, then the only information sent by your browser will likely be your IP address, which will not give an accurate location. But if you are on a phone, the coordinates should be pretty close. When I try on LSU’s campus using a device with only GPS and Wi-Fi, the service usually locates me in the correct classroom, on the correct side of the room.</p>
 
-<p>If you are not on a mobile device, then the only information your browser will send will likely be your IP address, which will not give an accurate location. But if you are on a phone, the coordinates should be pretty close. When I try on LSU’s campus using a device with only GPS and Wi-Fi, the service usually locates me in the correct classroom, on the correct side of the room.</p>
+<p>The geolocation API also supports continuous tracking rather than a one-time request. Instead of requesting the current location once, an application can keep receiving updated locations as the user’s position changes. W3C’s examples include turn-by-turn navigation and alerts when the user is near a point of interest.</p>
+
+<h2 id="accuracy-and-uncertainty">Accuracy and uncertainty</h2>
+
+<p>When a mobile application receives a location, it should not treat that location as perfectly precise. The W3C geolocation specification includes an <code>accuracy</code> value measured in meters. In other words, a mobile GIS application is not just receiving a point; it is also receiving information about how uncertain that point is.</p>
+
+<p>This matters because mobile GIS often gets used in situations where people assume location is exact. But whether a device is good enough for routing a driver, locating a buried utility, checking someone into a building, or mapping a field sample are different questions. A consumer app might work fine with a rough estimate, while field data collection for infrastructure or environmental work might require much tighter tolerances.</p>
+
+<p><img src="../../lessons/images/gps-accuracy-field-maps.png" alt="Point location with accuracy radius" class="centered shadow" />
+<em>Figure 1. A reported location is usually an estimate rather than an exact position. The accuracy value indicates that the true location is likely somewhere within a radius around the reported point.</em></p>
+
+<p>It is therefore better to think of mobile location as having a margin of error rather than as a perfect coordinate. In mobile GIS, the question is not only “Where is the device?” but also “How certain are we about where the device is?”</p>
 
 <h2 id="location-based-services">Location-based services</h2>
 
-<p>Instead of making a window pop up like in the example above, applications can send your location off to another application to provide some kind of functionality or information to you. This is a <strong>location-based service</strong> (LBS). Uber and any other app that relies on your location can be considered LBS. You can probably find many more examples by going into your phone’s privacy settings to see which apps have or would like permission to use your location. Go ahead, check.</p>
+<p>Instead of making a window pop up like in the example above, applications can use your location to provide some kind of functionality or information to you. This is a <strong>location-based service</strong>. Uber and any other app that relies on your location can be considered a location-based service. You can probably find many more examples by going into your phone’s privacy settings to see which apps have or would like permission to use your location.</p>
 
-<p>“Input” into computer programs in the traditional sense involves things like clicking, scrolling, typing, tapping, and swiping. These inputs, known as “events”, trigger a response from the program. But with LBS, your movement, and the resulting change in location, can itself become an input. When your movement into or out of a certain area triggers a reaction from a location-based service, this is called <strong>geofencing</strong>.</p>
+<p>“Input” into computer programs in the traditional sense involves things like clicking, scrolling, typing, tapping, and swiping. These inputs, known as “events”, trigger a response from the program. But with location-based services, your movement, and the resulting change in location, can itself become an input.</p>
+
+<p>Location-based services are common because they turn location into an input. Nearby search, route guidance, delivery tracking, fitness logging, and friend-finder apps all work this way.</p>
+
+<p>This also helps show why mobile GIS is not just a smaller version of web mapping. A static web map can show a restaurant. A mobile location-based service can use your location, the restaurant’s location, current traffic conditions, and the time of day to decide what to show you, what route to recommend, and even what ad to display.</p>
+
+<h2 id="geofencing">Geofencing</h2>
+
+<p>When your movement into or out of a certain area triggers a reaction from a location-based service, this is called <strong>geofencing</strong>.</p>
+
 <ul>
-  <li>Leave house, turn off heater</li>
-  <li>Vehicles leave parking lot, notify fleet management software</li>
-  <li>Walk by a store, receive a coupon</li>
-  <li>Go to church, later see a political campaign ad</li>
+  <li><a href="https://support.google.com/googlenest/answer/9262475?co=GENIE.Platform%3DAndroid&amp;hl=en">Leave house, turn off heater</a></li>
+  <li><a href="https://www.geotab.com/blog/what-is-geofencing/">Vehicles leave parking lot, notify fleet management software</a></li>
+  <li><a href="https://www.braze.com/resources/articles/location-based-marketing">Walk by a store, receive a coupon</a></li>
+  <li>Go to church, later see political ads (<a href="https://www.npr.org/2020/02/06/803508851/how-political-campaigns-are-using-geofencing-technology-to-target-catholics-at-m">2020</a>, <a href="https://efile.fara.gov/docs/7653-Exhibit-AB-20250927-1.pdf">2025</a>)</li>
 </ul>
+
+<p>A geofence is essentially a digital boundary monitored by software. Instead of asking only “Where is the user now?”, the application asks whether the user has crossed into or out of an area that matters to the system. Google’s documentation describes adding geofences to a geofencing request and delivering events to the app when those conditions are met. The important idea is that location is being monitored over time, and an action occurs when a boundary rule is triggered. See the <a href="https://developers.google.com/location-context/geofencing">Google geofencing documentation</a>.</p>
+
+<p>Geofencing is an example of geography becoming operational. A polygon on a map is no longer only something to look at. It becomes a condition in a system. When a mobile device enters or exits the polygon, the software can send a message, update a database, or unlock a workflow.</p>
+
+<h2 id="privacy">Privacy</h2>
+
+<p>Location-aware devices raise privacy questions because location is unusually revealing information. A device that reports where it is can also reveal where a person lives, works, shops, worships, and travels. That is one reason the W3C treats geolocation as a powerful feature that requires express permission from the user before location data is shared with a web application.</p>
+
+<p>Permission, however, does not eliminate the privacy issue. A user may grant permission once without fully understanding how often the app will check location, whether it will monitor location in the background, how long that information will be stored, or whether it will be shared to other systems. W3C’s earlier specification also notes that recipients of location information should not retransmit it without the user’s express permission.</p>
+
+<p>The distinction between foreground and background location access matters in practice. An app that only needs your location while you actively request directions is different from an app that continuously tracks your location throughout the day. From a technical standpoint, both may use similar APIs. From a social standpoint, they are not the same.</p>
+
+<h2 id="mobile-gis-in-the-field">Mobile GIS in the field</h2>
+
+<p>Another use of mobile GIS is field data collection and editing. In this context the device is not just locating the user; it is being used to update geographic information in the field. A worker might inspect a utility pole, add a point for a damaged sign, edit the condition of a catch basin, or attach a photo to a feature.</p>
+
+<p>The mobile GIS literature emphasizes that field data collection benefits from real-time updates and exchanges between centralized map servers and distributed mobile workers. Remote access to shared datasets and in-field editing can improve coordination and help maintain agreement among workers using the same data.</p>
+
+<p>Field workflows also show why offline capability matters in cases where perfect network connectivity is not guaranteed. Mobile GIS applications may store collected data in offline mode and upload it later, or directly update existing Web GIS services on cloud infrastructure in real time.</p>
+
+<p>Commercial field tools illustrate this. Esri’s ArcGIS Field Maps, for example, advertises offline capabilities including maps, tasks, data capture, and tracing so that mobile workers can continue working in remote locations without a network. Even if you never use this software, it is still a useful example of how mobile GIS depends on synchronization between field devices and GIS infrastructure.</p>
+
+<h2 id="mobile-gis-architecture">Mobile GIS architecture</h2>
+
+<p>Mobile GIS is best understood as an architecture rather than a single app. There is the mobile device, the app itself, and the data and service layers that provide basemaps and thematic information. There is also a distinction between <strong>native apps</strong>, built for a specific operating system such as Android or iOS, and <strong>web-browser apps</strong>, typically usable across phones, desktop computers, or any device with a browser.</p>
+
+<p>Mobile GIS is therefore another client-server system, but with a moving client. The device may cache some data locally, store edits temporarily, and handle lightweight interactions such as display, simple measurements, or form entry. The server side usually stores the authoritative database, manages synchronization, and hosts shared web services.</p>
+
+<p>This architecture also helps explain why mobile GIS often divides labor between device and server. Mobile devices have limited computing power, and complex geo-computation tasks are often sent to backend servers with more memory and processing power. Mobile devices can handle simple tasks, but heavier analysis is often performed remotely and the results sent back to the device.</p>
+
+<p>In other words, mobile GIS is part of a distributed system in which the phone, the network, server(s), and applications all participate in producing the result seen by the user.</p>
 
 <h2 id="volunteered-geographic-information">Volunteered Geographic Information</h2>
 
 <p>The widespread use of location-aware devices has turned people into sensors, collecting data and transmitting it over the web almost constantly, even when not actively using a phone. This has become a new source of geographic information.</p>
 
-<p><strong>Volunteered geographic information (VGI)</strong> is crowd-sourced contributions of content with a location attribute. It is an alternative to authoritative data sources from governments or businesses. VGI is an evolution of Web 2.0, which has seen the rise of crowd-sourced platforms that depend on user-submitted content, such as Wikipedia, Youtube, and Facebook. VGI is especially useful for endeavors that are too large in scale or are changing too rapidly to be monitored by a smaller team of people.</p>
+<p><strong>Volunteered geographic information (VGI)</strong> is crowd-sourced contributions of data with a location attribute. It is an alternative to authoritative data sources (e.g., governments, businesses). VGI is an evolution of “Web 2.0”, which has seen the rise of crowd-sourced platforms that depend on user-submitted content, such as Wikipedia, YouTube, and Facebook. VGI is especially useful for endeavors that are too large in scale or are changing too rapidly to be monitored by a smaller team of people.</p>
 
 <p>VGI has been used in response to wildfires, with citizens reporting on the quickly spreading perimeter through web-based maps.</p>
 
@@ -115,20 +182,15 @@
 
 <p>The City of New Orleans manages 72,000 catch basins for street drainage. Each one is mapped on the <a href="https://catchbasin.nola.gov/">Adopt-A-Catchbasin web GIS application</a> that allows citizens to report whether drains are clear or clogged, and even “adopt” a catch basin to take responsibility for keeping the rainwater flowing out of their street.</p>
 
-<p>Crowd-sourced information raises questions of accuracy. It can be difficult to verify user submissions, making the platforms more susceptible to mistakes and vandalism than traditional authoritative data sources.</p>
+<p>Crowd-sourced information raises questions of accuracy. It can be difficult to verify user submissions, making the platforms more susceptible to mistakes and vandalism than traditional authoritative data sources. It also raises a broader question: where does geographic information come from, and under what conditions is it being contributed? “Volunteered” can describe a user actively submitting a report, but consent can become blurry when location data is constantly collected from users’ devices in the background.</p>
 
 <h2 id="summary">Summary</h2>
-<p>Location-awareness is now a defining characteristic of smartphones. Where desktop GIS brought maps to people, mobile GIS brings people to maps, making user locations the core aspect of some apps. Mobile GIS has spawned new apps and entire industries—would the rideshare industry exist without location-aware mobile devices and mapping applications? It has also raised new concerns for privacy and governance—aren’t citizens with trackers and identifiers a favorite dystopian trope?</p>
 
-<h2 id="end-of-module-questions">End of Module Questions</h2>
-<p>Think back on the lessons on data formats, standards, mobile GIS, and considerations for making web-based maps. Relate the concepts to the assignments.</p>
-<ul>
-  <li>When we created CSV and GeoJSON files and uploaded them to ArcGIS Online, how do you think the data is stored on the ArcGIS Online servers: did it remain as CSV and GeoJSON files, is it converted to shapefiles, or another type of system?</li>
-  <li>We used web services for each of this module’s assignments. If we had used open-source software that uses open standards for web services, what type of service would our layers have been (e.g., Web Map Service, Web Tile Service, etc.)? Why?</li>
-  <li>Did your COVID-19 dashboard perform well on mobile? How could it be optimized for devices with low bandwidth and small screens?</li>
-  <li>In your COVID-19 maps, did the symbology you chose introduce any bias or do you think it was a fair representation of the data? Explain.</li>
-  <li>What problems could you foresee with using a crowd-sourced map where the public can contribute data?</li>
-</ul>
+<p>Location-awareness is now a defining characteristic of phones. Where desktop GIS brought maps to people, mobile GIS brings people to maps, making user locations the core aspect of some apps. But mobile GIS is not just “apps that know where you are.” It also includes field data collection, offline work, synchronization with shared layers, and the use of mobile devices as clients in larger cloud-based GIS architectures.</p>
+
+<p>Mobile GIS is built on estimated location rather than perfect location, which means uncertainty is always part of the system even when the user interface hides it. It also depends on choices about permissions, background tracking, network connectivity, and what kinds of analysis are performed on the device versus on the server.</p>
+
+<p>It has spawned new apps and entire industries—would the rideshare industry exist without location-aware mobile devices and mapping applications? It has also raised new concerns over privacy and governance. Once devices can continuously determine, transmit, and act on location, mobile GIS becomes not only a way to view geography but also a way to monitor, coordinate, and intervene in the world.</p>
 
       <br><br>
       <a href="#top">&uarr; Top</a><br>

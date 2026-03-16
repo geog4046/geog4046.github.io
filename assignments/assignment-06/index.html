@@ -33,28 +33,20 @@
 
     <section class="main-content">
       <h1 class="text-center">Assignment 6</h1>
-      <h2 class="text-center">Use mobile GIS to edit a layer through a web service</h2>
-      <p>Create an app that can be used on mobile devices to update a dataset through a web service. The dataset will be hosted with ArcGIS Online, and mobile devices will be able to add new records or update existing records. There will be two layers to accomplish this (pretend you are setting this up for an organization): one for private use within your organization and one for public use as a volunteered geographic information (VGI) app.</p>
+      <h2 class="text-center">Build and test a geofence</h2>
+      <p>Create a simple geofence workflow in ArcGIS Field Maps. Your geofence can represent any small local area that is easy and appropriate for you to visit, such as part of campus, a park, a bus stop area, etc.</p>
 
-<p>The example used in this tutorial is for an app to report debris on campus following a tornado. In this example scenario, campus authorities need to quickly deploy a system for identifying debris so maintenance crews can respond. The system is initially set up so that only these crews can make detailed reports, but given the urgency of the situation, a public app is also created to get basic input from anyone on campus who spots downed trees, damaged vehicles, etc.</p>
-
-<p>We will use separate apps to update the private and public layers:</p>
-<ul>
-  <li>For the private layer, you will use Collector for ArcGIS  (iOS, Android, Windows) for internal reports.</li>
-  <li>For the public layer, you will create a web app in ArcGIS Online for public, crowdsourced reports.</li>
-</ul>
-
-<iframe width="100%" height="600" src="https://lsuga.maps.arcgis.com/apps/GeoForm/index.html?appid=2a798f276b0f475aa1d430736eaa74af" frameborder="0" allowfullscreen=""></iframe>
+<iframe src="https://lsu-its.maps.arcgis.com/apps/instant/basic/index.html?appid=f8907e223d7042a7ad6acfac112742ef" width="850" height="400" frameborder="0" style="border:0" allowfullscreen="">iFrames are not supported on this page.</iframe>
 
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#data">Data</a></li>
   <li><a href="#steps">Steps</a>
     <ul>
-      <li><a href="#part-1-create-an-empty-layer">Part 1: Create an empty layer</a></li>
-      <li><a href="#part-2-create-a-web-map">Part 2: Create a web map</a></li>
-      <li><a href="#part-3-set-up-arcgis-collector">Part 3: Set up ArcGIS Collector</a></li>
-      <li><a href="#part-4-create-a-view-layer-for-public-access">Part 4: Create a View Layer for public access</a></li>
+      <li><a href="#part-1-create-a-map-and-polygon-layer">Part 1: Create a map and polygon layer</a></li>
+      <li><a href="#part-2-draw-the-geofence-polygon">Part 2: Draw the geofence polygon</a></li>
+      <li><a href="#part-3-configure-the-geofence">Part 3: Configure the geofence</a></li>
+      <li><a href="#part-4-test-the-geofence-in-the-field-maps-mobile-app">Part 4: Test the geofence in the Field Maps mobile app</a></li>
     </ul>
   </li>
   <li><a href="#try-it">Try it</a></li>
@@ -62,127 +54,85 @@
 </ul>
 
 <h2 id="data">Data</h2>
-<p>The dataset will at first be empty, and will only be populated once users start submitting reports through the private and public apps. To create this empty dataset, use the feature layer templates available in ArcGIS Online. This tutorial will use the “Debris Reports” template.<br />
-<img src="../../assignment-resources/images/agol-feature-layer-templates.png" alt="ArcGIS Online feature layer templates" /></p>
-
-<p>Feature layer templates will include predefined attributes. For example, the “Debris Reports” template will create a feature layer with the following attributes:</p>
-<ul>
-  <li>Report ID</li>
-  <li>Type of Debris</li>
-  <li>Details</li>
-  <li>Name</li>
-  <li>Phone</li>
-  <li>Email</li>
-  <li>Estimated Volume (cubic yards)</li>
-  <li>Estimated Weight (tons)</li>
-  <li>Date Submitted</li>
-  <li>Status</li>
-  <li>Assigned To</li>
-  <li>Photos and Files</li>
-</ul>
-
-<p>Creating a new feature layer will create a new item on your Content page. This layer can be added to maps.<br />
-<img src="../../assignment-resources/images/agol-item.png" alt="Feature layer item on the Content page" /></p>
-
-<p>For public access, we will create a “view” of the feature layer.<br />
-<img src="../../assignment-resources/images/agol-item2.png" alt="Layer icons" /></p>
-
-<p>The new layer “view” is not a copy of the source layer. The view points back to the source layer. Therefore, updates to the data in one layer will be reflected in both the view and the source. The purpose is to be able to set different permissions, styles, and filters for the view and the source. In this tutorial, the source will be private and the view will be public:</p>
-<ul>
-  <li><strong>Feature layer</strong>: employees can add, update, and delete reports; public cannot access.</li>
-  <li><strong>Feature layer view</strong>: public can access but can only add new reports.</li>
-</ul>
+<p>The dataset will start empty. You will create a new polygon layer and then add one polygon feature to it. That polygon will serve as the geofence boundary.</p>
 
 <h2 id="steps">Steps</h2>
-<p>The basic steps in this process are:</p>
+<p>The basic steps in this process are to create a layer, draw a polygon as the geofence area, configure a geofence action, and then test it on your phone by entering or exiting the area.</p>
 
-<ul>
-  <li>Create an empty layer (for employees)</li>
-  <li>Create a map (for employees)</li>
-  <li>Set up ArcGIS Collector (for employees)</li>
-  <li>Create a layer view (for public)</li>
-  <li>Create a map (for public)</li>
-  <li>Create an app (for public)</li>
-</ul>
-
-<p>Notice the general pattern: Layer/service » Map » App.<br />
-<img src="../../assignment-resources/images/matryoshka2.png" alt="The steps in this exercise build on each other" class="no-shadow" /><br />
-<small><em>Once again we see the nesting dolls, demonstrating that layers are published as web services, which are added to maps, which are added to apps.</em></small></p>
-
-<h3 id="part-1-create-an-empty-layer">Part 1: Create an empty layer</h3>
+<h3 id="part-1-create-a-map-and-polygon-layer">Part 1: Create a map and polygon layer</h3>
 <ol>
-  <li>Sign into your ArcGIS Online account, provided in class by your instructor.</li>
-  <li>Go to your <strong>Content</strong> page.</li>
-  <li>Click <code>New Item</code> &gt; <code>Feature Layer</code>.</li>
-  <li>Click <code>Use a template</code>, <code>Next</code>, and search for the “Debris Reports” template. Select it and click <code>Next</code> until asked for a title and tags, then click <code>Save</code>. The layer will be created and you will see its <strong>Item Details</strong> page.</li>
-  <li>Click the <code>Data</code> tab at the top of the page to see the predefined attributes (there are no features under the attributes yet).</li>
-  <li>Click the <code>Visualize</code> tab to see the template’s predefined symbology. For the “Debris Reports” template, the symbols correspond to different types of debris (vegetation, hazardous material, etc.). The map should be blank except for the basemap.</li>
-  <li>Click <code>Settings</code>, and in the <code>Feature Layer (hosted)</code> part of the settings, make sure the <code>Enable editing</code> box is checked. Click <code>Save</code>.</li>
+  <li>Sign into your ArcGIS Online account.</li>
+  <li>Open <strong>Field Maps Designer</strong> from the app launcher.<br />
+<img src="../../assignment-resources/images/launch-field-maps-designer.png" alt="Launch field maps designer" /></li>
+  <li>Click <code>+ New map</code>.</li>
+  <li>Choose <code>Start with new layers</code> and click <code>Next</code>.</li>
+  <li>Create one layer with a descriptive name for the polygon area, e.g., Howe-Russell Building Footprint</li>
+  <li>Set the layer type to <code>Polygon layer</code>.</li>
+  <li>Continue through the map creation steps with defaults and give the map a clear title.</li>
+  <li>Click <code>Create map</code> to finish.</li>
 </ol>
 
-<h3 id="part-2-create-a-web-map">Part 2: Create a web map</h3>
+<h3 id="part-2-draw-the-geofence-polygon">Part 2: Draw the geofence polygon</h3>
 <ol>
-  <li>Still on the <strong>Item Details</strong> page of the new feature layer, click the <code>Overview</code> tab, then click <code>Open in Map Viewer Classic</code> to add the layer to a new map.</li>
-  <li>In the <strong>Map Viewer</strong>, the empty layer should appear in the <code>Content</code> pane with symbols already.</li>
-  <li>Pan and zoom the map to your area of interest, such as the campus of LSU.</li>
-  <li><code>Save</code> the map and name it with “Private” at the end of the name to distinguish it from the public layer we will make later. <strong>Do not</strong> share with <code>Everyone</code>, because this map contains the private layer for our pretend organization’s internal use.</li>
+  <li>You should now see Field Maps Designer, but no map yet.</li>
+  <li>Click <code>Open</code> (bottom left), then choose <code>Open in Map Viewer</code>.</li>
+  <li>Pan and zoom to the local place you chose for this assignment.</li>
+  <li>Click the <code>Edit</code> icon on the right side of the Map Viewer.<br />
+<img src="../../assignment-resources/images/edit-layer.png" alt="Edit layer" /></li>
+  <li>Click <code>New Feature</code> and draw one polygon around the area you want to use as the geofence.</li>
+  <li>Save the feature by clicking <code>Create</code>.</li>
+  <li>Save the map.</li>
 </ol>
 
-<h3 id="part-3-set-up-arcgis-collector">Part 3: Set up ArcGIS Collector</h3>
+<h3 id="part-3-configure-the-geofence">Part 3: Configure the geofence</h3>
 <ol>
-  <li>On a mobile device (iOS, Android, Windows), install Collector for ArcGIS (Esri) from your device’s app store.</li>
-  <li>Once installed, sign into Collector with your ArcGIS Online account.</li>
-  <li>Browse for <code>Maps</code> in Collector to see the maps saved in your account <em>that have an editable feature layer added</em>. Tap your debris report map to open.</li>
-  <li>Depending on your version of Collector, tap <code>Collect</code>, <code>Capture</code>, or <code>+</code> to add a new feature to the layer. Collector will try to use your current location, but you can tap the map to drop a point marker instead.</li>
-  <li>Fill out some basic attributes and attach an image. Tap <code>Submit</code>.</li>
-  <li>The new feature will appear on your map. You can refresh the map on your computer to see the feature you just input from your phone.</li>
+  <li>Return to <strong>Field Maps Designer</strong>.</li>
+  <li>Click <code>Geofences</code>.</li>
+  <li>Click <code>Add geofence</code>.</li>
+  <li>Give the geofence a clear name.</li>
+  <li>In the <code>Layers</code> menu, select your polygon layer.</li>
+  <li>Leave the filter blank, but note it is possible to a polygon layer with multiple features that could be filtered out according to your needs.</li>
+  <li>Leave the buffer at <code>0</code>.</li>
+  <li>In the <code>Type</code> menu, choose <code>Location alert</code>.</li>
+  <li>Check <strong>one</strong> of the following:
+    <ul>
+      <li><code>On enter</code>, or</li>
+      <li><code>On exit</code></li>
+    </ul>
+  </li>
+  <li>In the message box, enter the custom alert message that should appear on the phone.</li>
+  <li>Save the geofence.</li>
 </ol>
 
-<h3 id="part-4-create-a-view-layer-for-public-access">Part 4: Create a View Layer for public access</h3>
+<h3 id="part-4-test-the-geofence-in-the-field-maps-mobile-app">Part 4: Test the geofence in the Field Maps mobile app</h3>
 <ol>
-  <li>Return to the layer’s <strong>Item Details</strong> page.</li>
-  <li>Click <code>Create View Layer</code>.
- <img src="../../assignment-resources/images/agol-layer-view.png" alt="Create View Layer button" /><br />
- <small><em>Item Details page showing the Create View Layer button.</em></small></li>
-  <li>On the <strong>Create View Layer</strong> page, click <code>Next</code> at the <code>Choose layers</code> step.</li>
-  <li>On the <code>Define view</code> step, click your layer to see options, then click <code>Area of interest</code>. Pan and zoom the map to the area where debris could be reported, then draw a box around the area.</li>
-  <li>Click the back arrow by <code>Layer definitions</code> and then <code>Next</code>.</li>
-  <li>Put “view” at the end of the title to distinguish this view layer from the original, then click <code>Create</code>.</li>
-  <li>Note that this creates another item in your Content:<br />
- <img src="../../assignment-resources/images/agol-item2.png" alt="Content page with a view layer" /><br />
- <small><em>Content page showing a separate item for a feature layer view.</em></small></li>
-  <li>Go to the view layer’s <strong>Item Details</strong> page and click <code>Settings</code>.</li>
-  <li>Check <code>Approve this layer to be shared with the public when editing is enabled</code> and <code>Save</code>, then <code>Enable editing</code> and <code>Save</code>. Note that there are several options under <code>Enable editing</code>. You will configure these on your own in the “Try it” section next.</li>
+  <li>On your phone, install <strong>ArcGIS Field Maps</strong> from your app store.</li>
+  <li>Sign into the app with the same ArcGIS Online account you used to create the map.</li>
+  <li>Open your map in the Field Maps mobile app.</li>
+  <li>When prompted, enable location alerts.</li>
+  <li>Make sure Field Maps is allowed to use your location and notifications on your phone. If your device asks for physical activity permission, allow that as well. Depending on what you choose here, the action might only be triggered when you have the Field Maps app open on your phone.</li>
+  <li>You are now ready to try out the geofence.</li>
 </ol>
+
+<blockquote>
+  <p>If you change the geofence polygon after the map has already been opened on your phone, reload the map in Field Maps before testing again.</p>
+</blockquote>
 
 <h2 id="try-it">Try it</h2>
 <ol>
-  <li>Think about how you want your public app to be used and set the appropriate editing permissions on the View Layer from Part 4.
-    <ul>
-      <li>Should the public be able to only add new features?</li>
-      <li>Only update existing features?</li>
-      <li>Other combinations of permissions?</li>
-    </ul>
-  </li>
-  <li>Add the View Layer to a new map. Set appropriate sharing permissions on the map, considering it will be used in a crowdsourcing app.</li>
-  <li>Add the map to an app. Set the same sharing permissions.</li>
-  <li>Choose a configurable app meant for collecting and editing data, such as the “GeoForm” template. When setting up the app, consider which form fields need to be available for public input, e.g., you can hide the “volume” field as it is not realistic to expect people to know that.</li>
-  <li>
-    <p>Fill out the item information on the Item Details page of your public app. Describe what the app is for and how the audience is supposed to use it.<br />
-<img src="../../assignment-resources/images/agol-item-info-well-done.png" alt="Item info progress bar" /><br />
-<small><em>A progress bar indicates how much information has been filled out on the Item Details page.</em></small></p>
-  </li>
-  <li>Once finished with the exercise, your Content page should show something like this:<br />
-<img src="../../assignment-resources/images/agol-mobile-gis-items.png" alt="Content page with items" /><br />
-<small><em>Content page with items for private and public layers, private and public maps, a public app, and any supporting files you uploaded.</em></small></li>
+  <li>Travel to your geofence area.</li>
+  <li>Cross your geofence boundary to trigger your alert, whether <code>On enter</code> or <code>On exit</code>.</li>
+  <li>If your first test does not trigger when expected, adjust the polygon or add a small buffer in the geofence settings, check that you allowed all permissions, and test again.</li>
+  <li>Take a screenshot of the alert triggered at the geofence boundary.</li>
+  <li><strong>Optional:</strong> Now that you’ve gone through the steps of creating a geofence, feel free to optionally play around with the settings and capabilities of Field Maps Designer, find a new polygon layer with multiple polygons, create multiple geofences, or use variables to show feature layer attribute data in the alert text.</li>
 </ol>
-
-<p>We have public and private layers, public and private maps, but only a public app, because ArcGIS Collector serves as our private app.</p>
 
 <h2 id="submit">Submit</h2>
 <ol>
-  <li>The URL to the <strong>Item Details</strong> page of your <strong>public web app</strong>. Example: <code>https://www.arcgis.com/home/item.html?id=ABC123</code> or <code>https://arcg.is/ABC123</code></li>
+  <li>One screenshot of the alert shown on your device by the Field Maps app after you tested the geofence in the field.</li>
+  <li>A short note stating the place you used for the geofence.</li>
 </ol>
+
 
       <br><br>
       <a href="#top">&uarr; Top</a><br>
