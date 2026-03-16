@@ -33,163 +33,165 @@
 
     <section class="main-content">
       <h1 class="text-center">Final Project</h1>
-      <h2 class="text-center">Propose an idea and turn it into a map-centric website</h2>
-      <p>Write a brief proposal for a final project, describing the topic, the output, and the evaluation criteria. Complete your final project according to your own guidelines specified in your proposal.</p>
+      <h2 class="text-center">Plan and build a map-centric application</h2>
+      <p>Write a planning document for a final project, then build the project in iterations. The overall requirement is a website or app that uses geographic information.</p>
 
-<p>The overall requirement is a website with a map or maps. To produce this website, it is up to you to:</p>
 <ol>
-  <li><a href="#topic">Decide on a topic for your final project</a></li>
-  <li><a href="#proposal">Write a proposal for your topic and evaluation criteria</a></li>
-  <li><a href="#data">Find or create geographic information related to the topic</a></li>
-  <li><a href="#presentation">Choose a way to present the information online</a></li>
-  <li><a href="#technology">Implement the technology</a></li>
-  <li><a href="#test">Test your product thoroughly and submit it for evaluation</a></li>
+  <li><a href="#topic">Choose a topic</a></li>
+  <li><a href="#planning">Write a planning document</a></li>
+  <li><a href="#data">Find or create geographic information</a></li>
+  <li><a href="#presentation">Choose how to present it online</a></li>
+  <li><a href="#iteration-1">Develop iteration 1</a></li>
+  <li><a href="#iteration-2">Develop iteration 2</a></li>
+  <li><a href="#iteration-3">Develop iteration 3</a></li>
+  <li><a href="#submit">Submit</a></li>
 </ol>
 
 <h2 id="topic">Topic</h2>
-<h3 id="decide-on-a-topic-for-your-final-project">Decide on a topic for your final project</h3>
-<p>Think of something that interests you, or search online for ideas. It must be feasible to create a website and map(s) about it. Here is a nonexhaustive list to help you brainstorm:</p>
+<h3 id="choose-a-topic">Choose a topic</h3>
+<p>Choose a topic that is feasible for a class project. It should be something you can present through a website or app with maps or other geographic information.</p>
+
+<p>For ideas:</p>
 <ul>
   <li>Something related to a hobby</li>
   <li>Something from your job</li>
   <li>Your graduate research topic or your advisor’s</li>
-  <li>Places you’ve been</li>
-  <li><a href="https://livingatlas.arcgis.com">Browse the ArcGIS Online Living Atlas for ideas</a></li>
-  <li><a href="https://github.com/geog4046/geog4046.github.io/wiki/Data-sources">Browse our class data sources wiki</a></li>
+  <li>Places you have visited</li>
+  <li><a href="https://livingatlas.arcgis.com">ArcGIS Online Living Atlas</a></li>
+  <li><a href="https://github.com/geog4046/geog4046.github.io/wiki/Data-sources">Class data sources wiki</a></li>
 </ul>
 
-<p>Also see the course Moodle topic for the final project to download “Data and Maps for ArcGIS”, which includes file geodatabases of population and demographic data for U.S. counties and states, world cities, physical geography, and more.</p>
-
-<h2 id="proposal">Proposal</h2>
-<h3 id="write-a-proposal-for-your-topic-and-grading-criteria">Write a proposal for your topic and grading criteria</h3>
-<p>Prior to beginning your project, submit a proposal so your instructor can provide feedback and help decide if the project and evalution are feasible. Write the proposal in two parts, each 100-300 words:</p>
+<h2 id="planning">Planning</h2>
+<h3 id="write-a-planning-document">Write a planning document</h3>
+<p>Before building the project, submit a planning document with these three parts:</p>
 <ul>
   <li>Overview</li>
-  <li>Grading criteria</li>
+  <li>User stories</li>
+  <li>Product backlog</li>
 </ul>
 
-<h4 id="proposal-overview-100-300-words">Proposal: overview (100-300 words)</h4>
-<p>Describe your general idea for a final project:</p>
+<h4 id="overview">Overview</h4>
+<p>Briefly describe:</p>
 <ul>
-  <li>What geographic information will you use?</li>
-  <li>Ideas for map(s)?</li>
-  <li>Website design?</li>
+  <li>the topic</li>
+  <li>the intended user or audience</li>
+  <li>the geographic information you plan to use</li>
+  <li>what the project should help the user do</li>
 </ul>
 
-<p>You do not need to be specific on every aspect, because you can change the finer details later, especially after we cover JavaScript. For example, you do not need to commit to ArcGIS Online, since you may later change to Leaflet on Github.</p>
+<p>You do not need to decide every technical detail yet, but you should decide the purpose, the users, and the scope.</p>
 
-<p><small><em>Writing example</em></small><br />
-<code>...Map 1 will be hosted on an ArcGIS Online public account or another free alternative...</code></p>
+<h4 id="user-stories">User stories</h4>
+<p>Write at least <strong>2</strong> user stories using this format:</p>
 
-<p>However, you should commit to the grading criteria and scope of work you propose.</p>
+<pre>
+As a [type of user], I want to [do something], so that [reason or goal].
+</pre>
 
-<h4 id="proposal-grading-criteria-100-300-words">Proposal: grading criteria (100-300 words)</h4>
-<p>How should your project be evaluated? Specify 4 to 10 requirements in your proposal. Your project will then be graded according to your criteria. Different topics will require different kinds and amounts of effort, and the grading criteria you propose should reflect that.</p>
+<p>User stories should describe what people need to do with the project, not just technical features.</p>
 
-<p>For example, if you put more effort into collecting your data than designing your website, then give more weight to data collection. The requirements in the example below are grouped into different phases: data collection, map making, web development, and documentation.</p>
+<pre>
+1. As a resident, I want to tap on a park and see its name and amenities, so that I can decide whether it is worth visiting.
+2. As a parent, I want to locate playgrounds near my neighborhood, so that I can decide where to bring my children.
+3. As a visitor, I want to view parks near major roads, so that I can easily get there.
+</pre>
+
+<h4 id="product-backlog">Product backlog</h4>
+<p>A backlog converts the user stories into a to-do list of work. Write a backlog of concrete items you can actually build, test, and check off. It can be helpful to prioritize work by grouping them by must-have, should-have, and could-have items.</p>
 
 <p><small><em>Writing example</em></small></p>
 <pre>
-- Data collection  
-  1. Research all hospitals in the New Orleans and Baton Rouge metro areas to determine location and number of beds (30%)  
-  2. Record and process data into GIS format(s) (10%)  
-- Map making  
-  3. Map of the Baton Rouge area hospital locations (5%)  
-  4. Map of the New Orleans area hospital locations (5%)  
-  5. Map of both areas with symbology that highlights hospital capacity vs. population served (10%)  
-  6. Popups or other method allowing users to view information about each hospital (5%)  
-- Web development  
-  7. Story map or blog post to pull together all maps, information, and images (20%)  
-- Documentation
-  8. Description of the methods and sources for the research data (5%)  
-  9. Description of layer(s) created from the data (5%)  
-  10. Description of the maps and app, including what they show and how to use them (5%)  
+Must have
+- Add a map showing park locations.
+- Include park names in the dataset.
+- Include amenity information for each park.
+- Configure a popup so users can tap a park and see its name and amenities.
+- Symbolize or label playground locations clearly.
+- Make it possible to identify playgrounds near a neighborhood.
+- Show major roads on the map.
+- Make it possible to see which parks are near major roads.
+
+Should have
+- Add a legend explaining parks, playgrounds, and roads.
+- Add search so users can find a neighborhood or park by name.
+- Add a filter so users can show only parks with playgrounds.
+- Adjust the map scale and extent so roads and parks are easy to interpret together.
+
+Could have
+- Add directions or an external link for navigation.
+- Add photos of parks.
+- Add parking information.
+- Add a mobile-friendly layout for easier use on a phone.
 </pre>
 
-<h4 id="criteria-template-should-add-up-to-100">Criteria template (should add up to 100%)</h4>
-<p>Copy the template below into your proposal, using a <strong>minimum of 4 and maximum of 10</strong>. Specify the weights as percentages, adding up to 100%, with <strong>no more than 50% for a single requirement</strong>.</p>
-<ol>
-  <li>Description of requirement (%)</li>
-  <li>Description of requirement (%)</li>
-  <li>Description of requirement (%)</li>
-  <li>Description of requirement (%)</li>
-  <li>Description of requirement (%)</li>
-  <li>Description of requirement (%)</li>
-  <li>Description of requirement (%)</li>
-  <li>Description of requirement (%)</li>
-  <li>Description of requirement (%)</li>
-  <li>Description of requirement (%)</li>
-</ol>
-
 <h2 id="data">Data</h2>
-<h3 id="find-or-create-geographic-information-related-to-the-topic">Find or create geographic information related to the topic</h3>
-<p>You may create your own dataset by conducting research or you may use other sources, such as web services, CSVs, or shapefiles you find online. It will be up to you to convert your data into a Web GIS format and host it online if it is not already online. Refer back to previous assignments that covered finding and creating data.</p>
+<h3 id="find-or-create-geographic-information">Find or create geographic information</h3>
+<p>You may create your own dataset or use existing sources such as web services. If needed, convert the data into a form that works for Web GIS and host it online.</p>
+
+<p>Choose datasets that support your user stories.</p>
 
 <h2 id="presentation">Presentation</h2>
-<h3 id="choose-a-way-to-present-the-information-online">Choose a way to present the information online</h3>
-<p>This series of questions points out some options to consider. Make decisions based on what works best for your topic:</p>
+<h3 id="choose-how-to-present-the-information-online">Choose how to present the information online</h3>
+<p>Make decisions based on what works best for your topic:</p>
 <ul>
   <li>Can your topic be presented with a single map or multiple maps?</li>
-  <li>Will you create a Story Map (check out the new <a href="https://storymaps.arcgis.com/stories">ArcGIS Online Story Maps</a>), blog (see <a href="https://wordpress.com/">WordPress</a>), or something else?</li>
-  <li>Can you include images and/or videos?</li>
+  <li>Will you create a Story Map, a blog, a custom webpage, or something else?</li>
+  <li>Can you include images or video?</li>
   <li>Will it be designed as a portfolio of work?</li>
-  <li>Will you document your metadata on an ArcGIS Online Item Details page or explain it all in a blog post?</li>
+  <li>Will you document your metadata on an ArcGIS Online item page or explain it in the project itself?</li>
   <li>What colors, fonts, logos, backgrounds, map symbols, and basemaps will set an appropriate tone for your topic?</li>
 </ul>
 
-<h2 id="technology">Technology</h2>
-<h3 id="implement-whatever-tools-are-necessary">Implement whatever tools are necessary</h3>
-<p>Take your ideas and designs and begin constructing the project. Choose the software, websites, and services that will help you most closely attain your vision for the maps, multimedia, text, and overall presentation of your topic.</p>
+<p>Use the tools that best fit your project. You may use ArcGIS Online, Leaflet, GitHub Pages, or another approach. Configure the project so that users can understand and interact with the geographic information.</p>
 
-<p>You decide whether to create a blog or a Story Map; whether to code with Leaflet or a different library that we didn’t cover in class; whether to use a public or subscription account in ArcGIS Online; or any other choice of tools.</p>
+<h2 id="iteration-1">Iteration 1</h2>
+<h3 id="build-a-minimum-viable-product">Build a minimum viable product</h3>
+<p>Create the smallest useful working version of the project.</p>
 
-<p>Configure the mechanics of how your maps and website work, such as adding popups to convey information, controls to show and hide layers, and website navigation to make it easy to find information.</p>
-
-<h2 id="test">Test</h2>
-<h3 id="beta-test-your-product-thoroughly-and-submit-it-for-evaluation">Beta test your product thoroughly and submit it for evaluation</h3>
-<p>Put yourself in your audience’s shoes and test drive your own website and maps—click every tool, view your maps at different zoom levels, note how popups look on different devices, or generally try to break your application so you can fix problems before your audience finds them.</p>
-
-<p>You can also use your browser’s developer tools to look for errors, test on mobile, and simulate low bandwidth.</p>
-
-<h2 id="grading">Grading</h2>
-<p>The final project grade consists of your grading criteria and a score for overall “professionalism”.</p>
-
-<h3 id="student-grading-criteria-75">Student grading criteria (75%)</h3>
-<p>Each requirement specified in your proposal will be given a letter grade for the following qualities:<br />
-A = Meets or exceeds requirement, no mistakes, example for other students<br />
-B = Meets requirement, but could be improved<br />
-C = Doesn’t meet requirement, but shows effort<br />
-D = Doesn’t meet requirement, low quality or low effort<br />
-F = Did not do it at all</p>
-
-<h3 id="professionalism-25">Professionalism (25%)</h3>
-<p>A quarter of the final project grade will be scored according to the attention to detail and overall quality of your project, using the same letter-grade system as the student grading criteria. Here are some things to consider:</p>
+<p>Iteration 1 should include:</p>
 <ul>
-  <li>All aspects of your site should work as expected.</li>
-  <li>Avoid misspellings in your user interface, such as map labels and popup text.</li>
-  <li>It should be clear what your website is about.</li>
-  <li>Writing JavaScript? There should be no errors in the browser console.</li>
-  <li>Users should not be prompted to login or get any access errors.</li>
-  <li>Colors, symbols, etc. should be customized, not all default.</li>
-  <li>Use map/app/webpage titles related to your topic, not a generic “My Final Project”.</li>
-  <li>Labels that appear in the map legend, popups, etc. should make sense:
-    <ul>
-      <li>Good legend label: <code>Population density by block group, 2010</code></li>
-      <li>Bad legend label: <code>bgp_layer_import_1 Copy (2)</code></li>
-      <li>Good popup attribute label: <code>2010 Population</code></li>
-      <li>Bad popup attribute label: <code>B000001</code></li>
-    </ul>
-  </li>
+  <li>a working project URL</li>
+  <li>a title and short explanation</li>
+  <li>at least one working map, app component, or geographic interface</li>
+  <li>at least one dataset/layer/basemap/web service</li>
+  <li>evidence that at least one important user story is starting to work</li>
 </ul>
 
-<p>Take any other steps that you think would be appropriate to create a project that effectively communicates your topic.</p>
+<h2 id="iteration-2">Iteration 2</h2>
+<h3 id="improve-functionality-and-content">Improve functionality and content</h3>
+<p>Continue working through the top items in your backlog. Improve the usefulness and clarity of the project.</p>
+
+<p>This may include:</p>
+<ul>
+  <li>better popups, labels, and layer names</li>
+  <li>more layers, maps, or interface elements</li>
+  <li>search, filtering, legends, or other controls</li>
+  <li>better symbology and presentation</li>
+  <li>more support for your user stories</li>
+</ul>
+
+<h2 id="iteration-3">Iteration 3</h2>
+<h3 id="refine-test-and-complete-the-project">Refine, test, and complete the project</h3>
+<p>Finish the most important remaining backlog items. Improve the user experience and test the project carefully.</p>
+
+<p>Focus on things such as:</p>
+<ul>
+  <li>fixing broken links or access problems</li>
+  <li>testing on mobile and desktop</li>
+  <li>fixing spelling, naming, and labeling problems</li>
+  <li>improving clarity and visual consistency</li>
+  <li>making sure the site clearly communicates its topic and purpose</li>
+</ul>
 
 <h2 id="submit">Submit</h2>
 <ol>
-  <li>The URL to your website.</li>
+  <li>Your planning document</li>
+  <li>The final project URL</li>
+  <li>A short changelog describing what changed across iterations</li>
+  <li>A short retrospective describing what changed overall during development from the original plan</li>
 </ol>
 
-<p>If your project consists of different pages and apps with different URLs, you should have a landing page that acts as a point of entry with links to all other pages/apps. This could be an Item Details page in ArcGIS Online, a website you created on Github, a blog, or something else. This way, you will only need to submit a single URL.</p>
+<p>If your project has multiple pages or apps, create a landing page that acts as a single point of entry.</p>
 
     </section>
 <footer class="site-footer">
