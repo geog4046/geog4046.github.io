@@ -33,293 +33,347 @@
 
     <section class="main-content">
       <h1 class="text-center">Assignment 9</h1>
-      <h2 class="text-center">Image analysis in Google Earth Engine</h2>
-      <p>This assignment will use Google Earth Engine to create an app displaying elevation and slope images. Users will be able to slide a divider back and forth to switch the visible layers, making it easy to compare elevation, slope, and a basemap.</p>
+      <h2 class="text-center">Leaflet web map</h2>
+      <p>Host a website on Github and build a web map with Leaflet to display real-time weather radar and alerts from the National Weather Service.</p>
 
-<p>You must have a Google account and <a href="https://earthengine.google.com/signup/">request access to Earth Engine</a>.</p>
+<p>The web development concepts learned with the open-source Leaflet library can be applied to other web mapping libraries, such as the Google Maps JavaScript API and the ArcGIS JavaScript API. Github can be useful beyond web mapping for sharing source code and creating basic websites.</p>
 
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
   <li><a href="#finished-example">Finished Example</a></li>
-  <li><a href="#code-editor">Code Editor</a></li>
   <li><a href="#data">Data</a></li>
   <li><a href="#steps">Steps</a>
     <ul>
-      <li><a href="#part-1-display-maps">Part 1: Display maps</a></li>
-      <li><a href="#part-2-add-a-side-panel">Part 2. Add a side panel</a></li>
-      <li><a href="#part-3-pixel-values-and-finishing-touches">Part 3: Pixel values and finishing touches</a></li>
+      <li><a href="#part-1-create-a-website">Part 1: Create a website</a></li>
+      <li><a href="#part-2-html-setup">Part 2. HTML setup</a></li>
+      <li><a href="#part-3-css-setup">Part 3: CSS setup</a></li>
+      <li><a href="#part-4-javascript-setup">Part 4: JavaScript setup</a></li>
+      <li><a href="#part-5-radar-layer">Part 5: Radar layer</a></li>
+      <li><a href="#part-6-alerts-layer">Part 6: Alerts layer</a></li>
     </ul>
   </li>
   <li><a href="#try-it">Try It</a></li>
   <li><a href="#checklist">Checklist</a></li>
   <li><a href="#submit">Submit</a></li>
+  <li><a href="#appendix-full-code">Appendix: Full code</a></li>
 </ul>
 
 <h2 id="finished-example">Finished Example</h2>
-<iframe width="100%" height="450" src="https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer" frameborder="0" allowfullscreen=""></iframe>
-<p><a href="https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer">https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer</a></p>
-
-<h2 id="code-editor">Code Editor</h2>
-<p>Go to the <a href="https://code.earthengine.google.com/">Google Earth Engine Code Editor</a>. Familiarize yourself with the interface, especially the <code>Code Editor</code> panel in the center, the <code>Map</code> at the bottom, and the <code>Inspector</code>/<code>Console</code>/<code>Tasks</code> panel on the right. The <code>Script</code> panel to the top left is where you can create new files and folders and see a list of your saved scripts.<br />
-<img src="../../assignment-resources/images/Code_editor_diagram.png" alt="Earth Engine Code Editor" class="no-shadow" /><br />
-<small><em>Labeled interface of the Earth Engine Code Editor. Source: <a href="https://developers.google.com/earth-engine/guides/playground">Earth Engine documentation</a>.</em></small></p>
+<iframe width="100%" height="450" src="../../examples/weather" frameborder="0" allowfullscreen=""></iframe>
 
 <h2 id="data">Data</h2>
-<p>We will use the <a href="https://developers.google.com/earth-engine/datasets/catalog/USGS_NED">USGS National Elevation Dataset</a> hosted by Google in the Earth Engine Data Catalog. It is a digital elevation model (DEM) image. Each pixel is 1/3 arc-second, or about 10x10 meters, with pixel values in meters above sea level.</p>
+<p>Aside from a basemap, we will have two layers to show current weather conditions in the United States:</p>
+<ul>
+  <li>Weather radar</li>
+  <li>Weather alerts</li>
+</ul>
 
-<p>The slope layer that we will display is not a separate dataset; it will be calculated on the fly by Earth Engine, demonstrating the platform’s ability to run pixel-level analysis. Earth Engine calculates a pixel’s slope based on the elevation difference with neighboring pixels using trigonometry.</p>
+<h3 id="weather-radar">Weather radar</h3>
+<p><strong>Title</strong>: NEXRAD Base Reflectivity Current<br />
+<strong>Layer type</strong>: OGC Web Map Service<br />
+<strong>Summary</strong>: A National Weather Service image product depicting current precipitation derived from a network of radar stations. The web service is provided by <a href="https://mesonet.agron.iastate.edu/ogc/">Iowa State University Mesonet</a>.<br />
+<strong>Service URL</strong>: <code>https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi</code></p>
 
-<p>Preview the dataset before getting started. In the search bar at the top of the <a href="https://code.earthengine.google.com/">Google Earth Engine Code Editor</a>, search for <code>USGS National Elevation Dataset</code> and click <code>import</code>. Then paste this line of JavaScript into the editor panel and click <code>Run</code>:</p>
+<h3 id="weather-alerts">Weather alerts</h3>
+<p><strong>Title</strong>: National Weather Service Active Alerts<br />
+<strong>Layer type</strong>: GeoJSON<br />
+<strong>Summary</strong>: Areas under a weather alert issued by the National Weather Service, such as a tornado warning. See the NWS for <a href="https://www.weather.gov/documentation/services-web-api#/default/get_alerts_active">details on the API</a>.<br />
+<strong>Service URL</strong>: <code>https://www.weather.gov/documentation/services-web-api#/default/get_alerts_active</code></p>
 
-<pre><code class="language-javascript">Map.addLayer(image, {min:0, max:3000});
-</code></pre>
-
-<p>Click the <code>Inspector</code> tab in the top right panel, then click a place on the map. The inspector will print the longitude, latitude, and elevation of the pixel you clicked. Adjust the <code>min</code> and <code>max</code> (elevation in meters) to see how it affects the display.</p>
-
-<p>Click <code>Reset</code> &gt; <code>Clear Script</code> to clear the code editor before starting the assignment.</p>
+<h3 id="example-basemap">Example Basemap</h3>
+<p><strong>Title</strong>: OpenStreetMap<br />
+<strong>Layer type</strong>: Raster tiles<br />
+<strong>Summary</strong>: Crowd-sourced street map. See the details on the <a href="https://wiki.openstreetmap.org/wiki/Tile_servers">OpenStreetMap Wiki</a>.<br />
+<strong>Service URL</strong>: <code>https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</code></p>
 
 <h2 id="steps">Steps</h2>
-<p>The steps below build an app piece by piece, with short snippets of code gradually adding functionality to the app. The steps work for a Baton Rouge map but can be adapted for any area. Take a look at the <a href="https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer">finished app</a> to see what we’re working towards.</p>
-
-<p>Click <code>Save</code> to put a copy of your script into a repository, seen in the top left panel of the code editor. Save your work often while going through these steps.</p>
-
-<h3 id="part-1-display-maps">Part 1: Display maps</h3>
+<h3 id="part-1-create-a-website">Part 1: Create a website</h3>
 <ol>
-  <li>
-    <p>First, we will define some variables to make it easy to change our map later.</p>
-
-    <p>Set minimum and maximum values for elevation in meters and slope in degrees for your area of interest. These Baton Rouge values would be very different for the <a href="https://developers.google.com/earth-engine/tutorials/tutorial_api_02">Grand Canyon</a>. Adjust accordingly.</p>
-    <pre><code class="language-javascript">// Minimum and maximum elevation in meters and slope in degrees for your area (approx.). Affects color.
-var minElevation = 3;
-var maxElevation = 20;
-var minSlope = 0;
-var maxSlope = 30;
+  <li>Go to <a href="https://github.com/new">github.com/new</a> and sign in to create a repository, which is like a project where you can put folders and files of source code.<br />
+a. Name the repository <code>yourusername.github.io</code>, where <code>yourusername</code> is your Github username shown on the page.<br />
+b. Select <code>Public</code>.<br />
+c. Check <code>Add a README file</code>.<br />
+d. Click <code>Create repository</code>.<br />
+<img src="../../assignment-resources/images/github-new-repo.png" alt="Github new repository" class="shadow" /></li>
+  <li>On the <code>Code</code> tab for your new repository, click <code>Add file</code> &gt; <code>Create new file</code>.<br />
+<img src="../../assignment-resources/images/github-new-file.png" alt="Github new file" class="shadow" /></li>
+  <li>Type <code>weather/index.html</code> and Github will automatically create a folder named <code>weather</code> containing a file named <code>index.html</code>. This will be the webpage people see first when they visit the website.<br />
+<img src="../../assignment-resources/images/github-file-name.png" alt="Github file name" class="shadow" /></li>
+  <li>Still on the <code>Code</code> tab, under <code>Edit new file</code>, paste the code below for a basic HTML skeleton of the homepage.
+    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    The content goes here.
+  &lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
   </li>
-  <li>Set the color scheme for the DEM image we’re about to import. In addition to basic color names, you can use <a href="https://htmlcolorcodes.com/">HTML color codes</a> such as <code>925314</code>. Add colors to the list separated by commas and enclosed in quotes.
-    <pre><code class="language-javascript">// Elevation color gradient from lowest to highest. Add more colors for areas with more variation.
-var demColor = ['green', 'yellow', 'orange'];
+  <li>We’re going to be making a weather map, so enter an appropriate title between the <code>title</code> tags. This will appear in browser tabs and search engine results, among other places.
+    <pre><code class="language-html">&lt;title&gt;Instructor's Weather Map&lt;/title&gt;
 </code></pre>
+    <p><img src="../../assignment-resources/images/title.png" alt="Webpage title" /><br />
+<small><em>The image illustrates where users will end up seeing your title in the browser. It is not part of the webpage content.</em></small></p>
   </li>
-  <li>The wipe effect we’ll use to compare layers is achieved with two maps on top of each other. The slider bar hides one map and reveals the other when the user drags it back and forth. Therefore, create two empty maps to begin with. Because we have two maps, you’ll notice we often repeat commands.
-    <pre><code class="language-javascript">// Remove default map, create two maps for elevation and slope side by side
-ui.root.clear();
-var Map1 = ui.Map();
-var Map2 = ui.Map();
-ui.root.add(Map1);
-ui.root.add(Map2);
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code to preview the progress: two street maps.  
+  <li>Scroll down the page and click the green button, <code>Commit new file</code>. This saves the file. Go check out your page at: <code>yourusername.github.io/weather</code>. It should display “The content goes here.”<br />
+ 
+    <div class="alert alert-warning" role="alert">
+  <span class="material-icons">warning_amber</span>
+  It can sometimes take a few minutes for changes to become visible on the live website.
 </div>
-  </li>
-  <li>Center the map on your location with appropriate zoom (4-17). Use the inspector to get lon/lat.
-    <pre><code class="language-javascript">// Set the map center and zoom level
-Map1.setCenter(-91.167275, 30.398996, 17);
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: one map centers and zooms but the other doesn't change.  
-</div>
-  </li>
-  <li>Use the <code>Linker</code> function to sync the movement of both maps.
-    <pre><code class="language-javascript">// Sync the pan and zoom of the two maps
-ui.Map.Linker([Map1, Map2]);
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: both maps pan/zoom together.  
-</div>
-  </li>
-  <li>Now we’re ready to add data. Import the DEM and add it with the min, max, and color options we specified in the first steps.
-    <pre><code class="language-javascript">// Load the digital elevation model (DEM) layer and add it to the default map.
-var dem = ee.Image("USGS/NED");
-Map1.addLayer(dem, {min: minElevation, max: maxElevation, palette: demColor}, 'Elevation');
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: Map1 displays the image layer.  
-</div>
-    <p>Now would be a good time to adjust your min, max, and color settings if needed.</p>
-  </li>
-  <li>With the DEM added, we can use the <code>slope</code> function to calculate how steep/flat the land is at each pixel.
-    <pre><code class="language-javascript">// Calculate pixel slope based on the DEM and add to the 2nd map
-var slope = ee.Terrain.slope(dem);
-Map2.addLayer(slope, {min: minSlope, max: maxSlope}, 'Slope');
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: Map1 displays the DEM while Map2 shows the new slope layer.  
-</div>
-  </li>
-  <li>Our maps are still side-by-side without a slider tool, so we need to add it, specifying the slide direction is <code>horizontal</code>.
-    <pre><code class="language-javascript">// Split the map panels so there is a swipe bar 
-var splitPanel = ui.SplitPanel({firstPanel: Map1, secondPanel: Map2, orientation: 'horizontal', wipe: true, style: {stretch: 'both'}});
-ui.root.widgets().reset([splitPanel]);
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: the maps are on top of each other instead of side-by-side, with a slider to show/hide them.  
+    <div class="alert alert-info" role="alert">
+  <span class="material-icons">info</span>
+  To return to editing a page at any time, go to <code>github.com/yourusername</code>, click your repository name, click the folder (weather), click the file name (index.html), then click the <b>pencil icon</b> at the top right of the code panel.  
 </div>
   </li>
 </ol>
 
-<h3 id="part-2-add-a-side-panel">Part 2. Add a side panel</h3>
-<p><strong>The code snippets in this section cannot be copied and pasted one after the other. You must modify one of the lines every time you add the additional snippets, so pay close attention to each step.</strong></p>
+<p>You now have a live website consisting of a single HTML file. In the next parts, we will add more HTML code to the file to prepare it for the web map, then create additional files for CSS and JavaScript.</p>
 
+<h3 id="part-2-html-setup">Part 2: HTML setup</h3>
 <ol>
-  <li>To display information about our app and eventually print pixel values, we will create a side panel. For now, it will be a blank white space. We will modify these lines to add content in the following steps.
-    <pre><code class="language-javascript">// Create the side panel where info will be printed
-var sidePanel = ui.Panel([], 'flow', {width: '20%'}); // this line will be modified
-ui.root.add(sidePanel);
+  <li>Continue editing your page, <code>weather/index.html</code>. We will include two libraries (Leaflet and jQuery) to help build the map, and create an element to draw the map in. First, include the CSS file for Leaflet, which affects the appearance of the map. Under the <code>title</code> element, add these lines:
+    <pre><code class="language-html">&lt;link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" rel="stylesheet"&gt;
+&lt;link href="weather.css" rel="stylesheet"&gt;
 </code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: there is a blank white space to the right of the slope map.  
-</div>
+    <p>This <code>link</code> element tells the user’s browser to download a CSS file from a URL. The first is the Leaflet CSS hosted by unpkg.com, and the other is a file we will create on Github soon called <code>weather.css</code>.</p>
   </li>
-  <li>
-    <p>Create a title label for the side panel. We must define the title <strong>before</strong> we add it to the side panel, so add this first line <strong>above</strong> the <code>var sidePanel</code> definition in the previous snippet and then <strong>modify</strong> the <code>var sidePanel</code> line. <strong>Do not add another copy of the lines from the previous step; modify the existing line</strong>. In the <code>sidePanel</code> definition, add <code>titleLabel</code> between the square brackets.</p>
-
-    <pre><code class="language-javascript">var titleLabel = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}});
- 
-// Create the side panel where info will be printed
-var sidePanel = ui.Panel([titleLabel], 'flow', {width: '20%'});
-ui.root.add(sidePanel);
+  <li>Between the <code>body</code> tags, replace “The content goes here” with a <code>div</code> element, and give it an <code>id</code> attribute to identify it as the box where the map will eventually be drawn. For now, the page will be blank.
+    <pre><code class="language-html">&lt;body&gt;
+  &lt;div id="map"&gt;&lt;/div&gt;
+&lt;/body&gt;
 </code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: the side panel now has a title, "Highland Road Elevation Explorer".  
-</div>
   </li>
-  <li>Under the title line, add a variable for a label to give our audience basic info about the app. Then update the side panel variable to include the new variable between the square brackets.
-    <pre><code class="language-javascript">var titleLabel = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}});
-var instructionsLabel = ui.Label('Explore elevation changes in an otherwise flat landscape along the historic Highland Road running along the natural floodplain of the Mississippi River. Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.');
- 
-// Create the side panel where info will be printed
-var sidePanel = ui.Panel([titleLabel,instructionsLabel], 'flow', {width: '20%'});
-ui.root.add(sidePanel);
+  <li>Then, under the <code>div</code> element but still within the <code>body</code>, add the lines:
+    <pre><code class="language-html">&lt;script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"&gt;&lt;/script&gt;
+&lt;script src="https://code.jquery.com/jquery-3.6.0.min.js"&gt;&lt;/script&gt;
+&lt;script src="weather.js"&gt;&lt;/script&gt;
 </code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: instructional text appears under the title.  
-</div>
+    <p>These <code>script</code> tags tell the browser to download JavaScript files. The first two are libraries:</p>
+    <ul>
+      <li><code>leaflet.js</code> is the engine of our web map—it is the geographic information system that will understand geographic data and know how to draw it on a map.</li>
+      <li><code>jquery.js</code> is a library with various shortcuts to make JavaScript easier to code; we will use it to fetch GeoJSON data from a URL.</li>
+      <li><code>weather.js</code> will be our own custom script where we build the weather map.</li>
+    </ul>
   </li>
-  <li>Next we will create labels where the elevation and slope values will be printed when the user clicks the map. They won’t work at this point; they are placeholders for now.
-    <pre><code class="language-javascript">var titleLabel = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}});
-var instructionsLabel = ui.Label('Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.');
-var valuesLabel = ui.Label('Elevation: (click map)\nSlope: (click map)', {whiteSpace: 'pre'});
- 
-// Create the side panel where info will be printed
-var sidePanel = ui.Panel([titleLabel,instructionsLabel,valuesLabel], 'flow', {width: '20%'});
-ui.root.add(sidePanel);
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: "Elevation", "Slope", and "(click map)" labels appear.
-</div>
-  </li>
-  <li>For the final addition to the side panel, link to the dataset details page for the DEM layer.
-    <pre><code class="language-javascript">var titleLabel = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}});
-var instructionsLabel = ui.Label('Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.');
-var valuesLabel = ui.Label('Elevation: (click map)\nSlope: (click map)', {whiteSpace: 'pre'});
-var sourceLink = ui.Label({
-  value: 'Data source: USGS National Elevation Dataset', 
-  targetUrl: 'https://developers.google.com/earth-engine/datasets/catalog/USGS_NED'
-});
- 
-// Create the side panel where info will be printed
-var sidePanel = ui.Panel([titleLabel,instructionsLabel,valuesLabel,sourceLink], 'flow', {width: '20%'});
-ui.root.add(sidePanel);
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: a link to the USGS NED dataset appears.
-</div>
-
-    <p>You could continue to add labels to the side panel by copying these examples, just be sure to update the <code>var sidePanel</code> line with the variable names between the square brackets. The order of the labels in the panel depends on the order of the variable names between the brackets, from top to bottom: <code>[titleLabel,instructionsLabel,valuesLabel,sourceLink]</code>.</p>
-  </li>
+  <li><code>Commit changes</code>. Go to your website address again to preview it, even though the page will still be blank. At the blank page, open your browser’s developer tools (<code>F12</code> in Chrome). If you click on the Console tab, you should see errors saying that <code>weather.css</code> and <code>weather.js</code> cannot be found. That is because we haven’t created them yet.<br />
+<img src="../../assignment-resources/images/error404.png" alt="Error 404" class="shadow" /></li>
 </ol>
 
-<h3 id="part-3-pixel-values-and-finishing-touches">Part 3: Pixel values and finishing touches</h3>
-<p>The next step has a chunk of more complex code known as a function, whose lines all work together to perform a single task, so paste the whole snippet into your script instead of going line-by-line.</p>
-
+<h3 id="part-3-css-setup">Part 3: CSS setup</h3>
 <ol>
-  <li>Define a function that takes lat/lon coordinates of a pixel as input. The function sends the coordinates to Earth Engine to get the pixel’s elevation and slope values from the dataset. Then the function prints those values to our side panel in <code>valuesLabel</code>, replacing “(click map)” with the pixel values.
-    <pre><code class="language-javascript">// Query a clicked pixel for elevation and slope.
-var getPixelValues = function(coords) {
-  // Print "Loading..." in the valuesLabel first in case query is slow. 
-  valuesLabel.setValue('Elevation: Loading...\nSlope: Loading...').style({whiteSpace: 'pre'});
-  // Send the clicked location to the server to request an elevation value
-  var location = ee.Geometry.Point(coords.lon, coords.lat);
-  dem.reduceRegion(ee.Reducer.first(), location, 10).evaluate(function(val){
- var demText = val.elevation.toFixed(2) + ' meters';
- // Request slope value from the server and print both elevation and slope to valuesLabel
- slope.reduceRegion(ee.Reducer.first(), location, 10).evaluate(function(val){
-   var slopeText = val.slope.toFixed(0) + ' degrees';
-   valuesLabel.setValue('Elevation: ' + demText + '\nSlope: ' + slopeText).style({whiteSpace: 'pre'});
- });
-  });  
+  <li>From the editor page, click the <code>weather</code> folder:<br />
+<img src="../../assignment-resources/images/github-up-folder.png" alt="Github up folder" class="shadow" /></li>
+  <li>Then from the <code>weather</code> folder page, click <code>Add file</code> &gt; <code>Create new file</code>, and name it <code>weather.css</code>.<br />
+<img src="../../assignment-resources/images/github-file-name2.png" alt="Github file name" class="shadow" /></li>
+  <li>For the code, paste these lines of CSS to make a full-page map then click <code>Commit new file</code>.
+    <pre><code class="language-css">body {
+ padding: 0;
+ margin: 0;
+}
+html, body, #map {
+ height: 100%;
+ width: 100%;
 }
 </code></pre>
-    <p>Note: the code above only defines a function, it does not “call” it, and we haven’t told the map to respond to a user click. Therefore, the code above doesn’t do anything yet.</p>
   </li>
-  <li>We can use the lines below to create something in JavaScript called a “listener”. Listeners wait for some kind of event to happen in the browser, such as a mouse click, scroll wheel, or completed page load. You can tell listeners what to do when those events happen. In our case, we want our app to listen for mouse clicks on either map, and then run our <code>getPixelValues</code> function, defined in the previous step. The lat/lon where the user clicked will be pass along to our function.
-    <pre><code class="language-javascript">// Tell the maps to listen for a click and run our getPixelValues function. 
-Map1.onClick(getPixelValues);
-Map2.onClick(getPixelValues);
+</ol>
+
+<p>The selector <code>#map</code> references our <code>&lt;div id="map"&gt;&lt;/div&gt;</code> element in the HTML file. The word used for the ID doesn’t have to be “map”, but it must match in both files.</p>
+
+<p>These CSS styles tell the browser to draw the map at 100% of the browser window size with no spacing (padding, margin) around the edges, i.e., full page.</p>
+
+<h3 id="part-4-javascript-setup">Part 4: JavaScript setup</h3>
+<ol>
+  <li>Back at the <code>weather</code> folder, create another new file and name it <code>weather.js</code>.</li>
+  <li>Paste the following lines to create a map object and basemap. This will tell Leaflet to connect to the tile service at the specified URL, and the tiles will be assembled and displayed in the user’s browser in the <code>div</code> with the <code>id</code> of <code>map</code>:
+    <pre><code class="language-javascript">var map = L.map('map').setView([38, -95], 4);
+var basemapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var basemap = L.tileLayer(basemapUrl).addTo(map);
 </code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: you can click the map to see pixel values printed in the side panel.
-</div>
+    <p>You should now have three files in your <code>weather</code> folder and you can preview your website to see if the basemap is working at <code>yourusername.github.io/weather</code>.<br />
+<img src="../../assignment-resources/images/github-files.png" alt="Github files" class="shadow" /></p>
+
+    <p><img src="../../assignment-resources/images/leaflet-basemap.png" alt="Leaflet basemap only" class="shadow" /></p>
   </li>
-  <li>Finally, the cherry on top: change the user’s mouse pointer from a grabber hand to a crosshair. Now they can click those pixels with pinpoint accuracy!
-    <pre><code class="language-javascript">// Style the mouse pointer as a crosshair
-Map1.style().set('cursor', 'crosshair');
-Map2.style().set('cursor', 'crosshair');
+</ol>
+
+<p>Now that the HTML, CSS, and JavaScript files are set up, we need to work on our JavaScript to add operational layers and popups to complete the weather map. We will not change the HTML and CSS any further.</p>
+
+<h3 id="part-5-radar-layer">Part 5: Radar layer</h3>
+<ol>
+  <li>Add the national precipitation radar layer using these lines in <code>weather.js</code>. We specify the URL of the web service, the layer name to use from the service, and format it as a transparent image to hide pixels with no precipitation.
+    <pre><code class="language-javascript">var radarUrl = 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi';
+var radarDisplayOptions = {
+  layers: 'nexrad-n0r-900913',
+  format: 'image/png',
+  transparent: true
+};
+var radar = L.tileLayer.wms(radarUrl, radarDisplayOptions).addTo(map);
 </code></pre>
+    <p>If you preview the map, you should see the weather radar over the basemap, assuming there is precipitation somewhere in the country at the moment.<br />
+  <img src="../../assignment-resources/images/leaflet-radar.png" alt="Leaflet radar layer" /></p>
+  </li>
+</ol>
+
+<h3 id="part-6-alerts-layer">Part 6: Alerts layer</h3>
+<p>Adding the weather alerts layer will involve more complex code, so let’s do it in small steps.</p>
+<ol>
+  <li>Since we included the jQuery library in our HTML file, we can use the jQuery function <code>getJSON</code> to request current weather alerts from the National Weather Service in JSON format, saved to a variable named <code>data</code>. This function does not exist in plain JavaScript, and accomplishing this without jQuery would take some extra code.
+    <pre><code class="language-javascript">var weatherAlertsUrl = 'https://api.weather.gov/alerts/active?region_type=land';
+$.getJSON(weatherAlertsUrl, function(data) {
+  // add more code here later
+});
+</code></pre>
+  </li>
+  <li>The code above gets the alert data but doesn’t display it. We need to pass the <code>data</code> variable to a Leaflet function to read the GeoJSON features and draw them on the map. Replace <code>// add more code here later</code> with:
+    <pre><code class="language-javascript">L.geoJSON(data).addTo(map);
+</code></pre>
+    <p>Now you can <code>Commit changes</code> and preview your map. You should see polygons (Leaflet’s default is blue) representing areas that have flood watches, thunderstorm warnings, etc.<br />
+  <img src="../../assignment-resources/images/leaflet-alerts0.png" alt="Leaflet alert polygons" class="shadow" /></p>
+  </li>
+  <li>Let’s add a style to change the polygon color. Instead of only passing the <code>data</code> variable to the <code>geoJSON</code> function, we can pass options enclosed in curly brackets <code>{ }</code>. Replace the previous line with the code below, which has been broken up onto multiple lines to make it easier to read:
+    <pre><code class="language-javascript">L.geoJSON(data, {
+  style: { color: 'orange' },
+  // more options go here
+}).addTo(map);
+</code></pre>
+    <p>The blue polygons will now be colored orange.<br />
+<img src="../../assignment-resources/images/leaflet-alerts.png" alt="Leaflet alert polygons" class="shadow" /></p>
+  </li>
+  <li>In addition to the <code>style</code> option, we can add the <code>onEachFeature</code> option to tell Leaflet to call a function for every single feature in the layer. In our case, let’s attach a popup to each alert polygon to give details like “Flood Warning in Springfield MO”. Replace <code>// more options go here</code> with:
+    <pre><code class="language-javascript">onEachFeature: function(feature, layer) {
+  layer.bindPopup(feature.properties.headline);
+}
+</code></pre>
+    <p><img src="../../assignment-resources/images/leaflet-popup.png" alt="Leaflet popup" class="shadow" /><br />
+  Whatever text or variable is passed to the <code>bindPopup</code> function will be printed in the popup when the user clicks a polygon. If we put <code>bindPopup('Hello')</code>, then each popup would just show <code>Hello</code>. Instead, we are displaying the <code>headline</code> attribute that the National Weather Service includes in their alerts GeoJSON layer. You can view the <a href="https://api.weather.gov/alerts/active?region_type=land">NWS alerts web service URL</a> in a browser to see the relevant attributes.<br />
+  <img src="../../assignment-resources/images/nws-geojson.png" alt="NWS GeoJSON for the alerts services" class="shadow" /><br />
+  Due to the way Leaflet handles GeoJSON data, attribute values are accessed via the object <code>feature.properties</code>. You could show users the longer description instead of the headline by passing <code>feature.properties.description</code> to the <code>bindPopup</code> function.</p>
+  </li>
+  <li>Finally, it would be nice to display the “severe” alerts in a different color to distinguish them from the watches and advisories. Revisit the <code>style</code> option: instead of specifying a color directly, we can write a function with some logic to determine the color based on an attribute value. This is the equivalent of changing the layer symbology in other GIS software. Replace <code>style: { color: 'orange' },</code> with:
+    <pre><code class="language-javascript">style: function(feature){
+  var alertColor = 'orange';
+  if (feature.properties.severity === 'Severe') alertColor = 'red';
+  return { color: alertColor };
+},
+</code></pre>
+    <p>That sets the color of alert polygons to orange, but if the alert has a severity of “Severe”, then the color for that polygon will be changed to red.<br />
+  <img src="../../assignment-resources/images/leaflet-alerts2.png" alt="Leaflet alert polygons colored red and orange" class="shadow" /><br />
+Make sure your map works (<code>yourusername.github.io/weather</code>). If it doesn’t, press <code>F12</code> to open your browser’s developer tools and look at the <code>Console</code> for errors that might hint at the problem. See the appendix for the full code example to compare for mistakes.</p>
   </li>
 </ol>
 
 <h2 id="try-it">Try It</h2>
+<p>Go back and modify your existing map to meet the criteria below. <strong>Do not create a separate map for the Try It section.</strong></p>
 <ol>
-  <li>Choose a new area of interest that is not in East Baton Rouge Parish:<br />
-  a. Change map center and zoom.<br />
-  b. Change the min/max elevation and slope, appropriate for the new location.<br />
-  c. For a location outside of the United States, you can use the lower-resolution <code>CGIAR/SRTM90_V4</code> dataset.</li>
-  <li>Modify the DEM color palette (use colors that are distinguishable; see <a href="https://gis.stackexchange.com/questions/25099/choosing-colour-ramp-to-use-for-elevation">this thread</a> for ideas):<br />
-  a. Change at least one of the existing colors.<br />
-  b. Add at least one color.</li>
-  <li>Optional: add a color palette to the slope layer.</li>
-  <li>Take a screenshot of your map and side panel.</li>
-  <li>Turn your map into an app.<br />
-  a. Click <code>Apps</code> &gt; <code>New App</code>.<br />
-  b. Give it an <code>App Name</code>.<br />
-  c. Create a new Google Cloud Project or select an existing project.<br />
-  d. Check <code>Feature this app in your Public Apps Gallery</code>.<br />
-  e. Add your screenshot.<br />
-  f. Provide a brief <code>Description</code>.<br />
-  g. <code>Publish</code>.</li>
+  <li>We already specified a color for “Severe” alerts. Add another line of code, in the right place, to make “Extreme” alerts <a href="https://htmlcolorcodes.com/color-names/">a different color</a>. If no extreme alerts are visible at the time, you could also add a line for “Minor” alerts, which are more common.</li>
+  <li>Set a different basemap that works well with our weather layers. You can choose from the URLs below or venture out to the <a href="https://leaflet-extras.github.io/leaflet-providers/preview/">Leaflet Providers Demo</a> for examples, though some of those might require signing up for a service.<br />
+   <br />
+  <strong>USGS Imagery Topo</strong> (<a href="https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer">Details</a>)<br />
+  Service URL:<br />
+  <small>https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}</small><br />
+   <br />
+  <strong>Esri World Dark Gray</strong> (<a href="https://www.arcgis.com/home/item.html?id=a284a9b99b3446a3910d4144a50990f6">Details</a>)<br />
+  Service URL:<br />
+<small>https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}</small><br />
+   </li>
+  <li>Edit your <code>README.md</code> file in your repository to link to the weather map with a short description, then <code>Commit changes</code>. The formatting used in <code>README.md</code> is called <a href="https://guides.github.com/features/mastering-markdown/">Markdown</a>.
+    <ul>
+      <li>A single <code>#</code> starts a large heading</li>
+      <li>A double <code>##</code> starts a subheading</li>
+      <li>Ending a line with a double space will begin a new line</li>
+      <li>Enclose a URL in <code>&lt; &gt;</code> to create a link, such as <code>&lt;https://yourusername.github.io/weather&gt;</code><br />
+<img src="../../assignment-resources/images/readme-edit.png" alt="Github README" class="shadow" /><br />
+Your main repository page will then show the README with a link to the weather map.<br />
+<img src="../../assignment-resources/images/readme.png" alt="Github README" class="shadow" /></li>
+    </ul>
+  </li>
 </ol>
 
 <h2 id="checklist">Checklist</h2>
 <ol>
-  <li>A publicly accessible app on earthengine.app.</li>
-  <li>App shows elevation and slope layers.</li>
-  <li>Map center <strong>not</strong> in Baton Rouge.</li>
-  <li>Appropriate zoom level for app’s purpose (Highland Road close; Grand Canyon far).</li>
-  <li>Color palette different from green-yellow-orange example, at least four colors.</li>
-  <li>Swipe tool to compare elevation and slope on synced maps.</li>
-  <li>Side panel with at least title, description, pixel values, and data source appropriate for your app.</li>
-  <li>Clicking the map displays pixel values in side panel correctly.</li>
+  <li>A working website hosted on Github</li>
+  <li>A working map on the website</li>
+  <li>A different basemap instead of OpenStreetMap</li>
+  <li>Radar layer</li>
+  <li>Alerts layer</li>
+  <li>Symbology applied to alerts</li>
+  <li>A new color applied to Extreme or Minor alerts</li>
+  <li>Popup appears when an alert area is clicked, showing details</li>
+  <li>README file on Github links to map</li>
 </ol>
 
 <h2 id="submit">Submit</h2>
 <ol>
-  <li>Example: <code>https://yourname.users.earthengine.app/view/your-app</code></li>
+  <li>A URL to your main repository page showing the README file with a link to your map. The URL you submit should look like <code>https://github.com/yourusername/yourusername.github.io</code></li>
 </ol>
+
+<h2 id="appendix-full-code">Appendix: Full code</h2>
+<h3 id="html">HTML</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Instructor's Weather Map&lt;/title&gt;
+    &lt;link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" rel="stylesheet"&gt;
+    &lt;link href="weather.css" rel="stylesheet"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="map"&gt;&lt;/div&gt;
+    &lt;script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"&gt;&lt;/script&gt;
+    &lt;script src="https://code.jquery.com/jquery-3.6.0.min.js"&gt;&lt;/script&gt;
+    &lt;script src="weather.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="css">CSS</h3>
+<pre><code class="language-css">body {
+  padding: 0;
+  margin: 0;
+}
+html, body, #map {
+  height: 100%;
+  width: 100%;
+}
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre><code class="language-javascript">// Create a new map centered on the continental US
+var map = L.map('map').setView([38, -95], 4);
+
+// Add OpenStreetMap to the map
+var basemapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var basemap = L.tileLayer(basemapUrl).addTo(map);
+
+// Add weather radar to the map
+var radarUrl = 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi';
+var radarDisplayOptions = {
+  layers: 'nexrad-n0r-900913',
+  format: 'image/png',
+  transparent: true
+};
+var radar = L.tileLayer.wms(radarUrl, radarDisplayOptions).addTo(map);
+
+// Get GeoJSON data from the NWS weather alerts API
+var weatherAlertsUrl = 'https://api.weather.gov/alerts/active?region_type=land';
+$.getJSON(weatherAlertsUrl, function(data) {
+  L.geoJSON(data, {
+    // Color all alert polygons orange, but color Severe polygons red
+    style: function(feature){
+      var alertColor = 'orange';
+      if (feature.properties.severity === 'Severe') alertColor = 'red';
+      return { color: alertColor }
+    },
+    // Add a popup on each feature showing the NWS alert headline
+    onEachFeature: function(feature, layer) {
+      layer.bindPopup(feature.properties.headline);
+    }
+  }).addTo(map);
+});
+</code></pre>
 
       <br><br>
       <a href="#top">&uarr; Top</a><br>
