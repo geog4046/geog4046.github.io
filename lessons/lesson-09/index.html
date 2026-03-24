@@ -48,20 +48,17 @@
   <li><a href="#appendix">Appendix</a></li>
 </ul>
 
-<p>Terms: imagery, scene, footprint, mosaic, map tiling, zoom level, map scale, vector tiles</p>
-
 <h2 id="introduction">Introduction</h2>
-
 <p>In our assignments so far, we have added various layers to our maps from web services, some with the backdrop of a satellite basemap, but we have given little attention to the basemaps themselves. What kind of web service is the satellite basemap, and where does the data come from?</p>
 
 <p>Satellite images have become a staple of web maps, providing a bird’s-eye view of the landscape and a backdrop for streets and other features. They help the audience connect abstract representations like points, lines, and polygons to the real surface of the planet, showing familiar details such as trees and buildings.</p>
 
-<p>However, the large file sizes that are typical of this imagery make it difficult to transmit across the Internet quickly, presenting a challenge for web map makers.</p>
+<p>However, the large file sizes that are typical of this imagery make it difficult to transmit across the internet quickly, presenting a challenge for web map makers.</p>
 
 <p>Most or all of the web maps you have seen probably used a trick called map tiling to display imagery or basemaps without requiring a huge download and slow loading times. This lesson will get into the details of map tiling to show how terabytes of imagery can quickly be served to your audience’s screens.</p>
 
 <h2 id="imagery">Imagery</h2>
-<p><strong>Imagery</strong> is a general term for data collected by satellites and aircraft depicting Earth’s surface. Sensors onboard these craft capture data in individual images called <strong>scenes</strong>. The scenes cover an area of the ground known as the <strong>footprint</strong>. Low-resolution images usually have a large footprint covering a wide area, while high-resolution images have a smaller footprint.</p>
+<p><strong>Imagery</strong> is a general term for data collected by satellites and aircraft depicting Earth’s surface. Sensors onboard these craft capture data in individual images called <strong>scenes</strong>. The scenes cover an area of the ground known as the <strong>footprint</strong>. Low-resolution images usually have large footprints covering a wide area (e.g., hundreds of kilometers wide), while higher resolution images have smaller footprints (e.g., a few kilometers,  or a matter of meters).</p>
 
 <p><img src="../../lessons/images/landsat-track.gif" alt="Animation of Landsat satellite orbiting Earth" class="shadow" />
 <em>Figure 1. Animation of the path of the Landsat 8 satellite as it orbits the planet and captures scenes. Derived from NASA Goddard Media Studios “<a href="https://svs.gsfc.nasa.gov/11166">LDCM Overview</a>“.</em></p>
@@ -78,7 +75,7 @@
 <em>Figure 4. Aerial images combined into a mosaic of coastal Louisiana, Mississippi, and Alabama. The mosaic consists of 2,406 images captured by airplane in 2008. The top image shows the individual image footprints bordered in green, and the bottom image shows the final mosaic produced by GIS software.</em></p>
 
 <p><img src="../../lessons/images/landsat-la-mosaic.png" alt="Landsat mosaic of Louisiana" />
-<em>Figure 5. Mosaic made from 14 Landsat images combined and clipped to cover the state of Louisiana in 2014. It is a false-color image made from Landsat bands outside of the visible spectrum. See the <a href="https://arcg.is/1b4brX">tile layer</a>.</em></p>
+<em>Figure 5. Mosaic made from 14 Landsat images combined and clipped to cover the state of Louisiana in 2014. It is a false-color image made from Landsat bands outside of the visible spectrum.</em></p>
 
 <p>Imagery presents a problem for web mapping because of large file sizes and the difficulty browsers can have with displaying very large images. The Landsat 8 satellite captures around 740 images per day, taking 16 days to image the entire planet, and each image can be over 1 GB (and over 6,000 pixels wide). On a more local level, uncompressed aerial imagery of the state of Louisiana captured for the National Agriculture Imagery Program in 2017 is about 650 GB (1-meter resolution). Higher resolution imagery—the kind you see on Google Maps when zoomed in all the way—can be expected to reach multiple terabytes for a small state like Louisiana.</p>
 
@@ -87,9 +84,9 @@
 <h2 id="map-tiling">Map Tiling</h2>
 <p><strong>Map tiling</strong> is the process of dividing large images into small square images, or tiles, that can be quickly sent over the Internet to a client web map application, which reassembles the tiles into a map to display on screen.</p>
 
-<p>In short, a large image or mosaic is loaded into tiling software, split into numerous very small square images (tiles), and those images are stored online to be made available through a web GIS application or web service, such as an <strong>OGC Web Map Tile Service (WMTS)</strong> or an ArcGIS tile layer. A different set of tiles is created for each zoom level, so that when zoomed out, users only download low-detail tiles covering a large geographic area, and when zoomed in, they only download high-detail tiles covering a small geographic area.</p>
+<p>In short, a large image or mosaic is loaded into tiling software, split into numerous very small square images (tiles), and those images are stored online to be made available through a web GIS application or web service, such as an <strong>OGC API - Tiles layer</strong> (formerly WMTS) or an ArcGIS tile layer. A different set of tiles is created for each zoom level, so that when zoomed out, users only download low-detail tiles covering a large geographic area, and when zoomed in, they only download high-detail tiles covering a small geographic area.</p>
 
-<p>A <strong>zoom level</strong> is a representation of a map at different scales, with more detail at higher zoom levels, bringing the user’s view “closer” to the map as the zoom level increases. The <strong>map scale</strong> is the ratio between a distance on a map and distance on the ground. A map scale of 1:1,000 means that one centimeter on the map is equal to 1,000 cm on the ground, which is a high zoom only useful with very high-resolution imagery. A map scale of 1:100,000,000 means one centimeter on the map equals 100 million centimeters (1,000 km) on the ground, appropriate for showing a world map.</p>
+<p>A <strong>zoom level</strong> is a representation of a map at different scales, with more detail at higher zoom levels, bringing the user’s view “closer” to the map as the zoom level increases. The <strong>map scale</strong> is the ratio between a distance on a map and distance on the ground. A map scale of 1:1,000 means that one centimeter on the map is equal to 1,000 cm on the ground, which for imagery is a high zoom level only useful with very high-resolution imagery. A map scale of 1:100,000,000 means one centimeter on the map equals 100 million centimeters (1,000 km) on the ground, appropriate for showing a world map.</p>
 
 <p>Furthermore, the tiles are compressed, which might cause loss of detail in the image but makes maps load even faster.</p>
 
