@@ -436,20 +436,20 @@ var landsatFiltered = landsat8
   .filterDate('2020-01-01', '2020-12-31')
   .filterBounds(statePolygon);
 
-// Function to filter out images with more than 20% cloud cover
+// Define a function to filter out images with more than 20% cloud cover
 var filterClouds = function(image) {
   var scored = ee.Algorithms.Landsat.simpleCloudScore(image)
     .select(['cloud']).lte(20);
   return image.updateMask(scored);
 };
 
-// Function to determine the vegetation index of pixels in an image
+// Define a function to determine the vegetation index of pixels in an image
 var addNDVI = function(image) {
   var ndvi = image.normalizedDifference(['B5', 'B4']).rename('NDVI');
   return image.addBands(ndvi);
 };
 
-// Function to make a water layer based on the water index
+// Define a function to make a water layer based on the water index
 var addWater = function(image) {
   var ndwi = image.normalizedDifference(['B3', 'B5']).rename('NDWI');
   var ndwiMasked = ndwi.updateMask(ndwi.gte(0.3));

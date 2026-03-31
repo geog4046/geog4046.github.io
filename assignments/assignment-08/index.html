@@ -34,30 +34,30 @@
     <section class="main-content">
       <h1 class="text-center">Assignment 8</h1>
       <h2 class="text-center">Image analysis in Google Earth Engine</h2>
-      <p>This assignment will use Google Earth Engine to create an app displaying elevation and slope images. Users will be able to slide a divider back and forth to switch the visible layers, making it easy to compare elevation, slope, and a basemap.</p>
+      <p>This assignment will use Google Earth Engine to create an app displaying elevation and slope images. Users will be able to swipe a divider back and forth to switch the visible layers, making it easy to compare elevation, slope, and a basemap.</p>
+
+<iframe src="https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer" loading="lazy" width="100%" height="450px" frameborder="0" allowfullscreen="">
+</iframe>
+
+<p><a href="https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer">https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer</a></p>
 
 <p>You must have a Google account and <a href="https://earthengine.google.com/signup/">request access to Earth Engine</a>.</p>
 
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
-  <li><a href="#finished-example">Finished Example</a></li>
   <li><a href="#code-editor">Code Editor</a></li>
   <li><a href="#data">Data</a></li>
   <li><a href="#steps">Steps</a>
     <ul>
-      <li><a href="#part-1-display-maps">Part 1: Display maps</a></li>
-      <li><a href="#part-2-add-a-side-panel">Part 2. Add a side panel</a></li>
-      <li><a href="#part-3-pixel-values-and-finishing-touches">Part 3: Pixel values and finishing touches</a></li>
+      <li><a href="#iteration-1-build-a-working-prototype">Iteration 1: Build a working prototype</a></li>
+      <li><a href="#iteration-2-improve-the-interface">Iteration 2: Improve the interface</a></li>
+      <li><a href="#iteration-3-adapt-and-finish-the-app">Iteration 3: Adapt and finish the app</a></li>
     </ul>
   </li>
   <li><a href="#try-it">Try It</a></li>
   <li><a href="#checklist">Checklist</a></li>
   <li><a href="#submit">Submit</a></li>
 </ul>
-
-<h2 id="finished-example">Finished Example</h2>
-<iframe width="100%" height="450" src="https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer" frameborder="0" allowfullscreen=""></iframe>
-<p><a href="https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer">https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer</a></p>
 
 <h2 id="code-editor">Code Editor</h2>
 <p>Go to the <a href="https://code.earthengine.google.com/">Google Earth Engine Code Editor</a>. Familiarize yourself with the interface, especially the <code>Code Editor</code> panel in the center, the <code>Map</code> at the bottom, and the <code>Inspector</code>/<code>Console</code>/<code>Tasks</code> panel on the right. The <code>Script</code> panel to the top left is where you can create new files and folders and see a list of your saved scripts.<br />
@@ -67,218 +67,180 @@
 <h2 id="data">Data</h2>
 <p>We will use the <a href="https://developers.google.com/earth-engine/datasets/catalog/USGS_NED">USGS National Elevation Dataset</a> hosted by Google in the Earth Engine Data Catalog. It is a digital elevation model (DEM) image. Each pixel is 1/3 arc-second, or about 10x10 meters, with pixel values in meters above sea level.</p>
 
-<p>The slope layer that we will display is not a separate dataset; it will be calculated on the fly by Earth Engine, demonstrating the platform’s ability to run pixel-level analysis. Earth Engine calculates a pixel’s slope based on the elevation difference with neighboring pixels using trigonometry.</p>
-
-<p>Preview the dataset before getting started. In the search bar at the top of the <a href="https://code.earthengine.google.com/">Google Earth Engine Code Editor</a>, search for <code>USGS National Elevation Dataset</code> and click <code>import</code>. Then paste this line of JavaScript into the editor panel and click <code>Run</code>:</p>
-
-<pre><code class="language-javascript">Map.addLayer(image, {min:0, max:3000});
-</code></pre>
-
-<p>Click the <code>Inspector</code> tab in the top right panel, then click a place on the map. The inspector will print the longitude, latitude, and elevation of the pixel you clicked. Adjust the <code>min</code> and <code>max</code> (elevation in meters) to see how it affects the display.</p>
-
-<p>Click <code>Reset</code> &gt; <code>Clear Script</code> to clear the code editor before starting the assignment.</p>
+<p>The slope layer that we will display is not a separate dataset; it will be calculated on the fly by Earth Engine with <code>ee.Terrain.slope()</code>. In the finished app, the DEM and slope layers will also be combined into one image temporarily so the app can quickly return both values when the user clicks the map.</p>
 
 <h2 id="steps">Steps</h2>
-<p>The steps below build an app piece by piece, with short snippets of code gradually adding functionality to the app. The steps work for a Baton Rouge map but can be adapted for any area. Take a look at the <a href="https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer">finished app</a> to see what we’re working towards.</p>
+<p>The steps below build an app in three iterations. Start with a basic working version, then improve the interface, and then adapt it for a new place. The code works for a Baton Rouge map but can be adapted for any area. Take a look at the <a href="https://geog4046.users.earthengine.app/view/highland-road-elevation-explorer">finished app</a> to see what we’re working towards.</p>
 
 <p>Click <code>Save</code> to put a copy of your script into a repository, seen in the top left panel of the code editor. Save your work often while going through these steps.</p>
 
-<h3 id="part-1-display-maps">Part 1: Display maps</h3>
-<ol>
-  <li>
-    <p>First, we will define some variables to make it easy to change our map later.</p>
+<h3 id="iteration-1-build-a-working-map">Iteration 1: Build a working map</h3>
+<p>In the first iteration, make a working map displaying an elevation layer.</p>
 
-    <p>Set minimum and maximum values for elevation in meters and slope in degrees for your area of interest. These Baton Rouge values would be very different for the <a href="https://developers.google.com/earth-engine/tutorials/tutorial_api_02">Grand Canyon</a>. Adjust accordingly.</p>
-    <pre><code class="language-javascript">// Minimum and maximum elevation in meters and slope in degrees for your area (approx.). Affects color.
-var minElevation = 3;
-var maxElevation = 20;
-var minSlope = 0;
-var maxSlope = 30;
+<ol>
+  <li>Start by defining and previewing the DEM (elevation) layer.
+    <pre><code class="language-javascript">var dem = ee.Image("USGS/NED"); // define data layer: digital elevation model depicting elevation in meters
+Map.addLayer(dem, {}, 'Elevation'); // temporary line to display the layer on the map with a label
 </code></pre>
+    <p>Click <code>Run</code> to execute the code. The national DEM is shown with the default black and white color ramp.</p>
   </li>
-  <li>Set the color scheme for the DEM image we’re about to import. In addition to basic color names, you can use <a href="https://htmlcolorcodes.com/">HTML color codes</a> such as <code>925314</code>. Add colors to the list separated by commas and enclosed in quotes.
-    <pre><code class="language-javascript">// Elevation color gradient from lowest to highest. Add more colors for areas with more variation.
-var demColor = ['green', 'yellow', 'orange'];
+  <li>Modify the code by adding a style variable before the DEM is added to the map.
+    <pre><code class="language-javascript">var dem = ee.Image("USGS/NED"); // define data layer: digital elevation model depicting elevation in meters
+var demStyle = {min: 3, max: 20, palette: ['green', 'yellow', 'orange']}; // elevations between 3-20 meters will have a color gradient
+Map.addLayer(dem, demStyle, 'Elevation'); // temporary line to display the layer on the map with a label
 </code></pre>
+    <p><code>Run</code> and see how the visualization changes.</p>
   </li>
-  <li>The wipe effect we’ll use to compare layers is achieved with two maps on top of each other. The slider bar hides one map and reveals the other when the user drags it back and forth. Therefore, create two empty maps to begin with. Because we have two maps, you’ll notice we often repeat commands.
-    <pre><code class="language-javascript">// Remove default map, create two maps for elevation and slope side by side
+  <li>Add a new line at the end to center and zoom the map to Highland Road, Baton Rouge.
+    <pre><code class="language-javascript">Map.setCenter(-91.167275, 30.398996, 17);
+</code></pre>
+    <h3 id="iteration-2-add-another-layer">Iteration 2: Add another layer</h3>
+    <p>Now we will add another layer, slope, to the map. The slope is not an existing dataset in the Earth Engine Catalog; it is calculated on the fly based on the DEM.</p>
+  </li>
+  <li>Modify the code to create a slope layer, define a style, and add it to the map.
+    <pre><code class="language-javascript">//Define data layers
+var dem = ee.Image("USGS/NED"); // digital elevation model depicting elevation in meters
+var slope = ee.Terrain.slope(dem); // slope calculated from DEM layer
+// Define styles
+var demStyle = {min: 3, max: 20, palette: ['green', 'yellow', 'orange']}; // elevations between 3-20 meters will have a color gradient
+var slopeStyle = {min: 0, max: 30}; // default black and white gradient between slopes of 0-30 degrees
+// Add the layers to the map
+Map.addLayer(dem, demStyle, 'Elevation'); // temporary line to test display
+Map.addLayer(slope, slopeStyle, 'Slope'); // temporary line to test display
+Map.setCenter(-91.167275, 30.398996, 17); // temporary line to center map
+</code></pre>
+    <p><code>Run</code> to see the slope layer added over the DEM. The layer list tool on the map can be used to show and hide layers.</p>
+  </li>
+</ol>
+
+<h3 id="iteration-3-add-the-swipe-feature">Iteration 3: Add the swipe feature</h3>
+<p>Now that we have a basic working version of the app, improve the interface so users can better visualize with both layers.</p>
+
+<ol>
+  <li>Remove the temporary lines from the last iteration that added the DEM and slope layers on top of each other in the same map. Now we will display them in separate maps that can be swiped. After removing the temporary lines, append this code:
+    <pre><code class="language-javascript">// Add swipe functionality
+var leftMap = ui.Map(); // create a map that will be on the left side of the swipe
+var rightMap = ui.Map(); // now the right
+leftMap.addLayer(dem, demStyle, 'Elevation'); // add the elevation layer to the left map
+rightMap.addLayer(slope, slopeStyle, 'Slope'); // slope to the right
+ui.Map.Linker([leftMap, rightMap]); // make the maps pan and zoom in sync
+var swipeMap = ui.SplitPanel(leftMap, rightMap, 'horizontal', true); // create the swipe functionality
+ui.root.clear(); // clear the default UI elements, including the original no-swipe map
+ui.root.add(swipeMap); // temporary line to display the swipe map in the UI
+leftMap.setCenter(-91.167275, 30.398996, 17);
+</code></pre>
+    <p><code>Run</code> to see the two layers side by side and the new swipe tool. Note: <code>setCenter</code> might not consistently work. We will fix that later.</p>
+  </li>
+</ol>
+
+<h3 id="iteration-4-add-an-info-panel">Iteration 4: Add an info panel</h3>
+<p>In this iteration, we will build out the UI more with a side panel to display info about the app.</p>
+
+<ol>
+  <li>Remove the temporary line that added the swipe map. We will create a sidepanel and replace that line with a new call to <code>ui.root.add()</code> that will add the swipe map and the side panel.
+    <pre><code class="language-javascript">// Create a side panel with text
+var title = ui.Label({value: 'Highland Road Elevation Explorer'}); // define text at top of side panel
+var info = ui.Label('Explore elevation changes along Highland Road on the floodplain of the Mississippi River. Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.');
+var sidePanel = ui.Panel([title,info], '', {width: '20%'}); // define the side panel (takes up 20% of page width) and add labels for title, info, and results
+// Display the swipeable maps and side panel in the app UI
 ui.root.clear();
-var Map1 = ui.Map();
-var Map2 = ui.Map();
-ui.root.add(Map1);
-ui.root.add(Map2);
+ui.root.add(ui.Panel([swipeMap, sidePanel], ui.Panel.Layout.flow('horizontal'), {stretch: 'both'}));
+leftMap.setCenter(-91.167275, 30.398996, 17);
 </code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code to preview the progress: two street maps.  
-</div>
-  </li>
-  <li>Center the map on your location with appropriate zoom (4-17). Use the inspector to get lon/lat.
-    <pre><code class="language-javascript">// Set the map center and zoom level
-Map1.setCenter(-91.167275, 30.398996, 17);
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: one map centers and zooms but the other doesn't change.  
-</div>
-  </li>
-  <li>Use the <code>Linker</code> function to sync the movement of both maps.
-    <pre><code class="language-javascript">// Sync the pan and zoom of the two maps
-ui.Map.Linker([Map1, Map2]);
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: both maps pan/zoom together.  
-</div>
-  </li>
-  <li>Now we’re ready to add data. Import the DEM and add it with the min, max, and color options we specified in the first steps.
-    <pre><code class="language-javascript">// Load the digital elevation model (DEM) layer and add it to the default map.
-var dem = ee.Image("USGS/NED");
-Map1.addLayer(dem, {min: minElevation, max: maxElevation, palette: demColor}, 'Elevation');
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: Map1 displays the image layer.  
-</div>
-    <p>Now would be a good time to adjust your min, max, and color settings if needed.</p>
-  </li>
-  <li>With the DEM added, we can use the <code>slope</code> function to calculate how steep/flat the land is at each pixel.
-    <pre><code class="language-javascript">// Calculate pixel slope based on the DEM and add to the 2nd map
-var slope = ee.Terrain.slope(dem);
-Map2.addLayer(slope, {min: minSlope, max: maxSlope}, 'Slope');
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: Map1 displays the DEM while Map2 shows the new slope layer.  
-</div>
-  </li>
-  <li>Our maps are still side-by-side without a slider tool, so we need to add it, specifying the slide direction is <code>horizontal</code>.
-    <pre><code class="language-javascript">// Split the map panels so there is a swipe bar 
-var splitPanel = ui.SplitPanel({firstPanel: Map1, secondPanel: Map2, orientation: 'horizontal', wipe: true, style: {stretch: 'both'}});
-ui.root.widgets().reset([splitPanel]);
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: the maps are on top of each other instead of side-by-side, with a slider to show/hide them.  
-</div>
   </li>
 </ol>
 
-<h3 id="part-2-add-a-side-panel">Part 2. Add a side panel</h3>
-<p><strong>The code snippets in this section cannot be copied and pasted one after the other. You must modify one of the lines every time you add the additional snippets, so pay close attention to each step.</strong></p>
+<h3 id="iteration-5-add-a-query-tool">Iteration 5: Add a query tool</h3>
+<p>Now we will add a feature that lets users click the map and see the elevation and slope values printed in the side panel.</p>
 
 <ol>
-  <li>To display information about our app and eventually print pixel values, we will create a side panel. For now, it will be a blank white space. We will modify these lines to add content in the following steps.
-    <pre><code class="language-javascript">// Create the side panel where info will be printed
-var sidePanel = ui.Panel([], 'flow', {width: '20%'}); // this line will be modified
-ui.root.add(sidePanel);
+  <li>Append this to your script:
+    <pre><code class="language-javascript">// Allow users to click the map to query for elevation and slope
+var combined = dem.addBands(slope); // combine DEM and slope into a single raster for performance
+var resolution = 10; // pixel size in meters
+var getPixelValues = function(coords) { // define a function that takes a pixel's lat/lon as input and outputs slope and elevation of that pixel.
+  var point = ee.Geometry.Point(coords.lon, coords.lat); // create a point object from the clicked lat/lon
+  combined.sample(point, resolution).first().toDictionary().evaluate(function(val) { // query the server for the pixel values
+ results.setValue('Elevation: ' + val.elevation + ' m\n' + 'Slope: ' + val.slope + '°'); // update the UI label
+  });
+};
+leftMap.onClick(getPixelValues); // define a click listener; call getPixelValues on map click
+rightMap.onClick(getPixelValues);
 </code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: there is a blank white space to the right of the slope map.  
-</div>
-  </li>
-  <li>
-    <p>Create a title label for the side panel. We must define the title <strong>before</strong> we add it to the side panel, so add this first line <strong>above</strong> the <code>var sidePanel</code> definition in the previous snippet and then <strong>modify</strong> the <code>var sidePanel</code> line. <strong>Do not add another copy of the lines from the previous step; modify the existing line</strong>. In the <code>sidePanel</code> definition, add <code>titleLabel</code> between the square brackets.</p>
-
-    <pre><code class="language-javascript">var titleLabel = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}});
- 
-// Create the side panel where info will be printed
-var sidePanel = ui.Panel([titleLabel], 'flow', {width: '20%'});
-ui.root.add(sidePanel);
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: the side panel now has a title, "Highland Road Elevation Explorer".  
-</div>
-  </li>
-  <li>Under the title line, add a variable for a label to give our audience basic info about the app. Then update the side panel variable to include the new variable between the square brackets.
-    <pre><code class="language-javascript">var titleLabel = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}});
-var instructionsLabel = ui.Label('Explore elevation changes in an otherwise flat landscape along the historic Highland Road running along the natural floodplain of the Mississippi River. Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.');
- 
-// Create the side panel where info will be printed
-var sidePanel = ui.Panel([titleLabel,instructionsLabel], 'flow', {width: '20%'});
-ui.root.add(sidePanel);
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: instructional text appears under the title.  
-</div>
-  </li>
-  <li>Next we will create labels where the elevation and slope values will be printed when the user clicks the map. They won’t work at this point; they are placeholders for now.
-    <pre><code class="language-javascript">var titleLabel = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}});
-var instructionsLabel = ui.Label('Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.');
-var valuesLabel = ui.Label('Elevation: (click map)\nSlope: (click map)', {whiteSpace: 'pre'});
- 
-// Create the side panel where info will be printed
-var sidePanel = ui.Panel([titleLabel,instructionsLabel,valuesLabel], 'flow', {width: '20%'});
-ui.root.add(sidePanel);
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: "Elevation", "Slope", and "(click map)" labels appear.
-</div>
-  </li>
-  <li>For the final addition to the side panel, link to the dataset details page for the DEM layer.
-    <pre><code class="language-javascript">var titleLabel = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}});
-var instructionsLabel = ui.Label('Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.');
-var valuesLabel = ui.Label('Elevation: (click map)\nSlope: (click map)', {whiteSpace: 'pre'});
-var sourceLink = ui.Label({
-  value: 'Data source: USGS National Elevation Dataset', 
-  targetUrl: 'https://developers.google.com/earth-engine/datasets/catalog/USGS_NED'
-});
- 
-// Create the side panel where info will be printed
-var sidePanel = ui.Panel([titleLabel,instructionsLabel,valuesLabel,sourceLink], 'flow', {width: '20%'});
-ui.root.add(sidePanel);
-</code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: a link to the USGS NED dataset appears.
-</div>
-
-    <p>You could continue to add labels to the side panel by copying these examples, just be sure to update the <code>var sidePanel</code> line with the variable names between the square brackets. The order of the labels in the panel depends on the order of the variable names between the brackets, from top to bottom: <code>[titleLabel,instructionsLabel,valuesLabel,sourceLink]</code>.</p>
   </li>
 </ol>
 
-<h3 id="part-3-pixel-values-and-finishing-touches">Part 3: Pixel values and finishing touches</h3>
-<p>The next step has a chunk of more complex code known as a function, whose lines all work together to perform a single task, so paste the whole snippet into your script instead of going line-by-line.</p>
+<h3 id="iteration-6-wishlist-features-bug-fix">Iteration 6: Wishlist features; bug fix</h3>
+<p>In the final iteration, we will put the finishing touches on the app, adding wishlist features that are not required but are nice to have. Fix any remaining bugs (the inconsistent center/zoom).</p>
 
 <ol>
-  <li>Define a function that takes lat/lon coordinates of a pixel as input. The function sends the coordinates to Earth Engine to get the pixel’s elevation and slope values from the dataset. Then the function prints those values to our side panel in <code>valuesLabel</code>, replacing “(click map)” with the pixel values.
-    <pre><code class="language-javascript">// Query a clicked pixel for elevation and slope.
-var getPixelValues = function(coords) {
-  // Print "Loading..." in the valuesLabel first in case query is slow. 
-  valuesLabel.setValue('Elevation: Loading...\nSlope: Loading...').style({whiteSpace: 'pre'});
-  // Send the clicked location to the server to request an elevation value
-  var location = ee.Geometry.Point(coords.lon, coords.lat);
-  dem.reduceRegion(ee.Reducer.first(), location, 10).evaluate(function(val){
- var demText = val.elevation.toFixed(2) + ' meters';
- // Request slope value from the server and print both elevation and slope to valuesLabel
- slope.reduceRegion(ee.Reducer.first(), location, 10).evaluate(function(val){
-   var slopeText = val.slope.toFixed(0) + ' degrees';
-   valuesLabel.setValue('Elevation: ' + demText + '\nSlope: ' + slopeText).style({whiteSpace: 'pre'});
- });
-  });  
-}
+  <li>Adding these lines will change the user’s mouse pointer into a crosshair, for querying pixels with laser precision!
+    <pre><code class="language-javascript">leftMap.style().set('cursor', 'crosshair'); // style the mouse pointer as a crosshair
+rightMap.style().set('cursor', 'crosshair');
 </code></pre>
-    <p>Note: the code above only defines a function, it does not “call” it, and we haven’t told the map to respond to a user click. Therefore, the code above doesn’t do anything yet.</p>
   </li>
-  <li>We can use the lines below to create something in JavaScript called a “listener”. Listeners wait for some kind of event to happen in the browser, such as a mouse click, scroll wheel, or completed page load. You can tell listeners what to do when those events happen. In our case, we want our app to listen for mouse clicks on either map, and then run our <code>getPixelValues</code> function, defined in the previous step. The lat/lon where the user clicked will be pass along to our function.
-    <pre><code class="language-javascript">// Tell the maps to listen for a click and run our getPixelValues function. 
-Map1.onClick(getPixelValues);
-Map2.onClick(getPixelValues);
+  <li>Go back to the line that creates the title in the side panel. Define the <code>fontSize</code> to make the title text larger.
+    <pre><code class="language-javascript">var title = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}}); // define text at top of side panel
 </code></pre>
-    <div class="alert alert-success" role="alert">
-  <span class="material-icons">play_circle_outline</span>
-  Run the code: you can click the map to see pixel values printed in the side panel.
-</div>
   </li>
-  <li>Finally, the cherry on top: change the user’s mouse pointer from a grabber hand to a crosshair. Now they can click those pixels with pinpoint accuracy!
-    <pre><code class="language-javascript">// Style the mouse pointer as a crosshair
-Map1.style().set('cursor', 'crosshair');
-Map2.style().set('cursor', 'crosshair');
+  <li>Now look for the line in the <code>getPixelValues</code> function that prints the query results in the side panel. We will use the <code>toFixed()</code> method to limit the number of decimal places printed for the elevation and slope values.</li>
+</ol>
+
+<p>For example, instead of printing elevation with <code>val.elevation</code>, we can append the <code>toFixed()</code> method with a parameter specifying the number of decimal places to round to: <code>val.elevation.toFixed(1)</code>.</p>
+
+<pre><code class="language-javascript">var getPixelValues = function(coords) { // define a function that takes a pixel's lat/lon as input
+  var point = ee.Geometry.Point(coords.lon, coords.lat); // create a point object
+  combined.sample(point, resolution).first().toDictionary().evaluate(function(val) {
+    results.setValue('Elevation: ' + val.elevation.toFixed(1) + ' m\n' + 'Slope: ' + val.slope.toFixed(1) + '°'); 
+  });
+};
+</code></pre>
+<ol>
+  <li>Lastly we should deal with the inconsistent behavior of the <code>setCenter()</code> method. Sometimes it zooms correctly when the app is loaded, other times it does not. This is likely caused by a layer not fully loading by the time the method is called, so the map does not center/zoom. This bandaid fix simply waits 3 seconds before trying to zoom.
+    <pre><code class="language-javascript">// Wait 3 seconds for everything to load, then center map
+ui.util.setTimeout(function() { leftMap.setCenter(-91.167275, 30.398996, 17);}, 3000);
+</code></pre>
+  </li>
+  <li>At this point, your full code should look like this:
+    <pre><code class="language-javascript">// Define data layers
+var dem = ee.Image("USGS/NED"); // digital elevation model depicting elevation in meters
+var slope = ee.Terrain.slope(dem); // slope calculated from DEM layer
+// Define layer symbology
+var demStyle = {min: 3, max: 20, palette: ['green', 'yellow', 'orange']}; // elevations between 3-20 meters will have a color gradient
+var slopeStyle = {min: 0, max: 30}; // default black and white gradient between slopes of 0-30 degrees
+// Add swipe functionality
+var leftMap = ui.Map(); // create a map that will be on the left side of the swipe
+var rightMap = ui.Map(); // now the right
+leftMap.setCenter(-91.167275, 30.398996, 17);
+leftMap.addLayer(dem, demStyle, 'Elevation'); // add the elevation layer to the left map
+rightMap.addLayer(slope, slopeStyle, 'Slope'); // slope to the right
+ui.Map.Linker([leftMap, rightMap]); // make the maps pan and zoom in sync
+var swipeMap = ui.SplitPanel(leftMap, rightMap, 'horizontal', true); // create the swipe functionality
+// Create a side panel with text
+var title = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}}); // define text at top of side panel
+var info = ui.Label('Explore elevation changes along Highland Road on the floodplain of the Mississippi River. Slide the handle left and right to visually compare elevation and slope. Slide far right for elevation map controls.');
+var results = ui.Label('Click the map for elevation and slope at that point.', {whiteSpace: 'pre-wrap'});
+var sidePanel = ui.Panel([title,info,results], '', {width: '20%'}); // define the side panel (takes up 20% of page width) and add labels for title, info, and results
+// Display the swipeable maps and side panel in the app UI
+ui.root.clear();
+ui.root.add(ui.Panel([swipeMap, sidePanel], ui.Panel.Layout.flow('horizontal'), {stretch: 'both'}));
+// Allow users to click the map to query for elevation and slope
+var combined = dem.addBands(slope); // combine DEM and slope into a single raster for performance
+var resolution = 10; // pixel size in meters
+var getPixelValues = function(coords) { // define a function that takes a pixel's lat/lon as input
+  var point = ee.Geometry.Point(coords.lon, coords.lat); // create a point object
+  combined.sample(point, resolution).first().toDictionary().evaluate(function(val) {
+ results.setValue('Elevation: ' + val.elevation.toFixed(1) + ' m\n' + 'Slope: ' + val.slope.toFixed(1) + '°'); 
+  });
+};
+// Define a click listener; call getPixelValues on map click
+leftMap.onClick(getPixelValues); 
+rightMap.onClick(getPixelValues);
+// Style the mouse pointer as a crosshair
+leftMap.style().set('cursor', 'crosshair'); 
+rightMap.style().set('cursor', 'crosshair');
+// Wait 3 seconds for everything to load, then center map
+ui.util.setTimeout(function() { leftMap.setCenter(-91.167275, 30.398996, 17);}, 3000);
 </code></pre>
   </li>
 </ol>
@@ -287,12 +249,12 @@ Map2.style().set('cursor', 'crosshair');
 <ol>
   <li>Choose a new area of interest that is not in East Baton Rouge Parish:<br />
   a. Change map center and zoom.<br />
-  b. Change the min/max elevation and slope, appropriate for the new location.<br />
-  c. For a location outside of the United States, you can use the lower-resolution <code>CGIAR/SRTM90_V4</code> dataset.</li>
-  <li>Modify the DEM color palette (use colors that are distinguishable; see <a href="https://gis.stackexchange.com/questions/25099/choosing-colour-ramp-to-use-for-elevation">this thread</a> for ideas):<br />
+  b. Change the min/max elevation and slope, appropriate for the new location.</li>
+  <li>Modify the DEM color palette:<br />
   a. Change at least one of the existing colors.<br />
   b. Add at least one color.</li>
-  <li>Optional: add a color palette to the slope layer.</li>
+  <li>Update the title and descriptive text in the side panel so they match the new location.</li>
+  <li>Test your app by clicking multiple places on the map and confirming that elevation and slope values appear correctly.</li>
   <li>Take a screenshot of your map and side panel.</li>
   <li>Turn your map into an app.<br />
   a. Click <code>Apps</code> &gt; <code>New App</code>.<br />
@@ -312,8 +274,10 @@ Map2.style().set('cursor', 'crosshair');
   <li>Appropriate zoom level for app’s purpose (Highland Road close; Grand Canyon far).</li>
   <li>Color palette different from green-yellow-orange example, at least four colors.</li>
   <li>Swipe tool to compare elevation and slope on synced maps.</li>
-  <li>Side panel with at least title, description, pixel values, and data source appropriate for your app.</li>
-  <li>Clicking the map displays pixel values in side panel correctly.</li>
+  <li>Side panel with at least title, description, and live pixel values appropriate for your app.</li>
+  <li>Clicking the map displays elevation and slope values correctly.</li>
+  <li>Pixel values are rounded to one decimal place.</li>
+  <li>Crosshair cursor enabled on the maps.</li>
 </ol>
 
 <h2 id="submit">Submit</h2>
