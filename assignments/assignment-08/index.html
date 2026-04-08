@@ -97,9 +97,14 @@ Map.addLayer(dem, demStyle, 'Elevation'); // temporary line to display the layer
   <li>Add a new line at the end to center and zoom the map to Highland Road, Baton Rouge.
     <pre><code class="language-javascript">Map.setCenter(-91.167275, 30.398996, 17);
 </code></pre>
-    <h3 id="iteration-2-add-another-layer">Iteration 2: Add another layer</h3>
-    <p>Now we will add another layer, slope, to the map. The slope is not an existing dataset in the Earth Engine Catalog; it is calculated on the fly based on the DEM.</p>
+    <p>Click <code>Run</code> to finally view the result of this iteration before moving on to the next one.</p>
   </li>
+</ol>
+
+<h3 id="iteration-2-add-another-layer">Iteration 2: Add another layer</h3>
+<p>Now we will add another layer, slope, to the map. The slope is not an existing dataset in the Earth Engine Catalog; it is calculated on the fly based on the DEM.</p>
+
+<ol>
   <li>Modify the code to create a slope layer, define a style, and add it to the map.
     <pre><code class="language-javascript">//Define data layers
 var dem = ee.Image("USGS/NED"); // digital elevation model depicting elevation in meters
@@ -150,14 +155,19 @@ ui.root.clear();
 ui.root.add(ui.Panel([swipeMap, sidePanel], ui.Panel.Layout.flow('horizontal'), {stretch: 'both'}));
 leftMap.setCenter(-91.167275, 30.398996, 17);
 </code></pre>
+    <p><code>Run</code> to make sure everything is working before moving on.</p>
   </li>
 </ol>
 
 <h3 id="iteration-5-add-a-query-tool">Iteration 5: Add a query tool</h3>
 <p>Now we will add a feature that lets users click the map and see the elevation and slope values printed in the side panel.</p>
-
 <ol>
-  <li>Append this to your script:
+  <li>First, go back to the code in the previous step to make a placeholder in the side panel where the query results will be printed. Before the declaration of <code>sidePanel</code>, we can add a new line for a <code>results</code> variable that initially has a “Click the map…” placeholder label but will eventually display the elevation and slope. Then on the next line, we just need to edit the list of label variables from <code>title,info</code> to <code>title,info,results</code>. Changing the order of those variables in the list will change the order in which they stack in the side panel.
+    <pre><code class="language-javascript">var results = ui.Label('Click the map for elevation and slope at that point.', {whiteSpace: 'pre-wrap'});
+var sidePanel = ui.Panel([title,info,results], '', {width: '20%'}); // define the side panel (takes up 20% of page width) and add labels for title, info, and results
+</code></pre>
+  </li>
+  <li>With our side panel prepped, we can define a function that makes a server call for the pixel values at the point the user clicks. Append this to your script:
     <pre><code class="language-javascript">// Allow users to click the map to query for elevation and slope
 var combined = dem.addBands(slope); // combine DEM and slope into a single raster for performance
 var resolution = 10; // pixel size in meters
@@ -170,6 +180,7 @@ var getPixelValues = function(coords) { // define a function that takes a pixel'
 leftMap.onClick(getPixelValues); // define a click listener; call getPixelValues on map click
 rightMap.onClick(getPixelValues);
 </code></pre>
+    <p><code>Run</code> to test and see the results.</p>
   </li>
 </ol>
 
@@ -181,10 +192,12 @@ rightMap.onClick(getPixelValues);
     <pre><code class="language-javascript">leftMap.style().set('cursor', 'crosshair'); // style the mouse pointer as a crosshair
 rightMap.style().set('cursor', 'crosshair');
 </code></pre>
+    <p><code>Run</code></p>
   </li>
   <li>Go back to the line that creates the title in the side panel. Define the <code>fontSize</code> to make the title text larger.
     <pre><code class="language-javascript">var title = ui.Label({value: 'Highland Road Elevation Explorer', style: {fontSize: '2em'}}); // define text at top of side panel
 </code></pre>
+    <p><code>Run</code></p>
   </li>
   <li>Now look for the line in the <code>getPixelValues</code> function that prints the query results in the side panel. We will use the <code>toFixed()</code> method to limit the number of decimal places printed for the elevation and slope values. For example, instead of printing elevation with <code>val.elevation</code>, we can append the <code>toFixed()</code> method with a parameter specifying the number of decimal places to round to: <code>val.elevation.toFixed(1)</code>.
     <pre><code class="language-javascript">var getPixelValues = function(coords) { // define a function that takes a pixel's lat/lon as input
@@ -194,11 +207,13 @@ rightMap.style().set('cursor', 'crosshair');
   });
 };
 </code></pre>
+    <p><code>Run</code></p>
   </li>
   <li>Lastly we should deal with the inconsistent behavior of the <code>setCenter()</code> method. Sometimes it zooms correctly when the app is loaded, other times it does not. This is likely caused by a layer not fully loading by the time the method is called, so the map does not center/zoom. This bandaid fix simply waits 3 seconds before trying to zoom.
     <pre><code class="language-javascript">// Wait 3 seconds for everything to load, then center map
 ui.util.setTimeout(function() { leftMap.setCenter(-91.167275, 30.398996, 17);}, 3000);
 </code></pre>
+    <p><code>Run</code></p>
   </li>
   <li>At this point, your full code should look like this:
     <pre><code class="language-javascript">// Define data layers
